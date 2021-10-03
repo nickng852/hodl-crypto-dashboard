@@ -18,8 +18,10 @@ const App = () => {
     axios
       .request(options)
       .then(function (res) {
-        console.log(res);
-        setCoins(res.data.data);
+        var parsedData = JSON.parse(JSON.stringify(res));
+        console.log(parsedData);
+        console.log(parsedData.data.data);
+        setCoins(parsedData.data.data);
       })
       .catch(function (err) {
         console.error(err);
@@ -28,13 +30,17 @@ const App = () => {
 
   return (
     <>
-      {coins.map((coin, index) => {
+      {coins.map((coin) => {
         return (
           <Coin
-            key={index}
+            key={coin.id}
             id={coin.id}
             name={coin.name}
             symbol={coin.symbol}
+            price={coin.quote.USD.price}
+            marketcap={coin.quote.USD.market_cap}
+            percentchange24h={coin.quote.USD.percent_change_24h}
+            volume24h={coin.quote.USD.volume_24h}
           />
         );
       })}
