@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Coin } from "./components/Coin";
 
 const App = () => {
+  // states
+  const [coins, setCoins] = useState([]);
+
   useEffect(() => {
     const options = {
       method: "GET",
@@ -15,13 +19,27 @@ const App = () => {
       .request(options)
       .then(function (res) {
         console.log(res);
+        setCoins(res.data.data);
       })
       .catch(function (err) {
         console.error(err);
       });
   }, []);
 
-  return <></>;
+  return (
+    <>
+      {coins.map((coin, index) => {
+        return (
+          <Coin
+            key={index}
+            id={coin.id}
+            name={coin.name}
+            symbol={coin.symbol}
+          />
+        );
+      })}
+    </>
+  );
 };
 
 export default App;
