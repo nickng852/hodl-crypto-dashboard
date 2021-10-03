@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Coin } from "./components/Coin";
+import SearchBar from "./components/SearchBar";
 
 const App = () => {
   // states
   const [coins, setCoins] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const options = {
@@ -28,9 +30,16 @@ const App = () => {
       });
   }, []);
 
+  const filteredCoins = coins.filter(
+    (coin) =>
+      coin.name.toLowerCase().includes(search.toLowerCase()) ||
+      coin.symbol.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <>
-      {coins.map((coin) => {
+      <SearchBar setSearch={setSearch} />
+      {filteredCoins.map((coin) => {
         return (
           <Coin
             key={coin.id}
