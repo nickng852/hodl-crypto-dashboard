@@ -13,10 +13,14 @@ export const Coin = ({
 
   return (
     <>
-      <div className="m-4 flex items-center justify-between">
-        <img className="w-8 h-8 rounded-full" src={url} alt={crypto} />
+      <div className="flex justify-between items-center m-4">
+        <img
+          className="w-8 h-8 rounded-full shadow-md"
+          src={url}
+          alt={crypto}
+        />
         <div>{name}</div>
-        <div className=" px-3 py-2 bg-gray-100 rounded-md text-xs">
+        <div className="px-2 py-1 text-xs rounded text-white bg-gray-400 font-medium">
           {symbol}
         </div>
         <div>${price.toLocaleString()}</div>

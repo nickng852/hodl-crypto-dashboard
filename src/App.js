@@ -41,16 +41,20 @@ const App = () => {
       <SearchBar setSearch={setSearch} />
       {filteredCoins.map((coin) => {
         return (
-          <Coin
-            key={coin.id}
-            id={coin.id}
-            name={coin.name}
-            symbol={coin.symbol}
-            price={coin.quote.USD.price}
-            marketcap={coin.quote.USD.market_cap}
-            percentchange24h={coin.quote.USD.percent_change_24h}
-            volume24h={coin.quote.USD.volume_24h}
-          />
+          <>
+            {search ? (
+              <Coin
+                key={coin.id}
+                id={coin.id}
+                name={coin.name}
+                symbol={coin.symbol}
+                price={coin.quote.USD.price}
+                marketcap={coin.quote.USD.market_cap}
+                percentchange24h={coin.quote.USD.percent_change_24h}
+                volume24h={coin.quote.USD.volume_24h}
+              />
+            ) : null}
+          </>
         );
       })}
     </>
