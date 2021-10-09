@@ -20,7 +20,6 @@ const Avatar = ({ open, setOpen }) => {
           width="22"
           fill="currentColor"
           height="22"
-          className="text-gray-800"
           viewBox="0 0 1792 1792"
           xmlns="http://www.w3.org/2000/svg"
         >

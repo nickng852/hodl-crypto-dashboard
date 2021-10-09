@@ -19,7 +19,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
   const handleClickAway = () => {
     setSearch("");
 
-    var input = document.getElementById("search");
+    const input = document.getElementById("search");
     input.value = "";
   };
 

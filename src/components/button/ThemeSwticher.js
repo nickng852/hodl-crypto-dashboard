@@ -1,16 +1,25 @@
 import React from "react";
 
 const ThemeSwticher = () => {
+  const toggleTheme = () => {
+    const html = document.querySelector("html");
+
+    html.classList.length === 0
+      ? html.classList.add("dark")
+      : html.classList.remove("dark");
+  };
+
   return (
     <>
       <button
         type="button"
         className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-md dark:text-gray-50 focus:outline-none"
+        onClick={toggleTheme}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
-          fill="none"
+          fill="white"
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
