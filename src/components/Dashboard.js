@@ -1,12 +1,20 @@
 import React from "react";
-/* import Sidebar from "./Sidebar"; */
+import Sidebar from "./Sidebar";
 import Main from "./Main";
 
-const Dashboard = ({ coins, search, setSearch }) => {
+const Dashboard = ({ coins, search, setSearch, open, setOpen }) => {
   return (
     <>
-      {/*       <Sidebar /> */}
-      <Main coins={coins} search={search} setSearch={setSearch} />
+      <div className="flex flex-row">
+        <Sidebar />
+        <Main
+          coins={coins}
+          search={search}
+          setSearch={setSearch}
+          open={open}
+          setOpen={setOpen}
+        />
+      </div>
     </>
   );
 };

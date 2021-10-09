@@ -1,10 +1,18 @@
 import React from "react";
-import SearchBar from "../components/SearchBar";
+import NavBar from "./navbar/NavBar";
 
-const Main = ({ coins, search, setSearch }) => {
+const Main = ({ coins, search, setSearch, open, setOpen }) => {
   return (
     <>
-      <SearchBar coins={coins} search={search} setSearch={setSearch} />
+      <div className="w-full bg-gray-50">
+        <NavBar
+          coins={coins}
+          search={search}
+          setSearch={setSearch}
+          open={open}
+          setOpen={setOpen}
+        />
+      </div>
     </>
   );
 };
