@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
 
 const App = () => {
   // states
   const [coins, setCoins] = useState([]);
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     const cryptoApiOptions = {
@@ -50,13 +53,21 @@ const App = () => {
 
   return (
     <>
-      <Dashboard
-        coins={coins}
-        search={search}
-        setSearch={setSearch}
-        open={open}
-        setOpen={setOpen}
-      />
+      <div className="flex flex-col h-screen bg-gray-100">
+        <Dashboard
+          coins={coins}
+          search={search}
+          setSearch={setSearch}
+          open={open}
+          setOpen={setOpen}
+        />
+        {/*         <Login
+          username={username}
+          setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
+        /> */}
+      </div>
     </>
   );
 };
