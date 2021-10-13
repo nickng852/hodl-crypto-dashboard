@@ -1,7 +1,28 @@
 import React from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-const Login = ({ setUsername, setPassword }) => {
+const Login = ({ email, setEmail, password, setPassword }) => {
   const url = "";
+
+  const signUp = () => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        console.log(errorCode);
+        // ..
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -10,19 +31,20 @@ const Login = ({ setUsername, setPassword }) => {
           HODL
         </h1>
 
-        <form className="mt-6">
+        <form className="mt-6" onSubmit={handleSubmit}>
           <div>
             <label
-              for="username"
+              htmlFor="username"
               className="block text-sm text-gray-800 dark:text-gray-200"
             >
-              Username
+              Email address
             </label>
             <input
               type="text"
+              value={email}
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
               onChange={(e) => {
-                setUsername(e.target.value);
+                setEmail(e.target.value);
               }}
             />
           </div>
@@ -30,7 +52,7 @@ const Login = ({ setUsername, setPassword }) => {
           <div className="mt-4">
             <div className="flex items-center justify-between">
               <label
-                for="password"
+                htmlFor="password"
                 className="block text-sm text-gray-800 dark:text-gray-200"
               >
                 Password
@@ -45,6 +67,7 @@ const Login = ({ setUsername, setPassword }) => {
 
             <input
               type="password"
+              value={password}
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -53,7 +76,11 @@ const Login = ({ setUsername, setPassword }) => {
           </div>
 
           <div className="mt-6">
-            <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+            <button
+              type="submit"
+              className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+              onClick={signUp}
+            >
               Login
             </button>
           </div>
@@ -95,8 +122,7 @@ const Login = ({ setUsername, setPassword }) => {
         </div>
 
         <p className="mt-8 text-xs font-light text-center text-gray-400">
-          {" "}
-          Don't have an account?{" "}
+          Don't have an account?
           <a
             href={url}
             className="font-medium text-gray-700 dark:text-gray-200 hover:underline"

@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+// Firebase
+import { initializeApp } from "firebase/app";
+import firebaseConfig from "./auth/Firebase";
+
+// Components
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
 
 const App = () => {
   // states
   const [coins, setCoins] = useState([]);
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
@@ -32,7 +42,7 @@ const App = () => {
         console.error(err);
       });
 
-    const cryptoNewsApiOptions = {
+    /*      const cryptoNewsApiOptions = {
       method: "GET",
       url: "https://crypto-news5.p.rapidapi.com/",
       headers: {
@@ -48,25 +58,27 @@ const App = () => {
       })
       .catch(function (err) {
         console.error(err);
-      });
+      }); */
   }, []);
 
   return (
     <>
       <div className="flex flex-col h-screen bg-gray-100">
-        <Dashboard
+        {/*        <Dashboard
           coins={coins}
           search={search}
           setSearch={setSearch}
           open={open}
           setOpen={setOpen}
-        />
-        {/*         <Login
-          username={username}
-          setUsername={setUsername}
+        /> */}
+        <Login
+          user={user}
+          setUser={setUser}
+          email={email}
+          setEmail={setEmail}
           password={password}
           setPassword={setPassword}
-        /> */}
+        />
       </div>
     </>
   );
