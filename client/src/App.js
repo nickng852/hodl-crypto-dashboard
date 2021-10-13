@@ -7,7 +7,7 @@ import firebaseConfig from "./auth/Firebase";
 
 // Components
 import Dashboard from "./components/Dashboard";
-import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
@@ -71,9 +71,7 @@ const App = () => {
           open={open}
           setOpen={setOpen}
         /> */}
-        <Login
-          user={user}
-          setUser={setUser}
+        <SignUp
           email={email}
           setEmail={setEmail}
           password={password}
