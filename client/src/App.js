@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 // React Router Setup
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 // Fetch data
 import axios from "axios";
@@ -30,7 +35,7 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    /*     const cryptoApiOptions = {
+    const cryptoApiOptions = {
       method: "GET",
       url: "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
       headers: {
@@ -48,7 +53,8 @@ const App = () => {
       })
       .catch(function (err) {
         console.error(err);
-      }); */
+      });
+
     /*      const cryptoNewsApiOptions = {
       method: "GET",
       url: "https://crypto-news5.p.rapidapi.com/",
@@ -84,6 +90,7 @@ const App = () => {
               setErrorMessage={setErrorMessage}
             />
           </Route>
+
           <Route path="/" exact>
             <SignIn
               isLogged={isLogged}
@@ -98,10 +105,12 @@ const App = () => {
               setErrorMessage={setErrorMessage}
             />
           </Route>
+
           {isLogged ? (
             <Route path="/dashboard">
               <Dashboard
                 isLogged={isLogged}
+                setIsLogged={setIsLogged}
                 coins={coins}
                 search={search}
                 setSearch={setSearch}
@@ -109,7 +118,9 @@ const App = () => {
                 setOpen={setOpen}
               />
             </Route>
-          ) : null}
+          ) : (
+            <Redirect to="/" />
+          )}
         </Switch>
       </Router>
     </>

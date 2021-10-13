@@ -57,7 +57,7 @@ const SignUp = ({
 
   return (
     <>
-      <div className="flex flex-col h-screen bg-gray-100">
+      <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-800">
         <div className="w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md dark:bg-gray-800">
           <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-white">
             Sign Up

@@ -2,7 +2,7 @@ import React from "react";
 import Avatar from "../button/Avatar";
 import ThemeSwticher from "../button/ThemeSwticher";
 
-const NavControl = ({ open, setOpen }) => {
+const NavControl = ({ open, setOpen, setIsLogged }) => {
   return (
     <>
       <div className="px-8">
@@ -13,7 +13,11 @@ const NavControl = ({ open, setOpen }) => {
                 <div className="relative inline-block text-left">
                   <div className="flex">
                     <ThemeSwticher />
-                    <Avatar open={open} setOpen={setOpen} />
+                    <Avatar
+                      open={open}
+                      setOpen={setOpen}
+                      setIsLogged={setIsLogged}
+                    />
                   </div>
                 </div>
               </div>

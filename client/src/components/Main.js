@@ -2,7 +2,7 @@ import React from "react";
 import CoinCard from "./CoinCard";
 import NavBar from "./navbar/NavBar";
 
-const Main = ({ coins, search, setSearch, open, setOpen }) => {
+const Main = ({ coins, search, setSearch, open, setOpen, setIsLogged }) => {
   return (
     <>
       <div className="flex flex-col w-full bg-gray-50 justify-items-center">
@@ -12,6 +12,7 @@ const Main = ({ coins, search, setSearch, open, setOpen }) => {
           setSearch={setSearch}
           open={open}
           setOpen={setOpen}
+          setIsLogged={setIsLogged}
         />
         <CoinCard coins={coins} />
       </div>

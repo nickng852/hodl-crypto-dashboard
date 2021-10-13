@@ -5,7 +5,7 @@ const SearchBarResult = ({ id, name, symbol }) => {
 
   return (
     <>
-      <a key={id} href={url} className="block py-1 ">
+      <a key={id} href={url} className="block py-1">
         <h3 className="font-medium text-gray-700 dark:text-gray-100 hover:underline">
           {name}
         </h3>

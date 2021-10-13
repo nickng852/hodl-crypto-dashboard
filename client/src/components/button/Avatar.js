@@ -1,11 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
 import ClickAwayListener from "react-click-away-listener";
 
-const Avatar = ({ open, setOpen }) => {
-  const url = "";
-
+const Avatar = ({ open, setOpen, setIsLogged }) => {
   const toggle = () => {
     setOpen(!open);
+  };
+
+  const logOut = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      setIsLogged(false);
+    });
   };
 
   return (
@@ -28,40 +35,41 @@ const Avatar = ({ open, setOpen }) => {
       </button>
       {open ? (
         <ClickAwayListener onClickAway={toggle}>
-          <div className="absolute right-0 w-56 mt-12 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+          <div className="absolute right-0 z-10 w-56 mt-12 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
             <div
               className="py-1 "
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="options-menu"
             >
-              <a
-                href={url}
+              <Link
+                to="#"
                 className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
                 role="menuitem"
               >
                 <span className="flex flex-col">
                   <span>Account</span>
                 </span>
-              </a>
-              <a
-                href={url}
+              </Link>
+              <Link
+                to="#"
                 className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
                 role="menuitem"
               >
                 <span className="flex flex-col">
                   <span>Settings</span>
                 </span>
-              </a>
-              <a
-                href={url}
+              </Link>
+              <Link
+                to="#"
                 className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
                 role="menuitem"
+                onClick={logOut}
               >
                 <span className="flex flex-col">
                   <span>Logout</span>
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
         </ClickAwayListener>
