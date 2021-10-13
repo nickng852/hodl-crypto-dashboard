@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from "react";
+
+// React Router Setup
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+// Fetch data
 import axios from "axios";
 
 // Firebase
@@ -7,7 +12,8 @@ import firebaseConfig from "./auth/Firebase";
 
 // Components
 import Dashboard from "./components/Dashboard";
-import SignUp from "./components/SignUp";
+import SignUp from "./components/account/SignUp";
+import SignIn from "./components/account/SignIn";
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
@@ -17,12 +23,14 @@ const App = () => {
   const [coins, setCoins] = useState([]);
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    const cryptoApiOptions = {
+    /*     const cryptoApiOptions = {
       method: "GET",
       url: "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
       headers: {
@@ -40,8 +48,7 @@ const App = () => {
       })
       .catch(function (err) {
         console.error(err);
-      });
-
+      }); */
     /*      const cryptoNewsApiOptions = {
       method: "GET",
       url: "https://crypto-news5.p.rapidapi.com/",
@@ -63,21 +70,48 @@ const App = () => {
 
   return (
     <>
-      <div className="flex flex-col h-screen bg-gray-100">
-        {/*        <Dashboard
-          coins={coins}
-          search={search}
-          setSearch={setSearch}
-          open={open}
-          setOpen={setOpen}
-        /> */}
-        <SignUp
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-        />
-      </div>
+      <Router basename={process.env.PUBLIC_URL}>
+        <Switch>
+          <Route path="/signup">
+            <SignUp
+              user={user}
+              setUser={setUser}
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              errorMessage={errorMessage}
+              setErrorMessage={setErrorMessage}
+            />
+          </Route>
+          <Route path="/" exact>
+            <SignIn
+              isLogged={isLogged}
+              setIsLogged={setIsLogged}
+              user={user}
+              setUser={setUser}
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              errorMessage={errorMessage}
+              setErrorMessage={setErrorMessage}
+            />
+          </Route>
+          {isLogged ? (
+            <Route path="/dashboard">
+              <Dashboard
+                isLogged={isLogged}
+                coins={coins}
+                search={search}
+                setSearch={setSearch}
+                open={open}
+                setOpen={setOpen}
+              />
+            </Route>
+          ) : null}
+        </Switch>
+      </Router>
     </>
   );
 };
