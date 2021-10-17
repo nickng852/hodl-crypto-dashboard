@@ -11,8 +11,10 @@ const NavControl = ({ user, open, setOpen, setIsLogged }) => {
             <div className="flex items-center ml-4 md:ml-6">
               <div className="relative ml-3">
                 <div className="relative inline-block text-left">
-                  <div className="flex">
-                    <span>{user.email}</span>
+                  <div className="flex items-center">
+                    <span className="px-6 text-gray-600 dark:text-gray-400">
+                      {user.email}
+                    </span>
                     <ThemeSwticher />
                     <Avatar
                       open={open}

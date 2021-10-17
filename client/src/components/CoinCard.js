@@ -5,7 +5,7 @@ const CoinCard = ({ coins }) => {
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-center mt-14">
+      <div className="flex flex-wrap items-center justify-center max-w-10xl mt-14">
         {slicedCoins.map((result, index) => {
           return (
             <div

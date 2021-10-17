@@ -1,8 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const url = "";
-
   return (
     <>
       <div className="relative flex bg-white shadow-xl dark:bg-gray-800">
@@ -14,9 +13,9 @@ const Sidebar = () => {
               </span>
             </div>
             <nav className="px-6 mt-10 ">
-              <a
+              <Link
                 className="flex items-center px-3 py-2 my-6 text-gray-600 transition-colors duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 "
-                href={url}
+                to="#"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -34,10 +33,10 @@ const Sidebar = () => {
                 </svg>
                 <span className="mx-4 font-normal text-md">Dashboard</span>
                 <span className="flex-grow text-right"></span>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="flex items-center px-3 py-2 my-6 text-gray-800 transition-colors duration-200 bg-gray-100 rounded-lg hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-100 dark:bg-gray-600"
-                href={url}
+                to="#"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -55,10 +54,10 @@ const Sidebar = () => {
                 </svg>
                 <span className="mx-4 font-normal text-md">Exchange</span>
                 <span className="flex-grow text-right"></span>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="flex items-center px-3 py-2 my-6 text-gray-600 transition-colors duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 "
-                href={url}
+                to="#"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -76,10 +75,10 @@ const Sidebar = () => {
                 </svg>
                 <span className="mx-4 font-normal text-md">Profile</span>
                 <span className="flex-grow text-right"></span>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="flex items-center px-3 py-2 my-6 text-gray-600 transition-colors duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 "
-                href={url}
+                to="#"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +102,7 @@ const Sidebar = () => {
                 </svg>
                 <span className="mx-4 font-normal text-md">Setting</span>
                 <span className="flex-grow text-right"></span>
-              </a>
+              </Link>
             </nav>
           </div>
         </div>
