@@ -1,5 +1,6 @@
 import React from "react";
 import CoinCard from "./CoinCard";
+import CoinList from "./CoinList";
 import NavBar from "./navbar/NavBar";
 
 const Main = ({
@@ -24,6 +25,7 @@ const Main = ({
           setIsLogged={setIsLogged}
         />
         <CoinCard coins={coins} />
+        <CoinList coins={coins} />
       </div>
     </>
   );

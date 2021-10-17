@@ -19,7 +19,7 @@ const CoinCard = ({ coins }) => {
               />
               <div className="px-4 py-5 sm:p-6">
                 <dl>
-                  <span className="px-3 py-1 text-sm font-medium leading-5 text-gray-600 truncate bg-gray-200 rounded-lg ">
+                  <span className="px-2 py-1 text-xs font-medium leading-5 text-gray-600 truncate bg-gray-200 rounded-md">
                     {result.symbol}
                   </span>
                   <dd className="mt-4 font-semibold text-gray-500">
