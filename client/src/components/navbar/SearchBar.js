@@ -47,7 +47,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
             id="search"
             maxLength="27"
             className="w-full py-3 pl-12 pr-4 text-gray-700 bg-white border border-gray-300 rounded-2xl dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-            placeholder="Search..."
+            placeholder="Search Crypto"
             onChange={handleChange}
           />
           {search.length !== 0 ? (
@@ -74,12 +74,13 @@ const SearchBar = ({ coins, search, setSearch }) => {
         </div>
         {search && filteredCoins.length !== 0 ? ( // Search result will show only when input field is not empty and match result is returned.
           <ClickAwayListener onClickAway={handleClickAway}>
-            <div className="absolute inset-x-0 z-10 px-6 py-3 mx-5 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-2xl max-h-72 dark:bg-gray-800 dark:border-transparent">
+            <div className="absolute inset-x-0 z-10 mx-5 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-2xl max-h-72 dark:bg-gray-800 dark:border-transparent">
               {filteredCoins.map((result, index) => {
                 return (
                   <>
                     <SearchBarResult
                       key={index}
+                      id={result.id}
                       name={result.name}
                       symbol={result.symbol}
                     />

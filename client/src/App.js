@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-// React Router Setup
+import axios from "axios";
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,20 +7,14 @@ import {
   Redirect,
 } from "react-router-dom";
 
-// Fetch data
-import axios from "axios";
-
 // Firebase
-import { initializeApp } from "firebase/app";
-import firebaseConfig from "./auth/Firebase";
+import { db } from "./firebase/firebase.config";
+import { collection, getDocs } from "firebase/firestore";
 
 // Components
 import Dashboard from "./components/Dashboard";
 import SignUp from "./components/account/SignUp";
 import SignIn from "./components/account/SignIn";
-
-// Initialize Firebase
-initializeApp(firebaseConfig);
 
 const App = () => {
   // states
@@ -30,11 +23,22 @@ const App = () => {
   const [open, setOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
+    const getUser = async () => {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id.email);
+      });
+    };
+
+    getUser();
+
+    // CoinMarketCap API call
     const cryptoApiOptions = {
       method: "GET",
       url: "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
@@ -55,7 +59,8 @@ const App = () => {
         console.error(err);
       });
 
-    /*      const cryptoNewsApiOptions = {
+    /*     // CryptoNews API call
+    const cryptoNewsApiOptions = {
       method: "GET",
       url: "https://crypto-news5.p.rapidapi.com/",
       headers: {
@@ -82,6 +87,8 @@ const App = () => {
             <SignUp
               user={user}
               setUser={setUser}
+              name={name}
+              setName={setName}
               email={email}
               setEmail={setEmail}
               password={password}
@@ -111,6 +118,8 @@ const App = () => {
               <Dashboard
                 isLogged={isLogged}
                 setIsLogged={setIsLogged}
+                user={user}
+                setUser={setUser}
                 coins={coins}
                 search={search}
                 setSearch={setSearch}

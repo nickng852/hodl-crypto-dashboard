@@ -1,7 +1,7 @@
 import React from "react";
 
 const CoinCard = ({ coins }) => {
-  const slicedCoins = coins.slice(0, 4);
+  const slicedCoins = coins.slice(0, 5);
 
   return (
     <>
@@ -33,7 +33,13 @@ const CoinCard = ({ coins }) => {
                           : "text-green-500"
                       }`}
                     >
-                      {result.quote.USD.percent_change_24h.toFixed(2)}%
+                      {`${
+                        result.quote.USD.percent_change_24h < 0
+                          ? result.quote.USD.percent_change_24h.toFixed(2) + "%"
+                          : "+" +
+                            result.quote.USD.percent_change_24h.toFixed(2) +
+                            "%"
+                      }`}
                     </span>
                   </dd>
                   <dd className="mt-1 text-3xl font-semibold leading-9 text-gray-900 dark:text-gray-100">

@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = ({
-  isLogged,
   setIsLogged,
   setUser,
   email,

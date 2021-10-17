@@ -35,42 +35,22 @@ const Avatar = ({ open, setOpen, setIsLogged }) => {
       </button>
       {open ? (
         <ClickAwayListener onClickAway={toggle}>
-          <div className="absolute right-0 z-10 w-56 mt-12 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
-            <div
-              className="py-1 "
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="options-menu"
-            >
-              <Link
-                to="#"
-                className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
-                role="menuitem"
-              >
-                <span className="flex flex-col">
-                  <span>Account</span>
-                </span>
-              </Link>
-              <Link
-                to="#"
-                className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
-                role="menuitem"
-              >
-                <span className="flex flex-col">
-                  <span>Settings</span>
-                </span>
-              </Link>
-              <Link
-                to="#"
-                className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
-                role="menuitem"
-                onClick={logOut}
-              >
-                <span className="flex flex-col">
-                  <span>Logout</span>
-                </span>
-              </Link>
-            </div>
+          <div className="absolute right-0 z-10 w-56 mt-12 origin-top-right bg-white rounded-lg shadow-lg dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+            <Link to="#">
+              <span className="flex px-4 py-3 text-gray-700 rounded-t-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 ">
+                Account
+              </span>
+            </Link>
+            <Link to="#">
+              <span className="flex px-4 py-3 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600">
+                Settings
+              </span>
+            </Link>
+            <Link to="#" onClick={logOut}>
+              <span className="flex px-4 py-3 text-gray-700 rounded-b-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600">
+                Logout
+              </span>
+            </Link>
           </div>
         </ClickAwayListener>
       ) : null}

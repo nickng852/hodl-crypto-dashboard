@@ -4,6 +4,8 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUp = ({
   setUser,
+  name,
+  setName,
   email,
   setEmail,
   password,
@@ -18,6 +20,7 @@ const SignUp = ({
         // Signed up
         setUser(userCredential.user);
         console.log("Account created.");
+        setName("");
         setEmail("");
         setPassword("");
         setErrorMessage("");
@@ -43,7 +46,9 @@ const SignUp = ({
         }
 
         // Custom error
-        if (email === "" && password === "") {
+        if (name === "" && email === "" && password === "") {
+          errorMessage = "Please answer all the fields.";
+        } else if (email === "" && password === "") {
           errorMessage = "Please enter email address and password.";
         } else if (email === "") {
           errorMessage = "Please enter email address.";
@@ -70,6 +75,23 @@ const SignUp = ({
             }}
           >
             <div>
+              <label
+                htmlFor="email"
+                className="block text-sm text-gray-800 dark:text-gray-200"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                value={name}
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </div>
+
+            <div className="mt-4">
               <label
                 htmlFor="email"
                 className="block text-sm text-gray-800 dark:text-gray-200"

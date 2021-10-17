@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import Main from "./Main";
 
 const Dashboard = ({
+  user,
   coins,
   search,
   setSearch,
@@ -15,6 +16,7 @@ const Dashboard = ({
       <div className="flex flex-row">
         <Sidebar />
         <Main
+          user={user}
           coins={coins}
           search={search}
           setSearch={setSearch}
