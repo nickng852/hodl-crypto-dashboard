@@ -5,11 +5,11 @@ const CoinCard = ({ coins }) => {
 
   return (
     <>
-      <div className="flex flex-wrap justify-center space-x-16 mt-14">
+      <div className="flex flex-wrap items-center justify-center mt-14">
         {slicedCoins.map((result, index) => {
           return (
             <div
-              className="relative overflow-hidden bg-white rounded-lg shadow w-60 md:w-72 dark:bg-gray-600"
+              className="relative m-5 overflow-hidden bg-white rounded-lg shadow w-60 md:w-72 dark:bg-gray-600"
               key={index}
             >
               <img
@@ -43,7 +43,10 @@ const CoinCard = ({ coins }) => {
                     </span>
                   </dd>
                   <dd className="mt-1 text-3xl font-semibold leading-9 text-gray-900 dark:text-gray-100">
-                    ${result.quote.USD.price.toLocaleString()}
+                    $
+                    {result.quote.USD.price.toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}
                   </dd>
                 </dl>
               </div>

@@ -68,17 +68,30 @@ const CoinList = ({ coins }) => {
                         </td>
                         <td className="px-5 py-5 bg-white border-b border-gray-200 text-md">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            ${result.quote.USD.price.toLocaleString()}
+                            $
+                            {result.quote.USD.price.toLocaleString(undefined, {
+                              maximumFractionDigits: 2,
+                            })}
                           </p>
                         </td>
                         <td className="px-5 py-5 bg-white border-b border-gray-200 text-md">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            ${result.quote.USD.market_cap.toLocaleString()}
+                            $
+                            {result.quote.USD.market_cap.toLocaleString(
+                              undefined,
+                              { maximumFractionDigits: 0 }
+                            )}
                           </p>
                         </td>
                         <td className="px-5 py-5 bg-white border-b border-gray-200 text-md">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            {result.quote.USD.volume_24h}
+                            $
+                            {result.quote.USD.volume_24h.toLocaleString(
+                              undefined,
+                              {
+                                maximumFractionDigits: 0,
+                              }
+                            )}
                           </p>
                         </td>
                       </tr>
