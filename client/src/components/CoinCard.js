@@ -7,6 +7,9 @@ const CoinCard = ({ coins }) => {
     <>
       <div className="flex flex-wrap items-center justify-center max-w-10xl mt-14">
         {slicedCoins.map((result, index) => {
+          const priceChange = result.quote.USD.percent_change_24h;
+          const AbsPriceChange = Math.abs(priceChange);
+
           return (
             <div
               className="relative m-5 overflow-hidden bg-white rounded-lg shadow w-60 md:w-72 dark:bg-gray-600"
@@ -28,17 +31,13 @@ const CoinCard = ({ coins }) => {
                     </span>
                     <span
                       className={`${
-                        result.quote.USD.percent_change_24h < 0
-                          ? "text-red-600"
-                          : "text-green-500"
+                        priceChange < 0 ? "text-red-600" : "text-green-500"
                       }`}
                     >
                       {`${
-                        result.quote.USD.percent_change_24h < 0
-                          ? result.quote.USD.percent_change_24h.toFixed(2) + "%"
-                          : "+" +
-                            result.quote.USD.percent_change_24h.toFixed(2) +
-                            "%"
+                        priceChange < 0
+                          ? "▼ " + AbsPriceChange.toFixed(2) + "%"
+                          : "▲ " + AbsPriceChange.toFixed(2) + "%"
                       }`}
                     </span>
                   </dd>

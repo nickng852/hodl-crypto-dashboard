@@ -6,7 +6,7 @@ const CoinList = ({ coins }) => {
 
   return (
     <>
-      <div className="container px-4 mx-auto max-w-10xl">
+      <div className="container px-4 mx-auto max-w-7xl">
         <div className="px-4 py-4 overflow-x-auto">
           <div className="inline-block min-w-full overflow-hidden rounded-lg shadow ">
             <table className="min-w-full leading-normal ">
@@ -14,25 +14,25 @@ const CoinList = ({ coins }) => {
                 <tr>
                   <th
                     scope="col"
-                    className="px-5 py-3 font-normal text-left text-gray-900 uppercase bg-white border-b border-gray-100 dark:border-gray-500 dark:text-gray-100 dark:bg-gray-600 text-md"
+                    className="px-8 py-3 font-normal text-left text-gray-900 bg-white border-b border-gray-100 dark:border-gray-500 dark:text-gray-100 dark:bg-gray-600 text-md"
                   >
                     Coin Name
                   </th>
                   <th
                     scope="col"
-                    className="px-5 py-3 font-normal text-left text-gray-900 uppercase bg-white border-b border-gray-100 dark:border-gray-500 dark:text-gray-100 text-md dark:bg-gray-600"
+                    className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-500 dark:text-gray-100 text-md dark:bg-gray-600"
                   >
                     Price
                   </th>
                   <th
                     scope="col"
-                    className="px-5 py-3 font-normal text-left text-gray-900 uppercase bg-white border-b border-gray-100 dark:border-gray-500 dark:text-gray-100 text-md dark:bg-gray-600"
+                    className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-500 dark:text-gray-100 text-md dark:bg-gray-600"
                   >
                     Market Cap
                   </th>
                   <th
                     scope="col"
-                    className="px-5 py-3 font-normal text-left text-gray-900 uppercase bg-white border-b border-gray-100 dark:border-gray-500 dark:text-gray-100 text-md dark:bg-gray-600"
+                    className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-500 dark:text-gray-100 text-md dark:bg-gray-600"
                   >
                     Volume(24h)
                   </th>
@@ -42,7 +42,7 @@ const CoinList = ({ coins }) => {
                 return (
                   <tbody>
                     <tr>
-                      <td className="px-5 py-8 bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600 text-md ">
+                      <td className="px-8 py-8 bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600 text-md ">
                         <div className="flex items-center">
                           <div className="flex-shrink-0">
                             <Link to="#" className="relative block">
@@ -65,7 +65,7 @@ const CoinList = ({ coins }) => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-5 py-5 bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600 text-md">
+                      <td className="px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
                         <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                           $
                           {result.quote.USD.price.toLocaleString(undefined, {
@@ -73,7 +73,7 @@ const CoinList = ({ coins }) => {
                           })}
                         </p>
                       </td>
-                      <td className="px-5 py-5 bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600 text-md">
+                      <td className="px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
                         <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                           $
                           {result.quote.USD.market_cap.toLocaleString(
@@ -82,7 +82,7 @@ const CoinList = ({ coins }) => {
                           )}
                         </p>
                       </td>
-                      <td className="px-5 py-5 bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600 text-md">
+                      <td className="px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
                         <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                           $
                           {result.quote.USD.volume_24h.toLocaleString(

@@ -1,4 +1,5 @@
 import React from "react";
+import Account from "../components/Account";
 import CoinCard from "./CoinCard";
 import CoinList from "./CoinList";
 import NavBar from "./navbar/NavBar";
@@ -26,6 +27,7 @@ const Main = ({
         />
         <CoinCard coins={coins} />
         <CoinList coins={coins} />
+        <Account />
       </div>
     </>
   );
