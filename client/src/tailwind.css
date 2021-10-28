@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .scroll-snap-none {
+    scroll-snap-type: none;
+  }
+  .scroll-snap-x {
+    scroll-snap-type: x;
+  }
+  .scroll-snap-y {
+    scroll-snap-type: y;
+  }
+  .scroll-snap-x-man {
+    scroll-snap-type: x mandatory;
+  }
+  .scroll-snap-y-man {
+    scroll-snap-type: y mandatory;
+  }
+  .scroll-snap-align-start {
+    scroll-snap-align: start;
+  }
+  .xxx {
+    background-color: #a0e7e5;
+  }
+}

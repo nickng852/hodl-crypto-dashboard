@@ -39,6 +39,13 @@ const CoinList = ({ coins }) => {
                 </tr>
               </thead>
               {slicedCoins.map((result) => {
+                const id = result.id;
+                const symbol = result.symbol;
+                const name = result.name;
+                const price = result.quote.USD.price;
+                const marketCap = result.quote.USD.market_cap;
+                const volume = result.quote.USD.volume_24h;
+
                 return (
                   <tbody>
                     <tr>
@@ -48,19 +55,19 @@ const CoinList = ({ coins }) => {
                             <Link to="#" className="relative block">
                               <img
                                 alt={crypto}
-                                src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${result.id}.png`}
+                                src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${id}.png`}
                                 className="object-cover w-6 h-6 mx-auto rounded-full "
                               />
                             </Link>
                           </div>
                           <div className="ml-3">
-                            <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
-                              {result.name}
+                            <p className="font-medium text-gray-900 whitespace-no-wrap dark:text-gray-100">
+                              {name}
                             </p>
                           </div>
                           <div className="ml-3">
-                            <span className="px-2 py-1 text-xs font-medium leading-5 text-gray-600 truncate bg-gray-200 rounded-md">
-                              {result.symbol}
+                            <span className="text-xs text-gray-600 truncate rounded-md ">
+                              {symbol}
                             </span>
                           </div>
                         </div>
@@ -68,29 +75,31 @@ const CoinList = ({ coins }) => {
                       <td className="px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
                         <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                           $
-                          {result.quote.USD.price.toLocaleString(undefined, {
-                            maximumFractionDigits: 2,
+                          {`${
+                            price < 1
+                              ? price.toLocaleString(undefined, {
+                                  maximumFractionDigits: 10,
+                                })
+                              : price.toLocaleString(undefined, {
+                                  maximumFractionDigits: 2,
+                                })
+                          }`}
+                        </p>
+                      </td>
+                      <td className="px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
+                        <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
+                          $
+                          {marketCap.toLocaleString(undefined, {
+                            maximumFractionDigits: 0,
                           })}
                         </p>
                       </td>
                       <td className="px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
                         <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                           $
-                          {result.quote.USD.market_cap.toLocaleString(
-                            undefined,
-                            { maximumFractionDigits: 0 }
-                          )}
-                        </p>
-                      </td>
-                      <td className="px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
-                        <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
-                          $
-                          {result.quote.USD.volume_24h.toLocaleString(
-                            undefined,
-                            {
-                              maximumFractionDigits: 0,
-                            }
-                          )}
+                          {volume.toLocaleString(undefined, {
+                            maximumFractionDigits: 0,
+                          })}
                         </p>
                       </td>
                     </tr>

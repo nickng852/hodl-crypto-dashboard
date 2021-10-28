@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import ClickAwayListener from "react-click-away-listener";
 
@@ -8,10 +8,13 @@ const Avatar = ({ open, setOpen, setIsLogged }) => {
     setOpen(!open);
   };
 
+  let history = useHistory();
+
   const logOut = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
       setIsLogged(false);
+      history.push("/");
     });
   };
 

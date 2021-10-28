@@ -29,14 +29,20 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    const getUser = async () => {
+    setIsLogged(JSON.parse(window.localStorage.getItem("userToken")));
+  }, []);
+
+  useEffect(() => {
+    /*     const getUser = async () => {
       const querySnapshot = await getDocs(collection(db, "users"));
       querySnapshot.forEach((doc) => {
         console.log(doc.id.email);
       });
     };
 
-    getUser();
+    getUser(); */
+
+    window.localStorage.setItem("userToken", isLogged);
 
     // CoinMarketCap API call
     const cryptoApiOptions = {
@@ -51,12 +57,12 @@ const App = () => {
       .request(cryptoApiOptions)
       .then(function (res) {
         var parsedData = JSON.parse(JSON.stringify(res));
-        console.log(parsedData);
-        console.log(parsedData.data.data);
+        /*         console.log(parsedData);
+        console.log(parsedData.data.data); */
         setCoins(parsedData.data.data);
       })
       .catch(function (err) {
-        console.error(err);
+        /*         console.error(err); */
       });
 
     /*     // CryptoNews API call
@@ -77,7 +83,7 @@ const App = () => {
       .catch(function (err) {
         console.error(err);
       }); */
-  }, []);
+  }, [isLogged]);
 
   return (
     <>
@@ -89,21 +95,6 @@ const App = () => {
               setUser={setUser}
               name={name}
               setName={setName}
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              errorMessage={errorMessage}
-              setErrorMessage={setErrorMessage}
-            />
-          </Route>
-
-          <Route path="/" exact>
-            <SignIn
-              isLogged={isLogged}
-              setIsLogged={setIsLogged}
-              user={user}
-              setUser={setUser}
               email={email}
               setEmail={setEmail}
               password={password}
@@ -128,7 +119,20 @@ const App = () => {
               />
             </Route>
           ) : (
-            <Redirect to="/" />
+            <Route path="/" exact>
+              <SignIn
+                isLogged={isLogged}
+                setIsLogged={setIsLogged}
+                user={user}
+                setUser={setUser}
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                errorMessage={errorMessage}
+                setErrorMessage={setErrorMessage}
+              />
+            </Route>
           )}
         </Switch>
       </Router>

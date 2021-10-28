@@ -10,7 +10,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
       coin.symbol.toLowerCase().includes(search.toLowerCase())
   );
 
-  console.log(filteredCoins);
+  /*   console.log(filteredCoins); */
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -57,15 +57,15 @@ const SearchBar = ({ coins, search, setSearch }) => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 text-gray-400"
+                className="w-5 h-5 text-gray-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
