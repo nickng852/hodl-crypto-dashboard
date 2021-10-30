@@ -38,7 +38,7 @@ const CoinList = ({ coins }) => {
                   </th>
                 </tr>
               </thead>
-              {slicedCoins.map((result) => {
+              {slicedCoins.map((result, index) => {
                 const id = result.id;
                 const symbol = result.symbol;
                 const name = result.name;
@@ -47,7 +47,7 @@ const CoinList = ({ coins }) => {
                 const volume = result.quote.USD.volume_24h;
 
                 return (
-                  <tbody>
+                  <tbody key={index}>
                     <tr>
                       <td className="px-8 py-8 bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600 text-md ">
                         <div className="flex items-center">
