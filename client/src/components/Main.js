@@ -12,6 +12,8 @@ const Main = ({
   open,
   setOpen,
   setIsLogged,
+  currentPage,
+  setCurrentPage,
 }) => {
   return (
     <>
@@ -26,8 +28,12 @@ const Main = ({
           setIsLogged={setIsLogged}
         />
         <CoinCard coins={coins} />
-        <CoinList coins={coins} />
-        <Account />
+        <CoinList
+          coins={coins}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+        {/*         <Account /> */}
       </div>
     </>
   );

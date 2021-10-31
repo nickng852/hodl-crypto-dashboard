@@ -1,15 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
 
-const CoinList = ({ coins }) => {
-  const slicedCoins = coins.slice(0, 20);
+const CoinList = ({ coins, currentPage, setCurrentPage }) => {
+  const itemsPerPage = 10;
+  const firstItem = currentPage * itemsPerPage;
+  const lastItem = firstItem - itemsPerPage;
+  const currentItems = coins.slice(lastItem, firstItem);
 
   return (
     <>
       <div className="container px-4 mx-auto max-w-7xl">
         <div className="px-4 py-4 overflow-x-auto">
-          <div className="inline-block min-w-full overflow-hidden rounded-lg shadow ">
-            <table className="min-w-full leading-normal ">
+          <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
+            <table className="min-w-full table-auto">
               <thead>
                 <tr>
                   <th
@@ -38,7 +41,7 @@ const CoinList = ({ coins }) => {
                   </th>
                 </tr>
               </thead>
-              {slicedCoins.map((result, index) => {
+              {currentItems.map((result, index) => {
                 const id = result.id;
                 const symbol = result.symbol;
                 const name = result.name;
@@ -49,16 +52,14 @@ const CoinList = ({ coins }) => {
                 return (
                   <tbody key={index}>
                     <tr>
-                      <td className="px-8 py-8 bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600 text-md ">
+                      <td className="w-2/5 px-8 py-8 bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600 text-md">
                         <div className="flex items-center">
                           <div className="flex-shrink-0">
-                            <Link to="#" className="relative block">
-                              <img
-                                alt={crypto}
-                                src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${id}.png`}
-                                className="object-cover w-6 h-6 mx-auto rounded-full "
-                              />
-                            </Link>
+                            <img
+                              alt={crypto}
+                              src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${id}.png`}
+                              className="object-cover w-6 h-6 mx-auto rounded-full "
+                            />
                           </div>
                           <div className="ml-3">
                             <p className="font-medium text-gray-900 whitespace-no-wrap dark:text-gray-100">
@@ -72,7 +73,7 @@ const CoinList = ({ coins }) => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
+                      <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
                         <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                           $
                           {`${
@@ -86,7 +87,7 @@ const CoinList = ({ coins }) => {
                           }`}
                         </p>
                       </td>
-                      <td className="px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
+                      <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
                         <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                           $
                           {marketCap.toLocaleString(undefined, {
@@ -94,7 +95,7 @@ const CoinList = ({ coins }) => {
                           })}
                         </p>
                       </td>
-                      <td className="px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
+                      <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
                         <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                           $
                           {volume.toLocaleString(undefined, {
@@ -108,6 +109,16 @@ const CoinList = ({ coins }) => {
               })}
             </table>
           </div>
+        </div>
+      </div>
+
+      <div className="container px-4 mx-auto max-w-7xl">
+        <div className="float-right px-4 py-4">
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            coins={coins}
+          />
         </div>
       </div>
     </>

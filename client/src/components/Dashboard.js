@@ -10,6 +10,8 @@ const Dashboard = ({
   open,
   setOpen,
   setIsLogged,
+  currentPage,
+  setCurrentPage,
 }) => {
   return (
     <>
@@ -23,6 +25,8 @@ const Dashboard = ({
           open={open}
           setOpen={setOpen}
           setIsLogged={setIsLogged}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
         />
       </div>
     </>

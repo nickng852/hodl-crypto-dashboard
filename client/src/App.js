@@ -27,6 +27,7 @@ const App = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setIsLogged(JSON.parse(window.localStorage.getItem("userToken")));
@@ -57,8 +58,8 @@ const App = () => {
       .request(cryptoApiOptions)
       .then(function (res) {
         var parsedData = JSON.parse(JSON.stringify(res));
-        /*         console.log(parsedData);
-        console.log(parsedData.data.data); */
+        console.log(parsedData);
+        console.log(parsedData.data.data);
         setCoins(parsedData.data.data);
       })
       .catch(function (err) {
@@ -116,6 +117,8 @@ const App = () => {
                 setSearch={setSearch}
                 open={open}
                 setOpen={setOpen}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
               />
             </Route>
           ) : (
