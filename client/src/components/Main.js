@@ -1,5 +1,5 @@
 import React from "react";
-import Account from "../components/Account";
+/* import Account from "../components/Account"; */
 import CoinCard from "./CoinCard";
 import CoinList from "./CoinList";
 import NavBar from "./navbar/NavBar";
@@ -14,6 +14,8 @@ const Main = ({
   setIsLogged,
   currentPage,
   setCurrentPage,
+  itemsPerPage,
+  setItemsPerPage,
 }) => {
   return (
     <>
@@ -32,6 +34,8 @@ const Main = ({
           coins={coins}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
+          itemsPerPage={itemsPerPage}
+          setItemsPerPage={setItemsPerPage}
         />
         {/*         <Account /> */}
       </div>

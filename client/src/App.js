@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Firebase
 import { db } from "./firebase/firebase.config";
-import { collection, getDocs } from "firebase/firestore";
+/* import { collection, getDocs } from "firebase/firestore"; */
 
 // Components
 import Dashboard from "./components/Dashboard";
@@ -28,6 +23,7 @@ const App = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   useEffect(() => {
     setIsLogged(JSON.parse(window.localStorage.getItem("userToken")));
@@ -58,7 +54,7 @@ const App = () => {
       .request(cryptoApiOptions)
       .then(function (res) {
         var parsedData = JSON.parse(JSON.stringify(res));
-        console.log(parsedData);
+        /*         console.log(parsedData); */
         console.log(parsedData.data.data);
         setCoins(parsedData.data.data);
       })
@@ -66,25 +62,27 @@ const App = () => {
         /*         console.error(err); */
       });
 
-    /*     // CryptoNews API call
-    const cryptoNewsApiOptions = {
+    console.log(coins);
+
+    // Coinranking API call
+    const coinRankingOptions = {
       method: "GET",
-      url: "https://crypto-news5.p.rapidapi.com/",
+      url: "https://coinranking1.p.rapidapi.com/coins",
       headers: {
-        "x-rapidapi-host": "crypto-news5.p.rapidapi.com",
-        "x-rapidapi-key": process.env.REACT_APP_CRYPTONEWS_API_KEY,
+        "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+        "x-rapidapi-key": process.env.REACT_APP_COINRANKING_API_KEY,
       },
     };
 
     axios
-      .request(cryptoNewsApiOptions)
+      .request(coinRankingOptions)
       .then(function (res) {
         console.log(res);
       })
       .catch(function (err) {
         console.error(err);
-      }); */
-  }, [isLogged]);
+      });
+  }, [isLogged, coins]);
 
   return (
     <>
@@ -119,6 +117,8 @@ const App = () => {
                 setOpen={setOpen}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
+                itemsPerPage={itemsPerPage}
+                setItemsPerPage={setItemsPerPage}
               />
             </Route>
           ) : (

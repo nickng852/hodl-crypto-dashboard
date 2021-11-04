@@ -19,14 +19,12 @@ const SignUp = ({
       .then((userCredential) => {
         // Signed up
         setUser(userCredential.user);
-        console.log("Account created.");
         setName("");
         setEmail("");
         setPassword("");
         setErrorMessage("");
       })
       .catch((err) => {
-        console.log(err.message);
         // Firebase error
         switch (err.code) {
           case "auth/invalid-email":

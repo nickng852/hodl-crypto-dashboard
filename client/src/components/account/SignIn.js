@@ -27,7 +27,6 @@ const SignIn = ({
         setErrorMessage("");
       })
       .catch((err) => {
-        console.log(err.message);
         // Firebase error
         switch (err.code) {
           case "auth/invalid-email":

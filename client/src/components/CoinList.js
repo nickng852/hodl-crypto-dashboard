@@ -1,11 +1,12 @@
 import React from "react";
 import Pagination from "./Pagination";
 
-const CoinList = ({ coins, currentPage, setCurrentPage }) => {
-  const itemsPerPage = 10;
-  const firstItem = currentPage * itemsPerPage;
-  const lastItem = firstItem - itemsPerPage;
-  const currentItems = coins.slice(lastItem, firstItem);
+const CoinList = ({ coins, currentPage, setCurrentPage, itemsPerPage }) => {
+  const lastItem = currentPage * itemsPerPage;
+
+  const firstItem = lastItem - itemsPerPage;
+
+  const currentItems = coins.slice(firstItem, lastItem);
 
   return (
     <>
@@ -118,6 +119,7 @@ const CoinList = ({ coins, currentPage, setCurrentPage }) => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             coins={coins}
+            itemsPerPage={itemsPerPage}
           />
         </div>
       </div>

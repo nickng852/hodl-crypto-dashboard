@@ -12,6 +12,8 @@ const Dashboard = ({
   setIsLogged,
   currentPage,
   setCurrentPage,
+  itemsPerPage,
+  setItemsPerPage,
 }) => {
   return (
     <>
@@ -27,6 +29,8 @@ const Dashboard = ({
           setIsLogged={setIsLogged}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
+          itemsPerPage={itemsPerPage}
+          setItemsPerPage={setItemsPerPage}
         />
       </div>
     </>
