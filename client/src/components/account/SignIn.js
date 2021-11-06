@@ -33,7 +33,7 @@ const SignIn = ({
             errorMessage = "Invalid email address.";
             break;
           case "auth/wrong-password":
-            errorMessage = "Wrong password.";
+            errorMessage = "Incorrect password.";
             break;
           case "auth/user-not-found":
             errorMessage = "User not found.";

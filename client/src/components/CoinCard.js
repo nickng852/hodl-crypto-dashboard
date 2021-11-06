@@ -1,4 +1,5 @@
 import React from "react";
+import { Line } from "react-chartjs-2";
 
 const CoinCard = ({ coins }) => {
   const slicedCoins = coins.slice(0, 5);
@@ -7,12 +8,57 @@ const CoinCard = ({ coins }) => {
     <>
       <div className="flex flex-wrap items-center justify-center max-w-8xl mt-14">
         {slicedCoins.map((result, index) => {
-          const id = result.id;
           const symbol = result.symbol;
           const name = result.name;
-          const price = result.quote.USD.price;
-          const priceChange = result.quote.USD.percent_change_24h;
+          const price = Number(result.price);
+          const priceChange = result.change;
           const AbsPriceChange = Math.abs(priceChange);
+
+          const chartLabel = [];
+          const chartData = [];
+
+          for (let i = 0; i < result.history?.length; i++) {
+            chartLabel.push(i);
+            chartData.push(result.history[i]);
+          }
+
+          const data = (canvas) => {
+            const ctx = canvas.getContext("2d");
+            const gradient = ctx.createLinearGradient(0, 0, 0, 110);
+            gradient.addColorStop(0, "rgba(34, 153, 84,0.5)");
+            gradient.addColorStop(1, "rgba(34, 153, 84,0.01)");
+
+            return {
+              labels: chartLabel,
+              datasets: [
+                {
+                  data: chartData,
+                  fill: true,
+                  backgroundColor: gradient,
+                  borderColor: "#218c74",
+                  borderWidth: 2,
+                },
+              ],
+            };
+          };
+
+          const options = {
+            scales: {
+              y: {
+                display: false,
+              },
+              x: {
+                display: false,
+              },
+            },
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+            radius: 0,
+            tension: 0.4,
+          };
 
           return (
             <div
@@ -20,7 +66,7 @@ const CoinCard = ({ coins }) => {
               key={index}
             >
               <img
-                src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${id}.png`}
+                src={result.iconUrl}
                 alt={crypto}
                 className="absolute w-24 h-24 rounded-full opacity-95 -top-6 -right-6 md:-right-4"
               />
@@ -56,6 +102,9 @@ const CoinCard = ({ coins }) => {
                     }`}
                   </dd>
                 </dl>
+              </div>
+              <div className="px-4 pb-5">
+                <Line key={index} data={data} options={options} />
               </div>
             </div>
           );

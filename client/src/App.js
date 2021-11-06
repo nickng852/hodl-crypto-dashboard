@@ -42,27 +42,6 @@ const App = () => {
 
     window.localStorage.setItem("userToken", isLogged);
 
-    // CoinMarketCap API call
-    const cryptoApiOptions = {
-      method: "GET",
-      url: "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
-      headers: {
-        "X-CMC_PRO_API_KEY": process.env.REACT_APP_COINMARKETCAP_API_KEY,
-      },
-    };
-
-    axios
-      .request(cryptoApiOptions)
-      .then(function (res) {
-        var parsedData = JSON.parse(JSON.stringify(res));
-        /*         console.log(parsedData); */
-        /*         console.log(parsedData.data.data); */
-        setCoins(parsedData.data.data);
-      })
-      .catch(function (err) {
-        /*         console.error(err); */
-      });
-
     // Coinranking API call
     const coinRankingOptions = {
       method: "GET",
@@ -77,8 +56,8 @@ const App = () => {
       .request(coinRankingOptions)
       .then(function (res) {
         var parsed = JSON.parse(JSON.stringify(res));
-        /*         console.log(parsed.data.data.coins); */
-        setChart(parsed.data.data.coins);
+        /*        console.log(parsed.data.data.coins); */
+        setCoins(parsed.data.data.coins);
       })
       .catch(function (err) {
         console.error(err);

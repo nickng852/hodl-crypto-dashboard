@@ -43,12 +43,11 @@ const CoinList = ({ coins, currentPage, setCurrentPage, itemsPerPage }) => {
                 </tr>
               </thead>
               {currentItems.map((result, index) => {
-                const id = result.id;
                 const symbol = result.symbol;
                 const name = result.name;
-                const price = result.quote.USD.price;
-                const marketCap = result.quote.USD.market_cap;
-                const volume = result.quote.USD.volume_24h;
+                const price = Number(result.price);
+                const marketCap = result.marketCap;
+                const volume = result.volume;
 
                 return (
                   <tbody key={index}>
@@ -58,7 +57,7 @@ const CoinList = ({ coins, currentPage, setCurrentPage, itemsPerPage }) => {
                           <div className="flex-shrink-0">
                             <img
                               alt={crypto}
-                              src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${id}.png`}
+                              src={result.iconUrl}
                               className="object-cover w-6 h-6 mx-auto rounded-full "
                             />
                           </div>
