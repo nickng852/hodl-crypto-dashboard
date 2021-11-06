@@ -14,6 +14,8 @@ const Dashboard = ({
   setCurrentPage,
   itemsPerPage,
   setItemsPerPage,
+  chart,
+  setChart,
 }) => {
   return (
     <>
@@ -31,6 +33,8 @@ const Dashboard = ({
           setCurrentPage={setCurrentPage}
           itemsPerPage={itemsPerPage}
           setItemsPerPage={setItemsPerPage}
+          chart={chart}
+          setChart={setChart}
         />
       </div>
     </>

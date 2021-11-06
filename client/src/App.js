@@ -23,7 +23,8 @@ const App = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [chart, setChart] = useState([]);
 
   useEffect(() => {
     setIsLogged(JSON.parse(window.localStorage.getItem("userToken")));
@@ -55,14 +56,12 @@ const App = () => {
       .then(function (res) {
         var parsedData = JSON.parse(JSON.stringify(res));
         /*         console.log(parsedData); */
-        console.log(parsedData.data.data);
+        /*         console.log(parsedData.data.data); */
         setCoins(parsedData.data.data);
       })
       .catch(function (err) {
         /*         console.error(err); */
       });
-
-    console.log(coins);
 
     // Coinranking API call
     const coinRankingOptions = {
@@ -77,12 +76,14 @@ const App = () => {
     axios
       .request(coinRankingOptions)
       .then(function (res) {
-        console.log(res);
+        var parsed = JSON.parse(JSON.stringify(res));
+        /*         console.log(parsed.data.data.coins); */
+        setChart(parsed.data.data.coins);
       })
       .catch(function (err) {
         console.error(err);
       });
-  }, [isLogged, coins]);
+  }, [isLogged]);
 
   return (
     <>
@@ -119,6 +120,8 @@ const App = () => {
                 setCurrentPage={setCurrentPage}
                 itemsPerPage={itemsPerPage}
                 setItemsPerPage={setItemsPerPage}
+                chart={chart}
+                setChart={setChart}
               />
             </Route>
           ) : (

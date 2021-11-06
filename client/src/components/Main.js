@@ -3,6 +3,7 @@ import React from "react";
 import CoinCard from "./CoinCard";
 import CoinList from "./CoinList";
 import NavBar from "./navbar/NavBar";
+import LineChart from "./LineChart";
 
 const Main = ({
   user,
@@ -16,6 +17,8 @@ const Main = ({
   setCurrentPage,
   itemsPerPage,
   setItemsPerPage,
+  chart,
+  setChart,
 }) => {
   return (
     <>
@@ -37,6 +40,7 @@ const Main = ({
           itemsPerPage={itemsPerPage}
           setItemsPerPage={setItemsPerPage}
         />
+        <LineChart chart={chart} setChart={setChart} />
         {/*         <Account /> */}
       </div>
     </>
