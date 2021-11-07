@@ -10,7 +10,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
       coin.symbol.toLowerCase().includes(search.toLowerCase())
   );
 
-  /*   console.log(filteredCoins); */
+  console.log(filteredCoins);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -80,9 +80,11 @@ const SearchBar = ({ coins, search, setSearch }) => {
                   <>
                     <SearchBarResult
                       key={index}
-                      id={result.id}
+                      id={result.uuid}
+                      icon={result.iconUrl}
                       name={result.name}
                       symbol={result.symbol}
+                      setSearch={setSearch}
                     />
                   </>
                 );

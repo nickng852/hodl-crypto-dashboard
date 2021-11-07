@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Line } from "react-chartjs-2"; // chart library
 
 const CoinCard = ({ coins }) => {
@@ -8,6 +9,7 @@ const CoinCard = ({ coins }) => {
     <>
       <div className="flex flex-wrap items-center justify-center max-w-8xl mt-14">
         {slicedCoins.map((result, index) => {
+          const id = result.uuid;
           const icon = result.iconUrl;
           const name = result.name;
           const symbol = result.symbol;
@@ -62,9 +64,10 @@ const CoinCard = ({ coins }) => {
           };
 
           return (
-            <div
+            <Link
               className="relative m-5 overflow-hidden bg-white rounded-lg shadow w-60 md:w-72 dark:bg-gray-600"
               key={index}
+              to={`/cryptocurrencies/${id}`}
             >
               <img
                 src={icon}
@@ -94,9 +97,7 @@ const CoinCard = ({ coins }) => {
                     $
                     {`${
                       price < 1
-                        ? price.toLocaleString(undefined, {
-                            maximumFractionDigits: 10,
-                          })
+                        ? price.toPrecision(4)
                         : price.toLocaleString(undefined, {
                             maximumFractionDigits: 2,
                           })
@@ -107,7 +108,7 @@ const CoinCard = ({ coins }) => {
               <div className="px-4 pb-5 sm:pb-5">
                 <Line key={index} data={data} options={options} />
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

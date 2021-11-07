@@ -110,8 +110,8 @@ const App = () => {
                         setItemsPerPage={setItemsPerPage}
                       />
                     </Route>
-                    <Route path="/cryptocurrencies">
-                      <CoinDetails />
+                    <Route path="/cryptocurrencies/:uuid">
+                      <CoinDetails coins={coins} />
                     </Route>
                   </Switch>
                 </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 
 const CoinList = ({ coins, currentPage, setCurrentPage, itemsPerPage }) => {
@@ -43,6 +44,7 @@ const CoinList = ({ coins, currentPage, setCurrentPage, itemsPerPage }) => {
                 </tr>
               </thead>
               {currentItems.map((result, index) => {
+                const id = result.uuid;
                 const icon = result.iconUrl;
                 const name = result.name;
                 const symbol = result.symbol;
@@ -53,8 +55,11 @@ const CoinList = ({ coins, currentPage, setCurrentPage, itemsPerPage }) => {
                 return (
                   <tbody key={index}>
                     <tr>
-                      <td className="w-2/5 px-8 py-8 bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600 text-md">
-                        <div className="flex items-center">
+                      <td className="w-2/5 bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600 text-md">
+                        <Link
+                          to={`/cryptocurrencies/${id}`}
+                          className="flex items-center px-8 py-8"
+                        >
                           <div className="flex-shrink-0">
                             <img
                               alt={crypto}
@@ -72,16 +77,14 @@ const CoinList = ({ coins, currentPage, setCurrentPage, itemsPerPage }) => {
                               {symbol}
                             </span>
                           </div>
-                        </div>
+                        </Link>
                       </td>
                       <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-500 dark:bg-gray-600">
                         <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                           $
                           {`${
                             price < 1
-                              ? price.toLocaleString(undefined, {
-                                  maximumFractionDigits: 10,
-                                })
+                              ? price.toPrecision(4)
                               : price.toLocaleString(undefined, {
                                   maximumFractionDigits: 2,
                                 })
