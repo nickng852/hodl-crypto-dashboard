@@ -7,9 +7,12 @@ import { db } from "./firebase/firebase.config";
 /* import { collection, getDocs } from "firebase/firestore"; */
 
 // Components
-import Dashboard from "./components/Dashboard";
+import Sidebar from "./components/Sidebar";
+import NavBar from "./components/navbar/NavBar";
 import SignUp from "./components/account/SignUp";
 import SignIn from "./components/account/SignIn";
+import HomePage from "./components/HomePage";
+import CoinDetails from "./components/CoinDetails";
 
 const App = () => {
   // states
@@ -55,7 +58,7 @@ const App = () => {
     axios
       .request(coinRankingOptions)
       .then(function (res) {
-        var parsed = JSON.parse(JSON.stringify(res));
+        const parsed = JSON.parse(JSON.stringify(res));
         /*        console.log(parsed.data.data.coins); */
         setCoins(parsed.data.data.coins);
       })
@@ -84,25 +87,36 @@ const App = () => {
           </Route>
 
           {isLogged ? (
-            <Route path="/dashboard">
-              <Dashboard
-                isLogged={isLogged}
-                setIsLogged={setIsLogged}
-                user={user}
-                setUser={setUser}
-                coins={coins}
-                search={search}
-                setSearch={setSearch}
-                open={open}
-                setOpen={setOpen}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                itemsPerPage={itemsPerPage}
-                setItemsPerPage={setItemsPerPage}
-                chart={chart}
-                setChart={setChart}
-              />
-            </Route>
+            <>
+              <div className="flex flex-row">
+                <Sidebar />
+                <div className="flex flex-col w-full bg-gray-50 justify-items-center">
+                  <NavBar
+                    user={user}
+                    coins={coins}
+                    search={search}
+                    setSearch={setSearch}
+                    open={open}
+                    setOpen={setOpen}
+                    setIsLogged={setIsLogged}
+                  />
+                  <Switch>
+                    <Route path="/dashboard">
+                      <HomePage
+                        coins={coins}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        itemsPerPage={itemsPerPage}
+                        setItemsPerPage={setItemsPerPage}
+                      />
+                    </Route>
+                    <Route path="/cryptocurrencies">
+                      <CoinDetails />
+                    </Route>
+                  </Switch>
+                </div>
+              </div>
+            </>
           ) : (
             <Route path="/" exact>
               <SignIn

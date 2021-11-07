@@ -45,12 +45,12 @@ const Avatar = ({ open, setOpen, setIsLogged }) => {
         <ClickAwayListener onClickAway={toggle}>
           <div className="relative">
             <div className="absolute right-0 z-10 w-56 mt-8 origin-top-right bg-white rounded-lg shadow-lg dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
-              <Link to="#">
+              <Link to="/profile">
                 <span className="flex px-4 py-3 text-gray-700 rounded-t-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 ">
                   Account
                 </span>
               </Link>
-              <Link to="#">
+              <Link to="/setting">
                 <span className="flex px-4 py-3 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600">
                   Settings
                 </span>

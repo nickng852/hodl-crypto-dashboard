@@ -1,25 +1,26 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2"; // chart library
 
 const CoinCard = ({ coins }) => {
-  const slicedCoins = coins.slice(0, 5);
+  const slicedCoins = coins.slice(0, 5); // decide how many CoinCards will be displayed
 
   return (
     <>
       <div className="flex flex-wrap items-center justify-center max-w-8xl mt-14">
         {slicedCoins.map((result, index) => {
-          const symbol = result.symbol;
+          const icon = result.iconUrl;
           const name = result.name;
-          const price = Number(result.price);
+          const symbol = result.symbol;
+          const price = Number(result.price); // string returned from API
           const priceChange = result.change;
-          const AbsPriceChange = Math.abs(priceChange);
+          const AbsPriceChange = Math.abs(priceChange); // trim "-" for display
 
           const chartLabel = [];
           const chartData = [];
 
           for (let i = 0; i < result.history?.length; i++) {
-            chartLabel.push(i);
-            chartData.push(result.history[i]);
+            chartLabel.push(i); // get each index from the individual array
+            chartData.push(result.history[i]); // get each array from the response
           }
 
           const data = (canvas) => {
@@ -66,11 +67,11 @@ const CoinCard = ({ coins }) => {
               key={index}
             >
               <img
-                src={result.iconUrl}
+                src={icon}
                 alt={crypto}
                 className="absolute w-24 h-24 rounded-full opacity-95 -top-6 -right-6 md:-right-4"
               />
-              <div className="px-4 py-5 sm:p-6">
+              <div className="px-4 py-5 sm:p-5">
                 <dl>
                   <span className="px-2 py-1 text-xs font-medium leading-5 text-gray-600 truncate bg-gray-200 rounded-md">
                     {symbol}
@@ -103,7 +104,7 @@ const CoinCard = ({ coins }) => {
                   </dd>
                 </dl>
               </div>
-              <div className="px-4 pb-5">
+              <div className="px-4 pb-5 sm:pb-5">
                 <Line key={index} data={data} options={options} />
               </div>
             </div>

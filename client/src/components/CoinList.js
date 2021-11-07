@@ -43,9 +43,10 @@ const CoinList = ({ coins, currentPage, setCurrentPage, itemsPerPage }) => {
                 </tr>
               </thead>
               {currentItems.map((result, index) => {
-                const symbol = result.symbol;
+                const icon = result.iconUrl;
                 const name = result.name;
-                const price = Number(result.price);
+                const symbol = result.symbol;
+                const price = Number(result.price); // string returned from API
                 const marketCap = result.marketCap;
                 const volume = result.volume;
 
@@ -57,7 +58,7 @@ const CoinList = ({ coins, currentPage, setCurrentPage, itemsPerPage }) => {
                           <div className="flex-shrink-0">
                             <img
                               alt={crypto}
-                              src={result.iconUrl}
+                              src={icon}
                               className="object-cover w-6 h-6 mx-auto rounded-full "
                             />
                           </div>
@@ -67,7 +68,7 @@ const CoinList = ({ coins, currentPage, setCurrentPage, itemsPerPage }) => {
                             </p>
                           </div>
                           <div className="ml-3">
-                            <span className="text-xs text-gray-600 truncate rounded-md ">
+                            <span className="text-xs text-gray-600 truncate rounded-md dark:text-gray-400 ">
                               {symbol}
                             </span>
                           </div>
