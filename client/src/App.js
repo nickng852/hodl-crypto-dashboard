@@ -13,6 +13,7 @@ import SignUp from "./components/account/SignUp";
 import SignIn from "./components/account/SignIn";
 import HomePage from "./components/HomePage";
 import CoinDetails from "./components/CoinDetails";
+import Account from "./components/account/Account";
 
 const App = () => {
   // states
@@ -27,7 +28,6 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [chart, setChart] = useState([]);
 
   useEffect(() => {
     setIsLogged(JSON.parse(window.localStorage.getItem("userToken")));
@@ -59,7 +59,7 @@ const App = () => {
       .request(coinRankingOptions)
       .then(function (res) {
         const parsed = JSON.parse(JSON.stringify(res));
-        /*        console.log(parsed.data.data.coins); */
+        console.log(parsed.data.data.coins);
         setCoins(parsed.data.data.coins);
       })
       .catch(function (err) {
@@ -86,7 +86,7 @@ const App = () => {
             />
           </Route>
 
-          {isLogged ? (
+          {user && isLogged ? (
             <>
               <div className="flex flex-row">
                 <Sidebar />
@@ -112,6 +112,20 @@ const App = () => {
                     </Route>
                     <Route path="/cryptocurrencies/:uuid">
                       <CoinDetails coins={coins} />
+                    </Route>
+                    <Route path="/profile">
+                      <Account
+                        isLogged={isLogged}
+                        setIsLogged={setIsLogged}
+                        user={user}
+                        setUser={setUser}
+                        email={email}
+                        setEmail={setEmail}
+                        password={password}
+                        setPassword={setPassword}
+                        errorMessage={errorMessage}
+                        setErrorMessage={setErrorMessage}
+                      />
                     </Route>
                   </Switch>
                 </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUp = ({
@@ -13,6 +13,8 @@ const SignUp = ({
   errorMessage,
   setErrorMessage,
 }) => {
+  let history = useHistory();
+
   const signUp = () => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
@@ -23,6 +25,7 @@ const SignUp = ({
         setEmail("");
         setPassword("");
         setErrorMessage("");
+        history.push("/");
       })
       .catch((err) => {
         // Firebase error
@@ -56,6 +59,13 @@ const SignUp = ({
 
         setErrorMessage(errorMessage);
       });
+  };
+
+  const signIn = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
+    setErrorMessage("");
   };
 
   return (
@@ -142,6 +152,7 @@ const SignUp = ({
             <Link
               to="/"
               className="ml-1 font-medium text-gray-700 dark:text-gray-200 hover:underline"
+              onClick={signIn}
             >
               Log In
             </Link>

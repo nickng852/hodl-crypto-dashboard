@@ -10,8 +10,6 @@ const SearchBar = ({ coins, search, setSearch }) => {
       coin.symbol.toLowerCase().includes(search.toLowerCase())
   );
 
-  console.log(filteredCoins);
-
   const handleChange = (e) => {
     setSearch(e.target.value);
   };

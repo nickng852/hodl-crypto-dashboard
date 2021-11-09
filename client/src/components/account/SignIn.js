@@ -3,7 +3,9 @@ import { Link, useHistory } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = ({
+  isLogged,
   setIsLogged,
+  user,
   setUser,
   email,
   setEmail,
@@ -61,6 +63,12 @@ const SignIn = ({
       });
   };
 
+  const signUp = () => {
+    setEmail("");
+    setPassword("");
+    setErrorMessage("");
+  };
+
   return (
     <>
       <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-800">
@@ -113,14 +121,25 @@ const SignIn = ({
             </div>
 
             <div className="mt-6">
-              <button
-                type="submit"
-                to="/dashboard"
-                className="w-full px-4 py-2 tracking-wide text-center text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
-                onClick={signIn}
-              >
-                Login
-              </button>
+              {isLogged ? (
+                <button
+                  type="submit"
+                  to="/dashboard"
+                  className="w-full px-4 py-2 tracking-wide text-center text-white transition-colors duration-200 transform bg-green-500 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-green-700"
+                  onClick={signIn}
+                >
+                  Successful!
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  to="/dashboard"
+                  className="w-full px-4 py-2 tracking-wide text-center text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                  onClick={signIn}
+                >
+                  Login
+                </button>
+              )}
             </div>
           </form>
 
@@ -129,6 +148,7 @@ const SignIn = ({
             <Link
               to="/signup"
               className="ml-1 font-medium text-gray-700 dark:text-gray-200 hover:underline"
+              onClick={signUp}
             >
               Sign Up
             </Link>
