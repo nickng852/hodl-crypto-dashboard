@@ -1,15 +1,16 @@
 import React from "react";
-import SearchBar from "../navbar/SearchBar";
-import NavControl from "./NavControl";
+import SearchBar from "../searchbar/SearchBar";
+import NavControl from "../panel/NavControl";
 
 const NavBar = ({
+  setToken,
   user,
+  setUser,
+  setIsLogged,
   coins,
+  setCoins,
   search,
   setSearch,
-  open,
-  setOpen,
-  setIsLogged,
 }) => {
   return (
     <>
@@ -17,10 +18,11 @@ const NavBar = ({
         <nav className="flex items-center justify-between bg-white dark:bg-gray-800">
           <SearchBar coins={coins} search={search} setSearch={setSearch} />
           <NavControl
+            setToken={setToken}
             user={user}
-            open={open}
-            setOpen={setOpen}
+            setUser={setUser}
             setIsLogged={setIsLogged}
+            setCoins={setCoins}
           />
         </nav>
       </div>
