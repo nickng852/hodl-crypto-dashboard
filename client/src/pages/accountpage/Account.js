@@ -80,20 +80,6 @@ const Account = ({
             </div>
             <div className="space-y-6 bg-white rounded-b-lg">
               <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
-                <h2 className="max-w-sm mx-auto md:w-1/3">Email</h2>
-                <div className="max-w-sm mx-auto md:w-2/3">
-                  <div className="relative ">
-                    <input
-                      type="text"
-                      id="user-info-email"
-                      className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                      placeholder="Email"
-                    />
-                  </div>
-                </div>
-              </div>
-              <hr />
-              <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
                 <h2 className="max-w-sm mx-auto md:w-1/3">Name</h2>
                 <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                   <div>
@@ -105,6 +91,20 @@ const Account = ({
                         placeholder="Name"
                       />
                     </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
+                <h2 className="max-w-sm mx-auto md:w-1/3">Email</h2>
+                <div className="max-w-sm mx-auto md:w-2/3">
+                  <div className="relative ">
+                    <input
+                      type="text"
+                      id="user-info-email"
+                      className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                      placeholder="Email"
+                    />
                   </div>
                 </div>
               </div>

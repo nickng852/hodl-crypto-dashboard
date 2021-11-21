@@ -17,6 +17,7 @@ import { doc, getDoc } from "firebase/firestore";
 
 const App = () => {
   // States
+  const [isLoading, setIsLoading] = useState(false);
   const initialState = {
     name: "",
     email: "",
@@ -77,6 +78,8 @@ const App = () => {
         <Switch>
           <Route path="/signup">
             <SignUp
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
               initialState={initialState}
               form={form}
               setForm={setForm}
@@ -125,13 +128,14 @@ const App = () => {
           ) : (
             <Route path="/" exact>
               <SignIn
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
                 initialState={initialState}
                 form={form}
                 setForm={setForm}
                 errorMessage={errorMessage}
                 setErrorMessage={setErrorMessage}
                 setToken={setToken}
-                isLogged={isLogged}
                 setIsLogged={setIsLogged}
               />
             </Route>
