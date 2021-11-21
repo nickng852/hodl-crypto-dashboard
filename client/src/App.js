@@ -51,27 +51,25 @@ const App = () => {
 
   useEffect(() => {
     // Coinranking API call
-    if (isLogged) {
-      const coinRankingOptions = {
-        method: "GET",
-        url: "https://coinranking1.p.rapidapi.com/coins",
-        headers: {
-          "x-rapidapi-host": "coinranking1.p.rapidapi.com",
-          "x-rapidapi-key": process.env.REACT_APP_COINRANKING_API_KEY,
-        },
-      };
+    const coinRankingOptions = {
+      method: "GET",
+      url: "https://coinranking1.p.rapidapi.com/coins",
+      headers: {
+        "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+        "x-rapidapi-key": process.env.REACT_APP_COINRANKING_API_KEY,
+      },
+    };
 
-      axios
-        .request(coinRankingOptions)
-        .then(function (res) {
-          const parsed = JSON.parse(JSON.stringify(res));
-          setCoins(parsed.data.data.coins);
-        })
-        .catch(function (err) {
-          console.error(err);
-        });
-    }
-  }, [isLogged]);
+    axios
+      .request(coinRankingOptions)
+      .then(function (res) {
+        const parsed = JSON.parse(JSON.stringify(res));
+        setCoins(parsed.data.data.coins);
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <>
@@ -98,7 +96,6 @@ const App = () => {
                     setUser={setUser}
                     setIsLogged={setIsLogged}
                     coins={coins}
-                    setCoins={setCoins}
                     search={search}
                     setSearch={setSearch}
                   />
@@ -111,8 +108,10 @@ const App = () => {
                     </Route>
                     <Route path="/profile">
                       <Account
+                        token={token}
                         setToken={setToken}
                         user={user}
+                        setUser={setUser}
                         setIsLogged={setIsLogged}
                       />
                     </Route>

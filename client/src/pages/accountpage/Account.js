@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import ClickAwayListener from "react-click-away-listener";
+import { db } from "../../firebase/firebase.config";
 import { getAuth, deleteUser } from "firebase/auth";
+import { doc, deleteDoc } from "firebase/firestore";
+import ClickAwayListener from "react-click-away-listener";
 
-const Account = ({ setToken, user, setIsLogged }) => {
-  const [modalOpen, setModalOpen] = useState();
+const Account = ({ token, setToken, user, setUser, setIsLogged }) => {
+  const [modalOpen, setModalOpen] = useState(false);
 
   const modalToggle = () => {
     setModalOpen(!modalOpen);
@@ -15,17 +17,26 @@ const Account = ({ setToken, user, setIsLogged }) => {
   const deleteAcc = () => {
     const auth = getAuth();
     const currentUser = auth.currentUser;
+
     deleteUser(currentUser)
       .then(() => {
+        // Account deletion
         setToken("");
+        setUser("");
         setIsLogged(false);
         history.push("/");
+
+        // Delete user data from Firestore
+        const eraseUser = async () => {
+          const docRef = doc(db, "users", token.uid);
+          await deleteDoc(docRef);
+        };
+
+        eraseUser();
       })
       .catch((err) => {
         console.log(err);
       });
-
-    setModalOpen(!modalOpen);
   };
 
   return (

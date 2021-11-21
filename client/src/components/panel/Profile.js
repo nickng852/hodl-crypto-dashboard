@@ -1,16 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import ClickAwayListener from "react-click-away-listener";
 
-const Avatar = ({
-  setToken,
-  setUser,
-  setIsLogged,
-  setCoins,
-  menuOpen,
-  setMenuOpen,
-}) => {
+const Profile = ({ setToken, setUser, setIsLogged }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const menuToggle = () => {
     setMenuOpen(!menuOpen);
   };
@@ -19,13 +14,18 @@ const Avatar = ({
 
   const logOut = () => {
     const auth = getAuth();
-    signOut(auth).then(() => {
-      setToken("");
-      setUser("");
-      setIsLogged(false);
-      setCoins("");
-      history.push("/");
-    });
+
+    signOut(auth)
+      .then(() => {
+        // Logout account
+        setToken("");
+        setUser("");
+        setIsLogged(false);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -78,4 +78,4 @@ const Avatar = ({
   );
 };
 
-export default Avatar;
+export default Profile;

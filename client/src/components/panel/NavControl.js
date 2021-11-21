@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Profile from "../panel/Profile";
 import ThemeSwticher from "../panel/ThemeSwticher";
 
-const NavControl = ({ setToken, user, setUser, setIsLogged, setCoins }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
+const NavControl = ({ setToken, user, setUser, setIsLogged }) => {
   return (
     <>
       <div className="px-8">
@@ -22,9 +20,6 @@ const NavControl = ({ setToken, user, setUser, setIsLogged, setCoins }) => {
                       setToken={setToken}
                       setUser={setUser}
                       setIsLogged={setIsLogged}
-                      setCoins={setCoins}
-                      menuOpen={menuOpen}
-                      setMenuOpen={setMenuOpen}
                     />
                   </div>
                 </div>
