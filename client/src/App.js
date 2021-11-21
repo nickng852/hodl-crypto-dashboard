@@ -17,11 +17,12 @@ import { doc, getDoc } from "firebase/firestore";
 
 const App = () => {
   // States
-  const [form, setForm] = useState({
+  const initialState = {
     name: "",
     email: "",
     password: "",
-  });
+  };
+  const [form, setForm] = useState(initialState);
   const [errorMessage, setErrorMessage] = useState("");
   const [token, setToken] = useState(""); // firebase auth
   const [user, setUser] = useState(""); // firestore
@@ -49,8 +50,8 @@ const App = () => {
   }, [token]);
 
   useEffect(() => {
+    // Coinranking API call
     if (isLogged) {
-      // Coinranking API call
       const coinRankingOptions = {
         method: "GET",
         url: "https://coinranking1.p.rapidapi.com/coins",
@@ -78,11 +79,11 @@ const App = () => {
         <Switch>
           <Route path="/signup">
             <SignUp
+              initialState={initialState}
               form={form}
               setForm={setForm}
               errorMessage={errorMessage}
               setErrorMessage={setErrorMessage}
-              setToken={setToken}
             />
           </Route>
 
@@ -122,6 +123,7 @@ const App = () => {
           ) : (
             <Route path="/" exact>
               <SignIn
+                initialState={initialState}
                 form={form}
                 setForm={setForm}
                 errorMessage={errorMessage}

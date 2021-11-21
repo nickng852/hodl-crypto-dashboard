@@ -1,10 +1,16 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { db } from "../../firebase/firebase.config";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, Timestamp } from "firebase/firestore";
-import { db } from "../../firebase/firebase.config";
 
-const SignUp = ({ form, setForm, errorMessage, setErrorMessage, setToken }) => {
+const SignUp = ({
+  initialState,
+  form,
+  setForm,
+  errorMessage,
+  setErrorMessage,
+}) => {
   let history = useHistory();
 
   const signUp = () => {
@@ -12,8 +18,8 @@ const SignUp = ({ form, setForm, errorMessage, setErrorMessage, setToken }) => {
 
     createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
-        // Actions on sign up in front-end
-        setForm("");
+        // Signed up
+        setForm(initialState);
         setErrorMessage("");
         history.push("/");
 
@@ -62,7 +68,7 @@ const SignUp = ({ form, setForm, errorMessage, setErrorMessage, setToken }) => {
   };
 
   const signIn = () => {
-    setForm("");
+    setForm(initialState);
     setErrorMessage("");
   };
 
@@ -82,7 +88,7 @@ const SignUp = ({ form, setForm, errorMessage, setErrorMessage, setToken }) => {
           >
             <div>
               <label
-                htmlFor="email"
+                htmlFor="name"
                 className="block text-sm text-gray-800 dark:text-gray-200"
               >
                 Name

@@ -3,14 +3,14 @@ import SearchBar from "../searchbar/SearchBar";
 import NavControl from "../panel/NavControl";
 
 const NavBar = ({
-  setToken,
   user,
   setUser,
-  setIsLogged,
   coins,
-  setCoins,
   search,
   setSearch,
+  open,
+  setOpen,
+  setIsLogged,
 }) => {
   return (
     <>
@@ -18,11 +18,11 @@ const NavBar = ({
         <nav className="flex items-center justify-between bg-white dark:bg-gray-800">
           <SearchBar coins={coins} search={search} setSearch={setSearch} />
           <NavControl
-            setToken={setToken}
             user={user}
             setUser={setUser}
+            open={open}
+            setOpen={setOpen}
             setIsLogged={setIsLogged}
-            setCoins={setCoins}
           />
         </nav>
       </div>

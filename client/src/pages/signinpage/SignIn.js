@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = ({
+  initialState,
   form,
   setForm,
   errorMessage,
@@ -15,12 +16,13 @@ const SignIn = ({
 
   const signIn = () => {
     const auth = getAuth();
+
     signInWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         // Signed in
         setToken(userCredential.user);
         setIsLogged(true);
-        setForm("");
+        setForm(initialState);
         setErrorMessage("");
         history.push("/dashboard");
       })
@@ -60,7 +62,7 @@ const SignIn = ({
   };
 
   const signUp = () => {
-    setForm("");
+    setForm(initialState);
     setErrorMessage("");
   };
 
@@ -80,7 +82,7 @@ const SignIn = ({
           >
             <div>
               <label
-                htmlFor="username"
+                htmlFor="email"
                 className="block text-sm text-gray-800 dark:text-gray-200"
               >
                 Email
@@ -110,16 +112,15 @@ const SignIn = ({
                   setForm((prev) => ({ ...prev, password: e.target.value }));
                 }}
               />
-              {errorMessage ? (
+              {errorMessage && (
                 <label className="text-xs text-red-500 ">{errorMessage}</label>
-              ) : null}
+              )}
             </div>
 
             <div className="mt-6">
               {isLogged ? (
                 <button
                   type="submit"
-                  to="/dashboard"
                   className="w-full px-4 py-2 tracking-wide text-center text-white transition-colors duration-200 transform bg-green-500 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-green-700"
                   onClick={signIn}
                 >
@@ -128,7 +129,6 @@ const SignIn = ({
               ) : (
                 <button
                   type="submit"
-                  to="/dashboard"
                   className="w-full px-4 py-2 tracking-wide text-center text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
                   onClick={signIn}
                 >
