@@ -108,6 +108,9 @@ const App = () => {
                     </Route>
                     <Route path="/profile">
                       <Account
+                        initialState={initialState}
+                        form={form}
+                        setForm={setForm}
                         token={token}
                         setToken={setToken}
                         user={user}

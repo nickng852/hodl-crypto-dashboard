@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { db } from "../../firebase/firebase.config";
-import { getAuth, deleteUser } from "firebase/auth";
+import { getAuth, updatePassword, deleteUser } from "firebase/auth";
 import { doc, deleteDoc } from "firebase/firestore";
 import ClickAwayListener from "react-click-away-listener";
 
-const Account = ({ token, setToken, user, setUser, setIsLogged }) => {
+const Account = ({
+  initialState,
+  form,
+  setForm,
+  token,
+  setToken,
+  user,
+  setUser,
+  setIsLogged,
+}) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const modalToggle = () => {
@@ -14,10 +23,21 @@ const Account = ({ token, setToken, user, setUser, setIsLogged }) => {
 
   let history = useHistory();
 
-  const deleteAcc = () => {
-    const auth = getAuth();
-    const currentUser = auth.currentUser;
+  // Firebase Auth
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
 
+  const changePw = () => {
+    updatePassword(currentUser, form.password)
+      .then(() => {
+        setForm(initialState);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteAcc = () => {
     deleteUser(currentUser)
       .then(() => {
         // Account deletion
@@ -94,10 +114,16 @@ const Account = ({ token, setToken, user, setUser, setIsLogged }) => {
                 <div className="w-full max-w-sm pl-2 mx-auto space-y-5 md:w-5/12 md:pl-9 md:inline-flex">
                   <div className="relative ">
                     <input
-                      type="text"
+                      type="password"
                       id="user-info-password"
                       className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                       placeholder="Password"
+                      onChange={(e) => {
+                        setForm((prev) => ({
+                          ...prev,
+                          password: e.target.value,
+                        }));
+                      }}
                     />
                   </div>
                 </div>
@@ -105,6 +131,7 @@ const Account = ({ token, setToken, user, setUser, setIsLogged }) => {
                   <button
                     type="button"
                     className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-pink-600 rounded-lg shadow-md hover:bg-pink-700 focus:ring-pink-500 focus:ring-offset-pink-200 focus:outline-none focus:ring-2 focus:ring-offset-2 "
+                    onClick={changePw}
                   >
                     Change
                   </button>
