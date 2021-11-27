@@ -31,6 +31,8 @@ const SignIn = ({
         history.push("/dashboard");
       })
       .catch((err) => {
+        setIsLoading(false);
+
         // Firebase error
         switch (err.code) {
           case "auth/invalid-email":
@@ -66,6 +68,7 @@ const SignIn = ({
   };
 
   const signUp = () => {
+    setIsLoading(false);
     setForm(initialState);
     setErrorMessage("");
   };

@@ -14,7 +14,7 @@ const NavBar = ({
   return (
     <>
       <div>
-        <nav className="flex items-center justify-between bg-white dark:bg-gray-800">
+        <nav className="flex items-center justify-between px-5 py-4 bg-white dark:bg-gray-800">
           <SearchBar coins={coins} search={search} setSearch={setSearch} />
           <NavControl
             setToken={setToken}

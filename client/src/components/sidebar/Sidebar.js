@@ -12,9 +12,9 @@ const Sidebar = () => {
                 HODL
               </span>
             </div>
-            <nav className="px-6 mt-10 ">
+            <nav className="px-6 mt-16">
               <Link
-                className="flex items-center px-3 py-2 my-6 text-gray-600 transition-colors duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 "
+                className="flex items-center px-3 py-2 my-6 text-gray-700 transition-colors duration-200 rounded-lg focus:text-gray-900 hover:text-gray-800 focus:bg-gray-100 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 "
                 to="/dashboard"
               >
                 <svg
@@ -35,7 +35,7 @@ const Sidebar = () => {
                 <span className="flex-grow text-right"></span>
               </Link>
               <Link
-                className="flex items-center px-3 py-2 my-6 text-gray-800 transition-colors duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-100 "
+                className="flex items-center px-3 py-2 my-6 text-gray-600 transition-colors duration-200 rounded-lg focus:bg-gray-100 focus:text-gray-900 hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-100 "
                 to="/cryptocurrencies"
               >
                 <svg
@@ -58,7 +58,7 @@ const Sidebar = () => {
                 <span className="flex-grow text-right"></span>
               </Link>
               <Link
-                className="flex items-center px-3 py-2 my-6 text-gray-600 transition-colors duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 "
+                className="flex items-center px-3 py-2 my-6 text-gray-600 transition-colors duration-200 rounded-lg focus:bg-gray-100 focus:text-gray-900 hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 "
                 to="/profile"
               >
                 <svg
@@ -79,7 +79,7 @@ const Sidebar = () => {
                 <span className="flex-grow text-right"></span>
               </Link>
               <Link
-                className="flex items-center px-3 py-2 my-6 text-gray-600 transition-colors duration-200 rounded-lg hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 "
+                className="flex items-center px-3 py-2 my-6 text-gray-600 transition-colors duration-200 rounded-lg focus:bg-gray-100 focus:text-gray-900 hover:text-gray-800 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 "
                 to="/setting"
               >
                 <svg

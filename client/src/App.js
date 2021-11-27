@@ -8,12 +8,13 @@ import SignUp from "./pages/signuppage/SignUp";
 import Sidebar from "./components/sidebar/Sidebar";
 import NavBar from "./components/navbar/Navbar";
 import Home from "./pages/homepage/Home";
-import CoinInfo from "./pages/coininfopage/CoinInfo";
+import CoinInfo from "./pages/coinspage/CoinInfo";
 import Account from "./pages/accountpage/Account";
 
 // Firebase
 import { db } from "./firebase/firebase.config";
 import { doc, getDoc } from "firebase/firestore";
+import CoinCollection from "./pages/coinspage/CoinCollection";
 
 const App = () => {
   // States
@@ -105,6 +106,9 @@ const App = () => {
                   <Switch>
                     <Route path="/dashboard">
                       <Home coins={coins} />
+                    </Route>
+                    <Route path="/cryptocurrencies" exact>
+                      <CoinCollection coins={coins} />
                     </Route>
                     <Route path="/cryptocurrencies/:uuid">
                       <CoinInfo coins={coins} />

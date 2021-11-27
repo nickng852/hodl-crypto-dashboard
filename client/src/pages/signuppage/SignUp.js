@@ -73,6 +73,7 @@ const SignUp = ({
   };
 
   const signIn = () => {
+    setIsLoading(false);
     setForm(initialState);
     setErrorMessage("");
   };

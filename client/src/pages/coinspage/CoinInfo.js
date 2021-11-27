@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-const CoinDetails = ({ coins }) => {
+const CoinInfo = ({ coins }) => {
   const { uuid } = useParams();
 
   return (
@@ -23,4 +23,4 @@ const CoinDetails = ({ coins }) => {
   );
 };
 
-export default CoinDetails;
+export default CoinInfo;

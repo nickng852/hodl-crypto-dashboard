@@ -5,29 +5,25 @@ import ThemeSwticher from "../panel/ThemeSwticher";
 const NavControl = ({ setToken, user, setUser, setIsLogged }) => {
   return (
     <>
-      <div className="px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="block">
-            <div className="flex items-center ml-4 md:ml-6">
-              <div className="relative ml-3">
-                <div className="relative inline-block text-left">
-                  <div className="flex items-center">
-                    <span className="px-6 text-gray-600 dark:text-gray-400">
-                      {user.name}
-                    </span>
-                    <ThemeSwticher />
-                    <Profile
-                      setToken={setToken}
-                      setUser={setUser}
-                      setIsLogged={setIsLogged}
-                    />
-                  </div>
-                </div>
-              </div>
+      <section className="relative max-w-lg">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <span className="px-6 text-gray-600 dark:text-gray-400">
+              {user.name}
+            </span>
+            <div>
+              <ThemeSwticher />
+            </div>
+            <div>
+              <Profile
+                setToken={setToken}
+                setUser={setUser}
+                setIsLogged={setIsLogged}
+              />
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };
