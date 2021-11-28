@@ -7,7 +7,7 @@ import SignIn from "./pages/signinpage/SignIn";
 import SignUp from "./pages/signuppage/SignUp";
 import Sidebar from "./components/sidebar/Sidebar";
 import NavBar from "./components/navbar/Navbar";
-import Home from "./pages/homepage/Home";
+import Dashboard from "./pages/dashboardpage/Dashboard";
 import CoinInfo from "./pages/coinspage/CoinInfo";
 import Account from "./pages/accountpage/Account";
 
@@ -105,7 +105,7 @@ const App = () => {
                   />
                   <Switch>
                     <Route path="/dashboard">
-                      <Home coins={coins} />
+                      <Dashboard coins={coins} />
                     </Route>
                     <Route path="/cryptocurrencies" exact>
                       <CoinCollection coins={coins} />

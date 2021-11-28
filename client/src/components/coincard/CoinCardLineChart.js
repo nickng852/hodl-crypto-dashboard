@@ -5,7 +5,7 @@ const LineChart = ({ coins }) => {
   const data = (canvas) => {
     const ctx = canvas.getContext("2d");
     const gradient = ctx.createLinearGradient(0, 0, 0, 150);
-    gradient.addColorStop(0, "rgba(34, 153, 84,0.5)");
+    gradient.addColorStop(0, "rgba(34, 153, 84,1)");
     gradient.addColorStop(1, "rgba(34, 153, 84,0.01)");
 
     console.log(coins.id);

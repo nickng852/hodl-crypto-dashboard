@@ -5,7 +5,7 @@ import CoinListPagination from "./CoinListPagination";
 const CoinList = ({ coins }) => {
   // states
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   // get each page's items by slicing the response array
   const lastItem = currentPage * itemsPerPage;
@@ -16,9 +16,9 @@ const CoinList = ({ coins }) => {
 
   return (
     <>
-      <div className="container px-4 mx-auto max-w-7xl">
-        <div className="px-4 py-4 overflow-x-auto">
-          <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
+      <div className="container">
+        <div className="overflow-x-auto">
+          <div className="inline-block min-w-full overflow-hidden shadow rounded-3xl">
             <table className="min-w-full table-auto">
               <thead>
                 <tr>

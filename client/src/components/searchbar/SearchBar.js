@@ -71,7 +71,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
 
         {search && filteredCoins.length !== 0 ? ( // Search result will show only when input field is not empty and match result is returned.
           <ClickAwayListener onClickAway={handleClickAway}>
-            <div className="absolute inset-x-0 z-10 mx-5 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-2xl max-h-72 dark:bg-gray-800 dark:border-transparent">
+            <div className="absolute inset-x-0 z-10 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-2xl max-h-72 dark:bg-gray-800 dark:border-transparent">
               {filteredCoins.map((result, index) => {
                 return (
                   <>

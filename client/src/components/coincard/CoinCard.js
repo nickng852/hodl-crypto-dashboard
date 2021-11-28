@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Line } from "react-chartjs-2"; // chart library
 
-const CoinCard = ({ coins }) => {
-  const slicedCoins = coins.slice(0, 5); // decide how many CoinCards will be displayed
+const CoinCard = ({ coins, simplified }) => {
+  const coinsCount = simplified ? 5 : 50;
+  const slicedCoins = coins.slice(0, coinsCount); // decide how many CoinCards will be displayed
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-center max-w-8xl mt-14">
+      <div className="flex flex-wrap justify-between">
         {slicedCoins.map((result, index) => {
           const id = result.uuid;
           const icon = result.iconUrl;
@@ -28,8 +29,14 @@ const CoinCard = ({ coins }) => {
           const data = (canvas) => {
             const ctx = canvas.getContext("2d");
             const gradient = ctx.createLinearGradient(0, 0, 0, 110);
-            gradient.addColorStop(0, "rgba(34, 153, 84,0.5)");
-            gradient.addColorStop(1, "rgba(34, 153, 84,0.01)");
+
+            if (priceChange < 0) {
+              gradient.addColorStop(0, "rgba(214, 69, 65, 0.5)");
+              gradient.addColorStop(1, "rgba(214, 69, 65,0.01)");
+            } else {
+              gradient.addColorStop(0, "rgba(34, 153, 84,0.5)");
+              gradient.addColorStop(1, "rgba(34, 153, 84,0.01)");
+            }
 
             return {
               labels: chartLabel,
@@ -38,7 +45,7 @@ const CoinCard = ({ coins }) => {
                   data: chartData,
                   fill: true,
                   backgroundColor: gradient,
-                  borderColor: "#218c74",
+                  borderColor: priceChange < 0 ? "#e74c3c" : "#218c74",
                   borderWidth: 2,
                 },
               ],
@@ -65,7 +72,7 @@ const CoinCard = ({ coins }) => {
 
           return (
             <Link
-              className="relative m-5 overflow-hidden bg-white rounded-lg shadow w-60 md:w-72 dark:bg-gray-600"
+              className="relative overflow-hidden bg-white shadow rounded-3xl w-60 md:w-72 dark:bg-gray-600"
               key={index}
               to={`/cryptocurrencies/${id}`}
             >
