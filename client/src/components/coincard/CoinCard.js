@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Line } from "react-chartjs-2"; // chart library
 
 const CoinCard = ({ coins, simplified }) => {
-  const coinsCount = simplified ? 5 : 50;
+  const coinsCount = simplified ? 4 : 50;
   const slicedCoins = coins.slice(0, coinsCount); // decide how many CoinCards will be displayed
 
   return (
@@ -72,7 +72,7 @@ const CoinCard = ({ coins, simplified }) => {
 
           return (
             <Link
-              className="relative overflow-hidden bg-white shadow rounded-3xl w-60 md:w-72 dark:bg-gray-600"
+              className="relative overflow-hidden transition-shadow duration-200 bg-white shadow hover:shadow-lg rounded-3xl w-60 md:w-72 dark:bg-gray-800"
               key={index}
               to={`/cryptocurrencies/${id}`}
             >

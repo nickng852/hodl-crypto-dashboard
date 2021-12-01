@@ -31,6 +31,7 @@ const App = () => {
   const [isLogged, setIsLogged] = useState(false);
   const [coins, setCoins] = useState([]);
   const [search, setSearch] = useState("");
+  const [news, setNews] = useState([]);
 
   /*   useEffect(() => {
     window.localStorage.setItem("userToken", isLogged);
@@ -73,6 +74,44 @@ const App = () => {
       });
   }, []);
 
+  /*   useEffect(() => {
+    // Bing News Search API call
+    const bingNewsSearchOptions = {
+      method: "GET",
+      url: "https://bing-news-search1.p.rapidapi.com/news/search?q=crytocurrency",
+      params: {
+        safeSearch: "Off",
+        textFormat: "Raw",
+      },
+      headers: {
+        "x-bingapis-sdk": "true",
+        "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
+        "x-rapidapi-key": process.env.REACT_APP_BINGNEWSSEARCH_API_KEY,
+      },
+    }; */
+
+  const newDate = new Date();
+  const year = newDate.getFullYear();
+  const month = newDate.getMonth() + 1;
+  const date = newDate.getDate();
+
+  useEffect(() => {
+    // Bing News API call
+    const newsApiOptions = {
+      method: "GET",
+      url: `https://newsapi.org/v2/everything?q=cryptocurrency&from=2021-11-01&pageSize=5&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`,
+    };
+
+    axios
+      .request(newsApiOptions)
+      .then(function (res) {
+        setNews(res.data.articles);
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+  }, [year, month, date]);
+
   return (
     <>
       <Router basename={process.env.PUBLIC_URL}>
@@ -93,7 +132,7 @@ const App = () => {
             <>
               <div className="flex flex-row">
                 <Sidebar />
-                <div className="flex flex-col w-full bg-gray-50 justify-items-center">
+                <div className="flex flex-col w-full dark:bg-gray-900 bg-gray-50 justify-items-center">
                   <NavBar
                     setToken={setToken}
                     user={user}
@@ -105,7 +144,7 @@ const App = () => {
                   />
                   <Switch>
                     <Route path="/dashboard">
-                      <Dashboard coins={coins} />
+                      <Dashboard coins={coins} news={news} />
                     </Route>
                     <Route path="/cryptocurrencies" exact>
                       <CoinCollection coins={coins} />
