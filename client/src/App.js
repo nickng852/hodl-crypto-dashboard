@@ -38,8 +38,8 @@ const App = () => {
     setIsLogged(JSON.parse(window.localStorage.getItem("userToken")));
   }, [isLogged]); */
 
+  // Get logged user's info from firebase after successful login
   useEffect(() => {
-    // Get logged user's info from firebase after successful login
     if (token) {
       const getUser = async () => {
         const docRef = doc(db, "users", token.uid);
@@ -52,65 +52,40 @@ const App = () => {
     }
   }, [token]);
 
+  // Coinranking API call
   useEffect(() => {
-    // Coinranking API call
-    const coinRankingOptions = {
+    const options = {
       method: "GET",
-      url: "https://coinranking1.p.rapidapi.com/coins",
-      headers: {
-        "x-rapidapi-host": "coinranking1.p.rapidapi.com",
-        "x-rapidapi-key": process.env.REACT_APP_COINRANKING_API_KEY,
-      },
+      url: "http://localhost:3001/getCoins",
     };
 
     axios
-      .request(coinRankingOptions)
-      .then(function (res) {
+      .request(options)
+      .then((res) => {
         const parsed = JSON.parse(JSON.stringify(res));
         setCoins(parsed.data.data.coins);
       })
-      .catch(function (err) {
+      .catch((err) => {
         console.error(err);
       });
   }, []);
 
-  /*   useEffect(() => {
-    // Bing News Search API call
-    const bingNewsSearchOptions = {
-      method: "GET",
-      url: "https://bing-news-search1.p.rapidapi.com/news/search?q=crytocurrency",
-      params: {
-        safeSearch: "Off",
-        textFormat: "Raw",
-      },
-      headers: {
-        "x-bingapis-sdk": "true",
-        "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-        "x-rapidapi-key": process.env.REACT_APP_BINGNEWSSEARCH_API_KEY,
-      },
-    }; */
-
-  const newDate = new Date();
-  const year = newDate.getFullYear();
-  const month = newDate.getMonth() + 1;
-  const date = newDate.getDate();
-
+  // News API call
   useEffect(() => {
-    // Bing News API call
-    const newsApiOptions = {
+    const options = {
       method: "GET",
-      url: `https://newsapi.org/v2/everything?q=cryptocurrency&from=2021-11-01&pageSize=5&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`,
+      url: "http://localhost:3001/getNews",
     };
 
     axios
-      .request(newsApiOptions)
-      .then(function (res) {
+      .request(options)
+      .then((res) => {
         setNews(res.data.articles);
       })
-      .catch(function (err) {
+      .catch((err) => {
         console.error(err);
       });
-  }, [year, month, date]);
+  }, []);
 
   return (
     <>
@@ -132,7 +107,7 @@ const App = () => {
             <>
               <div className="flex flex-row">
                 <Sidebar />
-                <div className="flex flex-col w-full dark:bg-gray-900 bg-gray-50 justify-items-center">
+                <div className="flex flex-col w-full bg-white dark:bg-gray-900 justify-items-center">
                   <NavBar
                     setToken={setToken}
                     user={user}

@@ -1,27 +1,51 @@
-const express = require("express");
-const app = express();
-const port = 3000;
-const mysql = require("mysql");
+const port = 3001;
+const axios = require("axios"); // Prevent CORS error
 const cors = require("cors");
+const express = require("express");
+require("dotenv").config(); // Access .env config
+
+const app = express();
 
 app.use(cors());
 
-const db = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "cryptodashboarddb",
+// Coinranking API call
+app.get("/getCoins", (req, res) => {
+  const options = {
+    method: "GET",
+    url: "https://coinranking1.p.rapidapi.com/coins",
+    headers: {
+      "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+      "x-rapidapi-key": process.env.REACT_APP_COINRANKING_API_KEY,
+    },
+  };
+
+  axios
+    .request(options)
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 });
 
-app.get("/", (req, res) => {
-  const sqlInsert =
-    "INSERT INTO users (username, password) VALUES ('aaa', 'bbb');";
-  db.query(sqlInsert, (err, result) => {
-    console.log(err);
-    res.send("bbb");
-  });
+// News API call
+app.get("/getNews", (req, res) => {
+  const options = {
+    method: "GET",
+    url: `https://newsapi.org/v2/everything?q=cryptocurrency&from=2021-11-01&pageSize=5&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`,
+  };
+
+  axios
+    .request(options)
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 });
 
 app.listen(port, () => {
-  console.log("running on port 3000");
+  console.log("running on port 3001");
 });

@@ -10,22 +10,22 @@ const News = ({ news }) => {
           const newsTitle = result.title;
           const newsDescription = result.description;
           const newsPublishDate = moment(result.publishedAt).format(
-            "YYYY-MM-DD h:mm"
+            "MMM DD, YYYY．h:mm A"
           );
 
           return (
             <a href={result.url} target="_blank" rel="noreferrer">
-              <div className="flex overflow-hidden transition-shadow duration-200 bg-white shadow dark:bg-gray-800 h-72 rounded-2xl hover:shadow-lg">
+              <div className="relative flex overflow-hidden transition-shadow duration-200 bg-white shadow dark:bg-gray-800 h-60 rounded-2xl hover:shadow-lg">
                 <div className="flex w-1/5">
                   <img
                     src={newsImage}
                     alt=""
-                    className="object-cover bg-center rounded-2xl"
+                    className="object-cover bg-center rounded-2xl h-60 w-60"
                   />
                 </div>
 
                 <div className="flex flex-col justify-between w-4/5">
-                  <div className="p-10">
+                  <div className="py-6 pr-8">
                     <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100 ">
                       {newsTitle}
                     </h1>
@@ -34,12 +34,12 @@ const News = ({ news }) => {
                       {newsDescription}
                     </p>
 
-                    <p className="mt-6 font-light text-gray-600 text-md dark:text-gray-300">
+                    <p className="mt-4 font-light text-gray-600 text-md dark:text-gray-300">
                       {newsPublishDate}
                     </p>
                   </div>
 
-                  <div className="px-8 py-6">
+                  <div className="absolute bottom-0 right-0 px-8 py-6">
                     <p className="text-sm font-light text-right text-gray-600 text-md dark:text-gray-300">
                       From <strong>{result.source.name}</strong>
                     </p>

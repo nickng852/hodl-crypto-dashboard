@@ -118,14 +118,14 @@ const CoinList = ({ coins }) => {
           </table>
         </div>
       </div>
-      {/*       <div className="float-right mt-6">
+      <div className="float-right mt-6">
         <CoinListPagination
           coins={coins}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           itemsPerPage={itemsPerPage}
         />
-      </div> */}
+      </div>
     </>
   );
 };
