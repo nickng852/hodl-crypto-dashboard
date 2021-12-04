@@ -32,6 +32,7 @@ const App = () => {
   const [coins, setCoins] = useState([]);
   const [search, setSearch] = useState("");
   const [news, setNews] = useState([]);
+  const [watchList, setWatchList] = useState([]);
 
   /*   useEffect(() => {
     window.localStorage.setItem("userToken", isLogged);
@@ -66,7 +67,7 @@ const App = () => {
         setCoins(parsed.data.data.coins);
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   }, []);
 
@@ -83,7 +84,7 @@ const App = () => {
         setNews(res.data.articles);
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   }, []);
 
@@ -116,10 +117,17 @@ const App = () => {
                     coins={coins}
                     search={search}
                     setSearch={setSearch}
+                    watchList={watchList}
+                    setWatchList={setWatchList}
                   />
                   <Switch>
                     <Route path="/dashboard">
-                      <Dashboard coins={coins} news={news} />
+                      <Dashboard
+                        coins={coins}
+                        news={news}
+                        watchList={watchList}
+                        setWatchList={setWatchList}
+                      />
                     </Route>
                     <Route path="/cryptocurrencies" exact>
                       <CoinCollection coins={coins} />

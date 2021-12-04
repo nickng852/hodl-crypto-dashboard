@@ -2,7 +2,7 @@ import React from "react";
 import SearchBarResult from "./SearchBarResult";
 import ClickAwayListener from "react-click-away-listener";
 
-const SearchBar = ({ coins, search, setSearch }) => {
+const SearchBar = ({ coins, search, setSearch, watchList, setWatchList }) => {
   // Find matched results between input value and API data
   const filteredCoins = coins.filter(
     (coin) =>
@@ -77,11 +77,14 @@ const SearchBar = ({ coins, search, setSearch }) => {
                   <>
                     <SearchBarResult
                       key={index}
+                      result={result}
                       id={result.uuid}
                       icon={result.iconUrl}
                       name={result.name}
                       symbol={result.symbol}
                       setSearch={setSearch}
+                      watchList={watchList}
+                      setWatchList={setWatchList}
                     />
                   </>
                 );

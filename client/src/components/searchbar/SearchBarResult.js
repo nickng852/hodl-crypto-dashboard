@@ -1,17 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SearchBarResult = ({ id, icon, name, symbol, setSearch }) => {
+const SearchBarResult = ({
+  result,
+  id,
+  icon,
+  name,
+  symbol,
+  setSearch,
+  setWatchList,
+}) => {
   const handleClickAway = () => {
     setSearch("");
 
     const input = document.getElementById("search");
     input.value = "";
+
+    setWatchList((prev) => [...prev, result]);
   };
 
   return (
     <>
-      <Link key={id} to={`/cryptocurrencies/${id}`} onClick={handleClickAway}>
+      <Link key={id} to="#" onClick={handleClickAway}>
         <div className="flex justify-between px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-600">
           <div>
             <h3 className="font-medium text-gray-700 dark:text-gray-100">

@@ -1,6 +1,6 @@
 const port = 3001;
-const axios = require("axios"); // Prevent CORS error
-const cors = require("cors");
+const axios = require("axios");
+const cors = require("cors"); // Prevent CORS error
 const express = require("express");
 require("dotenv").config(); // Access .env config
 
@@ -25,24 +25,28 @@ app.get("/getCoins", (req, res) => {
       res.json(response.data);
     })
     .catch((error) => {
-      console.error(error);
+      console.log(error);
     });
 });
 
 // News API call
 app.get("/getNews", (req, res) => {
-  const options = {
-    method: "GET",
-    url: `https://newsapi.org/v2/everything?q=cryptocurrency&from=2021-11-01&pageSize=5&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`,
-  };
+  const NewsAPI = require("newsapi");
+  const newsapi = new NewsAPI(process.env.REACT_APP_NEWS_API_KEY);
 
-  axios
-    .request(options)
+  newsapi.v2
+    .everything({
+      q: "cryptocurrency",
+      sources: "",
+      domains: "",
+      sortBy: "publishedAt",
+      pageSize: "5",
+    })
     .then((response) => {
-      res.json(response.data);
+      res.json(response);
     })
     .catch((error) => {
-      console.error(error);
+      console.log(error);
     });
 });
 
