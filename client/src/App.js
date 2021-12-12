@@ -32,7 +32,6 @@ const App = () => {
   const [coins, setCoins] = useState([]);
   const [search, setSearch] = useState("");
   const [news, setNews] = useState([]);
-  const [watchList, setWatchList] = useState([]);
 
   /*   useEffect(() => {
     window.localStorage.setItem("userToken", isLogged);
@@ -117,16 +116,17 @@ const App = () => {
                     coins={coins}
                     search={search}
                     setSearch={setSearch}
-                    watchList={watchList}
-                    setWatchList={setWatchList}
                   />
                   <Switch>
                     <Route path="/dashboard">
                       <Dashboard
+                        token={token}
+                        user={user}
+                        setUser={setUser}
                         coins={coins}
+                        search={search}
+                        setSearch={setSearch}
                         news={news}
-                        watchList={watchList}
-                        setWatchList={setWatchList}
                       />
                     </Route>
                     <Route path="/cryptocurrencies" exact>

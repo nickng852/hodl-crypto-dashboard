@@ -10,20 +10,12 @@ const NavBar = ({
   coins,
   search,
   setSearch,
-  watchList,
-  setWatchList,
 }) => {
   return (
     <>
       <div className="z-10">
         <nav className="flex items-center justify-between px-5 py-4 bg-gray-50 dark:bg-gray-800">
-          <SearchBar
-            coins={coins}
-            search={search}
-            setSearch={setSearch}
-            watchList={watchList}
-            setWatchList={setWatchList}
-          />
+          <SearchBar coins={coins} search={search} setSearch={setSearch} />
           <NavControl
             setToken={setToken}
             user={user}

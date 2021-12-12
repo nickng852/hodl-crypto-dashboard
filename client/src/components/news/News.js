@@ -9,12 +9,12 @@ const News = ({ news }) => {
           const newsImage = result.urlToImage;
           const newsTitle = result.title;
           const newsDescription = result.description;
-          const newsPublishDate = moment(result.publishedAt).format(
-            "MMM DD, YYYY．h:mm A"
-          );
+          const newsPublishDate = moment(result.publishedAt)
+            .startOf("ss")
+            .fromNow();
 
           return (
-            <a href={result.url} target="_blank" rel="noreferrer">
+            <a href={result.url} target="_blank" rel="noreferrer" key={index}>
               <div className="relative flex overflow-hidden transition-shadow duration-200 bg-white shadow dark:bg-gray-800 h-60 rounded-2xl hover:shadow-lg">
                 <div className="flex w-1/5">
                   <img

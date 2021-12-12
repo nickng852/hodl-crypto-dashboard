@@ -34,6 +34,7 @@ const SignUp = ({
           createDate: Timestamp.fromDate(new Date()),
           name: form.name,
           email: form.email,
+          watchlist: [],
         };
 
         setDoc(doc(db, "users", userCredential.user.uid), docData);

@@ -2,7 +2,7 @@ import React from "react";
 import SearchBarResult from "./SearchBarResult";
 import ClickAwayListener from "react-click-away-listener";
 
-const SearchBar = ({ coins, search, setSearch, watchList, setWatchList }) => {
+const SearchBar = ({ coins, search, setSearch }) => {
   // Find matched results between input value and API data
   const filteredCoins = coins.filter(
     (coin) =>
@@ -43,7 +43,7 @@ const SearchBar = ({ coins, search, setSearch, watchList, setWatchList }) => {
           type="text"
           id="search"
           maxLength="27"
-          className="w-full py-3 pl-12 pr-4 text-gray-700 bg-white border border-gray-300 rounded-2xl dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+          className="w-full py-3 pl-12 pr-4 text-gray-700 bg-white border border-gray-300 rounded-xl dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
           placeholder="Search Crypto"
           onChange={handleChange}
         />
@@ -83,8 +83,6 @@ const SearchBar = ({ coins, search, setSearch, watchList, setWatchList }) => {
                       name={result.name}
                       symbol={result.symbol}
                       setSearch={setSearch}
-                      watchList={watchList}
-                      setWatchList={setWatchList}
                     />
                   </>
                 );

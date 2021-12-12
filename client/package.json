@@ -5,6 +5,7 @@
   "homepage": "https://nickng852.github.io/crypto-dashboard/",
   "dependencies": {
     "@craco/craco": "^6.3.0",
+    "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -17,8 +18,10 @@
     "react-chartjs-2": "^3.3.0",
     "react-click-away-listener": "^2.0.5",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "redux": "^4.1.2",
     "styled-components": "^5.3.1",
     "web-vitals": "^1.1.2"
   },
