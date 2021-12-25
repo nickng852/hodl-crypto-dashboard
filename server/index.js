@@ -37,8 +37,9 @@ app.get("/getNews", (req, res) => {
   newsapi.v2
     .everything({
       q: "cryptocurrency",
-      sources: "",
-      domains: "",
+      sources:
+        "BBC News,CNN,Reuters,New York Times,Bloomberg,Fox News,Google News,The Wall Street Journal,Time",
+      language: "en",
       sortBy: "publishedAt",
       pageSize: "5",
     })
