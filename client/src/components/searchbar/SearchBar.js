@@ -26,7 +26,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
       <section className="relative w-full max-w-lg mx-auto">
         <span className="absolute inset-y-0 left-0 flex items-center pl-5">
           <svg
-            className="w-5 h-5 text-gray-400"
+            className="w-5 h-5 text-gray-400 dark:text-gray-400"
             viewBox="0 0 24 24"
             fill="none"
           >
@@ -43,7 +43,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
           type="text"
           id="search"
           maxLength="27"
-          className="w-full py-3 pl-12 pr-4 text-gray-700 bg-white border border-gray-300 rounded-xl dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+          className="w-full py-3 pl-12 pr-4 text-gray-700 bg-white border border-gray-300 rounded-xl dark:placeholder-gray-500 dark:bg-tertiary dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
           placeholder="Search Crypto"
           onChange={handleChange}
         />
@@ -54,7 +54,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 text-gray-400"
+              className="w-5 h-5 text-gray-400 dark:text-gray-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -71,7 +71,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
 
         {search && filteredCoins.length !== 0 ? ( // Search result will show only when input field is not empty and match result is returned.
           <ClickAwayListener onClickAway={handleClickAway}>
-            <div className="absolute inset-x-0 z-10 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-2xl max-h-72 dark:bg-gray-800 dark:border-transparent">
+            <div className="absolute inset-x-0 z-10 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-2xl max-h-72 dark:bg-secondary dark:border-transparent">
               {filteredCoins.map((result, index) => {
                 return (
                   <>

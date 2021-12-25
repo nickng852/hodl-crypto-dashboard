@@ -39,7 +39,7 @@ const Dashboard = ({ user, setUser, token, coins, news }) => {
               </h1>
 
               <Link to="#">
-                <button className="px-5 py-3 text-sm font-medium text-blue-600 uppercase transition-colors duration-200 rounded-lg dark:hover:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 font-header">
+                <button className="px-5 py-3 text-sm font-medium text-blue-600 uppercase transition-colors duration-200 rounded-lg dark:hover:bg-tertiary dark:text-gray-300 hover:bg-gray-200 font-header">
                   View all
                 </button>
               </Link>
@@ -60,7 +60,7 @@ const Dashboard = ({ user, setUser, token, coins, news }) => {
             </h1>
 
             <button
-              className="p-2 transition-colors duration-200 rounded dark:hover:bg-gray-700 hover:bg-gray-200 dark:text-gray-300"
+              className="p-2 transition-colors duration-200 rounded dark:hover:bg-tertiary hover:bg-gray-200 dark:text-gray-300"
               onClick={modalToggle}
             >
               <svg

@@ -72,9 +72,9 @@ const CoinList = ({ coins }) => {
                           />
                         </div>
                         <div className="ml-5">
-                          <p className="font-medium text-gray-900 whitespace-no-wrap dark:text-gray-100">
+                          <div className="font-medium text-gray-900 whitespace-no-wrap dark:text-gray-100">
                             {name}
-                          </p>
+                          </div>
                         </div>
                         <div className="ml-3">
                           <span className="text-xs text-gray-600 truncate rounded-md dark:text-gray-400 ">
@@ -84,7 +84,7 @@ const CoinList = ({ coins }) => {
                       </Link>
                     </td>
                     <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-                      <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
+                      <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                         $
                         {`${
                           price < 1
@@ -93,23 +93,17 @@ const CoinList = ({ coins }) => {
                                 maximumFractionDigits: 2,
                               })
                         }`}
-                      </p>
+                      </div>
                     </td>
                     <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-                      <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
-                        $
-                        {marketCap.toLocaleString(undefined, {
-                          maximumFractionDigits: 0,
-                        })}
-                      </p>
+                      <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
+                        ${marketCap.toLocaleString()}
+                      </div>
                     </td>
                     <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-                      <p className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
-                        $
-                        {volume.toLocaleString(undefined, {
-                          maximumFractionDigits: 0,
-                        })}
-                      </p>
+                      <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
+                        ${volume.toLocaleString()}
+                      </div>
                     </td>
                   </tr>
                 </tbody>

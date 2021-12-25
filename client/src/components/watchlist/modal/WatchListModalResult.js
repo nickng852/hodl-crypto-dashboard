@@ -14,6 +14,8 @@ const WatchListModalResult = ({
   icon,
   setWatchListSearch,
 }) => {
+  console.log(user);
+
   // Add individual item to watchlist
   const addItem = () => {
     // block duplicate insert
@@ -34,13 +36,15 @@ const WatchListModalResult = ({
   return (
     <>
       <Link key={id} to="#" className="cursor-default" onClick={addItem}>
-        <div className="flex justify-between px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <div className="flex justify-between px-6 py-3 hover:bg-gray-50 dark:hover:bg-tertiary">
           <div className="w-full">
-            <p className="font-medium text-gray-800 dark:text-gray-100">
+            <div className="font-medium text-gray-800 dark:text-gray-100">
               {name}
-            </p>
+            </div>
 
-            <p className="text-sm text-gray-500 dark:text-gray-400">{symbol}</p>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              {symbol}
+            </div>
           </div>
 
           <div className="flex items-center justify-center ">

@@ -77,9 +77,9 @@ const SignIn = ({
     <>
       <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-800">
         <div className="w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-          <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-white">
+          <div className="text-3xl font-semibold text-center text-gray-700 dark:text-white">
             Sign In
-          </h1>
+          </div>
 
           <form
             className="mt-6"
@@ -158,7 +158,7 @@ const SignIn = ({
             </div>
           </form>
 
-          <p className="mt-8 text-xs font-light text-center text-gray-400">
+          <div className="mt-8 text-xs font-light text-center text-gray-400">
             Don't have an account?
             <Link
               to="/signup"
@@ -167,7 +167,7 @@ const SignIn = ({
             >
               Sign Up
             </Link>
-          </p>
+          </div>
         </div>
       </div>
     </>

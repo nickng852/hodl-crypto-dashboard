@@ -67,6 +67,9 @@ const WatchList = ({ token, user, setUser }) => {
                   legend: {
                     display: false,
                   },
+                  tooltip: {
+                    enabled: false,
+                  },
                 },
                 radius: 0,
                 tension: 0.4,
@@ -98,7 +101,7 @@ const WatchList = ({ token, user, setUser }) => {
                       to={`/cryptocurrencies/${id}`}
                       className="cursor-default"
                     >
-                      <div className="flex h-24 border-b border-gray-100 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800">
+                      <div className="flex h-24 border-b border-gray-100 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-secondary">
                         <div className="flex items-center justify-center w-1/6">
                           <img
                             alt={name}
@@ -106,9 +109,9 @@ const WatchList = ({ token, user, setUser }) => {
                             className="w-6 h-6 rounded-full"
                           />
 
-                          <p className="ml-5 font-medium text-gray-700 dark:text-gray-100">
+                          <div className="ml-5 font-medium text-gray-700 dark:text-gray-100">
                             {symbol}
-                          </p>
+                          </div>
                         </div>
 
                         <div className="flex items-center justify-center w-2/6">
@@ -123,7 +126,7 @@ const WatchList = ({ token, user, setUser }) => {
                         </div>
 
                         <div className="flex items-center justify-center w-1/6">
-                          <p className="text-gray-700 dark:text-gray-100">
+                          <div className="text-gray-700 dark:text-gray-100">
                             $
                             {`${
                               price < 1
@@ -132,11 +135,11 @@ const WatchList = ({ token, user, setUser }) => {
                                     maximumFractionDigits: 2,
                                   })
                             }`}
-                          </p>
+                          </div>
                         </div>
 
                         <div className="flex items-center justify-center w-1/6">
-                          <p
+                          <div
                             className={`${
                               priceChange < 0
                                 ? "text-red-600"
@@ -148,7 +151,7 @@ const WatchList = ({ token, user, setUser }) => {
                                 ? AbsPriceChange.toFixed(2) + "%"
                                 : AbsPriceChange.toFixed(2) + "%"
                             }`}
-                          </p>
+                          </div>
                         </div>
                       </div>
                     </Link>
@@ -156,7 +159,7 @@ const WatchList = ({ token, user, setUser }) => {
 
                     {/* Remove button */}
                     <button
-                      className="absolute p-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto right-4 top-1/2 hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-300"
+                      className="absolute p-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto right-4 top-1/2 hover:bg-gray-200 dark:hover:bg-tertiary dark:text-gray-300"
                       onClick={removeItem}
                     >
                       <svg
@@ -182,7 +185,11 @@ const WatchList = ({ token, user, setUser }) => {
           </>
         ) : (
           <>
-            <div>Empty watchlist</div>
+            <div className="flex items-center justify-center overflow-auto h-96">
+              <div className="text-xl text-gray-600 dark:text-gray-500">
+                Your watchlist will be displayed here.
+              </div>
+            </div>
           </>
         )}
       </div>

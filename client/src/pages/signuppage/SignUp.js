@@ -34,6 +34,7 @@ const SignUp = ({
           createDate: Timestamp.fromDate(new Date()),
           name: form.name,
           email: form.email,
+          profileImg: null,
           watchlist: [],
         };
 
@@ -83,9 +84,9 @@ const SignUp = ({
     <>
       <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-800">
         <div className="w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-          <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-white">
+          <div className="text-3xl font-semibold text-center text-gray-700 dark:text-white">
             Sign Up
-          </h1>
+          </div>
 
           <form
             className="mt-6"
@@ -181,7 +182,7 @@ const SignUp = ({
             </div>
           </form>
 
-          <p className="mt-8 text-xs font-light text-center text-gray-400">
+          <div className="mt-8 text-xs font-light text-center text-gray-400">
             Already have an account?
             <Link
               to="/"
@@ -190,7 +191,7 @@ const SignUp = ({
             >
               Log In
             </Link>
-          </p>
+          </div>
         </div>
       </div>
     </>

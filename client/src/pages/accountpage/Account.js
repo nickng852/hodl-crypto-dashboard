@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import ClickAwayListener from "react-click-away-listener";
+import defaultProfileImg from "../../assets/images/blank-profile-picture.png";
+
+// Firebase
 import { db } from "../../firebase/firebase.config";
 import { getAuth, updatePassword, deleteUser } from "firebase/auth";
-import { doc, deleteDoc } from "firebase/firestore";
-import ClickAwayListener from "react-click-away-listener";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const Account = ({
   initialState,
@@ -16,16 +20,26 @@ const Account = ({
   setIsLogged,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [profileImg, setProfileImg] = useState(null);
+
+  let history = useHistory();
 
   const modalToggle = () => {
     setModalOpen(!modalOpen);
   };
 
-  let history = useHistory();
+  // ----- Firebase -----
 
-  // Firebase Auth
+  // Authentication
   const auth = getAuth();
   const currentUser = auth.currentUser;
+
+  // Firestore Database
+  const docRef = doc(db, "users", token.uid);
+
+  // Storage
+  const storage = getStorage();
+  const storageRef = ref(storage, "userProfileImg/" + user.uid);
 
   const changePw = () => {
     updatePassword(currentUser, form.password)
@@ -40,15 +54,14 @@ const Account = ({
   const deleteAcc = () => {
     deleteUser(currentUser)
       .then(() => {
-        // Account deletion
+        // Frontend
         setToken("");
         setUser("");
         setIsLogged(false);
         history.push("/");
 
-        // Delete user data from Firestore
+        // Backend - delete user data in firestore
         const eraseUser = async () => {
-          const docRef = doc(db, "users", token.uid);
           await deleteDoc(docRef);
         };
 
@@ -59,9 +72,28 @@ const Account = ({
       });
   };
 
+  const uploadImg = () => {
+    // Backend - upload image to firestore
+    if (profileImg !== null) {
+      uploadBytes(storageRef, profileImg).then((snapshot) => {
+        getDownloadURL(storageRef)
+          .then((url) => {
+            const docData = {
+              profileImg: url,
+            };
+
+            updateDoc(docRef, docData);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    }
+  };
+
   return (
     <>
-      <section className="h-full bg-gray-100 bg-opacity-50 ">
+      <section className="h-full bg-gray-100 bg-opacity-50">
         <div className="flex justify-center">
           <form className="relative max-w-2xl m-24 rounded-lg shadow-md md:w-3/4">
             <div className="p-4 bg-gray-100 border-t-2 border-indigo-400 rounded-t-lg bg-opacity-5">
@@ -70,17 +102,19 @@ const Account = ({
                   <Link to="#" className="relative block">
                     <img
                       alt=""
-                      src=""
+                      src={
+                        user.profileImg ? user.profileImg : defaultProfileImg
+                      }
                       className="object-cover w-16 h-16 mx-auto rounded-full"
                     />
                   </Link>
-                  <h1 className="text-gray-600">{user.name}</h1>
+                  <div className="text-gray-600">{user.name}</div>
                 </div>
               </div>
             </div>
             <div className="space-y-6 bg-white rounded-b-lg">
               <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
-                <h2 className="max-w-sm mx-auto md:w-1/3">Name</h2>
+                <div className="max-w-sm mx-auto md:w-1/3">Name</div>
                 <div className="max-w-sm mx-auto space-y-5 md:w-2/3">
                   <div>
                     <div className="relative ">
@@ -96,7 +130,7 @@ const Account = ({
               </div>
               <hr />
               <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
-                <h2 className="max-w-sm mx-auto md:w-1/3">Email</h2>
+                <div className="max-w-sm mx-auto md:w-1/3">Email</div>
                 <div className="max-w-sm mx-auto md:w-2/3">
                   <div className="relative ">
                     <input
@@ -110,7 +144,9 @@ const Account = ({
               </div>
               <hr />
               <div className="items-center w-full p-8 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
-                <h2 className="max-w-sm mx-auto md:w-4/12">Change password</h2>
+                <div className="max-w-sm mx-auto md:w-4/12">
+                  Change password
+                </div>
                 <div className="w-full max-w-sm pl-2 mx-auto space-y-5 md:w-5/12 md:pl-9 md:inline-flex">
                   <div className="relative ">
                     <input
@@ -139,7 +175,9 @@ const Account = ({
               </div>
               <hr />
               <div className="items-center w-full p-8 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
-                <h2 className="max-w-sm mx-auto md:w-4/12">Delete account?</h2>
+                <div className="max-w-sm mx-auto md:w-4/12">
+                  Delete account?
+                </div>
                 <div className="w-full max-w-sm pl-2 mx-auto space-y-5 md:w-5/12 md:pl-9 md:inline-flex"></div>
                 <div className="text-center md:w-3/12 md:pl-6">
                   <button
@@ -156,11 +194,22 @@ const Account = ({
                 <button
                   type="button"
                   className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 "
+                  onClick={uploadImg}
                 >
                   Save
                 </button>
+
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    if (e.target.files.length !== 0) {
+                      setProfileImg(e.target.files[0]);
+                    }
+                  }}
+                />
               </div>
             </div>
+
             {modalOpen && (
               <ClickAwayListener onClickAway={modalToggle}>
                 <div className="absolute w-64 p-4 m-auto transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg top-1/2 left-1/2 rounded-2xl dark:bg-gray-800">

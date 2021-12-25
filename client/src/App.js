@@ -13,7 +13,7 @@ import Account from "./pages/accountpage/Account";
 
 // Firebase
 import { db } from "./firebase/firebase.config";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import CoinCollection from "./pages/coinspage/CoinCollection";
 
 const App = () => {
@@ -41,11 +41,10 @@ const App = () => {
   // Get logged user's info from firebase after successful login
   useEffect(() => {
     if (token) {
-      const getUser = async () => {
-        const docRef = doc(db, "users", token.uid);
-        const docSnap = await getDoc(docRef);
-
-        setUser(docSnap.data());
+      const getUser = () => {
+        onSnapshot(doc(db, "users", token.uid), (doc) => {
+          setUser(doc.data());
+        });
       };
 
       getUser();
@@ -107,7 +106,7 @@ const App = () => {
             <>
               <div className="flex flex-row">
                 <Sidebar />
-                <div className="flex flex-col w-full bg-white dark:bg-gray-900 justify-items-center">
+                <div className="flex flex-col w-full bg-white dark:bg-primary justify-items-center">
                   <NavBar
                     setToken={setToken}
                     user={user}

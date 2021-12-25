@@ -65,14 +65,18 @@ const CoinCard = ({ coins, simplified }) => {
               legend: {
                 display: false,
               },
+              tooltip: {
+                enabled: false,
+              },
             },
             radius: 0,
+            pointHitRadius: 0,
             tension: 0.4,
           };
 
           return (
             <Link
-              className="relative overflow-hidden transition-shadow duration-200 bg-white shadow hover:shadow-lg rounded-3xl w-60 md:w-72 dark:bg-gray-800"
+              className="relative overflow-hidden transition-shadow duration-200 bg-white shadow hover:shadow-lg rounded-3xl w-60 md:w-72 dark:bg-secondary"
               key={index}
               to={`/cryptocurrencies/${id}`}
             >

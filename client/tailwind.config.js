@@ -13,9 +13,9 @@ module.exports = {
       "2xl": "1536px",
     },
     colors: {
-      transparent: "transparent",
-      current: "currentColor",
-
+      primary: "#17171A",
+      secondary: "#222531",
+      tertiary: "#323546",
       black: colors.black,
       white: colors.white,
       gray: colors.coolGray,
