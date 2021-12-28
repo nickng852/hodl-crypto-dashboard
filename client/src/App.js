@@ -139,6 +139,8 @@ const App = () => {
                         initialState={initialState}
                         form={form}
                         setForm={setForm}
+                        errorMessage={errorMessage}
+                        setErrorMessage={setErrorMessage}
                         token={token}
                         setToken={setToken}
                         user={user}
