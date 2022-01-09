@@ -32,7 +32,7 @@ const Profile = ({ setToken, user, setUser, setIsLogged }) => {
     <>
       <button
         type="button"
-        className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-md dark:text-gray-50 focus:outline-none"
+        className="flex items-center justify-center w-full p-2 text-sm font-medium text-gray-700 rounded-md dark:text-gray-50 focus:outline-none"
         id="options-menu"
         onClick={menuToggle}
       >
@@ -41,7 +41,7 @@ const Profile = ({ setToken, user, setUser, setIsLogged }) => {
             <img
               alt="User Icon"
               src={user.profileImg}
-              className="object-cover rounded-full w-7 h-7"
+              className="object-cover w-6 h-6 rounded-full"
             />
           </>
         ) : (

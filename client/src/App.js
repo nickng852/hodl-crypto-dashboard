@@ -105,7 +105,10 @@ const App = () => {
           {token && isLogged ? (
             <>
               <div className="flex flex-row">
-                <Sidebar />
+                <div>
+                  <Sidebar />
+                </div>
+
                 <div className="flex flex-col w-full bg-white dark:bg-primary justify-items-center">
                   <NavBar
                     setToken={setToken}

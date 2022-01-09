@@ -23,7 +23,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
 
   return (
     <>
-      <section className="relative w-full max-w-lg mx-auto">
+      <section className="relative hidden w-full max-w-lg mx-auto 2xl:block">
         <span className="absolute inset-y-0 left-0 flex items-center pl-5">
           <svg
             className="w-5 h-5 text-gray-400 dark:text-gray-400"

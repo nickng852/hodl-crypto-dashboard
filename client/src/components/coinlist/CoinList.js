@@ -5,7 +5,7 @@ import CoinListPagination from "./CoinListPagination";
 const CoinList = ({ coins }) => {
   // states
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
 
   // get each page's items by slicing the response array
   const lastItem = currentPage * itemsPerPage;
@@ -17,31 +17,31 @@ const CoinList = ({ coins }) => {
   return (
     <>
       <div className="overflow-x-auto">
-        <div className="inline-block min-w-full overflow-hidden shadow rounded-3xl">
+        <div className="inline-block min-w-full overflow-hidden shadow rounded-xl">
           <table className="min-w-full table-auto">
             <thead>
               <tr>
                 <th
                   scope="col"
-                  className="px-8 py-3 font-normal text-left text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-md"
+                  className="px-8 py-3 font-normal text-left text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md"
                 >
                   Coin Name
                 </th>
                 <th
                   scope="col"
-                  className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-md "
+                  className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md "
                 >
                   Price
                 </th>
                 <th
                   scope="col"
-                  className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-md "
+                  className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md "
                 >
                   Market Cap
                 </th>
                 <th
                   scope="col"
-                  className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-md "
+                  className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md "
                 >
                   Volume(24h)
                 </th>
@@ -59,7 +59,7 @@ const CoinList = ({ coins }) => {
               return (
                 <tbody key={index}>
                   <tr>
-                    <td className="w-2/5 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 text-md">
+                    <td className="w-2/5 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary text-md">
                       <Link
                         to={`/cryptocurrencies/${id}`}
                         className="flex items-center px-8 py-8"
@@ -83,7 +83,7 @@ const CoinList = ({ coins }) => {
                         </div>
                       </Link>
                     </td>
-                    <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                    <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
                       <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                         $
                         {`${
@@ -95,12 +95,12 @@ const CoinList = ({ coins }) => {
                         }`}
                       </div>
                     </td>
-                    <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                    <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
                       <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                         ${marketCap.toLocaleString()}
                       </div>
                     </td>
-                    <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                    <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
                       <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                         ${volume.toLocaleString()}
                       </div>

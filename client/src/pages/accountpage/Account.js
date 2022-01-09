@@ -181,7 +181,7 @@ const Account = ({
 
   return (
     <>
-      <section className="h-full bg-opacity-50">
+      <section className="w-full h-full bg-opacity-50">
         <div className="flex justify-center">
           <form className="container relative max-w-2xl mx-auto my-24 rounded-lg shadow-md md:w-3/4">
             <div className="px-10 py-6 bg-gray-500 border-t-2 border-indigo-400 rounded-t-lg dark:bg-tertiary bg-opacity-5">
@@ -243,7 +243,7 @@ const Account = ({
                   <input
                     type="text"
                     id="user-info-name"
-                    className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none dark:text-gray-300 dark:border-gray-600 dark:bg-tertiary focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     placeholder="Name"
                     onChange={(e) => {
                       setForm((prev) => ({
@@ -262,7 +262,7 @@ const Account = ({
                   <input
                     type="text"
                     id="user-info-email"
-                    className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none dark:text-gray-300 dark:border-gray-600 dark:bg-tertiary focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     placeholder="Email"
                     onChange={(e) => {
                       setForm((prev) => ({

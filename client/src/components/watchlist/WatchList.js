@@ -72,6 +72,7 @@ const WatchList = ({ token, user, setUser }) => {
                   },
                 },
                 radius: 0,
+                pointHitRadius: 0,
                 tension: 0.4,
               };
 

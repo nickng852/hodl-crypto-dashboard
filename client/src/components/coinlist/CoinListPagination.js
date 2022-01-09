@@ -30,8 +30,8 @@ const CoinListPagination = ({
           to="#"
           className={`${
             currentPage === 1
-              ? "flex items-center px-2 py-2 mr-2 text-gray-300 bg-white rounded-lg shadow cursor-auto dark:bg-gray-800 dark:text-gray-600"
-              : "flex items-center px-2 py-2 mr-2 text-gray-700 transition-colors duration-200 transform bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-200 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-gray-200"
+              ? "flex items-center px-2 py-2 mr-2 text-gray-300 bg-white rounded-lg shadow cursor-auto dark:bg-secondary dark:text-gray-600"
+              : "flex items-center px-2 py-2 mr-2 text-gray-700 transition-colors duration-200 transform bg-white rounded-lg shadow dark:bg-secondary dark:text-gray-200 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-gray-200"
           }`}
           onClick={previousPage}
         >
@@ -53,8 +53,8 @@ const CoinListPagination = ({
           to="#"
           className={`${
             currentPage === lastPage
-              ? "flex items-center px-2 py-2 text-gray-300 bg-white rounded-lg shadow cursor-auto dark:bg-gray-800 dark:text-gray-600"
-              : "flex items-center px-2 py-2 text-gray-700 transition-colors duration-200 transform bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-200 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-gray-200"
+              ? "flex items-center px-2 py-2 text-gray-300 bg-white rounded-lg shadow cursor-auto dark:bg-secondary dark:text-gray-600"
+              : "flex items-center px-2 py-2 text-gray-700 transition-colors duration-200 transform bg-white rounded-lg shadow dark:bg-secondary dark:text-gray-200 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-gray-200"
           }`}
           onClick={nextPage}
         >

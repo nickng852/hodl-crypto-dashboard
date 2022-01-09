@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CoinCard from "../../components/coincard/CoinCard";
+import CoinList from "../../components/coinlist/CoinList";
 import News from "../../components/news/News";
 import WatchListModal from "../../components/watchlist/modal/WatchListModal";
 import WatchList from "../../components/watchlist/WatchList";
@@ -15,8 +16,8 @@ const Dashboard = ({ user, setUser, token, coins, news }) => {
 
   return (
     <>
-      <div className="flex h-full">
-        <div className="w-2/3 pl-16 pr-8">
+      <div className="block w-full h-full 2xl:flex">
+        <div className="px-10 2xl:py-0 2xl:pl-16 2xl:pr-8 2xl:w-2/3">
           {/* Coin Card */}
           <div>
             <div className="flex items-center justify-between mt-10">
@@ -31,29 +32,23 @@ const Dashboard = ({ user, setUser, token, coins, news }) => {
           </div>
           {/* Coin Card */}
 
-          {/* News */}
+          {/* Coin List */}
           <div>
             <div className="flex items-center justify-between mt-10">
               <h1 className="text-2xl text-gray-500 cursor-default dark:text-gray-100 font-header">
-                News Feed
+                Cryptocurrency
               </h1>
-
-              <Link to="#">
-                <button className="px-5 py-3 text-sm font-medium text-blue-600 uppercase transition-colors duration-200 rounded-lg dark:hover:bg-tertiary dark:text-gray-300 hover:bg-gray-200 font-header">
-                  View all
-                </button>
-              </Link>
             </div>
 
             <div className="mt-6">
-              <News news={news} />
+              <CoinList coins={coins} simplified />
             </div>
           </div>
-          {/* News */}
+          {/* Coin List */}
         </div>
 
         {/* Watchlist */}
-        <div className="w-1/3 pl-8 pr-16">
+        <div className="p-10 2xl:py-0 2xl:pl-8 2xl:pr-16 2xl:w-1/3">
           <div className="flex items-center justify-between mt-10">
             <h1 className="text-2xl text-gray-500 cursor-default dark:text-gray-100 font-header">
               Watchlist
@@ -80,7 +75,7 @@ const Dashboard = ({ user, setUser, token, coins, news }) => {
             </button>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-4">
             {user.watchlist && (
               <>
                 <WatchList
@@ -92,7 +87,28 @@ const Dashboard = ({ user, setUser, token, coins, news }) => {
               </>
             )}
           </div>
+
+          {/* News */}
+          <div>
+            <div className="flex items-center justify-between mt-10">
+              <h1 className="text-2xl text-gray-500 cursor-default dark:text-gray-100 font-header">
+                News Feed
+              </h1>
+
+              <Link to="#">
+                <button className="px-5 py-3 text-sm font-medium text-blue-600 uppercase transition-colors duration-200 rounded-lg dark:hover:bg-tertiary dark:text-gray-300 hover:bg-gray-200 font-header">
+                  View all
+                </button>
+              </Link>
+            </div>
+
+            <div className="mt-4">
+              <News news={news} />
+            </div>
+          </div>
+          {/* News */}
         </div>
+
         {modalOpen && (
           <>
             <WatchListModal
