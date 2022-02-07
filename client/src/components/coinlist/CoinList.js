@@ -53,15 +53,15 @@ const CoinList = ({ coins }) => {
               const name = result.name;
               const symbol = result.symbol;
               const price = Number(result.price); // string returned from API
-              const marketCap = result.marketCap;
-              const volume = result.volume;
+              const marketCap = Number(result.marketCap); // string returned from API
+              const volume = Number(result["24hVolume"]); // string returned from API
 
               return (
                 <tbody key={index}>
                   <tr>
                     <td className="w-2/5 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary text-md">
                       <Link
-                        to={`/cryptocurrencies/${id}`}
+                        to={`/coin/${id}`}
                         className="flex items-center px-8 py-8"
                       >
                         <div>
@@ -102,7 +102,7 @@ const CoinList = ({ coins }) => {
                     </td>
                     <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
                       <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
-                        ${volume.toLocaleString()}
+                        ${volume.toLocaleString() || null}
                       </div>
                     </td>
                   </tr>

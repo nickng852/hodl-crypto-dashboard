@@ -1,13 +1,15 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+
+// Firebase
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = ({
-  isLoading,
-  setIsLoading,
   initialState,
   form,
   setForm,
+  isLoading,
+  setIsLoading,
   errorMessage,
   setErrorMessage,
   setToken,

@@ -36,7 +36,7 @@ const Sidebar = () => {
               </Link>
               <Link
                 className="flex items-center px-3 py-2 my-6 text-gray-700 transition-colors duration-200 rounded-lg focus:text-gray-900 hover:text-gray-800 focus:bg-gray-100 hover:bg-gray-100 dark:hover:text-gray-50 dark:hover:bg-tertiary dark:focus:bg-tertiary dark:text-gray-300 dark:focus:text-gray-50"
-                to="/cryptocurrencies"
+                to="/coins"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

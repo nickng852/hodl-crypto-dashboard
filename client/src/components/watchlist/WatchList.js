@@ -1,16 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+// Library
 import { Line } from "react-chartjs-2";
+
+// Firebase
 import { db } from "../../firebase/firebase.config";
 import { doc, updateDoc } from "firebase/firestore";
 
-const WatchList = ({ token, user, setUser }) => {
+const WatchList = ({ token, user, setUser, coins }) => {
+  const filteredWatchList = [];
+
+  for (let i = 0; i < user.watchlist.length; i++) {
+    filteredWatchList.push(
+      coins.filter((coin) => coin.uuid.includes(user.watchlist[i]))
+    );
+  }
+
+  const watchlist = filteredWatchList.flat(1); // destructure the output
+
   return (
     <>
       <div className="overflow-auto h-96">
-        {user.watchlist.length ? (
+        {watchlist.length ? (
           <>
-            {user.watchlist.map((result, index) => {
+            {watchlist.map((result, index) => {
               const id = result.uuid;
               const icon = result.iconUrl;
               const symbol = result.symbol;
@@ -21,14 +35,14 @@ const WatchList = ({ token, user, setUser }) => {
 
               // Chart.js
               const chartLabel = [];
-              const chartData = [];
+              const chartStat = [];
 
-              for (let i = 0; i < result.history?.length; i++) {
+              for (let i = 0; i < result.sparkline?.length; i++) {
                 chartLabel.push(i); // get each index from individual array
-                chartData.push(result.history[i]); // get each array from response
+                chartStat.push(result.sparkline[i]); // get each array from response
               }
 
-              const data = (canvas) => {
+              const stat = (canvas) => {
                 const ctx = canvas.getContext("2d");
                 const gradient = ctx.createLinearGradient(0, 0, 0, 50);
 
@@ -44,7 +58,7 @@ const WatchList = ({ token, user, setUser }) => {
                   labels: chartLabel,
                   datasets: [
                     {
-                      data: chartData,
+                      data: chartStat,
                       fill: true,
                       backgroundColor: gradient,
                       borderColor: priceChange < 0 ? "#e74c3c" : "#218c74",
@@ -98,10 +112,7 @@ const WatchList = ({ token, user, setUser }) => {
                 <>
                   <div key={id} className="relative">
                     {/* Individual watchlist */}
-                    <Link
-                      to={`/cryptocurrencies/${id}`}
-                      className="cursor-default"
-                    >
+                    <Link to={`/coin/${id}`} className="cursor-default">
                       <div className="flex h-24 border-b border-gray-100 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-secondary">
                         <div className="flex items-center justify-center w-1/6">
                           <img
@@ -119,7 +130,7 @@ const WatchList = ({ token, user, setUser }) => {
                           <div className="w-32">
                             <Line
                               key={id}
-                              data={data}
+                              data={stat}
                               options={options}
                               className="w-32"
                             />

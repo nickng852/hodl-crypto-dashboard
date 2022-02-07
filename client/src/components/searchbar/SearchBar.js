@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBarResult from "./SearchBarResult";
 import ClickAwayListener from "react-click-away-listener";
 
-const SearchBar = ({ coins, search, setSearch }) => {
+// Services
+import { useGetCoinsQuery } from "../../services/cryptoApi";
+
+const SearchBar = () => {
+  const [search, setSearch] = useState("");
+
+  // Coinranking API call
+  const { data: coinrankingApi, isFetching: isCoinsFetching } =
+    useGetCoinsQuery();
+
+  const coins = coinrankingApi?.data?.coins;
+
   // Find matched results between input value and API data
-  const filteredCoins = coins.filter(
+  const filteredCoins = coins?.filter(
     (coin) =>
       coin.name.toLowerCase().includes(search.toLowerCase()) ||
       coin.symbol.toLowerCase().includes(search.toLowerCase())
@@ -47,7 +58,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
           placeholder="Search Crypto"
           onChange={handleChange}
         />
-        {search.length !== 0 ? (
+        {!isCoinsFetching && search && search?.length !== 0 ? (
           <span
             className="absolute inset-y-0 right-0 flex items-center pr-5"
             onClick={handleClickAway}
@@ -69,7 +80,7 @@ const SearchBar = ({ coins, search, setSearch }) => {
           </span>
         ) : null}
 
-        {search && filteredCoins.length !== 0 ? ( // Search result will show only when input field is not empty and match result is returned.
+        {!isCoinsFetching && search && filteredCoins.length !== 0 ? ( // Search result will show only when input field is not empty and match result is returned.
           <ClickAwayListener onClickAway={handleClickAway}>
             <div className="absolute inset-x-0 z-10 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-2xl max-h-72 dark:bg-secondary dark:border-transparent">
               {filteredCoins.map((result, index) => {

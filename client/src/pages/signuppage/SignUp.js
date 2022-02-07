@@ -1,15 +1,17 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+
+// Firebase
 import { db } from "../../firebase/firebase.config";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, Timestamp } from "firebase/firestore";
 
 const SignUp = ({
-  isLoading,
-  setIsLoading,
   initialState,
   form,
   setForm,
+  isLoading,
+  setIsLoading,
   errorMessage,
   setErrorMessage,
 }) => {

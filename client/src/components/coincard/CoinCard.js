@@ -4,7 +4,7 @@ import { Line } from "react-chartjs-2"; // chart library
 
 const CoinCard = ({ coins, simplified }) => {
   const coinsCount = simplified ? 4 : 50;
-  const slicedCoins = coins.slice(0, coinsCount); // decide how many CoinCards will be displayed
+  const slicedCoins = coins?.slice(0, coinsCount); // decide how many CoinCards will be displayed
 
   return (
     <>
@@ -21,9 +21,9 @@ const CoinCard = ({ coins, simplified }) => {
           const chartLabel = [];
           const chartData = [];
 
-          for (let i = 0; i < result.history?.length; i++) {
+          for (let i = 0; i < result.sparkline?.length; i++) {
             chartLabel.push(i); // get each index from the individual array
-            chartData.push(result.history[i]); // get each array from the response
+            chartData.push(result.sparkline[i]); // get each array from the response
           }
 
           const data = (canvas) => {
@@ -78,7 +78,7 @@ const CoinCard = ({ coins, simplified }) => {
             <Link
               className="relative overflow-hidden transition-shadow duration-200 bg-white shadow hover:shadow-lg rounded-3xl w-60 md:w-72 dark:bg-secondary"
               key={index}
-              to={`/cryptocurrencies/${id}`}
+              to={`/coin/${id}`}
             >
               <img
                 src={icon}

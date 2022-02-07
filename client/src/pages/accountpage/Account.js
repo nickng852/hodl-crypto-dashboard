@@ -24,13 +24,13 @@ const Account = ({
   initialState,
   form,
   setForm,
+  errorMessage,
+  setErrorMessage,
   token,
   setToken,
   user,
   setUser,
   setIsLogged,
-  errorMessage,
-  setErrorMessage,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [profileImg, setProfileImg] = useState(null);
