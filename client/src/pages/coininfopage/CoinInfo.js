@@ -1,20 +1,35 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+// Components
+import News from "../../components/news/News";
+
 // Library
 import moment from "moment";
 import parse from "html-react-parser";
 import { Line } from "react-chartjs-2";
 
 // Services
-import { useGetCoinQuery } from "../../services/cryptoApi";
+import { useGetCoinQuery, useGetNewsQuery } from "../../services/cryptoApi";
 
-const CoinInfo = () => {
+const CoinInfo = ({ keyword, setKeyword }) => {
   const { uuid } = useParams();
 
-  const { data, isFetching } = useGetCoinQuery(uuid);
+  // Coinranking API call
+  const { data: coinrankingApi, isFetching: isCoinFetching } =
+    useGetCoinQuery(uuid);
 
-  const coin = data?.data?.coin;
+  const coin = coinrankingApi?.data?.coin;
+
+  if (coinrankingApi) {
+    setKeyword(coin.name);
+  }
+
+  // News API call
+  const { data: newsApi, isFetching: isNewsFetching } =
+    useGetNewsQuery(keyword);
+
+  const news = newsApi?.articles;
 
   // API response handling
   const index = coin?.uuid;
@@ -86,7 +101,7 @@ const CoinInfo = () => {
 
   return (
     <>
-      {isFetching && (
+      {(isCoinFetching || isNewsFetching) && (
         <>
           <div className="flex items-center justify-center h-screen">
             <svg
@@ -113,7 +128,7 @@ const CoinInfo = () => {
         </>
       )}
 
-      {!isFetching && Object.keys(coin).length !== 0 && (
+      {!isCoinFetching && !isNewsFetching && (
         <>
           <div className="flex h-full">
             <div className="w-2/3 pl-16 pr-8">
@@ -155,6 +170,9 @@ const CoinInfo = () => {
               </div>
               <div className="mt-20">
                 <Line key={index} data={stat} options={options} />
+              </div>
+              <div>
+                <News news={news} />
               </div>
             </div>
 

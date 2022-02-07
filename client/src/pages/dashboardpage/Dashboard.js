@@ -12,7 +12,7 @@ import News from "../../components/news/News";
 // Services
 import { useGetCoinsQuery, useGetNewsQuery } from "../../services/cryptoApi";
 
-const Dashboard = ({ token, user, setUser }) => {
+const Dashboard = ({ token, user, setUser, keyword }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   // Modal Handler
@@ -27,7 +27,8 @@ const Dashboard = ({ token, user, setUser }) => {
   const coins = coinrankingApi?.data?.coins;
 
   // News API call
-  const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery();
+  const { data: newsApi, isFetching: isNewsFetching } =
+    useGetNewsQuery(keyword);
 
   const news = newsApi?.articles;
 

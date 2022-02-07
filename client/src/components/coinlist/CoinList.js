@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
+// Components
 import CoinListPagination from "./CoinListPagination";
 
+// Library
+import millify from "millify";
+
 const CoinList = ({ coins }) => {
-  // states
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
 
@@ -97,12 +101,12 @@ const CoinList = ({ coins }) => {
                     </td>
                     <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
                       <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
-                        ${marketCap.toLocaleString()}
+                        ${millify(marketCap, { precision: 2 })}
                       </div>
                     </td>
                     <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
                       <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
-                        ${volume.toLocaleString() || null}
+                        ${millify(volume, { precision: 2 })}
                       </div>
                     </td>
                   </tr>

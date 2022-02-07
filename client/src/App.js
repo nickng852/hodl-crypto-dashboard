@@ -28,6 +28,7 @@ const App = () => {
   const [token, setToken] = useState(""); // firebase auth
   const [user, setUser] = useState(""); // firestore
   const [isLogged, setIsLogged] = useState(false);
+  const [keyword, setKeyword] = useState("cryptocurrency"); // newsapi query
 
   // Get logged user's info from firebase after successful login
   useEffect(() => {
@@ -101,6 +102,7 @@ const App = () => {
                           token={token}
                           user={user}
                           setUser={setUser}
+                          keyword={keyword}
                         />
                       </Route>
 
@@ -109,7 +111,7 @@ const App = () => {
                       </Route>
 
                       <Route path="/coin/:uuid">
-                        <CoinInfo />
+                        <CoinInfo keyword={keyword} setKeyword={setKeyword} />
                       </Route>
 
                       <Route path="/profile">
