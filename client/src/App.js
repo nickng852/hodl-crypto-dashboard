@@ -28,7 +28,10 @@ const App = () => {
   const [token, setToken] = useState(""); // firebase auth
   const [user, setUser] = useState(""); // firestore
   const [isLogged, setIsLogged] = useState(false);
-  const [keyword, setKeyword] = useState("cryptocurrency"); // newsapi query
+
+  // News API query
+  const defaultKeyword = "cryptocurrency";
+  const [keyword, setKeyword] = useState(defaultKeyword);
 
   // Get logged user's info from firebase after successful login
   useEffect(() => {
@@ -102,7 +105,9 @@ const App = () => {
                           token={token}
                           user={user}
                           setUser={setUser}
+                          defaultKeyword={defaultKeyword}
                           keyword={keyword}
+                          setKeyword={setKeyword}
                         />
                       </Route>
 
