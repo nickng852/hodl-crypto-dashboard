@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Components
+import Spinner from "../../components/loader/Spinner";
 import News from "../../components/news/News";
 
 // Library
@@ -10,20 +11,42 @@ import parse from "html-react-parser";
 import { Line } from "react-chartjs-2";
 
 // Services
-import { useGetCoinQuery, useGetNewsQuery } from "../../services/cryptoApi";
+import {
+  useGetCoinQuery,
+  useGetCoinHistoryQuery,
+  useGetNewsQuery,
+} from "../../services/cryptoApi";
 
 const CoinInfo = ({ keyword, setKeyword }) => {
   const { uuid } = useParams();
 
+  const [timePeriod, setTimePeriod] = useState("24h");
+
   // Coinranking API call
-  const { data: coinrankingApi, isFetching: isCoinFetching } =
-    useGetCoinQuery(uuid);
+  const { data: coinApi, isFetching: isCoinFetching } = useGetCoinQuery(uuid);
 
-  const coin = coinrankingApi?.data?.coin;
+  const coin = coinApi?.data?.coin;
 
-  if (coinrankingApi) {
+  if (coinApi) {
     setKeyword(coin.name);
   }
+
+  const { data: coinHistoryApi, isFetching: isCoinHistoryFetching } =
+    useGetCoinHistoryQuery({ uuid, timePeriod });
+
+  const response = coinHistoryApi?.data?.history;
+
+  const unflattedCoinHistory = [];
+
+  if (response) {
+    const reversedCoinHistory = [...response].reverse();
+
+    unflattedCoinHistory.push(reversedCoinHistory);
+  }
+
+  const coinHistory = unflattedCoinHistory.flat(1);
+
+  console.log(coinHistory);
 
   // News API call
   const { data: newsApi, isFetching: isNewsFetching } =
@@ -52,9 +75,11 @@ const CoinInfo = ({ keyword, setKeyword }) => {
   const chartLabel = [];
   const chartStat = [];
 
-  for (let i = 0; i < coin?.sparkline?.length; i++) {
-    chartLabel.push(i); // get each index from the individual array
-    chartStat.push(coin?.sparkline[i]); // get each array from the response
+  for (let i = 0; i < coinHistory?.length; i += 1) {
+    chartLabel.push(
+      moment.unix(coinHistory[i]?.timestamp).format("YYYY/MM/DD h:mm a")
+    ); // get each index from the individual array
+    chartStat.push(coinHistory[i]?.price); // get each array from the response
   }
 
   const stat = (canvas) => {
@@ -95,7 +120,12 @@ const CoinInfo = ({ keyword, setKeyword }) => {
         display: false,
       },
     },
-    radius: 2.5,
+    interaction: {
+      intersect: false,
+      mode: "index",
+    },
+    spanGaps: true,
+    radius: 0,
     tension: 0.4,
   };
 
@@ -169,7 +199,95 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                 </div>
               </div>
               <div className="mt-20">
-                <Line key={index} data={stat} options={options} />
+                <div className="flex justify-end space-x-2">
+                  <button
+                    className={`${
+                      timePeriod === "3h"
+                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                    }`}
+                    onClick={() => setTimePeriod("3h")}
+                  >
+                    3h
+                  </button>
+                  <button
+                    className={`${
+                      timePeriod === "24h"
+                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                    }`}
+                    onClick={() => setTimePeriod("24h")}
+                  >
+                    24h
+                  </button>
+                  <button
+                    className={`${
+                      timePeriod === "7d"
+                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                    }`}
+                    onClick={() => setTimePeriod("7d")}
+                  >
+                    7d
+                  </button>
+                  <button
+                    className={`${
+                      timePeriod === "30d"
+                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                    }`}
+                    onClick={() => setTimePeriod("30d")}
+                  >
+                    30d
+                  </button>
+                  <button
+                    className={`${
+                      timePeriod === "3m"
+                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                    }`}
+                    onClick={() => setTimePeriod("3m")}
+                  >
+                    3m
+                  </button>
+                  <button
+                    className={`${
+                      timePeriod === "1y"
+                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                    }`}
+                    onClick={() => setTimePeriod("1y")}
+                  >
+                    1y
+                  </button>
+                  <button
+                    className={`${
+                      timePeriod === "3y"
+                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                    }`}
+                    onClick={() => setTimePeriod("3y")}
+                  >
+                    3y
+                  </button>
+                  <button
+                    className={`${
+                      timePeriod === "5y"
+                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                    }`}
+                    onClick={() => setTimePeriod("5y")}
+                  >
+                    5y
+                  </button>
+                </div>
+                {isCoinHistoryFetching ? (
+                  <>
+                    <Spinner />
+                  </>
+                ) : (
+                  <Line key={index} data={stat} options={options} />
+                )}
               </div>
               <div>
                 <News news={news} />
