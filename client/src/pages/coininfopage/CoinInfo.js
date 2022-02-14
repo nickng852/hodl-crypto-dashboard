@@ -112,7 +112,19 @@ const CoinInfo = ({ keyword, setKeyword }) => {
   const options = {
     scales: {
       x: {
-        display: false,
+        display: true,
+        grid: {
+          display: false,
+        },
+        ticks: {
+          display: false,
+        },
+      },
+      y: {
+        display: true,
+        grid: {
+          display: false,
+        },
       },
     },
     plugins: {
@@ -124,9 +136,9 @@ const CoinInfo = ({ keyword, setKeyword }) => {
       intersect: false,
       mode: "index",
     },
-    spanGaps: true,
     radius: 0,
     tension: 0.4,
+    spanGaps: true, // skip null data value
   };
 
   return (

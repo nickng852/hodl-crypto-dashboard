@@ -6,6 +6,8 @@ export const cryptoApi = createApi({
   reducerPath: "cryptoApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   refetchOnMountOrArgChange: true, // forcing refetch on component mount
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
   endpoints: (builder) => ({
     getCoins: builder.query({ query: () => "/getCoins" }),
 
