@@ -1,16 +1,9 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
-// Components
-import CoinListPagination from "./CoinListPagination";
 
 // Library
 import millify from "millify";
 
-const CoinList = ({ coins }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
-
+const CoinList = ({ coins, currentPage, itemsPerPage }) => {
   // get each page's items by slicing the response array
   const lastItem = currentPage * itemsPerPage;
 
@@ -72,7 +65,7 @@ const CoinList = ({ coins }) => {
                           <img
                             alt={crypto}
                             src={icon}
-                            className="object-cover w-6 h-6 mx-auto rounded-full "
+                            className="object-cover w-6 h-6 mx-auto rounded-full"
                           />
                         </div>
                         <div className="ml-5">
@@ -115,14 +108,6 @@ const CoinList = ({ coins }) => {
             })}
           </table>
         </div>
-      </div>
-      <div className="float-right mt-6">
-        <CoinListPagination
-          coins={coins}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          itemsPerPage={itemsPerPage}
-        />
       </div>
     </>
   );

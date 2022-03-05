@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import ClickAwayListener from "react-click-away-listener";
@@ -67,14 +67,9 @@ const Profile = ({ setToken, user, setUser, setIsLogged }) => {
         <ClickAwayListener onClickAway={menuToggle}>
           <div className="relative">
             <div className="absolute right-0 z-10 w-56 mt-8 origin-top-right bg-white rounded-lg shadow-lg dark:bg-secondary ring-1 ring-black ring-opacity-5">
-              <Link to="/profile">
+              <Link to="/setting">
                 <span className="flex px-4 py-3 text-gray-700 rounded-t-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary">
                   Account
-                </span>
-              </Link>
-              <Link to="/setting">
-                <span className="flex px-4 py-3 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary">
-                  Settings
                 </span>
               </Link>
               <Link to="#" onClick={logOut}>

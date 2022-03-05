@@ -1,4 +1,3 @@
-import React from "react";
 import Profile from "../panel/Profile";
 import ThemeSwticher from "../panel/ThemeSwticher";
 

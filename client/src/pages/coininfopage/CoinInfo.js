@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Components
@@ -49,8 +49,10 @@ const CoinInfo = ({ keyword, setKeyword }) => {
   console.log(coinHistory);
 
   // News API call
-  const { data: newsApi, isFetching: isNewsFetching } =
-    useGetNewsQuery(keyword);
+  const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
+    keyword,
+    pageSize: "5",
+  });
 
   const news = newsApi?.articles;
 
@@ -145,27 +147,8 @@ const CoinInfo = ({ keyword, setKeyword }) => {
     <>
       {(isCoinFetching || isNewsFetching) && (
         <>
-          <div className="flex items-center justify-center h-screen">
-            <svg
-              className="w-12 h-12 text-gray-500 animate-spin"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              ></path>
-            </svg>
+          <div className="flex items-center justify-center h-full">
+            <Spinner />
           </div>
         </>
       )}
@@ -211,87 +194,89 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                 </div>
               </div>
               <div className="mt-20">
-                <div className="flex justify-end space-x-2">
-                  <button
-                    className={`${
-                      timePeriod === "3h"
-                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
-                    }`}
-                    onClick={() => setTimePeriod("3h")}
-                  >
-                    3h
-                  </button>
-                  <button
-                    className={`${
-                      timePeriod === "24h"
-                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
-                    }`}
-                    onClick={() => setTimePeriod("24h")}
-                  >
-                    24h
-                  </button>
-                  <button
-                    className={`${
-                      timePeriod === "7d"
-                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
-                    }`}
-                    onClick={() => setTimePeriod("7d")}
-                  >
-                    7d
-                  </button>
-                  <button
-                    className={`${
-                      timePeriod === "30d"
-                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
-                    }`}
-                    onClick={() => setTimePeriod("30d")}
-                  >
-                    30d
-                  </button>
-                  <button
-                    className={`${
-                      timePeriod === "3m"
-                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
-                    }`}
-                    onClick={() => setTimePeriod("3m")}
-                  >
-                    3m
-                  </button>
-                  <button
-                    className={`${
-                      timePeriod === "1y"
-                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
-                    }`}
-                    onClick={() => setTimePeriod("1y")}
-                  >
-                    1y
-                  </button>
-                  <button
-                    className={`${
-                      timePeriod === "3y"
-                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
-                    }`}
-                    onClick={() => setTimePeriod("3y")}
-                  >
-                    3y
-                  </button>
-                  <button
-                    className={`${
-                      timePeriod === "5y"
-                        ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                        : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
-                    }`}
-                    onClick={() => setTimePeriod("5y")}
-                  >
-                    5y
-                  </button>
+                <div className="flex justify-end p-1 space-x-4">
+                  <div className="p-2 bg-red-300 rounded-xl">
+                    <button
+                      className={`${
+                        timePeriod === "3h"
+                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                      }`}
+                      onClick={() => setTimePeriod("3h")}
+                    >
+                      3h
+                    </button>
+                    <button
+                      className={`${
+                        timePeriod === "24h"
+                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                      }`}
+                      onClick={() => setTimePeriod("24h")}
+                    >
+                      24h
+                    </button>
+                    <button
+                      className={`${
+                        timePeriod === "7d"
+                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                      }`}
+                      onClick={() => setTimePeriod("7d")}
+                    >
+                      7d
+                    </button>
+                    <button
+                      className={`${
+                        timePeriod === "30d"
+                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                      }`}
+                      onClick={() => setTimePeriod("30d")}
+                    >
+                      30d
+                    </button>
+                    <button
+                      className={`${
+                        timePeriod === "3m"
+                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                      }`}
+                      onClick={() => setTimePeriod("3m")}
+                    >
+                      3m
+                    </button>
+                    <button
+                      className={`${
+                        timePeriod === "1y"
+                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                      }`}
+                      onClick={() => setTimePeriod("1y")}
+                    >
+                      1y
+                    </button>
+                    <button
+                      className={`${
+                        timePeriod === "3y"
+                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                      }`}
+                      onClick={() => setTimePeriod("3y")}
+                    >
+                      3y
+                    </button>
+                    <button
+                      className={`${
+                        timePeriod === "5y"
+                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
+                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                      }`}
+                      onClick={() => setTimePeriod("5y")}
+                    >
+                      5y
+                    </button>
+                  </div>
                 </div>
                 {isCoinHistoryFetching ? (
                   <>
@@ -359,9 +344,13 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                 </div>
               </div>
 
-              <div className="flex flex-col p-8 rounded-2xl mt-14 dark:text-gray-100 bg-gray-50 dark:bg-secondary">
-                <div>{parse(description)}</div>
-              </div>
+              {description && (
+                <>
+                  <div className="px-10 py-6 text-justify rounded-2xl mt-14 dark:text-gray-100 bg-gray-50 dark:bg-secondary">
+                    {parse(description)}
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </>

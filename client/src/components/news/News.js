@@ -1,12 +1,13 @@
-import React from "react";
 import moment from "moment";
+
+import notfoundimg from "../../assets/images/404-01-scaled.jpg";
 
 const News = ({ news }) => {
   return (
     <>
       <div className="grid gap-y-7">
         {news.map((result, index) => {
-          const newsImage = result.urlToImage;
+          const newsImage = result.urlToImage ? result.urlToImage : notfoundimg;
           const newsTitle = result.title;
           const newsPublishDate = moment(result.publishedAt)
             .startOf("ss")

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Line } from "react-chartjs-2"; // chart library
 

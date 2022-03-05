@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 // Library
@@ -113,7 +112,7 @@ const WatchList = ({ token, user, setUser, coins }) => {
                   <div key={id} className="relative">
                     {/* Individual watchlist */}
                     <Link to={`/coin/${id}`} className="cursor-default">
-                      <div className="flex h-24 border-b border-gray-100 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-secondary">
+                      <div className="flex h-24 border-b border-gray-200 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-secondary">
                         <div className="flex items-center justify-center w-1/6">
                           <img
                             alt={name}
@@ -198,7 +197,7 @@ const WatchList = ({ token, user, setUser, coins }) => {
         ) : (
           <>
             <div className="flex items-center justify-center overflow-auto h-96">
-              <div className="text-xl text-gray-600 dark:text-gray-500">
+              <div className="text-xl text-gray-600 cursor-default dark:text-gray-500">
                 Your watchlist will be displayed here.
               </div>
             </div>

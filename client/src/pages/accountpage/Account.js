@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import ClickAwayListener from "react-click-away-listener";
 import defaultProfileImg from "../../assets/images/blank-profile-picture.png";
@@ -183,7 +183,7 @@ const Account = ({
     <>
       <section className="w-full h-full bg-opacity-50">
         <div className="flex justify-center">
-          <form className="container relative max-w-2xl mx-auto my-24 rounded-lg shadow-md md:w-3/4">
+          <form className="container relative max-w-2xl mx-auto my-40 rounded-lg shadow-md md:w-3/4">
             <div className="px-10 py-6 bg-gray-500 border-t-2 border-indigo-400 rounded-t-lg dark:bg-tertiary bg-opacity-5">
               <div className="max-w-sm mx-auto md:w-full md:mx-0">
                 <div className="inline-flex items-center space-x-4">

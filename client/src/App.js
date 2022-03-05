@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Components
@@ -14,6 +14,7 @@ import Account from "./pages/accountpage/Account";
 // Firebase
 import { db } from "./firebase/firebase.config";
 import { doc, onSnapshot } from "firebase/firestore";
+import NewsCollection from "./pages/newspage/NewsCollection";
 
 const App = () => {
   // Global States
@@ -88,7 +89,7 @@ const App = () => {
                   <Sidebar />
                 </aside>
 
-                <main className="flex flex-col w-full bg-white dark:bg-primary justify-items-center">
+                <main className="flex flex-col w-full overflow-hidden bg-white dark:bg-primary justify-items-center">
                   <nav>
                     <NavBar
                       setToken={setToken}
@@ -98,7 +99,7 @@ const App = () => {
                     />
                   </nav>
 
-                  <section>
+                  <section className="h-full overflow-hidden">
                     <Switch>
                       <Route path="/dashboard">
                         <Dashboard
@@ -119,7 +120,14 @@ const App = () => {
                         <CoinInfo keyword={keyword} setKeyword={setKeyword} />
                       </Route>
 
-                      <Route path="/profile">
+                      <Route path="/news">
+                        <NewsCollection
+                          keyword={keyword}
+                          defaultKeyword={defaultKeyword}
+                        />
+                      </Route>
+
+                      <Route path="/setting">
                         <Account
                           initialState={initialState}
                           form={form}

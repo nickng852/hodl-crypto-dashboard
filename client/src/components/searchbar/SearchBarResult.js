@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const SearchBarResult = ({ result, id, icon, name, symbol, setSearch }) => {

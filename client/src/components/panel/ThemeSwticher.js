@@ -1,5 +1,3 @@
-import React from "react";
-
 const ThemeSwticher = () => {
   const toggleTheme = () => {
     const html = document.querySelector("html");

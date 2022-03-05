@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SearchBarResult from "./SearchBarResult";
 import ClickAwayListener from "react-click-away-listener";
 
@@ -54,7 +54,7 @@ const SearchBar = () => {
           type="text"
           id="search"
           maxLength="27"
-          className="w-full py-3 pl-12 pr-4 text-gray-700 bg-white border border-gray-300 rounded-xl dark:placeholder-gray-500 dark:bg-tertiary dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+          className="w-full py-3 pl-12 pr-4 text-gray-600 placeholder-gray-400 bg-gray-100 rounded-xl dark:placeholder-gray-400 dark:bg-tertiary dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
           placeholder="Search Crypto"
           onChange={handleChange}
         />

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { db } from "../../firebase/firebase.config";
 import { doc, updateDoc } from "firebase/firestore";
