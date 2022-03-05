@@ -5,11 +5,11 @@ import NewsList from "./NewsList";
 // Services
 import { useGetNewsQuery } from "../../services/cryptoApi";
 
-const NewsCollection = ({ keyword, defaultKeyword }) => {
+const NewsCollection = ({ defaultKeyword }) => {
   // News API call
   const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
     keyword: defaultKeyword,
-    pageSize: "100",
+    pageSize: "20",
   });
 
   const news = newsApi?.articles;
@@ -27,7 +27,7 @@ const NewsCollection = ({ keyword, defaultKeyword }) => {
       )}
       {!isNewsFetching && (
         <>
-          <div className="grid h-full grid-cols-4 place-items-center">
+          <div className="grid grid-cols-1 p-24 xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 lg:gap-12 place-items-center gap-y-10">
             <NewsList news={news} />
           </div>
         </>

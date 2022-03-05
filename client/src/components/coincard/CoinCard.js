@@ -8,7 +8,7 @@ const CoinCard = ({ coins, simplified }) => {
   return (
     <>
       <div className="flex flex-wrap justify-between">
-        {slicedCoins.map((result, index) => {
+        {slicedCoins?.map((result, index) => {
           const id = result.uuid;
           const icon = result.iconUrl;
           const name = result.name;

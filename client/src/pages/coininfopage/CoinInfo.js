@@ -193,84 +193,91 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                   </div>
                 </div>
               </div>
-              <div className="mt-20">
-                <div className="flex justify-end p-1 space-x-4">
-                  <div className="p-2 bg-red-300 rounded-xl">
+              <div className="mt-10">
+                <div className="flex justify-end">
+                  <div class="flex bg-gray-200 rounded-lg p-1 space-x-2 dark:bg-secondary">
                     <button
                       className={`${
                         timePeriod === "3h"
-                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
+                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
                       }`}
                       onClick={() => setTimePeriod("3h")}
                     >
                       3h
                     </button>
+
                     <button
                       className={`${
                         timePeriod === "24h"
-                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
+                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
                       }`}
                       onClick={() => setTimePeriod("24h")}
                     >
                       24h
                     </button>
+
                     <button
                       className={`${
                         timePeriod === "7d"
-                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
+                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
                       }`}
                       onClick={() => setTimePeriod("7d")}
                     >
                       7d
                     </button>
+
                     <button
                       className={`${
                         timePeriod === "30d"
-                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
+                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
                       }`}
                       onClick={() => setTimePeriod("30d")}
                     >
                       30d
                     </button>
+
                     <button
                       className={`${
                         timePeriod === "3m"
-                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
+                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
                       }`}
                       onClick={() => setTimePeriod("3m")}
                     >
                       3m
                     </button>
+
                     <button
                       className={`${
                         timePeriod === "1y"
-                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
+                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
                       }`}
                       onClick={() => setTimePeriod("1y")}
                     >
                       1y
                     </button>
+
                     <button
                       className={`${
                         timePeriod === "3y"
-                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
+                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
                       }`}
                       onClick={() => setTimePeriod("3y")}
                     >
                       3y
                     </button>
+
                     <button
                       className={`${
                         timePeriod === "5y"
-                          ? "px-4 py-1 transition bg-gray-300 rounded-md cursor-default"
-                          : "px-4 py-1 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
+                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
                       }`}
                       onClick={() => setTimePeriod("5y")}
                     >
@@ -278,17 +285,20 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                     </button>
                   </div>
                 </div>
-                {isCoinHistoryFetching ? (
-                  <>
-                    <Spinner />
-                  </>
-                ) : (
-                  <Line key={index} data={stat} options={options} />
-                )}
+
+                <div className="flex items-center justify-center mt-52 h-96">
+                  {isCoinHistoryFetching ? (
+                    <>
+                      <Spinner />
+                    </>
+                  ) : (
+                    <Line key={index} data={stat} options={options} />
+                  )}
+                </div>
               </div>
-              <div>
+              {/*               <div>
                 <News news={news} />
-              </div>
+              </div> */}
             </div>
 
             <div className="w-1/3 pl-8 pr-16">

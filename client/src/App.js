@@ -121,10 +121,7 @@ const App = () => {
                       </Route>
 
                       <Route path="/news">
-                        <NewsCollection
-                          keyword={keyword}
-                          defaultKeyword={defaultKeyword}
-                        />
+                        <NewsCollection defaultKeyword={defaultKeyword} />
                       </Route>
 
                       <Route path="/setting">
