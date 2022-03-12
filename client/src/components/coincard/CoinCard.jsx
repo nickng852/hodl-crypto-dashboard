@@ -75,7 +75,7 @@ const CoinCard = ({ coins, simplified }) => {
 
           return (
             <Link
-              className="relative overflow-hidden transition-shadow duration-200 bg-white shadow hover:shadow-lg rounded-3xl w-60 md:w-72 dark:bg-secondary"
+              className="relative overflow-hidden transition-shadow duration-200 bg-white drop-shadow-2xl hover:shadow-lg rounded-3xl w-60 md:w-72 dark:bg-secondary"
               key={index}
               to={`/coin/${id}`}
             >

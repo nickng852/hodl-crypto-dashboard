@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SearchBarResult from "./SearchBarResult";
+import SearchBarResult from "./SearchBarResult.jsx";
 import ClickAwayListener from "react-click-away-listener";
 
 // Services

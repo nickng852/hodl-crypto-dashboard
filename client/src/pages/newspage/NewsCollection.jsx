@@ -1,6 +1,6 @@
 // Components
-import Spinner from "../../components/loader/Spinner";
-import NewsList from "./NewsList";
+import Spinner from "../../components/loader/Spinner.jsx";
+import NewsList from "./NewsList.jsx";
 
 // Services
 import { useGetNewsQuery } from "../../services/cryptoApi";

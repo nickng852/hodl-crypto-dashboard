@@ -1,5 +1,5 @@
-import Profile from "../panel/Profile";
-import ThemeSwticher from "../panel/ThemeSwticher";
+import Profile from "./Profile.jsx";
+import ThemeSwticher from "./ThemeSwticher.jsx";
 
 const NavControl = ({ setToken, user, setUser, setIsLogged }) => {
   return (

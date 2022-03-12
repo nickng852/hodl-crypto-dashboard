@@ -2,19 +2,19 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Components
-import SignIn from "./pages/signinpage/SignIn";
-import SignUp from "./pages/signuppage/SignUp";
-import Sidebar from "./components/sidebar/Sidebar";
-import NavBar from "./components/navbar/Navbar";
-import Dashboard from "./pages/dashboardpage/Dashboard";
-import CoinsInfo from "./pages/coininfopage/CoinsInfo";
-import CoinInfo from "./pages/coininfopage/CoinInfo";
-import Account from "./pages/accountpage/Account";
+import SignIn from "./pages/signinpage/SignIn.jsx";
+import SignUp from "./pages/signuppage/SignUp.jsx";
+import Sidebar from "./components/sidebar/Sidebar.jsx";
+import NavBar from "./components/navbar/Navbar.jsx";
+import Dashboard from "./pages/dashboardpage/Dashboard.jsx";
+import CoinsInfo from "./pages/coininfopage/CoinsInfo.jsx";
+import CoinInfo from "./pages/coininfopage/CoinInfo.jsx";
+import Account from "./pages/accountpage/Account.jsx";
 
 // Firebase
 import { db } from "./firebase/firebase.config";
 import { doc, onSnapshot } from "firebase/firestore";
-import NewsCollection from "./pages/newspage/NewsCollection";
+import NewsCollection from "./pages/newspage/NewsCollection.jsx";
 
 const App = () => {
   // Global States
@@ -89,7 +89,7 @@ const App = () => {
                   <Sidebar />
                 </aside>
 
-                <main className="flex flex-col w-full overflow-hidden bg-white dark:bg-primary justify-items-center">
+                <main className="flex flex-col w-full overflow-hidden bg-gray-50 dark:bg-primary justify-items-center">
                   <nav>
                     <NavBar
                       setToken={setToken}

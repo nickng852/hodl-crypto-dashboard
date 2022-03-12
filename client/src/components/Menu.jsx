@@ -17,7 +17,7 @@ const Menu = () => {
   return (
     <>
       <div
-        className="z-10 p-2 rounded-sm cursor-pointer 2xl:hidden dark:hover:bg-tertiary hover:bg-gray-200 dark:text-gray-300"
+        className="z-20 p-2 rounded-sm cursor-pointer 2xl:hidden dark:hover:bg-tertiary hover:bg-gray-200 dark:text-gray-300"
         onClick={handleClick}
       >
         <svg
@@ -38,7 +38,7 @@ const Menu = () => {
 
       <ClickAwayListener onClickAway={handleClickAway}>
         <div
-          className={`absolute top-0 w-1/3 h-full bg-gray-300 bg-opacity-95 ease-in-out duration-500 dark:bg-primary dark:bg-opacity-95 ${
+          className={`z-10 absolute top-0 w-1/3 h-full bg-gray-300 bg-opacity-95 ease-in-out duration-500 dark:bg-primary dark:bg-opacity-95 ${
             isOpen ? "left-0" : "-left-1/3"
           }`}
         ></div>

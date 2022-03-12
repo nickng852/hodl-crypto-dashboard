@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Components
-import Spinner from "../../components/loader/Spinner";
-import News from "../../components/news/News";
+import Spinner from "../../components/loader/Spinner.jsx";
+import News from "../../components/news/News.jsx";
 
 // Library
 import moment from "moment";
@@ -155,9 +155,9 @@ const CoinInfo = ({ keyword, setKeyword }) => {
 
       {!isCoinFetching && !isNewsFetching && (
         <>
-          <div className="flex h-full">
-            <div className="w-2/3 pl-16 pr-8">
-              <div className="flex gap-5 mt-14">
+          <div className="block h-full gap-16 p-20 xl:flex">
+            <div className="w-full xl:w-2/3">
+              <div className="flex gap-5">
                 <div>
                   <img
                     alt={crypto}
@@ -296,13 +296,13 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                   )}
                 </div>
               </div>
-              {/*               <div>
+              <div>
                 <News news={news} />
-              </div> */}
+              </div>
             </div>
 
-            <div className="w-1/3 pl-8 pr-16">
-              <div className="flex flex-col p-8 rounded-2xl mt-14 dark:text-gray-100 bg-gray-50 dark:bg-secondary">
+            <div className="w-full xl:w-1/3">
+              <div className="flex flex-col p-8 rounded-2xl dark:text-gray-100 bg-gray-50 dark:bg-secondary">
                 <div className="text-xl font-bold">
                   {symbol} Price Statistics
                 </div>

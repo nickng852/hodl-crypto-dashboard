@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Components
-import Spinner from "../../components/loader/Spinner";
-import CoinCard from "../../components/coincard/CoinCard";
-import CoinBar from "../../components/coinbar/CoinBar";
-import WatchList from "../../components/watchlist/WatchList";
-import WatchListModal from "../../components/watchlist/WatchListModal";
-import News from "../../components/news/News";
+import Spinner from "../../components/loader/Spinner.jsx";
+import CoinCard from "../../components/coincard/CoinCard.jsx";
+import CoinBar from "../../components/coinbar/CoinBar.jsx";
+import WatchList from "../../components/watchlist/WatchList.jsx";
+import WatchListModal from "../../components/watchlist/WatchListModal.jsx";
+import News from "../../components/news/News.jsx";
 import ClickAwayListener from "react-click-away-listener";
 
 // Services
@@ -69,7 +69,7 @@ const Dashboard = ({
     <>
       {(isCoinsFetching || isNewsFetching) && (
         <>
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center h-full bg-red-500">
             <Spinner />
           </div>
         </>
@@ -93,8 +93,8 @@ const Dashboard = ({
               </section>
 
               {/* Coin List */}
-              <section>
-                <header className="flex items-center justify-between mt-10">
+              <section className="p-8 mt-10 bg-white drop-shadow-xl rounded-3xl">
+                <header className="flex items-center justify-between">
                   <div className="relative">
                     <h1
                       className="text-2xl text-gray-500 cursor-default dark:text-gray-100 font-header"

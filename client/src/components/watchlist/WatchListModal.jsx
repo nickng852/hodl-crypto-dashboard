@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ClickAwayListener from "react-click-away-listener";
-import WatchListModalResult from "./WatchListModalResult";
+import WatchListModalResult from "./WatchListModalResult.jsx";
 
 const WatchListModal = ({
   token,

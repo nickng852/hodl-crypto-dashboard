@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 // Components
-import Spinner from "../../components/loader/Spinner";
-import CoinList from "../../components/coinlist/CoinList";
-import CoinListPagination from "../../components/coinlist/CoinListPagination";
+import Spinner from "../../components/loader/Spinner.jsx";
+import CoinList from "../../components/coinlist/CoinList.jsx";
+import CoinListPagination from "../../components/coinlist/CoinListPagination.jsx";
 
 // Services
 import { useGetCoinsQuery } from "../../services/cryptoApi";
