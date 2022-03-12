@@ -32,7 +32,6 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "rustywind-fix": "rustywind --write .",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },

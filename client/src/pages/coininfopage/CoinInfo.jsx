@@ -174,10 +174,8 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                       Rank #{rank}
                     </span>
                     <span
-                      className={`${
-                        priceChange < 0
-                          ? "bg-red-600 text-gray-100 px-2 py-1 text-xs font-medium leading-5 truncate rounded-md"
-                          : "bg-green-500 text-gray-100 px-2 py-1 text-xs font-medium leading-5 truncate rounded-md"
+                      className={`px-2 py-1 text-xs font-medium leading-5 text-gray-100 truncate rounded-md ${
+                        priceChange < 0 ? "bg-red-600" : "bg-green-500"
                       }`}
                     >
                       {`${
@@ -197,10 +195,11 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                 <div className="flex justify-end">
                   <div class="flex bg-gray-200 rounded-lg p-1 space-x-2 dark:bg-secondary">
                     <button
-                      className={`${
+                      className={`
+                      h-10 px-4 py-2 -mb-px text-sm text-center uppercase bg-transparent rounded-lg dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50 sm:text-base whitespace-nowrap focus:outline-none ${
                         timePeriod === "3h"
-                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
-                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
+                          ? "bg-white dark:bg-gray-700"
+                          : "dark:hover:bg-gray-700 hover:bg-gray-50"
                       }`}
                       onClick={() => setTimePeriod("3h")}
                     >
@@ -208,10 +207,11 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                     </button>
 
                     <button
-                      className={`${
+                      className={`
+                      h-10 px-4 py-2 -mb-px text-sm text-center uppercase bg-transparent rounded-lg dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50 sm:text-base whitespace-nowrap focus:outline-none ${
                         timePeriod === "24h"
-                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
-                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
+                          ? "bg-white dark:bg-gray-700"
+                          : "dark:hover:bg-gray-700 hover:bg-gray-50"
                       }`}
                       onClick={() => setTimePeriod("24h")}
                     >
@@ -219,10 +219,11 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                     </button>
 
                     <button
-                      className={`${
+                      className={`
+                      h-10 px-4 py-2 -mb-px text-sm text-center uppercase bg-transparent rounded-lg dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50 sm:text-base whitespace-nowrap focus:outline-none ${
                         timePeriod === "7d"
-                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
-                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
+                          ? "bg-white dark:bg-gray-700"
+                          : "dark:hover:bg-gray-700 hover:bg-gray-50"
                       }`}
                       onClick={() => setTimePeriod("7d")}
                     >
@@ -230,10 +231,11 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                     </button>
 
                     <button
-                      className={`${
+                      className={`
+                      h-10 px-4 py-2 -mb-px text-sm text-center uppercase bg-transparent rounded-lg dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50 sm:text-base whitespace-nowrap focus:outline-none ${
                         timePeriod === "30d"
-                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
-                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
+                          ? "bg-white dark:bg-gray-700"
+                          : "dark:hover:bg-gray-700 hover:bg-gray-50"
                       }`}
                       onClick={() => setTimePeriod("30d")}
                     >
@@ -241,10 +243,11 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                     </button>
 
                     <button
-                      className={`${
+                      className={`
+                      h-10 px-4 py-2 -mb-px text-sm text-center uppercase bg-transparent rounded-lg dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50 sm:text-base whitespace-nowrap focus:outline-none ${
                         timePeriod === "3m"
-                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
-                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
+                          ? "bg-white dark:bg-gray-700"
+                          : "dark:hover:bg-gray-700 hover:bg-gray-50"
                       }`}
                       onClick={() => setTimePeriod("3m")}
                     >
@@ -252,10 +255,11 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                     </button>
 
                     <button
-                      className={`${
+                      className={`
+                      h-10 px-4 py-2 -mb-px text-sm text-center uppercase bg-transparent rounded-lg dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50 sm:text-base whitespace-nowrap focus:outline-none ${
                         timePeriod === "1y"
-                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
-                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
+                          ? "bg-white dark:bg-gray-700"
+                          : "dark:hover:bg-gray-700 hover:bg-gray-50"
                       }`}
                       onClick={() => setTimePeriod("1y")}
                     >
@@ -263,10 +267,11 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                     </button>
 
                     <button
-                      className={`${
+                      className={`
+                      h-10 px-4 py-2 -mb-px text-sm text-center uppercase bg-transparent rounded-lg dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50 sm:text-base whitespace-nowrap focus:outline-none ${
                         timePeriod === "3y"
-                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
-                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
+                          ? "bg-white dark:bg-gray-700"
+                          : "dark:hover:bg-gray-700 hover:bg-gray-50"
                       }`}
                       onClick={() => setTimePeriod("3y")}
                     >
@@ -274,10 +279,11 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                     </button>
 
                     <button
-                      className={`${
+                      className={`
+                      h-10 px-4 py-2 -mb-px text-sm text-center uppercase bg-transparent rounded-lg dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50 sm:text-base whitespace-nowrap focus:outline-none ${
                         timePeriod === "5y"
-                          ? "dark:text-white dark:hover:bg-gray-700 dark:bg-gray-700 rounded-lg bg-white hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center bg-transparent sm:text-base whitespace-nowrap focus:outline-none uppercase"
-                          : "dark:hover:bg-gray-700 rounded-lg hover:bg-gray-50 h-10 px-4 py-2 -mb-px text-sm text-center text-gray-700 bg-transparent sm:text-base dark:text-white whitespace-nowrap cursor-base focus:outline-none uppercase"
+                          ? "bg-white dark:bg-gray-700"
+                          : "dark:hover:bg-gray-700 hover:bg-gray-50"
                       }`}
                       onClick={() => setTimePeriod("5y")}
                     >

@@ -89,7 +89,7 @@ const App = () => {
                   <Sidebar />
                 </aside>
 
-                <main className="flex flex-col w-full overflow-hidden bg-gray-50 dark:bg-primary justify-items-center">
+                <main className="flex overflow-hidden flex-col justify-items-center w-full bg-gray-50 dark:bg-primary">
                   <nav>
                     <NavBar
                       setToken={setToken}
@@ -99,7 +99,7 @@ const App = () => {
                     />
                   </nav>
 
-                  <section className="h-full overflow-hidden">
+                  <section className="overflow-hidden h-full">
                     <Switch>
                       <Route path="/dashboard">
                         <Dashboard

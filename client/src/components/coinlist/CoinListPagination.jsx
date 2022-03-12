@@ -27,10 +27,10 @@ const CoinListPagination = ({
       <div className="flex">
         <Link
           to="#"
-          className={`${
+          className={`flex items-center px-2 py-2 mr-2 transition-colors duration-200 transform bg-white rounded-lg shadow dark:bg-secondary ${
             currentPage === 1
-              ? "flex items-center px-2 py-2 mr-2 text-gray-300 bg-white rounded-lg shadow cursor-auto dark:bg-secondary dark:text-gray-600"
-              : "flex items-center px-2 py-2 mr-2 text-gray-700 transition-colors duration-200 transform bg-white rounded-lg shadow dark:bg-secondary dark:text-gray-200 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-gray-200"
+              ? "text-gray-300 cursor-auto dark:text-gray-600"
+              : "text-gray-600 dark:text-gray-300 hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white"
           }`}
           onClick={previousPage}
         >
@@ -50,10 +50,11 @@ const CoinListPagination = ({
 
         <Link
           to="#"
-          className={`${
+          className={`
+          flex items-center px-2 py-2 transition-colors duration-200 transform bg-white rounded-lg shadow dark:bg-secondary ${
             currentPage === lastPage
-              ? "flex items-center px-2 py-2 text-gray-300 bg-white rounded-lg shadow cursor-auto dark:bg-secondary dark:text-gray-600"
-              : "flex items-center px-2 py-2 text-gray-700 transition-colors duration-200 transform bg-white rounded-lg shadow dark:bg-secondary dark:text-gray-200 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-gray-200"
+              ? "text-gray-300 cursor-auto dark:text-gray-600"
+              : "text-gray-600 dark:text-gray-300 hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white"
           }`}
           onClick={nextPage}
         >

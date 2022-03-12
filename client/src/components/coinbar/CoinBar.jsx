@@ -78,10 +78,8 @@ const CoinBar = ({ coins, order }) => {
               </div>
 
               <div
-                className={`${
-                  priceChange < 0
-                    ? "w-1/2 items-center text-red-600 flex justify-end"
-                    : "w-1/2 items-center text-green-500 flex justify-end"
+                className={`flex items-center justify-end w-1/2 ${
+                  priceChange < 0 ? "text-red-600" : "text-green-500"
                 }`}
               >
                 {`${
