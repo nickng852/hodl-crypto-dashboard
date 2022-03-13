@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 
 // Components
 import Spinner from "../../components/loader/Spinner.jsx";
+import LineChart from "../../components/linechart/LineChart";
 import News from "../../components/news/News.jsx";
 
 // Library
 import moment from "moment";
 import parse from "html-react-parser";
-import { Line } from "react-chartjs-2";
 
 // Services
 import {
@@ -83,65 +83,6 @@ const CoinInfo = ({ keyword, setKeyword }) => {
     ); // get each index from the individual array
     chartStat.push(coinHistory[i]?.price); // get each array from the response
   }
-
-  const stat = (canvas) => {
-    const ctx = canvas.getContext("2d");
-    const gradient = ctx.createLinearGradient(200, 200, 200, 500);
-
-    if (priceChange < 0) {
-      gradient.addColorStop(0, "rgba(214, 69, 65, 0.5)");
-      gradient.addColorStop(1, "rgba(214, 69, 65,0.01)");
-    } else {
-      gradient.addColorStop(0, "rgba(34, 153, 84,0.5)");
-      gradient.addColorStop(1, "rgba(34, 153, 84,0.01)");
-    }
-
-    return {
-      labels: chartLabel,
-      datasets: [
-        {
-          data: chartStat,
-          fill: true,
-          backgroundColor: gradient,
-          borderColor: priceChange < 0 ? "#e74c3c" : "#218c74",
-          borderWidth: 2,
-          pointBackgroundColor: priceChange < 0 ? "#e74c3c" : "#218c74",
-        },
-      ],
-    };
-  };
-
-  const options = {
-    scales: {
-      x: {
-        display: true,
-        grid: {
-          display: false,
-        },
-        ticks: {
-          display: false,
-        },
-      },
-      y: {
-        display: true,
-        grid: {
-          display: false,
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    interaction: {
-      intersect: false,
-      mode: "index",
-    },
-    radius: 0,
-    tension: 0.4,
-    spanGaps: true, // skip null data value
-  };
 
   return (
     <>
@@ -298,17 +239,23 @@ const CoinInfo = ({ keyword, setKeyword }) => {
                       <Spinner />
                     </>
                   ) : (
-                    <Line key={index} data={stat} options={options} />
+                    <LineChart
+                      key={index}
+                      chartLabel={chartLabel}
+                      chartStat={chartStat}
+                      priceChange={priceChange}
+                      coinInfo
+                    />
                   )}
                 </div>
               </div>
-              <div>
+              {/*               <div>
                 <News news={news} />
-              </div>
+              </div> */}
             </div>
 
             <div className="w-full xl:w-1/3">
-              <div className="flex flex-col p-8 rounded-2xl dark:text-gray-100 bg-gray-50 dark:bg-secondary">
+              <div className="flex flex-col p-8 bg-white rounded-2xl dark:text-gray-100 dark:bg-secondary">
                 <div className="text-xl font-bold">
                   {symbol} Price Statistics
                 </div>
@@ -362,7 +309,7 @@ const CoinInfo = ({ keyword, setKeyword }) => {
 
               {description && (
                 <>
-                  <div className="px-10 py-6 text-justify rounded-2xl mt-14 dark:text-gray-100 bg-gray-50 dark:bg-secondary">
+                  <div className="px-10 py-6 text-justify bg-white rounded-2xl mt-14 dark:text-gray-100 dark:bg-secondary">
                     {parse(description)}
                   </div>
                 </>

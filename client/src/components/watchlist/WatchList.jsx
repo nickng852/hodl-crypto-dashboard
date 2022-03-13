@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-
-// Library
-import { Line } from "react-chartjs-2";
+import LineChart from "../linechart/LineChart";
 
 // Firebase
 import { db } from "../../firebase/firebase.config";
@@ -41,54 +39,6 @@ const WatchList = ({ token, user, setUser, coins }) => {
                 chartStat.push(result.sparkline[i]); // get each array from response
               }
 
-              const stat = (canvas) => {
-                const ctx = canvas.getContext("2d");
-                const gradient = ctx.createLinearGradient(0, 0, 0, 50);
-
-                if (priceChange < 0) {
-                  gradient.addColorStop(0, "rgba(214, 69, 65, 0.5)");
-                  gradient.addColorStop(1, "rgba(214, 69, 65,0.01)");
-                } else {
-                  gradient.addColorStop(0, "rgba(34, 153, 84,0.5)");
-                  gradient.addColorStop(1, "rgba(34, 153, 84,0.01)");
-                }
-
-                return {
-                  labels: chartLabel,
-                  datasets: [
-                    {
-                      data: chartStat,
-                      fill: true,
-                      backgroundColor: gradient,
-                      borderColor: priceChange < 0 ? "#e74c3c" : "#218c74",
-                      borderWidth: 1,
-                    },
-                  ],
-                };
-              };
-
-              const options = {
-                scales: {
-                  x: {
-                    display: false,
-                  },
-                  y: {
-                    display: false,
-                  },
-                },
-                plugins: {
-                  legend: {
-                    display: false,
-                  },
-                  tooltip: {
-                    enabled: false,
-                  },
-                },
-                radius: 0,
-                pointHitRadius: 0,
-                tension: 0.4,
-              };
-
               // Remove individual item from watchlist
               const removeItem = () => {
                 const currentItemIndex = index;
@@ -127,11 +77,12 @@ const WatchList = ({ token, user, setUser, coins }) => {
 
                         <div className="flex items-center justify-center w-2/6">
                           <div className="w-32">
-                            <Line
-                              key={id}
-                              data={stat}
-                              options={options}
-                              className="w-32"
+                            <LineChart
+                              key={index}
+                              chartLabel={chartLabel}
+                              chartStat={chartStat}
+                              priceChange={priceChange}
+                              watchList
                             />
                           </div>
                         </div>

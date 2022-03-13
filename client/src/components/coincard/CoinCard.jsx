@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
-import { Line } from "react-chartjs-2"; // chart library
+import LineChart from "../linechart/LineChart";
 
-const CoinCard = ({ coins, simplified }) => {
-  const coinsCount = simplified ? 4 : 50;
-  const slicedCoins = coins?.slice(0, coinsCount); // decide how many CoinCards will be displayed
+const CoinCard = ({ simplified, coins }) => {
+  const coinCardDisplayCount = simplified ? 4 : 50;
+
+  const slicedCoins = coins.slice(0, coinCardDisplayCount); // decide how many CoinCard will be displayed
 
   return (
     <>
       <div className="flex flex-wrap justify-between">
-        {slicedCoins?.map((result, index) => {
+        {slicedCoins.map((result, index) => {
           const id = result.uuid;
           const icon = result.iconUrl;
           const name = result.name;
@@ -18,60 +19,12 @@ const CoinCard = ({ coins, simplified }) => {
           const AbsPriceChange = Math.abs(priceChange); // trim "-" for display
 
           const chartLabel = [];
-          const chartData = [];
+          const chartStat = [];
 
           for (let i = 0; i < result.sparkline?.length; i++) {
             chartLabel.push(i); // get each index from the individual array
-            chartData.push(result.sparkline[i]); // get each array from the response
+            chartStat.push(result.sparkline[i]); // get each array from the response
           }
-
-          const data = (canvas) => {
-            const ctx = canvas.getContext("2d");
-            const gradient = ctx.createLinearGradient(0, 0, 0, 110);
-
-            if (priceChange < 0) {
-              gradient.addColorStop(0, "rgba(214, 69, 65, 0.5)");
-              gradient.addColorStop(1, "rgba(214, 69, 65,0.01)");
-            } else {
-              gradient.addColorStop(0, "rgba(34, 153, 84,0.5)");
-              gradient.addColorStop(1, "rgba(34, 153, 84,0.01)");
-            }
-
-            return {
-              labels: chartLabel,
-              datasets: [
-                {
-                  data: chartData,
-                  fill: true,
-                  backgroundColor: gradient,
-                  borderColor: priceChange < 0 ? "#e74c3c" : "#218c74",
-                  borderWidth: 2,
-                },
-              ],
-            };
-          };
-
-          const options = {
-            scales: {
-              y: {
-                display: false,
-              },
-              x: {
-                display: false,
-              },
-            },
-            plugins: {
-              legend: {
-                display: false,
-              },
-              tooltip: {
-                enabled: false,
-              },
-            },
-            radius: 0,
-            pointHitRadius: 0,
-            tension: 0.4,
-          };
 
           return (
             <Link
@@ -93,13 +46,18 @@ const CoinCard = ({ coins, simplified }) => {
                     <span className="mr-3 dark:text-gray-100">{name}</span>
                     <span
                       className={`${
-                        priceChange < 0 ? "text-red-600" : "text-green-500"
+                        (priceChange < 0 && "text-red-500") ||
+                        (priceChange === 0 && "text-gray-500") ||
+                        (priceChange > 0 && "text-green-500")
                       }`}
                     >
                       {`${
-                        priceChange < 0
-                          ? "▼ " + AbsPriceChange.toFixed(2) + "%"
-                          : "▲ " + AbsPriceChange.toFixed(2) + "%"
+                        (priceChange < 0 &&
+                          "▼ " + AbsPriceChange.toFixed(2) + "%") ||
+                        (priceChange === 0 &&
+                          "▲ " + AbsPriceChange.toFixed(2) + "%") ||
+                        (priceChange > 0 &&
+                          "▲ " + AbsPriceChange.toFixed(2) + "%")
                       }`}
                     </span>
                   </dd>
@@ -116,7 +74,13 @@ const CoinCard = ({ coins, simplified }) => {
                 </dl>
               </div>
               <div className="px-4 pb-5 sm:pb-5">
-                <Line key={index} data={data} options={options} />
+                <LineChart
+                  key={index}
+                  chartLabel={chartLabel}
+                  chartStat={chartStat}
+                  priceChange={priceChange}
+                  coinCard
+                />
               </div>
             </Link>
           );
