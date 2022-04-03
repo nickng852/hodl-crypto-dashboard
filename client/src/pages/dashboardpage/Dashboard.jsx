@@ -1,5 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ClickAwayListener from "react-click-away-listener";
+
+import { useSelector, useDispatch } from "react-redux";
+import { selectToken, setUser } from "../../features/auth/authSlice";
+import { selectKeyword, setNews } from "../../features/news/newsSlice";
+
+import { setCoins } from "../../features/coins/coinsSlice";
 
 // Components
 import Spinner from "../../components/loader/Spinner.jsx";
@@ -8,19 +15,31 @@ import CoinBar from "../../components/coinbar/CoinBar.jsx";
 import WatchList from "../../components/watchlist/WatchList.jsx";
 import WatchListModal from "../../components/watchlist/WatchListModal.jsx";
 import News from "../../components/news/News.jsx";
-import ClickAwayListener from "react-click-away-listener";
-
 // Services
 import { useGetCoinsQuery, useGetNewsQuery } from "../../services/cryptoApi";
+// Firebase
+import { db } from "../../firebase/firebase.config";
+import { doc, onSnapshot } from "firebase/firestore";
 
-const Dashboard = ({
-  token,
-  user,
-  setUser,
-  defaultKeyword,
-  keyword,
-  setKeyword,
-}) => {
+const Dashboard = () => {
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const keyword = useSelector(selectKeyword);
+
+  // Get logged user's info from firebase after successful login
+  useEffect(() => {
+    if (token) {
+      console.log(token.id);
+      const getUser = () => {
+        onSnapshot(doc(db, "users", token.uid), (doc) => {
+          dispatch(setUser(doc.data()));
+        });
+      };
+
+      getUser();
+    }
+  }, [dispatch, token]);
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -51,11 +70,7 @@ const Dashboard = ({
   const { data: coinrankingApi, isFetching: isCoinsFetching } =
     useGetCoinsQuery();
 
-  const coins = coinrankingApi?.data?.coins;
-
-  if (coinrankingApi) {
-    setKeyword(defaultKeyword);
-  }
+  dispatch(setCoins(coinrankingApi?.data?.coins));
 
   // News API call
   const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
@@ -63,7 +78,7 @@ const Dashboard = ({
     pageSize: "4",
   });
 
-  const news = newsApi?.articles;
+  dispatch(setNews(newsApi?.articles));
 
   return (
     <>
@@ -88,12 +103,12 @@ const Dashboard = ({
                 </header>
 
                 <div className="mt-6">
-                  <CoinCard coins={coins} simplified />
+                  <CoinCard simplified />
                 </div>
               </section>
 
-              {/* Coin List */}
-              <section className="p-8 mt-10 bg-white drop-shadow-xl rounded-3xl">
+              {/* Coin Bar */}
+              <section className="p-8 mt-10 bg-white drop-shadow-xl rounded-3xl dark:bg-secondary">
                 <header className="flex items-center justify-between">
                   <div className="relative">
                     <h1
@@ -132,7 +147,7 @@ const Dashboard = ({
                   </Link>
                 </header>
                 <div className="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 2xl:grid-cols-3">
-                  <CoinBar coins={coins} order={order} />
+                  <CoinBar order={order} />
                 </div>
               </section>
             </div>
@@ -167,26 +182,13 @@ const Dashboard = ({
                 </header>
 
                 <div className="mt-6">
-                  {user.watchlist && (
-                    <>
-                      <WatchList
-                        token={token}
-                        user={user}
-                        setUser={setUser}
-                        coins={coins}
-                      />
-                    </>
-                  )}
+                  <WatchList />
 
                   {modalOpen && (
                     <>
                       <WatchListModal
-                        token={token}
-                        user={user}
-                        setUser={setUser}
                         modalOpen={modalOpen}
                         setModalOpen={setModalOpen}
-                        coins={coins}
                       />
                     </>
                   )}
@@ -208,7 +210,7 @@ const Dashboard = ({
                 </header>
 
                 <div className="mt-6">
-                  <News news={news} />
+                  <News />
                 </div>
               </section>
             </div>

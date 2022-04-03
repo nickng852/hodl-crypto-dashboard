@@ -3,7 +3,7 @@ const axios = require("axios");
 
 const router = express.Router();
 
-// GET all news by query
+// News API - GET news
 router.get("/:keyword/:pageSize", (req, res) => {
   const NewsAPI = require("newsapi");
   const newsapi = new NewsAPI(process.env.REACT_APP_NEWS_API_KEY);

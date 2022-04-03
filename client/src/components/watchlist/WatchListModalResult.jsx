@@ -2,16 +2,24 @@ import { Link } from "react-router-dom";
 import { db } from "../../firebase/firebase.config";
 import { doc, updateDoc } from "firebase/firestore";
 
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectToken,
+  selectUser,
+  setWatchList,
+} from "../../features/auth/authSlice";
+
 const WatchListModalResult = ({
-  token,
-  user,
-  setUser,
   id,
   name,
   symbol,
   icon,
   setWatchListSearch,
 }) => {
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
+
   // Add individual item to watchlist
   const addItem = () => {
     // block duplicate insert
@@ -19,7 +27,12 @@ const WatchListModalResult = ({
     const isDuplicated = user.watchlist.includes(id);
 
     if (!isDuplicated) {
-      setUser((prev) => ({ ...prev, watchlist: [...user.watchlist, id] }));
+      dispatch(
+        setWatchList((prev) => ({
+          ...prev,
+          watchlist: [...user.watchlist, id],
+        }))
+      );
 
       // Add watchlist data to Firestore
       const docData = {

@@ -1,8 +1,12 @@
 import moment from "moment";
+import { useSelector } from "react-redux";
+import { selectNews } from "../../features/news/newsSlice";
 
 import notfoundimg from "../../assets/images/404-01-scaled.jpg";
 
-const News = ({ news }) => {
+const News = () => {
+  const news = useSelector(selectNews);
+
   return (
     <>
       <div className="grid gap-y-7">

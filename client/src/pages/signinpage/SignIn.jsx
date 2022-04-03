@@ -1,77 +1,72 @@
-import { Link, useHistory } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../features/auth/authSlice";
+
+// Custom Hook
+import useForm from "../../hooks/form";
 
 // Firebase
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-const SignIn = ({
-  initialState,
-  form,
-  setForm,
-  isLoading,
-  setIsLoading,
-  errorMessage,
-  setErrorMessage,
-  setToken,
-  setIsLogged,
-}) => {
-  let history = useHistory();
+const SignIn = () => {
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
 
-  const signIn = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    form,
+    errorMessage,
+    setErrorMessage,
+    handleChange,
+    isSignInFormValid,
+  } = useForm();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     setIsLoading(true);
 
     const auth = getAuth();
 
     signInWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
-        // Signed in
-        setToken(userCredential.user);
-        setIsLogged(true);
-        setForm(initialState);
-        setErrorMessage("");
-        setIsLoading(false);
-        history.push("/dashboard");
+        // Sign In Success
+        dispatch(setToken({ token: userCredential.user }));
+
+        navigate("/dashboard");
       })
       .catch((err) => {
+        // Sign In Fail
         setIsLoading(false);
 
         // Firebase error
         switch (err.code) {
           case "auth/invalid-email":
-            errorMessage = "Invalid email address.";
+            setErrorMessage("Invalid email address.");
             break;
+
           case "auth/wrong-password":
-            errorMessage = "Incorrect password.";
+            setErrorMessage("Incorrect password.");
             break;
+
           case "auth/user-not-found":
-            errorMessage = "User not found.";
+            setErrorMessage("User not found.");
             break;
+
           case "auth/too-many-requests":
-            errorMessage = "Too many attempts. Please try again later.";
+            setErrorMessage("Too many attempts. Please try again later.");
             break;
+
           case "auth/internal-error":
-            errorMessage = "Internal error.";
+            setErrorMessage("Internal error.");
             break;
+
           default:
             return "";
         }
-
-        // Custom error
-        if (form.email === "" && form.password === "") {
-          errorMessage = "Please enter email address and password.";
-        } else if (form.email === "") {
-          errorMessage = "Please enter email address.";
-        } else if (form.password === "") {
-          errorMessage = "Please enter password.";
-        }
-
-        setErrorMessage(errorMessage);
       });
-  };
-
-  const signUp = () => {
-    setIsLoading(false);
-    setForm(initialState);
-    setErrorMessage("");
   };
 
   return (
@@ -82,12 +77,7 @@ const SignIn = ({
             Sign In
           </div>
 
-          <form
-            className="mt-6"
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
+          <form className="mt-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -98,10 +88,9 @@ const SignIn = ({
               <input
                 type="text"
                 value={form.email}
+                name="email"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                onChange={(e) => {
-                  setForm((prev) => ({ ...prev, email: e.target.value }));
-                }}
+                onChange={handleChange}
               />
             </div>
 
@@ -115,10 +104,9 @@ const SignIn = ({
               <input
                 type="password"
                 value={form.password}
+                name="password"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                onChange={(e) => {
-                  setForm((prev) => ({ ...prev, password: e.target.value }));
-                }}
+                onChange={handleChange}
               />
               {errorMessage && (
                 <label className="text-xs text-red-500 ">{errorMessage}</label>
@@ -128,12 +116,12 @@ const SignIn = ({
             <div className="mt-6">
               <button
                 type="submit"
-                className="flex items-center justify-center w-full px-4 py-2 tracking-wide text-center text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
-                onClick={signIn}
+                disabled={!isSignInFormValid}
+                className="flex items-center justify-center w-full px-4 py-2 tracking-wide text-center text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600 disabled:opacity-20 disabled:cursor-auto"
               >
                 <span>Login</span>
 
-                {isLoading && errorMessage === "" && (
+                {isLoading && (
                   <svg
                     className="w-5 h-5 ml-2 -mr-1 text-white animate-spin"
                     xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +152,6 @@ const SignIn = ({
             <Link
               to="/signup"
               className="ml-1 font-medium text-gray-700 dark:text-gray-200 hover:underline"
-              onClick={signUp}
             >
               Sign Up
             </Link>

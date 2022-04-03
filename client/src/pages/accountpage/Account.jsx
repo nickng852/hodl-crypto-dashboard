@@ -1,7 +1,20 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+// Custom Hook
+import useForm from "../../hooks/form";
+
 import ClickAwayListener from "react-click-away-listener";
+
 import defaultProfileImg from "../../assets/images/blank-profile-picture.png";
+
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectToken,
+  selectUser,
+  setUser,
+  setToken,
+} from "../../features/auth/authSlice";
 
 // Firebase
 import { db } from "../../firebase/firebase.config";
@@ -20,24 +33,28 @@ import {
   deleteObject,
 } from "firebase/storage";
 
-const Account = ({
-  initialState,
-  form,
-  setForm,
-  errorMessage,
-  setErrorMessage,
-  token,
-  setToken,
-  user,
-  setUser,
-  setIsLogged,
-}) => {
+const Account = () => {
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
+
+  const {
+    initialState,
+    form,
+    setForm,
+    setName,
+    errorMessage,
+    setErrorMessage,
+    handleChange,
+    isAccountFormValid,
+  } = useForm();
+
   const [modalOpen, setModalOpen] = useState(false);
   const [profileImg, setProfileImg] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false); // whether "Name" or "Email" has been updated
   const [isEmailSent, setIsEmailSent] = useState(false); // whether Password Reset Email has been sent
 
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const modalToggle = () => {
     setModalOpen(!modalOpen);
@@ -102,10 +119,10 @@ const Account = ({
     deleteUser(currentUser)
       .then(() => {
         // Frontend
-        setToken("");
-        setUser("");
-        setIsLogged(false);
-        history.push("/");
+        dispatch(setToken(""));
+        dispatch(setUser(""));
+
+        navigate("/");
 
         // Backend - delete user data in firestore
         const eraseUser = async () => {
@@ -126,64 +143,71 @@ const Account = ({
       });
   };
 
-  const handleSave = () => {
-    // Update User Name
-    if (form.name !== "") {
-      setIsUpdated(true);
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    // Update User Name
+    if (form.name !== "" && form.name !== user.name) {
       const docData = {
         name: form.name,
       };
 
       updateDoc(docRef, docData);
+
+      setIsUpdated(true);
+
+      setName("");
     }
 
     // Update User Email Address
-    if (form.email !== "") {
+    if (form.email !== "" && form.email !== user.email) {
       updateEmail(currentUser, form.email)
         .then(() => {
-          setIsUpdated(true);
-
           const docData = {
             email: form.email,
           };
 
           updateDoc(docRef, docData);
+
+          setIsUpdated(true);
+
+          setForm(initialState);
         })
         .catch((err) => {
           // Firebase error
           switch (err.code) {
             case "auth/invalid-email":
-              errorMessage = "Invalid email address.";
+              setErrorMessage("Invalid email address.");
               break;
+
             case "auth/internal-error":
-              errorMessage = "Internal error.";
+              setErrorMessage("Internal error.");
               break;
+
             default:
               return "";
           }
-
-          setErrorMessage(errorMessage);
-
-          console.log(err);
         });
     }
 
-    // Reset form state
-    setForm(initialState);
-    setErrorMessage("");
-
-    const nameInput = document.getElementById("user-info-name");
-    const emailInput = document.getElementById("user-info-email");
-    nameInput.value = "";
-    emailInput.value = "";
+    // Custom Error
+    if (form.name === user.name && form.email === user.email) {
+      setErrorMessage("Name and email currently in use.");
+    } else if (form.name === user.name) {
+      setErrorMessage("Name currently in use.");
+    } else if (form.email === user.email) {
+      setErrorMessage("Email currently in use.");
+    }
   };
 
   return (
     <>
       <section className="w-full h-full bg-opacity-50">
         <div className="flex justify-center">
-          <form className="container relative max-w-2xl mx-auto my-40 rounded-lg shadow-md md:w-3/4">
+          <form
+            className="container relative max-w-2xl mx-auto my-40 rounded-lg shadow-md md:w-3/4"
+            onSubmit={handleSubmit}
+          >
             <div className="px-10 py-6 bg-gray-500 border-t-2 border-indigo-400 rounded-t-lg dark:bg-tertiary bg-opacity-5">
               <div className="max-w-sm mx-auto md:w-full md:mx-0">
                 <div className="inline-flex items-center space-x-4">
@@ -243,14 +267,11 @@ const Account = ({
                   <input
                     type="text"
                     id="user-info-name"
+                    name="name"
+                    value={form.name}
                     className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none dark:text-gray-300 dark:border-gray-600 dark:bg-tertiary focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     placeholder="Name"
-                    onChange={(e) => {
-                      setForm((prev) => ({
-                        ...prev,
-                        name: e.target.value,
-                      }));
-                    }}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -262,14 +283,11 @@ const Account = ({
                   <input
                     type="text"
                     id="user-info-email"
+                    name="email"
+                    value={form.email}
                     className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none dark:text-gray-300 dark:border-gray-600 dark:bg-tertiary focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     placeholder="Email"
-                    onChange={(e) => {
-                      setForm((prev) => ({
-                        ...prev,
-                        email: e.target.value,
-                      }));
-                    }}
+                    onChange={handleChange}
                   />
 
                   {errorMessage && (
@@ -310,9 +328,9 @@ const Account = ({
 
               <div className="flex items-center justify-end w-full px-10 py-6 text-gray-500 lg:p-10">
                 <button
-                  type="button"
-                  className="w-1/3 px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                  onClick={handleSave}
+                  type="submit"
+                  disabled={!isAccountFormValid}
+                  className="w-1/3 px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-40 disabled:cursor-auto"
                 >
                   Save
                 </button>
@@ -331,9 +349,9 @@ const Account = ({
                         viewBox="0 0 24 24"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="M5 13l4 4L19 7"
                         ></path>
                       </svg>
@@ -369,9 +387,9 @@ const Account = ({
                         viewBox="0 0 24 24"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="M5 13l4 4L19 7"
                         ></path>
                       </svg>

@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 // Redux
-import { Provider } from "react-redux";
 import store from "./app/store";
+import { Provider } from "react-redux";
 
 // Tailwind CSS
 import "./tailwind.css";

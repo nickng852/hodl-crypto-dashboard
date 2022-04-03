@@ -1,13 +1,26 @@
+// Redux Toolkit
 import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "../features/auth/authSlice";
+import coinsReducer from "../features/coins/coinsSlice";
+import newsReducer from "../features/news/newsSlice";
+
+// RTK Query
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { cryptoApi } from "../services/cryptoApi";
 
-const store = configureStore({
-  reducer: { [cryptoApi.reducerPath]: cryptoApi.reducer },
-  middleware: (gDM) => gDM().concat(cryptoApi.middleware),
+export const store = configureStore({
+  reducer: {
+    auth: authReducer,
+    coins: coinsReducer,
+    news: newsReducer,
+    [cryptoApi.reducerPath]: cryptoApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(cryptoApi.middleware),
 });
 
-// enable listener behavior for the store
 setupListeners(store.dispatch);
 
 export default store;

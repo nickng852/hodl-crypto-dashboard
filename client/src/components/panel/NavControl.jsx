@@ -1,7 +1,7 @@
 import Profile from "./Profile.jsx";
 import ThemeSwticher from "./ThemeSwticher.jsx";
 
-const NavControl = ({ setToken, user, setUser, setIsLogged }) => {
+const NavControl = () => {
   return (
     <>
       <section className="relative max-w-lg">
@@ -11,12 +11,7 @@ const NavControl = ({ setToken, user, setUser, setIsLogged }) => {
               <ThemeSwticher />
             </div>
             <div>
-              <Profile
-                setToken={setToken}
-                user={user}
-                setUser={setUser}
-                setIsLogged={setIsLogged}
-              />
+              <Profile />
             </div>
           </div>
         </div>

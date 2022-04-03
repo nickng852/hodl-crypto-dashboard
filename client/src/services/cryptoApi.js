@@ -1,21 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseUrl = "http://localhost:3001";
-
 export const cryptoApi = createApi({
   reducerPath: "cryptoApi",
-  baseQuery: fetchBaseQuery({ baseUrl }),
-  refetchOnMountOrArgChange: true, // forcing refetch on component mount
-  /*   refetchOnFocus: true, */
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.REACT_APP_CRYPTO_API_BASE_URL,
+  }),
+  refetchOnMountOrArgChange: true,
   refetchOnReconnect: true,
   endpoints: (builder) => ({
     getCoins: builder.query({ query: () => "/getCoins" }),
 
-    getCoin: builder.query({ query: (uuid) => `/getCoins/${uuid}` }),
+    getCoin: builder.query({ query: (uuid) => `/getCoin/${uuid}` }),
 
-    getCoinHistory: builder.query({
-      query: ({ uuid, timePeriod }) =>
-        `/getCoins/${uuid}/history/${timePeriod}`,
+    getCoinPriceHistory: builder.query({
+      query: ({ uuid, timePeriod }) => `/getCoin/${uuid}/history/${timePeriod}`,
     }),
 
     getNews: builder.query({
@@ -27,6 +25,6 @@ export const cryptoApi = createApi({
 export const {
   useGetCoinsQuery,
   useGetCoinQuery,
-  useGetCoinHistoryQuery,
+  useGetCoinPriceHistoryQuery,
   useGetNewsQuery,
 } = cryptoApi;

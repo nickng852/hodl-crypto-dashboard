@@ -38,7 +38,7 @@ const Menu = () => {
 
       <ClickAwayListener onClickAway={handleClickAway}>
         <div
-          className={`absolute top-0 z-10 w-1/3 h-full duration-500 ease-in-out bg-gray-300 bg-opacity-95 dark:bg-primary dark:bg-opacity-95 ${
+          className={`absolute top-0 z-10 w-1/3 h-full duration-500 ease-in-out bg-gray-400 bg-opacity-95 dark:bg-primary dark:bg-opacity-95 ${
             isOpen ? "left-0" : "-left-1/3"
           }`}
         ></div>

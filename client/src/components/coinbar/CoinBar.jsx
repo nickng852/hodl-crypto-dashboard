@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCoins } from "../../features/coins/coinsSlice";
 
-const CoinBar = ({ coins, order }) => {
+const CoinBar = ({ order }) => {
+  let coins = useSelector(selectCoins);
+
   const coinsCopy = [...coins];
 
   const coinsSortedByMartketCap = coinsCopy.sort((a, b) => {
@@ -42,14 +46,15 @@ const CoinBar = ({ coins, order }) => {
         const icon = result.iconUrl;
         const name = result.name;
         const price = Number(result.price); // string returned from API
-        const priceChange = result.change;
+        const priceChange = Number(result.change); // string returned from API
         const AbsPriceChange = Math.abs(priceChange); // trim "-" for display
 
         return (
           <>
             <Link
               to={`/coin/${id}`}
-              className="flex p-6 border-b border-gray-200 cursor-default last:border-0 last:border-white dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-secondary"
+              key={index}
+              className="flex p-6 border-b border-gray-200 cursor-default last:border-0 dark:bg-secondary last:border-white dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-tertiary"
             >
               <div className="flex items-center w-1/4 dark:text-gray-100">
                 {index + 1}
@@ -59,7 +64,7 @@ const CoinBar = ({ coins, order }) => {
                 <img
                   src={icon}
                   alt={name}
-                  className="w-12 h-12 p-2 border-2 border-gray-200 rounded-full dark:border-gray-700"
+                  className="w-12 h-12 p-2 bg-white border-2 border-gray-200 rounded-full dark:bg-gray-700 dark:border-gray-500"
                 />
               </div>
 
@@ -79,13 +84,15 @@ const CoinBar = ({ coins, order }) => {
 
               <div
                 className={`flex items-center justify-end w-1/2 ${
-                  priceChange < 0 ? "text-red-600" : "text-green-500"
+                  (priceChange < 0 && "text-red-500") ||
+                  (priceChange === 0 && "text-gray-500") ||
+                  (priceChange > 0 && "text-green-500")
                 }`}
               >
                 {`${
-                  priceChange < 0
-                    ? "-" + AbsPriceChange.toFixed(2) + "%"
-                    : "+" + AbsPriceChange.toFixed(2) + "%"
+                  (priceChange < 0 && "- " + AbsPriceChange.toFixed(2) + "%") ||
+                  (priceChange === 0 && AbsPriceChange.toFixed(2) + "%") ||
+                  (priceChange > 0 && "+ " + AbsPriceChange.toFixed(2) + "%")
                 }`}
               </div>
             </Link>

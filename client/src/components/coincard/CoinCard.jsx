@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
-import LineChart from "../linechart/LineChart";
+import { useSelector } from "react-redux";
 
-const CoinCard = ({ simplified, coins }) => {
+// Components
+import LineChart from "../linechart/LineChart";
+import { selectCoins } from "../../features/coins/coinsSlice";
+
+const CoinCard = ({ simplified }) => {
+  const coins = useSelector(selectCoins);
+
   const coinCardDisplayCount = simplified ? 4 : 50;
 
   const slicedCoins = coins.slice(0, coinCardDisplayCount); // decide how many CoinCard will be displayed
@@ -15,9 +21,10 @@ const CoinCard = ({ simplified, coins }) => {
           const name = result.name;
           const symbol = result.symbol;
           const price = Number(result.price); // string returned from API
-          const priceChange = result.change;
+          const priceChange = Number(result.change); // string returned from API
           const AbsPriceChange = Math.abs(priceChange); // trim "-" for display
 
+          // LineChart Data
           const chartLabel = [];
           const chartStat = [];
 
@@ -55,7 +62,7 @@ const CoinCard = ({ simplified, coins }) => {
                         (priceChange < 0 &&
                           "▼ " + AbsPriceChange.toFixed(2) + "%") ||
                         (priceChange === 0 &&
-                          "▲ " + AbsPriceChange.toFixed(2) + "%") ||
+                          AbsPriceChange.toFixed(2) + "%") ||
                         (priceChange > 0 &&
                           "▲ " + AbsPriceChange.toFixed(2) + "%")
                       }`}
@@ -76,9 +83,9 @@ const CoinCard = ({ simplified, coins }) => {
               <div className="px-4 pb-5 sm:pb-5">
                 <LineChart
                   key={index}
+                  priceChange={priceChange}
                   chartLabel={chartLabel}
                   chartStat={chartStat}
-                  priceChange={priceChange}
                   coinCard
                 />
               </div>

@@ -11,9 +11,11 @@ app.use(cors());
 
 // Routing
 const coinsRoute = require("./routes/coins");
+const coinRoute = require("./routes/coin");
 const newsRoute = require("./routes/news");
 
 app.use("/getCoins", coinsRoute);
+app.use("/getCoin", coinRoute);
 app.use("/getNews", newsRoute);
 
 // Server

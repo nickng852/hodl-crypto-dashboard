@@ -8,15 +8,15 @@ import CoinListPagination from "../../components/coinlist/CoinListPagination.jsx
 // Services
 import { useGetCoinsQuery } from "../../services/cryptoApi";
 
-const CoinsInfo = ({}) => {
-  // Coinranking API call
-  const { data: coinrankingApi, isFetching: isCoinsFetching } =
-    useGetCoinsQuery();
-
-  const coins = coinrankingApi?.data?.coins;
-
+const CoinsInfo = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  const itemsPerPage = 10;
+
+  // Coinranking API call
+  const { data: getCoinsApi, isFetching: isCoinsFetching } = useGetCoinsQuery();
+
+  const coins = getCoinsApi?.data?.coins;
 
   return (
     <>
@@ -27,6 +27,7 @@ const CoinsInfo = ({}) => {
           </div>
         </>
       )}
+
       {!isCoinsFetching && (
         <>
           <div className="flex flex-col h-full">

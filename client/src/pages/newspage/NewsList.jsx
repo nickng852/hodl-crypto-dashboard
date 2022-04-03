@@ -1,7 +1,12 @@
+import { useSelector } from "react-redux";
+import { selectNews } from "../../features/news/newsSlice";
+
 // Default image
 import notfoundimg from "../../assets/images/404-01-scaled.jpg";
 
-const NewsCard = ({ news }) => {
+const NewsCard = () => {
+  const news = useSelector(selectNews);
+
   const addDefaultSrc = (e) => {
     e.target.src = notfoundimg;
   };

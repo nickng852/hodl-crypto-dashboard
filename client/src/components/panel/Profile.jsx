@@ -1,16 +1,23 @@
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import ClickAwayListener from "react-click-away-listener";
 
-const Profile = ({ setToken, user, setUser, setIsLogged }) => {
+import { useSelector, useDispatch } from "react-redux";
+import { setToken, selectUser, setUser } from "../../features/auth/authSlice";
+
+const Profile = () => {
+  const dispatch = useDispatch();
+
+  const user = useSelector(selectUser);
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const menuToggle = () => {
     setMenuOpen(!menuOpen);
   };
 
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const logOut = () => {
     const auth = getAuth();
@@ -18,10 +25,10 @@ const Profile = ({ setToken, user, setUser, setIsLogged }) => {
     signOut(auth)
       .then(() => {
         // Logout account
-        setToken("");
-        setUser("");
-        setIsLogged(false);
-        history.push("/");
+        dispatch(setToken(""));
+        dispatch(setUser(""));
+
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -36,7 +43,7 @@ const Profile = ({ setToken, user, setUser, setIsLogged }) => {
         id="options-menu"
         onClick={menuToggle}
       >
-        {user.profileImg ? (
+        {user != null && user.profileImg != null ? (
           <>
             <img
               alt="User Icon"

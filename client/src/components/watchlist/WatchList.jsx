@@ -1,17 +1,35 @@
 import { Link } from "react-router-dom";
+
+import { selectCoins } from "../../features/coins/coinsSlice";
+
+// Components
 import LineChart from "../linechart/LineChart";
+
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectToken,
+  selectUser,
+  setWatchList,
+} from "../../features/auth/authSlice";
 
 // Firebase
 import { db } from "../../firebase/firebase.config";
 import { doc, updateDoc } from "firebase/firestore";
 
-const WatchList = ({ token, user, setUser, coins }) => {
+const WatchList = () => {
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
+  const coins = useSelector(selectCoins);
+
   const filteredWatchList = [];
 
-  for (let i = 0; i < user.watchlist.length; i++) {
-    filteredWatchList.push(
-      coins.filter((coin) => coin.uuid.includes(user.watchlist[i]))
-    );
+  if (user.watchlist != null) {
+    for (let i = 0; i < user.watchlist.length; i++) {
+      filteredWatchList.push(
+        coins.filter((coin) => coin.uuid.includes(user.watchlist[i]))
+      );
+    }
   }
 
   const watchlist = filteredWatchList.flat(1); // destructure the output
@@ -19,7 +37,7 @@ const WatchList = ({ token, user, setUser, coins }) => {
   return (
     <>
       <div className="overflow-auto h-96">
-        {watchlist.length ? (
+        {watchlist.length !== 0 ? (
           <>
             {watchlist.map((result, index) => {
               const id = result.uuid;
@@ -27,10 +45,10 @@ const WatchList = ({ token, user, setUser, coins }) => {
               const symbol = result.symbol;
               const name = result.name;
               const price = Number(result.price); // string returned from API
-              const priceChange = result.change;
+              const priceChange = Number(result.change); // string returned from API
               const AbsPriceChange = Math.abs(priceChange);
 
-              // Chart.js
+              // LineChart Data
               const chartLabel = [];
               const chartStat = [];
 
@@ -47,7 +65,9 @@ const WatchList = ({ token, user, setUser, coins }) => {
                   (result, index) => index !== currentItemIndex
                 );
 
-                setUser((prev) => ({ ...prev, watchlist: filteredList }));
+                dispatch(
+                  setWatchList((prev) => ({ ...prev, watchlist: filteredList }))
+                );
 
                 // Add watchlist data to Firestore
                 const docData = {
@@ -61,7 +81,11 @@ const WatchList = ({ token, user, setUser, coins }) => {
                 <>
                   <div key={id} className="relative">
                     {/* Individual watchlist */}
-                    <Link to={`/coin/${id}`} className="cursor-default">
+                    <Link
+                      to={`/coin/${id}`}
+                      key={index}
+                      className="cursor-default"
+                    >
                       <div className="flex h-24 border-b border-gray-200 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-secondary">
                         <div className="flex items-center justify-center w-1/6">
                           <img
@@ -103,15 +127,18 @@ const WatchList = ({ token, user, setUser, coins }) => {
                         <div className="flex items-center justify-center w-1/6">
                           <div
                             className={`${
-                              priceChange < 0
-                                ? "text-red-600"
-                                : "text-green-500"
+                              (priceChange < 0 && "text-red-500") ||
+                              (priceChange === 0 && "text-gray-500") ||
+                              (priceChange > 0 && "text-green-500")
                             }`}
                           >
                             {`${
-                              priceChange < 0
-                                ? AbsPriceChange.toFixed(2) + "%"
-                                : AbsPriceChange.toFixed(2) + "%"
+                              (priceChange < 0 &&
+                                AbsPriceChange.toFixed(2) + "%") ||
+                              (priceChange === 0 &&
+                                AbsPriceChange.toFixed(2) + "%") ||
+                              (priceChange > 0 &&
+                                AbsPriceChange.toFixed(2) + "%")
                             }`}
                           </div>
                         </div>
