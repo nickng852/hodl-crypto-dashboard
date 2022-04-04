@@ -15,8 +15,8 @@ export const store = configureStore({
     news: newsReducer,
     [cryptoApi.reducerPath]: cryptoApi.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+  middleware: (gDM) =>
+    gDM({
       serializableCheck: false,
     }).concat(cryptoApi.middleware),
 });

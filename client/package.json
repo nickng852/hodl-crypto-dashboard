@@ -17,15 +17,16 @@
     "millify": "^4.0.0",
     "moment": "^2.29.1",
     "node-sass": "^6.0.1",
-    "postcss": "^7.0.38",
+    "postcss": "^8.4.12",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.3.0",
     "react-click-away-listener": "^2.0.5",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.0",
     "redux": "^4.1.2",
+    "styled-components": "^5.3.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.16",
     "web-vitals": "^1.1.2"
   },
@@ -34,7 +35,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

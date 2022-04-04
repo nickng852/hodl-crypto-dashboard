@@ -104,9 +104,9 @@ const CoinInfo = () => {
                   )}
                 </div>
 
-                {/*                 <div>
+                <div>
                   <News />
-                </div> */}
+                </div>
               </div>
             </div>
 

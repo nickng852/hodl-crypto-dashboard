@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const baseUrl = "http://localhost:3001";
+
 export const cryptoApi = createApi({
   reducerPath: "cryptoApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_CRYPTO_API_BASE_URL,
-  }),
+  baseQuery: fetchBaseQuery({ baseUrl }),
   refetchOnMountOrArgChange: true,
   refetchOnReconnect: true,
   endpoints: (builder) => ({
