@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 
-// Library
+import { useSelector } from "react-redux";
+import { selectCoins } from "../../features/coins/coinsSlice";
+
 import millify from "millify";
 
-const CoinList = ({ coins, currentPage, itemsPerPage }) => {
+const CoinList = ({ currentPage, itemsPerPage }) => {
+  const coins = useSelector(selectCoins);
+
   // get each page's items by slicing the response array
   const lastItem = currentPage * itemsPerPage;
 

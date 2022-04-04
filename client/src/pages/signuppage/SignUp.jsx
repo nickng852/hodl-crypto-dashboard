@@ -10,10 +10,9 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, Timestamp } from "firebase/firestore";
 
 const SignUp = () => {
-  let navigate = useNavigate();
-
   const [isLoading, setIsLoading] = useState(false);
 
+  // Custom Hook
   const {
     form,
     errorMessage,
@@ -21,6 +20,8 @@ const SignUp = () => {
     handleChange,
     isSignUpFormValid,
   } = useForm();
+
+  let navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,12 +32,13 @@ const SignUp = () => {
 
     createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
-        // Sign Up Success
-        navigate("/");
+        // Signed in
 
         // Add user data to Firestore
+        const user = userCredential.user;
+
         const docData = {
-          uid: userCredential.user.uid,
+          uid: user.uid,
           createDate: Timestamp.fromDate(new Date()),
           name: form.name,
           email: form.email,
@@ -44,14 +46,16 @@ const SignUp = () => {
           watchlist: [],
         };
 
-        setDoc(doc(db, "users", userCredential.user.uid), docData);
+        setDoc(doc(db, "users", user.uid), docData);
+
+        navigate("/");
       })
-      .catch((err) => {
-        // Sign Up Fail
+      .catch((error) => {
+        // Sign in fail
         setIsLoading(false);
 
         // Firebase error
-        switch (err.code) {
+        switch (error.code) {
           case "auth/invalid-email":
             setErrorMessage("Invalid email address.");
             break;
@@ -90,10 +94,11 @@ const SignUp = () => {
               >
                 Name
               </label>
+
               <input
                 type="text"
-                value={form.name}
                 name="name"
+                value={form.name}
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 onChange={handleChange}
               />
@@ -106,10 +111,11 @@ const SignUp = () => {
               >
                 Email
               </label>
+
               <input
                 type="text"
-                value={form.email}
                 name="email"
+                value={form.email}
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 onChange={handleChange}
               />
@@ -122,13 +128,15 @@ const SignUp = () => {
               >
                 Password
               </label>
+
               <input
                 type="password"
-                value={form.password}
                 name="password"
+                value={form.password}
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 onChange={handleChange}
               />
+
               {errorMessage && (
                 <label className="text-xs text-red-500 ">{errorMessage}</label>
               )}

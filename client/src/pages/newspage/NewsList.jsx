@@ -2,31 +2,31 @@ import { useSelector } from "react-redux";
 import { selectNews } from "../../features/news/newsSlice";
 
 // Default image
-import notfoundimg from "../../assets/images/404-01-scaled.jpg";
+import defaultImg from "../../assets/images/404-01-scaled.jpg";
 
-const NewsCard = () => {
+const NewsList = () => {
   const news = useSelector(selectNews);
 
-  const addDefaultSrc = (e) => {
-    e.target.src = notfoundimg;
+  const showDefaultImg = (e) => {
+    e.target.src = defaultImg;
   };
 
   return (
     <>
-      {news.map((result, index) => {
-        const newsImage = result.urlToImage ? result.urlToImage : notfoundimg;
-        const newsTitle = result.title;
+      {news.map((result) => {
+        const newsImage = result.urlToImage ? result.urlToImage : defaultImg;
+        const newsUrl = result.url;
         const newsSource = result.source.name;
-        /*         const newsDesc = result.description; */
+        const newsTitle = result.title;
 
         return (
           <>
             <div className="relative p-4 w-96 rounded-xl dark:bg-secondary">
-              <a href={result.url} target="_blank" rel="noreferrer" key={index}>
+              <a href={newsUrl} target="_blank" rel="noreferrer">
                 <img
+                  alt={newsTitle}
                   src={newsImage}
-                  onError={addDefaultSrc}
-                  alt=""
+                  onError={showDefaultImg}
                   className="object-cover w-full bg-center h-60 rounded-xl"
                 />
 
@@ -40,12 +40,10 @@ const NewsCard = () => {
                       </div>
                     </>
                   )}
+
                   <div className="text-gray-600 dark:text-gray-100">
                     {newsTitle}
                   </div>
-                  {/*                   <div className="text-gray-600 dark:text-gray-100">
-                    {newsDesc}
-                  </div> */}
                 </div>
               </a>
             </div>
@@ -56,4 +54,4 @@ const NewsCard = () => {
   );
 };
 
-export default NewsCard;
+export default NewsList;

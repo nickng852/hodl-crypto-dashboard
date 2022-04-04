@@ -1,27 +1,31 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ClickAwayListener from "react-click-away-listener";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectToken, setUser } from "../../features/auth/authSlice";
+import { setCoins } from "../../features/coins/coinsSlice";
 import { selectKeyword, setNews } from "../../features/news/newsSlice";
 
-import { setCoins } from "../../features/coins/coinsSlice";
-
-// Components
 import Spinner from "../../components/loader/Spinner.jsx";
 import CoinCard from "../../components/coincard/CoinCard.jsx";
 import CoinBar from "../../components/coinbar/CoinBar.jsx";
 import WatchList from "../../components/watchlist/WatchList.jsx";
 import WatchListModal from "../../components/watchlist/WatchListModal.jsx";
 import News from "../../components/news/News.jsx";
-// Services
-import { useGetCoinsQuery, useGetNewsQuery } from "../../services/cryptoApi";
+
+import ClickAwayListener from "react-click-away-listener";
+
 // Firebase
 import { db } from "../../firebase/firebase.config";
 import { doc, onSnapshot } from "firebase/firestore";
 
+import { useGetCoinsQuery, useGetNewsQuery } from "../../services/cryptoApi";
+
 const Dashboard = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [order, setOrder] = useState("sortByMarketCap");
+
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const keyword = useSelector(selectKeyword);
@@ -29,7 +33,6 @@ const Dashboard = () => {
   // Get logged user's info from firebase after successful login
   useEffect(() => {
     if (token) {
-      console.log(token.id);
       const getUser = () => {
         onSnapshot(doc(db, "users", token.uid), (doc) => {
           dispatch(setUser(doc.data()));
@@ -40,18 +43,10 @@ const Dashboard = () => {
     }
   }, [dispatch, token]);
 
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const [order, setOrder] = useState("sortByMarketCap");
-
-  // Modal Handler
   const modalToggle = () => {
     setModalOpen(!modalOpen);
   };
 
-  // Menu Handler
   const menuToggle = () => {
     setMenuOpen(!menuOpen);
   };
@@ -66,13 +61,12 @@ const Dashboard = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // Coinranking API call
-  const { data: coinrankingApi, isFetching: isCoinsFetching } =
-    useGetCoinsQuery();
+  // Coinranking API call - GET coins
+  const { data: getCoinsApi, isFetching: isCoinsFetching } = useGetCoinsQuery();
 
-  dispatch(setCoins(coinrankingApi?.data?.coins));
+  dispatch(setCoins(getCoinsApi?.data?.coins));
 
-  // News API call
+  // News API - GET news
   const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
     keyword,
     pageSize: "4",
@@ -117,6 +111,7 @@ const Dashboard = () => {
                     >
                       Top 15 Cryptocurrency by
                     </h1>
+
                     {menuOpen && (
                       <>
                         <ClickAwayListener onClickAway={menuToggle}>
@@ -146,6 +141,7 @@ const Dashboard = () => {
                     </button>
                   </Link>
                 </header>
+
                 <div className="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 2xl:grid-cols-3">
                   <CoinBar order={order} />
                 </div>

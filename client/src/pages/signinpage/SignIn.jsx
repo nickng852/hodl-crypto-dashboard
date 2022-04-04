@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 import { setToken } from "../../features/auth/authSlice";
 
@@ -10,11 +11,13 @@ import useForm from "../../hooks/form";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
-  const dispatch = useDispatch();
-  let navigate = useNavigate();
-
   const [isLoading, setIsLoading] = useState(false);
 
+  const dispatch = useDispatch();
+
+  let navigate = useNavigate();
+
+  // Custom Hook
   const {
     form,
     errorMessage,
@@ -32,17 +35,21 @@ const SignIn = () => {
 
     signInWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
-        // Sign In Success
-        dispatch(setToken({ token: userCredential.user }));
+        // Signed in
+
+        // Add Firebase user info to Redux store
+        const user = userCredential.user;
+
+        dispatch(setToken({ token: user }));
 
         navigate("/dashboard");
       })
-      .catch((err) => {
-        // Sign In Fail
+      .catch((error) => {
+        // Sign in fail
         setIsLoading(false);
 
         // Firebase error
-        switch (err.code) {
+        switch (error.code) {
           case "auth/invalid-email":
             setErrorMessage("Invalid email address.");
             break;
@@ -85,10 +92,11 @@ const SignIn = () => {
               >
                 Email
               </label>
+
               <input
                 type="text"
-                value={form.email}
                 name="email"
+                value={form.email}
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 onChange={handleChange}
               />
@@ -101,13 +109,15 @@ const SignIn = () => {
               >
                 Password
               </label>
+
               <input
                 type="password"
-                value={form.password}
                 name="password"
+                value={form.password}
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 onChange={handleChange}
               />
+
               {errorMessage && (
                 <label className="text-xs text-red-500 ">{errorMessage}</label>
               )}

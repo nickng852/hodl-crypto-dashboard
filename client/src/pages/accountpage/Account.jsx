@@ -1,20 +1,19 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectToken,
+  selectUser,
+  resetUser,
+} from "../../features/auth/authSlice";
+
 // Custom Hook
 import useForm from "../../hooks/form";
 
 import ClickAwayListener from "react-click-away-listener";
 
 import defaultProfileImg from "../../assets/images/blank-profile-picture.png";
-
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectToken,
-  selectUser,
-  setUser,
-  setToken,
-} from "../../features/auth/authSlice";
 
 // Firebase
 import { db } from "../../firebase/firebase.config";
@@ -34,10 +33,16 @@ import {
 } from "firebase/storage";
 
 const Account = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [profileImg, setProfileImg] = useState(null);
+  const [isUpdated, setIsUpdated] = useState(false); // whether "Name" or "Email" has been updated
+  const [isEmailSent, setIsEmailSent] = useState(false); // whether Password Reset Email has been sent
+
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
 
+  // Custom Hook
   const {
     initialState,
     form,
@@ -49,11 +54,6 @@ const Account = () => {
     isAccountFormValid,
   } = useForm();
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [profileImg, setProfileImg] = useState(null);
-  const [isUpdated, setIsUpdated] = useState(false); // whether "Name" or "Email" has been updated
-  const [isEmailSent, setIsEmailSent] = useState(false); // whether Password Reset Email has been sent
-
   let navigate = useNavigate();
 
   const modalToggle = () => {
@@ -64,7 +64,7 @@ const Account = () => {
     setIsUpdated(!isUpdated);
   };
 
-  const resetEmailToggle = () => {
+  const sendEmailToggle = () => {
     setIsEmailSent(!isEmailSent);
   };
 
@@ -84,7 +84,7 @@ const Account = () => {
   // Update User Profile Image (Instantly)
   useEffect(() => {
     if (profileImg !== null) {
-      uploadBytes(storageRef, profileImg).then((snapshot) => {
+      uploadBytes(storageRef, profileImg).then(() => {
         getDownloadURL(storageRef)
           .then((url) => {
             const docData = {
@@ -95,8 +95,8 @@ const Account = () => {
 
             setProfileImg(null);
           })
-          .catch((err) => {
-            console.log(err);
+          .catch((error) => {
+            console.log(error);
           });
       });
     }
@@ -107,10 +107,11 @@ const Account = () => {
     sendPasswordResetEmail(auth, user.email)
       .then(() => {
         setIsEmailSent(true);
+
         setForm(initialState);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -119,8 +120,7 @@ const Account = () => {
     deleteUser(currentUser)
       .then(() => {
         // Frontend
-        dispatch(setToken(""));
-        dispatch(setUser(""));
+        dispatch(resetUser());
 
         navigate("/");
 
@@ -131,15 +131,15 @@ const Account = () => {
 
         eraseUser();
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
 
     // Backend - delete user profile image file in firebase storage
     deleteObject(storageRef)
-      .then(() => {})
-      .catch((err) => {
-        console.log(err);
+      .then()
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -173,9 +173,9 @@ const Account = () => {
 
           setForm(initialState);
         })
-        .catch((err) => {
+        .catch((error) => {
           // Firebase error
-          switch (err.code) {
+          switch (error.code) {
             case "auth/invalid-email":
               setErrorMessage("Invalid email address.");
               break;
@@ -190,7 +190,7 @@ const Account = () => {
         });
     }
 
-    // Custom Error
+    // Custom error
     if (form.name === user.name && form.email === user.email) {
       setErrorMessage("Name and email currently in use.");
     } else if (form.name === user.name) {
@@ -285,8 +285,8 @@ const Account = () => {
                     id="user-info-email"
                     name="email"
                     value={form.email}
-                    className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none dark:text-gray-300 dark:border-gray-600 dark:bg-tertiary focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     placeholder="Email"
+                    className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none dark:text-gray-300 dark:border-gray-600 dark:bg-tertiary focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     onChange={handleChange}
                   />
 
@@ -376,7 +376,7 @@ const Account = () => {
             )}
 
             {isEmailSent && (
-              <ClickAwayListener onClickAway={resetEmailToggle}>
+              <ClickAwayListener onClickAway={sendEmailToggle}>
                 <div className="absolute p-4 m-auto transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg w-72 top-1/2 left-1/2 rounded-2xl dark:bg-tertiary">
                   <div className="w-full h-full text-center">
                     <div className="flex flex-col justify-between h-full">
@@ -403,7 +403,7 @@ const Account = () => {
                         <button
                           type="button"
                           className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                          onClick={resetEmailToggle}
+                          onClick={sendEmailToggle}
                         >
                           Close
                         </button>

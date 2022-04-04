@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-const CoinListPagination = ({
-  coins,
-  currentPage,
-  setCurrentPage,
-  itemsPerPage,
-}) => {
+import { useSelector } from "react-redux";
+import { selectCoins } from "../../features/coins/coinsSlice";
+
+const CoinListPagination = ({ currentPage, setCurrentPage, itemsPerPage }) => {
+  const coins = useSelector(selectCoins);
+
   const lastPage = Math.ceil(coins.length / itemsPerPage);
 
   const previousPage = () => {

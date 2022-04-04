@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-// Components
+import { useDispatch } from "react-redux";
+import { setCoins } from "../../features/coins/coinsSlice";
+
 import Spinner from "../../components/loader/Spinner.jsx";
 import CoinList from "../../components/coinlist/CoinList.jsx";
 import CoinListPagination from "../../components/coinlist/CoinListPagination.jsx";
 
-// Services
 import { useGetCoinsQuery } from "../../services/cryptoApi";
 
 const CoinsInfo = () => {
@@ -13,10 +14,12 @@ const CoinsInfo = () => {
 
   const itemsPerPage = 10;
 
-  // Coinranking API call
+  const dispatch = useDispatch();
+
+  // Coinranking API call - GET coins
   const { data: getCoinsApi, isFetching: isCoinsFetching } = useGetCoinsQuery();
 
-  const coins = getCoinsApi?.data?.coins;
+  dispatch(setCoins(getCoinsApi?.data?.coins));
 
   return (
     <>
@@ -40,16 +43,15 @@ const CoinsInfo = () => {
 
                   <div>
                     <CoinListPagination
-                      coins={coins}
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
                       itemsPerPage={itemsPerPage}
                     />
                   </div>
                 </div>
+
                 <div className="mt-6">
                   <CoinList
-                    coins={coins}
                     currentPage={currentPage}
                     itemsPerPage={itemsPerPage}
                   />

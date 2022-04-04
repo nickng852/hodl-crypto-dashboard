@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
+import { useSelector, useDispatch } from "react-redux";
 import { setCoin, setCoinPriceHistory } from "../../features/coins/coinsSlice";
 import { selectKeyword, setNews } from "../../features/news/newsSlice";
 
-// Components
 import Spinner from "../../components/loader/Spinner.jsx";
 import CoinIntro from "../../components/coininfo/CoinIntro.jsx";
 import TimePeriodBar from "../../components/coininfo/TimePeriodBar.jsx";
@@ -14,7 +13,6 @@ import CoinPriceStat from "../../components/coininfo/CoinPriceStat.jsx";
 import CoinDesc from "../../components/coininfo/CoinDesc.jsx";
 import News from "../../components/news/News.jsx";
 
-// Services
 import {
   useGetCoinQuery,
   useGetCoinPriceHistoryQuery,
@@ -22,20 +20,20 @@ import {
 } from "../../services/cryptoApi";
 
 const CoinInfo = () => {
-  const dispatch = useDispatch();
-
-  const keyword = useSelector(selectKeyword);
+  const [timePeriod, setTimePeriod] = useState("24h");
 
   const { uuid } = useParams();
 
-  const [timePeriod, setTimePeriod] = useState("24h");
+  const dispatch = useDispatch();
+  const keyword = useSelector(selectKeyword);
 
-  // Coinranking API call
+  // Coinranking API call - GET coin
   const { data: getCoinApi, isFetching: isCoinFetching } =
     useGetCoinQuery(uuid);
 
   dispatch(setCoin(getCoinApi?.data?.coin));
 
+  // Coinranking API - GET coin price history
   const {
     data: getCoinPriceHistoryApi,
     isFetching: isCoinPriceHistoryFetching,
@@ -43,19 +41,19 @@ const CoinInfo = () => {
 
   const response = getCoinPriceHistoryApi?.data?.history;
 
-  const unflattedCoinHistory = [];
+  const unflattedCoinPriceHistory = [];
 
   if (response) {
-    const reversedCoinHistory = [...response].reverse();
+    const reversedCoinPriceHistory = [...response].reverse();
 
-    unflattedCoinHistory.push(reversedCoinHistory);
+    unflattedCoinPriceHistory.push(reversedCoinPriceHistory);
   }
 
-  const coinPriceHistory = unflattedCoinHistory.flat(1);
+  const coinPriceHistory = unflattedCoinPriceHistory.flat(1);
 
   dispatch(setCoinPriceHistory(coinPriceHistory));
 
-  // News API call
+  // News API - GET news
   const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
     keyword,
     pageSize: "5",
@@ -63,6 +61,7 @@ const CoinInfo = () => {
 
   dispatch(setNews(newsApi?.articles));
 
+  // Chart.js
   const chartLabel = [];
   const chartStat = [];
 
@@ -81,6 +80,7 @@ const CoinInfo = () => {
           <div className="grid h-full grid-cols-3 gap-16 p-20 overflow-auto bg-red-200">
             <div className="w-full col-span-2 bg-blue-200">
               <CoinIntro />
+
               <div className="mt-10">
                 <div className="flex justify-end">
                   <TimePeriodBar
@@ -96,10 +96,10 @@ const CoinInfo = () => {
                     </>
                   ) : (
                     <LineChart
-                      coinInfo
                       chartLabel={chartLabel}
                       chartStat={chartStat}
                       priceChange
+                      coinInfo
                     />
                   )}
                 </div>
