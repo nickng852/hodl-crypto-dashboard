@@ -1,5 +1,5 @@
 import Profile from "./Profile.jsx";
-import ThemeSwitcher from "./ThemeSwitcher.jsx";
+/* import ThemeSwitcher from "./ThemeSwitcher.jsx"; */
 
 const NavControl = () => {
   return (
@@ -7,9 +7,9 @@ const NavControl = () => {
       <section className="relative max-w-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <div>
+            {/*             <div>
               <ThemeSwitcher />
-            </div>
+            </div> */}
 
             <div>
               <Profile />

@@ -18,7 +18,7 @@ export const authSlice = createSlice({
     },
 
     setWatchList: (state, action) => {
-      state.user.watchList = action.payload.watchlist;
+      state.user.watchlist = action.payload.watchlist;
     },
 
     resetUser: (state) => {
