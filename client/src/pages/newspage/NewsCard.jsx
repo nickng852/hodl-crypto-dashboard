@@ -23,8 +23,8 @@ const NewsCard = () => {
             <div className="relative w-96 rounded-3xl">
               <a href={newsUrl} target="_blank" rel="noreferrer">
                 <img
-                  alt={newsTitle}
                   src={newsImage}
+                  alt={newsTitle}
                   onError={showDefaultImg}
                   className="relative object-cover w-full bg-center h-80 rounded-3xl"
                 />

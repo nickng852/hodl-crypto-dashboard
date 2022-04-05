@@ -1,19 +1,19 @@
-import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import {
   selectCoin,
   selectCoinPriceHistory,
 } from "../../features/coins/coinsSlice";
 
+import { Line } from "react-chartjs-2";
 import moment from "moment";
 
 const LineChart = ({
-  coinCard,
-  watchList,
-  coinInfo,
   chartLabel,
   chartStat,
   priceChange,
+  coinCard,
+  watchList,
+  coinInfo,
 }) => {
   const coin = useSelector(selectCoin);
   const coinPriceHistory = useSelector(selectCoinPriceHistory);
@@ -72,7 +72,6 @@ const LineChart = ({
   };
 
   // LineChart Option
-
   let options;
 
   if (coinCard || watchList) {

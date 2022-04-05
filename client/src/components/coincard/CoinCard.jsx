@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
-// Components
-import LineChart from "../linechart/LineChart";
+import { useSelector } from "react-redux";
 import { selectCoins } from "../../features/coins/coinsSlice";
+
+import LineChart from "../linechart/LineChart";
 
 const CoinCard = ({ simplified }) => {
   const coins = useSelector(selectCoins);
@@ -35,20 +35,22 @@ const CoinCard = ({ simplified }) => {
 
           return (
             <Link
-              className="relative overflow-hidden transition-shadow duration-200 bg-white drop-shadow-2xl hover:shadow-lg rounded-3xl w-60 md:w-72 dark:bg-secondary"
-              key={index}
               to={`/coin/${id}`}
+              key={index}
+              className="relative overflow-hidden transition-shadow duration-200 bg-white drop-shadow-2xl hover:shadow-lg rounded-3xl w-60 md:w-72 dark:bg-secondary"
             >
               <img
                 src={icon}
-                alt={crypto}
+                alt={name}
                 className="absolute w-24 h-24 rounded-full opacity-95 -top-6 -right-6 md:-right-4"
               />
+
               <div className="px-4 py-5 sm:p-5">
                 <dl>
                   <span className="px-2 py-1 text-xs font-medium leading-5 text-gray-600 truncate bg-gray-200 rounded-md">
                     {symbol}
                   </span>
+
                   <dd className="mt-4 font-semibold text-gray-500">
                     <span className="mr-3 dark:text-gray-100">{name}</span>
                     <span
@@ -68,6 +70,7 @@ const CoinCard = ({ simplified }) => {
                       }`}
                     </span>
                   </dd>
+
                   <dd className="mt-1 text-3xl font-semibold leading-9 text-gray-900 dark:text-gray-100">
                     $
                     {`${
@@ -80,12 +83,13 @@ const CoinCard = ({ simplified }) => {
                   </dd>
                 </dl>
               </div>
+
               <div className="px-4 pb-5 sm:pb-5">
                 <LineChart
                   key={index}
-                  priceChange={priceChange}
                   chartLabel={chartLabel}
                   chartStat={chartStat}
+                  priceChange={priceChange}
                   coinCard
                 />
               </div>

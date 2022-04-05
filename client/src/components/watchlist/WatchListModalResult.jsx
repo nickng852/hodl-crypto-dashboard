@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { db } from "../../firebase/firebase.config";
-import { doc, updateDoc } from "firebase/firestore";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -9,11 +7,15 @@ import {
   setWatchList,
 } from "../../features/auth/authSlice";
 
+// Firebase
+import { db } from "../../firebase/firebase.config";
+import { doc, updateDoc } from "firebase/firestore";
+
 const WatchListModalResult = ({
   id,
+  icon,
   name,
   symbol,
-  icon,
   setWatchListSearch,
 }) => {
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ const WatchListModalResult = ({
 
   return (
     <>
-      <Link key={id} to="#" className="cursor-default" onClick={addItem}>
+      <Link to="#" key={id} className="cursor-default" onClick={addItem}>
         <div className="flex justify-between px-6 py-3 hover:bg-gray-50 dark:hover:bg-tertiary">
           <div className="w-full">
             <div className="font-medium text-gray-800 dark:text-gray-100">

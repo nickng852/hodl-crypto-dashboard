@@ -24,8 +24,8 @@ const NewsList = () => {
             <div className="relative p-4 w-96 rounded-xl dark:bg-secondary">
               <a href={newsUrl} target="_blank" rel="noreferrer">
                 <img
-                  alt={newsTitle}
                   src={newsImage}
+                  alt={newsTitle}
                   onError={showDefaultImg}
                   className="object-cover w-full bg-center h-60 rounded-xl"
                 />

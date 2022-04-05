@@ -1,18 +1,17 @@
 import { useSelector } from "react-redux";
 import { selectCoin } from "../../features/coins/coinsSlice";
+
 import moment from "moment";
 
 const CoinPriceStat = () => {
   const coin = useSelector(selectCoin);
 
-  // Response handling
-  const symbol = coin?.symbol;
   const name = coin?.name;
-  const volume = Number(coin?.["24hVolume"]);
-  const marketCap = Number(coin?.marketCap);
-  const price = Number(coin?.price);
-
-  const allTimeHighPrice = Number(coin?.allTimeHigh?.price);
+  const symbol = coin?.symbol;
+  const price = Number(coin?.price); // string returned from API
+  const marketCap = Number(coin?.marketCap); // string returned from API
+  const volume = Number(coin?.["24hVolume"]); // string returned from API
+  const allTimeHighPrice = Number(coin?.allTimeHigh?.price); // string returned from API
   const allTimeHighDate = moment
     .unix(coin?.allTimeHigh?.timestamp)
     .format("YYYY/MM/DD");
@@ -52,6 +51,7 @@ const CoinPriceStat = () => {
                     })
               }`}
             </div>
+
             <div className="text-gray-400 dark:text-gray-500">
               ({allTimeHighDate})
             </div>

@@ -1,5 +1,5 @@
 import Profile from "./Profile.jsx";
-import ThemeSwticher from "./ThemeSwticher.jsx";
+import ThemeSwitcher from "./ThemeSwitcher.jsx";
 
 const NavControl = () => {
   return (
@@ -8,8 +8,9 @@ const NavControl = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <div>
-              <ThemeSwticher />
+              <ThemeSwitcher />
             </div>
+
             <div>
               <Profile />
             </div>

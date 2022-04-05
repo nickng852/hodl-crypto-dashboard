@@ -28,18 +28,21 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
                 >
                   Coin Name
                 </th>
+
                 <th
                   scope="col"
                   className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md "
                 >
                   Price
                 </th>
+
                 <th
                   scope="col"
                   className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md "
                 >
                   Market Cap
                 </th>
+
                 <th
                   scope="col"
                   className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md "
@@ -48,6 +51,7 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
                 </th>
               </tr>
             </thead>
+
             {currentItems.map((result, index) => {
               const id = result.uuid;
               const icon = result.iconUrl;
@@ -72,11 +76,13 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
                             className="object-cover w-6 h-6 mx-auto rounded-full"
                           />
                         </div>
+
                         <div className="ml-5">
                           <div className="font-medium text-gray-900 whitespace-no-wrap dark:text-gray-100">
                             {name}
                           </div>
                         </div>
+
                         <div className="ml-3">
                           <span className="text-xs text-gray-600 truncate rounded-md dark:text-gray-400 ">
                             {symbol}
@@ -84,6 +90,7 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
                         </div>
                       </Link>
                     </td>
+
                     <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
                       <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                         $
@@ -96,11 +103,13 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
                         }`}
                       </div>
                     </td>
+
                     <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
                       <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                         ${millify(marketCap, { precision: 2 })}
                       </div>
                     </td>
+
                     <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
                       <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
                         ${millify(volume, { precision: 2 })}

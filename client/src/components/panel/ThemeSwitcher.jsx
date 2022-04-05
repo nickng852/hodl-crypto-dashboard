@@ -1,4 +1,4 @@
-const ThemeSwticher = () => {
+const ThemeSwitcher = () => {
   const toggleTheme = () => {
     const html = document.querySelector("html");
 
@@ -33,4 +33,4 @@ const ThemeSwticher = () => {
   );
 };
 
-export default ThemeSwticher;
+export default ThemeSwitcher;

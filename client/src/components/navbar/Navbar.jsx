@@ -1,4 +1,3 @@
-// Components
 import SearchBar from "../searchbar/SearchBar.jsx";
 import NavControl from "../panel/NavControl.jsx";
 

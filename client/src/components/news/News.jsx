@@ -1,8 +1,9 @@
-import moment from "moment";
 import { useSelector } from "react-redux";
 import { selectNews } from "../../features/news/newsSlice";
 
-import notfoundimg from "../../assets/images/404-01-scaled.jpg";
+import moment from "moment";
+
+import defaultImg from "../../assets/images/404-01-scaled.jpg";
 
 const News = () => {
   const news = useSelector(selectNews);
@@ -11,7 +12,7 @@ const News = () => {
     <>
       <div className="grid gap-y-7">
         {news.map((result, index) => {
-          const newsImage = result.urlToImage ? result.urlToImage : notfoundimg;
+          const newsImage = result.urlToImage ? result.urlToImage : defaultImg;
           const newsTitle = result.title;
           const newsPublishDate = moment(result.publishedAt)
             .startOf("ss")

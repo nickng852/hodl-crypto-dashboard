@@ -13,7 +13,7 @@ import useForm from "../../hooks/form";
 
 import ClickAwayListener from "react-click-away-listener";
 
-import defaultProfileImg from "../../assets/images/blank-profile-picture.png";
+import defaultImg from "../../assets/images/blank-profile-picture.png";
 
 // Firebase
 import { db } from "../../firebase/firebase.config";
@@ -224,9 +224,7 @@ const Account = () => {
 
                     <img
                       alt="User Icon"
-                      src={
-                        user.profileImg ? user.profileImg : defaultProfileImg
-                      }
+                      src={user.profileImg ? user.profileImg : defaultImg}
                       className="object-cover w-16 h-16"
                     />
 

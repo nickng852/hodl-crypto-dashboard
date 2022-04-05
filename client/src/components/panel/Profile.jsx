@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
-import ClickAwayListener from "react-click-away-listener";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setToken, selectUser, setUser } from "../../features/auth/authSlice";
+import { selectUser, resetUser } from "../../features/auth/authSlice";
+
+import ClickAwayListener from "react-click-away-listener";
+
+// Firebase
+import { getAuth, signOut } from "firebase/auth";
 
 const Profile = () => {
-  const dispatch = useDispatch();
-
-  const user = useSelector(selectUser);
-
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   const menuToggle = () => {
     setMenuOpen(!menuOpen);
@@ -24,14 +26,13 @@ const Profile = () => {
 
     signOut(auth)
       .then(() => {
-        // Logout account
-        dispatch(setToken(""));
-        dispatch(setUser(""));
+        // Sign-out successful.
+        dispatch(resetUser());
 
         navigate("/");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -70,6 +71,7 @@ const Profile = () => {
           </>
         )}
       </button>
+
       {menuOpen ? (
         <ClickAwayListener onClickAway={menuToggle}>
           <div className="relative">
@@ -79,6 +81,7 @@ const Profile = () => {
                   Account
                 </span>
               </Link>
+
               <Link to="#" onClick={logOut}>
                 <span className="flex px-4 py-3 text-gray-700 rounded-b-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary">
                   Logout

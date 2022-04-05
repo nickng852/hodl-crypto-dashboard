@@ -4,32 +4,34 @@ import { selectCoin } from "../../features/coins/coinsSlice";
 const CoinIntro = () => {
   const coin = useSelector(selectCoin);
 
-  // Response handling
+  const rank = coin?.rank;
   const icon = coin?.iconUrl;
   const name = coin?.name;
-  const rank = coin?.rank;
-  const priceChange = Number(coin?.change);
-  const AbsPriceChange = Math.abs(priceChange); // trim "-" for display
   const symbol = coin?.symbol;
+  const priceChange = Number(coin?.change); // string returned from API
+  const AbsPriceChange = Math.abs(priceChange); // trim "-" for display
 
   return (
     <>
       <div className="flex gap-5">
         <div>
           <img
-            alt={crypto}
+            alt={name}
             src={icon}
             className="w-16 h-16 p-3 rounded-full bg-gray-50"
           />
         </div>
+
         <div className="flex flex-col justify-center">
           <div className="flex">
             <div className="text-xl font-semibold text-gray-700 dark:text-gray-200">
               {name}
             </div>
+
             <span className="px-2 py-1 mx-2 text-xs font-medium leading-5 text-gray-600 truncate bg-gray-200 rounded-md">
               Rank #{rank}
             </span>
+
             <span
               className={`px-2 py-1 text-xs font-medium leading-5 text-gray-100 truncate rounded-md ${
                 priceChange < 0 ? "bg-red-600" : "bg-green-500"

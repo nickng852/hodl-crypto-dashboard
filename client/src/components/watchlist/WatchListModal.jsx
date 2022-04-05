@@ -1,16 +1,17 @@
 import { useState } from "react";
-import ClickAwayListener from "react-click-away-listener";
-import WatchListModalResult from "./WatchListModalResult.jsx";
 
 import { useSelector } from "react-redux";
 import { selectCoins } from "../../features/coins/coinsSlice";
 
-const WatchListModal = ({ modalOpen, setModalOpen }) => {
-  const coins = useSelector(selectCoins);
+import WatchListModalResult from "./WatchListModalResult.jsx";
 
+import ClickAwayListener from "react-click-away-listener";
+
+const WatchListModal = ({ modalOpen, setModalOpen }) => {
   const [watchListSearch, setWatchListSearch] = useState("");
 
-  // Modal Handler
+  const coins = useSelector(selectCoins);
+
   const modalToggle = () => {
     setModalOpen(!modalOpen);
 
@@ -74,9 +75,9 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
                     <WatchListModalResult
                       key={result.id}
                       id={result.uuid}
+                      icon={result.iconUrl}
                       name={result.name}
                       symbol={result.symbol}
-                      icon={result.iconUrl}
                       setWatchListSearch={setWatchListSearch}
                     />
                   </>

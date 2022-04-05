@@ -1,18 +1,16 @@
 import { useState } from "react";
-import SearchBarResult from "./SearchBarResult.jsx";
-import ClickAwayListener from "react-click-away-listener";
 
-// Services
-import { useGetCoinsQuery } from "../../services/cryptoApi";
+import { useSelector } from "react-redux";
+import { selectCoins } from "../../features/coins/coinsSlice";
+
+import SearchBarResult from "./SearchBarResult.jsx";
+
+import ClickAwayListener from "react-click-away-listener";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
 
-  // Coinranking API call
-  const { data: coinrankingApi, isFetching: isCoinsFetching } =
-    useGetCoinsQuery();
-
-  const coins = coinrankingApi?.data?.coins;
+  const coins = useSelector(selectCoins);
 
   // Find matched results between input value and API data
   const filteredCoins = coins?.filter(
@@ -50,15 +48,17 @@ const SearchBar = () => {
             ></path>
           </svg>
         </span>
+
         <input
           type="text"
           id="search"
           maxLength="27"
-          className="w-full py-3 pl-12 pr-4 text-gray-600 placeholder-gray-400 bg-gray-100 rounded-xl dark:placeholder-gray-400 dark:bg-tertiary dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
           placeholder="Search Crypto"
+          className="w-full py-3 pl-12 pr-4 text-gray-600 placeholder-gray-400 bg-gray-100 rounded-xl dark:placeholder-gray-400 dark:bg-tertiary dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
           onChange={handleChange}
         />
-        {!isCoinsFetching && search && search?.length !== 0 ? (
+
+        {coins && search && search?.length !== 0 ? (
           <span
             className="absolute inset-y-0 right-0 flex items-center pr-5"
             onClick={handleClickAway}
@@ -80,7 +80,7 @@ const SearchBar = () => {
           </span>
         ) : null}
 
-        {!isCoinsFetching && search && filteredCoins.length !== 0 ? ( // Search result will show only when input field is not empty and match result is returned.
+        {coins && search && filteredCoins.length !== 0 ? ( // Search result will show only when input field is not empty and match result is returned.
           <ClickAwayListener onClickAway={handleClickAway}>
             <div className="absolute inset-x-0 z-10 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-2xl max-h-72 dark:bg-secondary dark:border-transparent">
               {filteredCoins.map((result, index) => {
@@ -88,7 +88,6 @@ const SearchBar = () => {
                   <>
                     <SearchBarResult
                       key={index}
-                      result={result}
                       id={result.uuid}
                       icon={result.iconUrl}
                       name={result.name}

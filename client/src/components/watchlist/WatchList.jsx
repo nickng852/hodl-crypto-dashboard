@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
 
-import { selectCoins } from "../../features/coins/coinsSlice";
-
-// Components
-import LineChart from "../linechart/LineChart";
-
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectToken,
   selectUser,
   setWatchList,
 } from "../../features/auth/authSlice";
+import { selectCoins } from "../../features/coins/coinsSlice";
+
+import LineChart from "../linechart/LineChart";
 
 // Firebase
 import { db } from "../../firebase/firebase.config";
@@ -42,11 +40,11 @@ const WatchList = () => {
             {watchlist.map((result, index) => {
               const id = result.uuid;
               const icon = result.iconUrl;
-              const symbol = result.symbol;
               const name = result.name;
+              const symbol = result.symbol;
               const price = Number(result.price); // string returned from API
               const priceChange = Number(result.change); // string returned from API
-              const AbsPriceChange = Math.abs(priceChange);
+              const AbsPriceChange = Math.abs(priceChange); // trim "-" for display
 
               // LineChart Data
               const chartLabel = [];
@@ -79,8 +77,7 @@ const WatchList = () => {
 
               return (
                 <>
-                  <div key={id} className="relative">
-                    {/* Individual watchlist */}
+                  <div className="relative">
                     <Link
                       to={`/coin/${id}`}
                       key={index}
@@ -144,9 +141,7 @@ const WatchList = () => {
                         </div>
                       </div>
                     </Link>
-                    {/* Individual watchlist */}
 
-                    {/* Remove button */}
                     <button
                       className="absolute p-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto right-4 top-1/2 hover:bg-gray-200 dark:hover:bg-tertiary dark:text-gray-300"
                       onClick={removeItem}
@@ -166,7 +161,6 @@ const WatchList = () => {
                         />
                       </svg>
                     </button>
-                    {/* Remove button */}
                   </div>
                 </>
               );
