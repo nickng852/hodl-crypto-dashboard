@@ -2,9 +2,16 @@ const ThemeSwitcher = () => {
   const toggleTheme = () => {
     const html = document.querySelector("html");
 
-    html.classList.length === 0
-      ? html.classList.add("dark")
-      : html.classList.remove("dark");
+    if (
+      localStorage.getItem("Theme") === null ||
+      localStorage.getItem("Theme") === "Light"
+    ) {
+      html.classList.add("dark");
+      localStorage.setItem("Theme", "Dark");
+    } else if (localStorage.getItem("Theme") === "Dark") {
+      html.classList.remove("dark");
+      localStorage.setItem("Theme", "Light");
+    }
   };
 
   return (
