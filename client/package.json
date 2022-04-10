@@ -9,7 +9,6 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "autoprefixer": "^9.8.7",
     "axios": "^0.22.0",
     "chart.js": "^3.6.0",
     "firebase": "^9.1.2",
@@ -17,7 +16,6 @@
     "millify": "^4.0.0",
     "moment": "^2.29.1",
     "node-sass": "^6.0.1",
-    "postcss": "^8.4.12",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.3.0",
     "react-click-away-listener": "^2.0.5",
@@ -28,7 +26,6 @@
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.16",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -36,8 +33,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -56,5 +52,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.4",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.23"
   }
 }

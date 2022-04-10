@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
+  const [IsActive, setIsActive] = useState("Dashboard");
   const [isExpand, setIsExpand] = useState(false);
 
   const handleClick = () => {
@@ -29,9 +30,15 @@ const Sidebar = () => {
               {/* Dashboard */}
               <Link
                 to="/dashboard"
-                className={`${
-                  isExpand ? "justify-start" : "justify-center"
-                } py-2 px-3 flex items-center text-gray-600 transition-colors duration-200 rounded-lg focus:text-gray-900 hover:text-gray-900 focus:bg-gray-100 hover:bg-gray-100 dark:hover:text-gray-50 dark:hover:bg-tertiary dark:focus:bg-tertiary dark:text-gray-300 dark:focus:text-gray-50`}
+                className={`
+                ${
+                  IsActive === "Dashboard"
+                    ? "text-gray-900 bg-gray-100 dark:text-gray-50 dark:bg-tertiary"
+                    : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50 hover:bg-gray-100 dark:hover:bg-tertiary"
+                }
+                ${isExpand ? "justify-start" : "justify-center"}
+                flex items-center px-3 py-2 transition-colors duration-200 rounded-lg`}
+                onClick={() => setIsActive("Dashboard")}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,9 +65,15 @@ const Sidebar = () => {
               {/* Cryptocurrency */}
               <Link
                 to="/coins"
-                className={`${
-                  isExpand ? "justify-start" : "justify-center"
-                } py-2 px-3 flex items-center text-gray-600 transition-colors duration-200 rounded-lg focus:text-gray-900 hover:text-gray-900 focus:bg-gray-100 hover:bg-gray-100 dark:hover:text-gray-50 dark:hover:bg-tertiary dark:focus:bg-tertiary dark:text-gray-300 dark:focus:text-gray-50`}
+                className={`
+                ${
+                  IsActive === "Cryptocurrency"
+                    ? "text-gray-900 bg-gray-100 dark:text-gray-50 dark:bg-tertiary"
+                    : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50 hover:bg-gray-100 dark:hover:bg-tertiary"
+                }
+                ${isExpand ? "justify-start" : "justify-center"}
+                flex items-center px-3 py-2 transition-colors duration-200 rounded-lg`}
+                onClick={() => setIsActive("Cryptocurrency")}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -87,9 +100,15 @@ const Sidebar = () => {
               {/* News */}
               <Link
                 to="/news"
-                className={`${
-                  isExpand ? "justify-start" : "justify-center"
-                } py-2 px-3 flex items-center text-gray-600 transition-colors duration-200 rounded-lg focus:text-gray-900 hover:text-gray-900 focus:bg-gray-100 hover:bg-gray-100 dark:hover:text-gray-50 dark:hover:bg-tertiary dark:focus:bg-tertiary dark:text-gray-300 dark:focus:text-gray-50`}
+                className={`
+                ${
+                  IsActive === "News"
+                    ? "text-gray-900 bg-gray-100 dark:text-gray-50 dark:bg-tertiary"
+                    : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50 hover:bg-gray-100 dark:hover:bg-tertiary"
+                }
+                ${isExpand ? "justify-start" : "justify-center"}
+                flex items-center px-3 py-2 transition-colors duration-200 rounded-lg`}
+                onClick={() => setIsActive("News")}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -116,9 +135,15 @@ const Sidebar = () => {
               {/* Setting */}
               <Link
                 to="/setting"
-                className={`${
-                  isExpand ? "justify-start" : "justify-center"
-                } py-2 px-3 flex items-center text-gray-600 transition-colors duration-200 rounded-lg focus:text-gray-900 hover:text-gray-900 focus:bg-gray-100 hover:bg-gray-100 dark:hover:text-gray-50 dark:hover:bg-tertiary dark:focus:bg-tertiary dark:text-gray-300 dark:focus:text-gray-50`}
+                className={`
+                ${
+                  IsActive === "Setting"
+                    ? "text-gray-900 bg-gray-100 dark:text-gray-50 dark:bg-tertiary"
+                    : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50 hover:bg-gray-100 dark:hover:bg-tertiary"
+                }
+                ${isExpand ? "justify-start" : "justify-center"}
+                flex items-center px-3 py-2 transition-colors duration-200 rounded-lg`}
+                onClick={() => setIsActive("Setting")}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
