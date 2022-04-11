@@ -80,17 +80,19 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-800">
-        <div className="w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-          <div className="text-3xl font-semibold text-center text-gray-700 dark:text-white">
-            Sign Up
+      <div className="flex h-screen bg-gray-100 dark:bg-secondary">
+        <div className="w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md dark:bg-tertiary">
+          <div className="flex flex-col justify-center space-y-4 text-center text-gray-800 item-center dark:text-white">
+            <div className="text-3xl font-semibold">HODL</div>
+
+            <span className="text-md">Sign Up</span>
           </div>
 
           <form className="mt-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm text-gray-800 dark:text-gray-200"
+                className="text-sm text-gray-700 dark:text-gray-200"
               >
                 Name
               </label>
@@ -99,7 +101,7 @@ const SignUp = () => {
                 type="text"
                 name="name"
                 value={form.name}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-md dark:bg-tertiary dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 focus:outline-none focus:ring"
                 onChange={handleChange}
               />
             </div>
@@ -107,7 +109,7 @@ const SignUp = () => {
             <div className="mt-4">
               <label
                 htmlFor="email"
-                className="block text-sm text-gray-800 dark:text-gray-200"
+                className="text-sm text-gray-700 dark:text-gray-200"
               >
                 Email
               </label>
@@ -116,7 +118,7 @@ const SignUp = () => {
                 type="text"
                 name="email"
                 value={form.email}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-md dark:bg-tertiary dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 focus:outline-none focus:ring"
                 onChange={handleChange}
               />
             </div>
@@ -124,7 +126,7 @@ const SignUp = () => {
             <div className="mt-4">
               <label
                 htmlFor="password"
-                className="block text-sm text-gray-800 dark:text-gray-200"
+                className="text-sm text-gray-700 dark:text-gray-200"
               >
                 Password
               </label>
@@ -133,20 +135,20 @@ const SignUp = () => {
                 type="password"
                 name="password"
                 value={form.password}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-md dark:bg-tertiary dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 focus:outline-none focus:ring"
                 onChange={handleChange}
               />
 
               {errorMessage && (
-                <label className="text-xs text-red-500 ">{errorMessage}</label>
+                <label className="text-xs text-red-500">{errorMessage}</label>
               )}
             </div>
 
-            <div className="mt-6">
+            <div className="mt-4">
               <button
                 type="submit"
                 disabled={!isSignUpFormValid}
-                className="flex items-center justify-center w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600 disabled:opacity-20 disabled:cursor-auto"
+                className="flex items-center justify-center w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded-md dark:bg-gray-500 hover:bg-gray-600 disabled:bg-gray-300 disabled:cursor-auto disabled:hover:bg-gray-300 dark:disabled:bg-tertiary dark:disabled:border-gray-700 dark:disabled:border dark:disabled:hover:bg-tertiary dark:disabled:text-gray-600"
               >
                 <span>Sign Up</span>
 
@@ -176,11 +178,14 @@ const SignUp = () => {
             </div>
           </form>
 
-          <div className="mt-8 text-xs font-light text-center text-gray-400">
-            Already have an account?
+          <div className="flex items-center justify-center mt-6 space-x-1 text-xs">
+            <div className="font-light text-gray-500 dark:text-gray-400">
+              Already have an account?
+            </div>
+
             <Link
               to="/"
-              className="ml-1 font-medium text-gray-700 dark:text-gray-200 hover:underline"
+              className="font-medium text-gray-700 dark:text-gray-200 hover:underline"
             >
               Log In
             </Link>

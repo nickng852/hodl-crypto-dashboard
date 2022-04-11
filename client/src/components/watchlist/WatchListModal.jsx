@@ -32,7 +32,7 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
   return (
     <>
       <ClickAwayListener onClickAway={modalToggle}>
-        <div className="absolute z-10 flex w-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg top-1/2 left-1/2 dark:bg-secondary h-1/2">
+        <div className="fixed z-10 flex w-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg top-1/2 left-1/2 dark:bg-secondary h-1/2">
           <div className="flex flex-col w-full gap-6 p-6">
             <div className="flex justify-between">
               <h1 className="flex items-center text-xl font-bold cursor-default dark:text-gray-100">
