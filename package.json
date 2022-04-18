@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev-start": "concurrently \"nodemon server.js\" \"cd client && npm start\""
+    "start": "concurrently \"nodemon index.js\" \"cd client && npm start\""
   },
   "author": "",
   "license": "ISC",
