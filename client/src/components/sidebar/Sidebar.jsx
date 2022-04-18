@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   const [IsActive, setIsActive] = useState("Dashboard");
@@ -9,9 +9,34 @@ const Sidebar = () => {
     setIsExpand(!isExpand);
   };
 
+  const location = useLocation();
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/dashboard":
+        setIsActive("Dashboard");
+        break;
+
+      case "/coins":
+        setIsActive("Cryptocurrency");
+        break;
+
+      case "/news":
+        setIsActive("News");
+        break;
+
+      case "/setting":
+        setIsActive("Setting");
+        break;
+
+      default:
+        setIsActive("");
+    }
+  }, [location.pathname]);
+
   return (
     <>
-      <main className="z-10 h-screen bg-white shadow-xl dark:bg-secondary">
+      <main className="z-10 hidden h-screen bg-white shadow-xl sm:block dark:bg-secondary">
         <div className="flex">
           <div className={`h-screen ${isExpand ? "w-72" : "w-24"}`}>
             {/* Site Name */}
@@ -38,7 +63,6 @@ const Sidebar = () => {
                 }
                 ${isExpand ? "justify-start" : "justify-center"}
                 flex items-center px-3 py-2 transition-colors duration-200 rounded-lg`}
-                onClick={() => setIsActive("Dashboard")}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +97,6 @@ const Sidebar = () => {
                 }
                 ${isExpand ? "justify-start" : "justify-center"}
                 flex items-center px-3 py-2 transition-colors duration-200 rounded-lg`}
-                onClick={() => setIsActive("Cryptocurrency")}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +131,6 @@ const Sidebar = () => {
                 }
                 ${isExpand ? "justify-start" : "justify-center"}
                 flex items-center px-3 py-2 transition-colors duration-200 rounded-lg`}
-                onClick={() => setIsActive("News")}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +165,6 @@ const Sidebar = () => {
                 }
                 ${isExpand ? "justify-start" : "justify-center"}
                 flex items-center px-3 py-2 transition-colors duration-200 rounded-lg`}
-                onClick={() => setIsActive("Setting")}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

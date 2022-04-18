@@ -5,7 +5,7 @@ const NavBar = () => {
   return (
     <>
       <div className="z-10">
-        <nav className="static flex items-center justify-end w-full p-4 bg-white 2xl:w-auto dark:bg-secondary">
+        <nav className="flex items-center justify-end w-full p-4 bg-white 2xl:w-auto dark:bg-secondary">
           {/*           <Menu /> */}
           <SearchBar />
           <NavControl />

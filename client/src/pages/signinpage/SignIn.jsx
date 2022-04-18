@@ -78,8 +78,8 @@ const SignIn = () => {
 
   return (
     <>
-      <div className="flex h-screen bg-gray-100 dark:bg-secondary">
-        <div className="w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md dark:bg-tertiary">
+      <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-secondary">
+        <div className="w-full max-w-sm p-6 m-4 bg-white rounded-md shadow-md dark:bg-tertiary">
           <div className="flex flex-col justify-center space-y-4 text-center text-gray-800 item-center dark:text-white">
             <div className="text-3xl font-semibold">HODL</div>
 
@@ -159,7 +159,7 @@ const SignIn = () => {
             </div>
           </form>
 
-          <div className="flex items-center justify-center mt-6 space-x-1 text-xs">
+          <div className="items-center justify-center mt-6 space-x-1 text-xs text-center sm:flex">
             <div className="font-light text-gray-500 dark:text-gray-400">
               Don't have an account?
             </div>

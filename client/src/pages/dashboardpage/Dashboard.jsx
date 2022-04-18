@@ -102,7 +102,7 @@ const Dashboard = () => {
               </section>
 
               {/* Coin Bar */}
-              <section className="p-8 mt-10 bg-white drop-shadow-xl rounded-3xl dark:bg-secondary">
+              <section className="p-8 mt-10 bg-white rounded-3xl dark:bg-secondary">
                 <header className="flex items-center justify-between">
                   <div className="relative">
                     <h1
