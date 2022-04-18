@@ -19,10 +19,12 @@ app.use("/getCoins", coinsRoute);
 app.use("/getCoin", coinRoute);
 app.use("/getNews", newsRoute);
 
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(
+  express.static(path.join(__dirname, "../crypto-dashboard/client/build"))
+);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build"));
+  res.sendFile(path.join(__dirname, "../crypto-dashboard/client/build"));
 });
 
 // Server
