@@ -19,6 +19,12 @@ app.use("/getCoins", coinsRoute);
 app.use("/getCoin", coinRoute);
 app.use("/getNews", newsRoute);
 
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build"));
+});
+
 // Server
 app.listen(port, () => {
   console.log(`Running on http://localhost:${port}`);
