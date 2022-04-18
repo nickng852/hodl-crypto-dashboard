@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const port = 3001;
 
 const cors = require("cors");
 
@@ -19,6 +18,6 @@ app.use("/getCoin", coinRoute);
 app.use("/getNews", newsRoute);
 
 // Server
-app.listen(port, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log(`Running on http://localhost:${port}`);
 });
