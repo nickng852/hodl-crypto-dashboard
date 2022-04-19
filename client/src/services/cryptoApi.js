@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl = "https://crypto-dashboard-heroku.herokuapp.com/";
 
 export const cryptoApi = createApi({
   reducerPath: "cryptoApi",
