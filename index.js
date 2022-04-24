@@ -19,13 +19,13 @@ app.use("/getCoins", coinsRoute);
 app.use("/getCoin", coinRoute);
 app.use("/getNews", newsRoute);
 
-app.use(
+/* app.use(
   express.static(path.join(__dirname, "../crypto-dashboard/client/build"))
 );
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../crypto-dashboard/client/build"));
-});
+}); */
 
 // Server
 app.listen(port, () => {
