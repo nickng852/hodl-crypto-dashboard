@@ -9,6 +9,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
     "dev": "concurrently \"nodemon index.js\" \"cd client && npm start\""
   },
   "author": "",

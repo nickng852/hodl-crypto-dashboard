@@ -19,6 +19,10 @@ app.use("/getCoins", coinsRoute);
 app.use("/getCoin", coinRoute);
 app.use("/getNews", newsRoute);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 /* app.use(
   express.static(path.join(__dirname, "../crypto-dashboard/client/build"))
 );
