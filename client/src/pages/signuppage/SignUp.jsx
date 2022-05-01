@@ -72,6 +72,10 @@ const SignUp = () => {
             setErrorMessage("Internal error.");
             break;
 
+          case "auth/invalid-api-key":
+            setErrorMessage("Internal error.");
+            break;
+
           default:
             return "";
         }
