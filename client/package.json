@@ -2,7 +2,7 @@
   "name": "crypto-dashboard",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nickng852.github.io/crypto-dashboard/",
+  "homepage": "",
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@reduxjs/toolkit": "^1.7.1",
