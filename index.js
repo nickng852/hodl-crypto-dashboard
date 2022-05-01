@@ -21,9 +21,12 @@ app.use("/getCoin", coinRoute);
 app.use("/getNews", newsRoute);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  // Serve static files from the React frontend app
+  app.use(express.static(path.join(__dirname, "./client/build")));
+
+  // AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
   app.get("*", (req, res) => {
-    req.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+    res.sendFile(path.join(__dirname + "./client/build/index.html"));
   });
 }
 
