@@ -32,20 +32,20 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
   return (
     <>
       <ClickAwayListener onClickAway={modalToggle}>
-        <div className="fixed z-10 flex w-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg top-1/2 left-1/2 dark:bg-secondary h-1/2">
-          <div className="flex flex-col w-full gap-6 p-6">
+        <div className="fixed z-10 flex w-5/6 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg 2xl:w-1/4 top-1/2 left-1/2 dark:bg-secondary h-3/5 2xl:h-1/2">
+          <div className="flex flex-col w-full gap-6 p-5 2xl:p-6">
             <div className="flex justify-between">
-              <h1 className="flex items-center text-xl font-bold cursor-default dark:text-gray-100">
+              <h1 className="flex items-center text-base font-bold cursor-default md:text-xl dark:text-gray-100">
                 Add to watchlist
               </h1>
 
               <button
-                className="flex items-center justify-center p-2 rounded cursor-default dark:hover:bg-gray-700 dark:text-gray-300 hover:bg-gray-200"
+                className="flex items-center justify-center rounded cursor-default 2xl:p-2 dark:hover:bg-tertiary hover:bg-gray-200 dark:text-gray-300"
                 onClick={modalToggle}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="z-40 w-6 h-6"
+                  className="z-40 w-5 h-5 2xl:w-6 2xl:h-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -62,7 +62,7 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
 
             <div>
               <input
-                className="w-full px-4 py-3 text-gray-700 bg-white border dark:placeholder-gray-500 dark:bg-tertiary rounded-xl dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                className="w-full px-2 py-1 text-gray-700 bg-white border rounded-md 2xl:rounded-xl 2xl:px-4 2xl:py-3 dark:placeholder-gray-500 dark:bg-tertiary dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring placeholder:text-sm 2xl:placeholder:text-base"
                 placeholder="Search Crypto"
                 onChange={handleChange}
               />

@@ -69,7 +69,7 @@ const Dashboard = () => {
   // News API - GET news
   const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
     keyword,
-    pageSize: "4",
+    pageSize: "3",
   });
 
   dispatch(setNews(newsApi?.articles));
@@ -78,7 +78,7 @@ const Dashboard = () => {
     <>
       {(isCoinsFetching || isNewsFetching) && (
         <>
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center w-full h-full">
             <Spinner />
           </div>
         </>
@@ -86,60 +86,73 @@ const Dashboard = () => {
 
       {!isCoinsFetching && !isNewsFetching && (
         <>
-          <main className="block w-full h-full 2xl:flex">
-            <div className="px-10 2xl:py-0 2xl:pl-16 2xl:pr-8 2xl:w-2/3">
+          <main className="w-full h-full 2xl:flex">
+            <div className="flex flex-col justify-between p-4 space-y-6 2xl:pl-12 2xl:pr-6 2xl:py-12 2xl:w-2/3">
               {/* Coin Card */}
-              <section>
-                <header className="flex items-center justify-between mt-10">
-                  <h1 className="text-2xl text-gray-500 cursor-default dark:text-gray-100 font-header">
+              <section className="space-y-4">
+                <header className="flex items-center">
+                  <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
                     Dashboard
                   </h1>
                 </header>
 
-                <div className="mt-6">
+                <div>
                   <CoinCard simplified />
                 </div>
               </section>
 
               {/* Coin Bar */}
-              <section className="p-8 mt-10 bg-white rounded-3xl dark:bg-secondary">
+              <section className="p-6 space-y-4 bg-white 2xl:p-8 rounded-3xl dark:bg-secondary ">
                 <header className="flex items-center justify-between">
                   <div className="relative">
                     <h1
-                      className="text-2xl text-gray-500 cursor-default dark:text-gray-100 font-header"
+                      className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header"
                       onClick={menuToggle}
                     >
                       Top 15 Cryptocurrency by
                     </h1>
-
-                    {menuOpen && (
-                      <>
-                        <ClickAwayListener onClickAway={menuToggle}>
-                          <div className="absolute left-0 z-10 w-56 mt-2 origin-top-left bg-white rounded-lg shadow-lg dark:bg-secondary ring-1 ring-black ring-opacity-5">
-                            <span
-                              className="flex px-4 py-3 text-gray-700 rounded-t-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
-                              onClick={sortByMarketCap}
-                            >
-                              MarketCap
-                            </span>
-
-                            <span
-                              className="flex px-4 py-3 text-gray-700 rounded-t-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
-                              onClick={sortByVolume}
-                            >
-                              Volume
-                            </span>
-                          </div>
-                        </ClickAwayListener>
-                      </>
-                    )}
                   </div>
 
                   <Link to="/coins">
-                    <button className="px-5 py-3 text-sm font-medium text-gray-500 transition-colors duration-200 rounded-lg dark:hover:bg-tertiary dark:text-gray-300 hover:bg-gray-200 font-header">
-                      See all
+                    <button className="p-2 text-sm font-medium text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 font-header dark:hover:bg-tertiary hover:bg-gray-200 ">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
                     </button>
                   </Link>
+
+                  {menuOpen && (
+                    <>
+                      <ClickAwayListener onClickAway={menuToggle}>
+                        <div className="absolute left-0 z-10 w-56 mt-2 origin-top-left bg-white rounded-lg shadow-lg dark:bg-secondary ring-1 ring-black ring-opacity-5">
+                          <span
+                            className="flex px-4 py-3 text-gray-700 rounded-t-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
+                            onClick={sortByMarketCap}
+                          >
+                            MarketCap
+                          </span>
+
+                          <span
+                            className="flex px-4 py-3 text-gray-700 rounded-t-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
+                            onClick={sortByVolume}
+                          >
+                            Volume
+                          </span>
+                        </div>
+                      </ClickAwayListener>
+                    </>
+                  )}
                 </header>
 
                 <div className="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 2xl:grid-cols-3">
@@ -148,11 +161,11 @@ const Dashboard = () => {
               </section>
             </div>
 
-            <div className="p-10 2xl:py-0 2xl:pl-8 2xl:pr-16 2xl:w-1/3">
+            <div className="p-6 space-y-4 2xl:pl-6 2xl:pr-12 2xl:w-1/3 2xl:justify-between 2xl:flex 2xl:flex-col 2xl:py-12">
               {/* Watchlist */}
-              <section>
-                <header className="flex items-center justify-between mt-10">
-                  <h1 className="text-2xl text-gray-500 cursor-default dark:text-gray-100 font-header">
+              <section className="space-y-4">
+                <header className="flex items-center justify-between">
+                  <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
                     Watchlist
                   </h1>
 
@@ -177,7 +190,7 @@ const Dashboard = () => {
                   </button>
                 </header>
 
-                <div className="mt-6">
+                <div>
                   <WatchList />
 
                   {modalOpen && (
@@ -192,9 +205,9 @@ const Dashboard = () => {
               </section>
 
               {/* News */}
-              <section>
+              <section className="hidden md:block">
                 <header className="flex items-center justify-between mt-10">
-                  <h1 className="text-2xl text-gray-500 cursor-default dark:text-gray-100 font-header">
+                  <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
                     News Feed
                   </h1>
 

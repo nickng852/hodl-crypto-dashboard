@@ -18,13 +18,15 @@ const CoinPriceStat = () => {
 
   return (
     <>
-      <main className="flex flex-col p-8 bg-white rounded-2xl dark:text-gray-100 dark:bg-secondary">
-        <div className="text-xl font-bold">{symbol} Price Statistics</div>
-        <div className="py-2 text-sm text-gray-400 border-b border-gray-200 dark:text-gray-500 dark:border-gray-700">
+      <main className="flex flex-col p-6 bg-white 2xl:p-8 rounded-2xl dark:text-gray-100 dark:bg-secondary">
+        <div className="text-base font-bold 2xl:text-xl">
+          {symbol} Price Statistics
+        </div>
+        <div className="py-2 text-xs text-gray-400 border-b border-gray-200 2xl:text-sm dark:text-gray-500 dark:border-gray-700">
           {name} Price Today
         </div>
 
-        <div className="flex justify-between py-4 border-b border-gray-200 text-md dark:border-gray-700">
+        <div className="flex justify-between py-4 text-sm border-b border-gray-200 2xl:text-md dark:border-gray-700">
           <div>{name} Price</div>
           <div>
             $
@@ -38,7 +40,7 @@ const CoinPriceStat = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between py-4 text-right border-b border-gray-200 dark:border-gray-700 text-md">
+        <div className="flex items-center justify-between py-4 text-sm text-right border-b border-gray-200 dark:border-gray-700 2xl:text-md">
           <div>All Time High</div>
           <div>
             <div>
@@ -58,12 +60,12 @@ const CoinPriceStat = () => {
           </div>
         </div>
 
-        <div className="flex justify-between py-4 border-b border-gray-200 dark:border-gray-700 text-md">
+        <div className="flex justify-between py-4 text-sm border-b border-gray-200 dark:border-gray-700 2xl:text-md">
           <div>Volume</div>
           <div>${volume.toLocaleString()}</div>
         </div>
 
-        <div className="flex justify-between py-4 border-b border-gray-200 dark:border-gray-700 text-md">
+        <div className="flex justify-between py-4 text-sm border-b border-gray-200 dark:border-gray-700 2xl:text-md">
           <div>Market Cap</div>
           <div> ${marketCap.toLocaleString()}</div>
         </div>

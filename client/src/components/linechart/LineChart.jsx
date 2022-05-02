@@ -99,6 +99,7 @@ const LineChart = ({
     };
   } else if (coinInfo) {
     options = {
+      maintainAspectRatio: false,
       scales: {
         x: {
           display: true,

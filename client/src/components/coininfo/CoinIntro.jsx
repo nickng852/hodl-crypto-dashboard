@@ -14,26 +14,32 @@ const CoinIntro = () => {
   return (
     <>
       <div className="flex gap-5">
-        <div>
+        <div className="flex items-center">
           <img
             alt={name}
             src={icon}
-            className="w-16 h-16 p-3 rounded-full bg-gray-50"
+            className="w-8 h-8 p-1 bg-white border-2 border-gray-200 rounded-full 2xl:w-16 2xl:h-16 2xl:p-3"
           />
         </div>
 
-        <div className="flex flex-col justify-center">
-          <div className="flex">
-            <div className="text-xl font-semibold text-gray-700 dark:text-gray-200">
+        <div className="flex flex-col">
+          <div className="flex items-center">
+            <div className="text-base font-semibold text-gray-700 2xl:text-xl dark:text-gray-200">
               {name}
             </div>
 
-            <span className="px-2 py-1 mx-2 text-xs font-medium leading-5 text-gray-600 truncate bg-gray-200 rounded-md">
+            <div className="m-2 text-sm font-normal text-gray-400 2xl:text-lg dark:text-gray-500">
+              {symbol}
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-1 2xl:space-x-2">
+            <span className="p-1 text-xs font-medium leading-5 text-gray-600 truncate bg-gray-200 rounded-md 2xl:px-2 2xl:py-1">
               Rank #{rank}
             </span>
 
             <span
-              className={`px-2 py-1 text-xs font-medium leading-5 text-gray-100 truncate rounded-md ${
+              className={`2xl:px-2 2xl:py-1 text-xs p-1 font-medium leading-5 text-gray-100 truncate rounded-md ${
                 priceChange < 0 ? "bg-red-600" : "bg-green-500"
               }`}
             >
@@ -43,10 +49,6 @@ const CoinIntro = () => {
                   : "▲ " + AbsPriceChange.toFixed(2) + "%"
               }`}
             </span>
-          </div>
-
-          <div className="text-lg font-normal text-gray-400 dark:text-gray-500">
-            {symbol}
           </div>
         </div>
       </div>

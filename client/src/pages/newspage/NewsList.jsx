@@ -18,16 +18,17 @@ const NewsList = () => {
         const newsUrl = result.url;
         const newsSource = result.source.name;
         const newsTitle = result.title;
+        const newsDesc = result.description;
 
         return (
           <>
-            <div className="relative p-4 w-96 rounded-xl dark:bg-secondary">
+            <div className="relative p-4 bg-white rounded-xl w-116 dark:bg-secondary">
               <a href={newsUrl} target="_blank" rel="noreferrer">
                 <img
                   src={newsImage}
                   alt={newsTitle}
                   onError={showDefaultImg}
-                  className="object-cover w-full bg-center h-60 rounded-xl"
+                  className="object-cover w-full bg-center h-60 rounded-xl md:h-96 sm:h-80 lg:h-80"
                 />
 
                 <div className="px-2 py-5 space-y-3">
@@ -41,8 +42,12 @@ const NewsList = () => {
                     </>
                   )}
 
-                  <div className="text-gray-600 dark:text-gray-100">
+                  <div className="text-sm text-gray-600 md:text-base dark:text-gray-100">
                     {newsTitle}
+                  </div>
+
+                  <div className="text-xs font-light text-gray-600 md:text-sm dark:text-gray-100">
+                    {newsDesc}
                   </div>
                 </div>
               </a>

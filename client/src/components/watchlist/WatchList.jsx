@@ -34,7 +34,7 @@ const WatchList = () => {
 
   return (
     <>
-      <div className="overflow-auto h-96">
+      <div className="md:overflow-auto md:h-96">
         {watchlist.length !== 0 ? (
           <>
             {watchlist.map((result, index) => {
@@ -83,21 +83,21 @@ const WatchList = () => {
                       key={index}
                       className="cursor-default"
                     >
-                      <div className="flex h-24 border-b border-gray-200 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-secondary">
-                        <div className="flex items-center justify-center w-1/6">
+                      <div className="grid h-24 grid-cols-12 md:border-b md:border-gray-200 hover:bg-gray-100 md:dark:border-gray-700 dark:hover:bg-secondary">
+                        <div className="flex items-center col-span-4 space-x-3 2xl:space-x-6">
                           <img
                             alt={name}
                             src={icon}
-                            className="w-6 h-6 rounded-full"
+                            className="w-5 h-5 rounded-full 2xl:w-6 2xl:h-6"
                           />
 
-                          <div className="ml-5 font-medium text-gray-700 dark:text-gray-100">
+                          <span className="text-sm font-medium text-gray-700 2xl:text-base dark:text-gray-100">
                             {symbol}
-                          </div>
+                          </span>
                         </div>
 
-                        <div className="flex items-center justify-center w-2/6">
-                          <div className="w-32">
+                        <div className="flex items-center justify-center col-span-3 md:col-span-2">
+                          <div className="flex items-center w-full">
                             <LineChart
                               key={index}
                               chartLabel={chartLabel}
@@ -108,42 +108,42 @@ const WatchList = () => {
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-center w-1/6">
-                          <div className="text-gray-700 dark:text-gray-100">
-                            $
-                            {`${
-                              price < 1
-                                ? price.toPrecision(4)
-                                : price.toLocaleString(undefined, {
-                                    maximumFractionDigits: 2,
-                                  })
-                            }`}
-                          </div>
-                        </div>
+                        <div className="flex flex-col items-center justify-center col-span-4 text-sm 2xl:text-base 2xl:col-span-5">
+                          <div className="w-2/3 text-right">
+                            <div className="text-gray-700 dark:text-gray-100">
+                              $
+                              {`${
+                                price < 1
+                                  ? price.toPrecision(4)
+                                  : price.toLocaleString(undefined, {
+                                      maximumFractionDigits: 2,
+                                    })
+                              }`}
+                            </div>
 
-                        <div className="flex items-center justify-center w-1/6">
-                          <div
-                            className={`${
-                              (priceChange < 0 && "text-red-500") ||
-                              (priceChange === 0 && "text-gray-500") ||
-                              (priceChange > 0 && "text-green-500")
-                            }`}
-                          >
-                            {`${
-                              (priceChange < 0 &&
-                                AbsPriceChange.toFixed(2) + "%") ||
-                              (priceChange === 0 &&
-                                AbsPriceChange.toFixed(2) + "%") ||
-                              (priceChange > 0 &&
-                                AbsPriceChange.toFixed(2) + "%")
-                            }`}
+                            <div
+                              className={`${
+                                (priceChange < 0 && "text-red-500") ||
+                                (priceChange === 0 && "text-gray-500") ||
+                                (priceChange > 0 && "text-green-500")
+                              } `}
+                            >
+                              {`${
+                                (priceChange < 0 &&
+                                  "-" + AbsPriceChange.toFixed(2) + "%") ||
+                                (priceChange === 0 &&
+                                  AbsPriceChange.toFixed(2) + "%") ||
+                                (priceChange > 0 &&
+                                  "+" + AbsPriceChange.toFixed(2) + "%")
+                              }`}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </Link>
 
                     <button
-                      className="absolute p-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto right-4 top-1/2 hover:bg-gray-200 dark:hover:bg-tertiary dark:text-gray-300"
+                      className="absolute py-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto 2xl:p-3 right-2 top-1/2 hover:bg-gray-200 dark:hover:bg-tertiary dark:text-gray-300"
                       onClick={removeItem}
                     >
                       <svg
@@ -168,8 +168,8 @@ const WatchList = () => {
           </>
         ) : (
           <>
-            <div className="flex items-center justify-center overflow-auto h-96">
-              <div className="text-xl text-gray-600 cursor-default dark:text-gray-500">
+            <div className="flex items-center justify-center h-24 md:overflow-auto md:h-116">
+              <div className="text-gray-600 cursor-default 2xl:text-xl dark:text-gray-500">
                 Your watchlist will be displayed here.
               </div>
             </div>

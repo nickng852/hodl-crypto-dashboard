@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  keyword: "crytocurrency",
+  keyword: "cryptocurrency",
   news: null,
 };
 

@@ -55,23 +55,25 @@ const CoinBar = ({ order }) => {
             <Link
               to={`/coin/${id}`}
               key={index}
-              className="flex p-6 border-b border-gray-200 cursor-default last:border-0 dark:bg-secondary last:border-white dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-tertiary"
+              className="flex py-4 border-b border-gray-200 cursor-default 2xl:p-6 dark:bg-secondary dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-tertiary last:border-0 2xl:border-none"
             >
-              <div className="flex items-center w-1/4 dark:text-gray-100">
+              <div className="flex items-center w-1/4 text-sm 2xl:text-base dark:text-gray-100">
                 {index + 1}
               </div>
 
-              <div className="w-1/2">
+              <div className="flex items-center w-1/2">
                 <img
                   src={icon}
                   alt={name}
-                  className="w-12 h-12 p-2 bg-white border-2 border-gray-200 rounded-full dark:bg-gray-700 dark:border-gray-500"
+                  className="w-10 h-10 p-2 bg-white border-2 border-gray-200 rounded-full 2xl:w-12 2xl:h-12 dark:bg-gray-700 dark:border-gray-500"
                 />
               </div>
 
-              <div className="w-full">
-                <div className="dark:text-gray-100">{name}</div>
-                <div className="text-gray-400">
+              <div className="flex flex-col justify-start w-full">
+                <div className="text-sm 2xl:text-base dark:text-gray-100">
+                  {name}
+                </div>
+                <div className="text-sm text-gray-400 2xl:text-base">
                   $
                   {`${
                     price < 1
@@ -84,16 +86,16 @@ const CoinBar = ({ order }) => {
               </div>
 
               <div
-                className={`flex items-center justify-end w-1/2 ${
+                className={`flex items-center justify-end w-3/4 text-sm 2xl:w-1/2 2xl:text-base ${
                   (priceChange < 0 && "text-red-500") ||
                   (priceChange === 0 && "text-gray-500") ||
                   (priceChange > 0 && "text-green-500")
                 }`}
               >
                 {`${
-                  (priceChange < 0 && "- " + AbsPriceChange.toFixed(2) + "%") ||
+                  (priceChange < 0 && "-" + AbsPriceChange.toFixed(2) + "%") ||
                   (priceChange === 0 && AbsPriceChange.toFixed(2) + "%") ||
-                  (priceChange > 0 && "+ " + AbsPriceChange.toFixed(2) + "%")
+                  (priceChange > 0 && "+" + AbsPriceChange.toFixed(2) + "%")
                 }`}
               </div>
             </Link>

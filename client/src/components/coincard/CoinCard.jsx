@@ -34,20 +34,21 @@ const CoinCard = ({ simplified }) => {
     <>
       <Swiper
         spaceBetween={50}
+        freeMode={true}
         autoplay={{ delay: 5000 }}
-        data-aos="fade"
-        data-aos-duration="2000"
+        loop={true}
         breakpoints={{
-          // when window width is >= 0px
           0: {
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+          },
+          640: {
             slidesPerView: 2,
           },
-          // when window width is >= 1200px
-          1200: {
+          1000: {
             slidesPerView: 3,
           },
-          // when window width is >= 1600px
-          1600: {
+          2000: {
             slidesPerView: 4,
           },
         }}
@@ -72,12 +73,12 @@ const CoinCard = ({ simplified }) => {
             }
 
             return (
-              <SwiperSlide className="relative overflow-hidden transition-shadow duration-200 bg-white hover:shadow-lg rounded-3xl w-60 md:w-72 dark:bg-secondary">
+              <SwiperSlide className="relative overflow-hidden bg-white rounded-3xl w-60 md:w-72 dark:bg-secondary">
                 <Link to={`/coin/${id}`} key={index}>
                   <img
                     src={icon}
                     alt={name}
-                    className="absolute w-24 h-24 rounded-full opacity-95 -top-6 -right-6 md:-right-4"
+                    className="absolute rounded-full 2xl:w-24 2xl:h-24 w-14 h-14 md:w-24 md:h-24 opacity-95 -top-2 -right-2 md:-top-4 md:-right-4"
                   />
 
                   <div className="px-4 py-5 sm:p-5">

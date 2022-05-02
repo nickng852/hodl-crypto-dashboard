@@ -24,28 +24,28 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
               <tr>
                 <th
                   scope="col"
-                  className="px-8 py-3 font-normal text-left text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md"
+                  className="px-5 py-4 text-sm font-normal text-left text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white text-md"
                 >
                   Coin Name
                 </th>
 
                 <th
                   scope="col"
-                  className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md "
+                  className="px-5 py-4 text-sm font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white text-md"
                 >
                   Price
                 </th>
 
                 <th
                   scope="col"
-                  className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md "
+                  className="px-5 py-4 text-sm font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white text-md"
                 >
                   Market Cap
                 </th>
 
                 <th
                   scope="col"
-                  className="px-8 py-3 font-normal text-right text-gray-900 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white text-md "
+                  className="px-5 py-4 text-sm font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white text-md"
                 >
                   Volume(24h)
                 </th>
@@ -64,35 +64,32 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
               return (
                 <tbody key={index}>
                   <tr>
-                    <td className="w-2/5 bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary text-md">
-                      <Link
-                        to={`/coin/${id}`}
-                        className="flex items-center px-8 py-8"
-                      >
-                        <div>
-                          <img
-                            alt={crypto}
-                            src={icon}
-                            className="object-cover w-6 h-6 mx-auto rounded-full"
-                          />
-                        </div>
-
-                        <div className="ml-5">
-                          <div className="font-medium text-gray-900 whitespace-no-wrap dark:text-gray-100">
-                            {name}
+                    <td className="w-2/5 px-5 bg-white border-b border-gray-100 2xl:px-8 py-7 dark:border-gray-700 dark:bg-secondary text-md last:border-0">
+                      <Link to={`/coin/${id}`}>
+                        <div className="flex items-center space-x-5 shrink-0">
+                          <div className="flex shrink-0">
+                            <img
+                              alt={crypto}
+                              src={icon}
+                              className="object-cover w-5 h-5 mx-auto rounded-full 2xl:w-6 2xl:h-6"
+                            />
                           </div>
-                        </div>
 
-                        <div className="ml-3">
-                          <span className="text-xs text-gray-600 truncate rounded-md dark:text-gray-400 ">
-                            {symbol}
-                          </span>
+                          <div className="flex flex-col">
+                            <div className="text-sm font-medium text-gray-900 whitespace-no-wrap 2xl:text-base dark:text-gray-100">
+                              {name}
+                            </div>
+
+                            <span className="text-xs text-gray-600 truncate rounded-md dark:text-gray-400 ">
+                              {symbol}
+                            </span>
+                          </div>
                         </div>
                       </Link>
                     </td>
 
-                    <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
-                      <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
+                    <td className="w-1/5 px-5 text-right bg-white border-b border-gray-100 2xl:px-8 py-7 dark:border-gray-700 dark:bg-secondary dark:text-white ">
+                      <div className="text-sm text-gray-900 whitespace-no-wrap dark:text-gray-100 2xl:text-base">
                         $
                         {`${
                           price < 1
@@ -104,14 +101,14 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
                       </div>
                     </td>
 
-                    <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
-                      <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
+                    <td className="w-1/5 px-5 text-right bg-white border-b border-gray-100 2xl:px-8 py-7 dark:border-gray-700 dark:bg-secondary dark:text-white">
+                      <div className="text-sm text-gray-900 whitespace-no-wrap dark:text-gray-100 2xl:text-base">
                         ${millify(marketCap, { precision: 2 })}
                       </div>
                     </td>
 
-                    <td className="w-1/5 px-8 py-5 text-right bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-secondary dark:text-white">
-                      <div className="text-gray-900 whitespace-no-wrap dark:text-gray-100">
+                    <td className="w-1/5 px-5 text-right bg-white border-b border-gray-100 2xl:px-8 py-7 dark:border-gray-700 dark:bg-secondary dark:text-white">
+                      <div className="text-sm text-gray-900 whitespace-no-wrap dark:text-gray-100 2xl:text-base">
                         ${millify(volume, { precision: 2 })}
                       </div>
                     </td>

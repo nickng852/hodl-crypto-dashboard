@@ -36,7 +36,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <main className="z-10 hidden h-screen bg-white shadow-xl sm:block dark:bg-secondary">
+      <main className="z-10 h-screen bg-white shadow-xl landscape:hidden landscape:sm:block portrait:hidden sm:block dark:bg-secondary">
         <div className="flex">
           <div className={`h-screen ${isExpand ? "w-72" : "w-24"}`}>
             {/* Site Name */}

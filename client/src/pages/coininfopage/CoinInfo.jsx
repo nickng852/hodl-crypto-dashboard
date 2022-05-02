@@ -77,40 +77,38 @@ const CoinInfo = () => {
 
       {!isCoinFetching && !isNewsFetching && (
         <>
-          <div className="grid h-full grid-cols-3 gap-16 p-20 overflow-auto bg-red-200">
-            <div className="w-full col-span-2 bg-blue-200">
+          <div className="grid h-full p-4 overflow-auto xl:gap-4 2xl:gap-20 xl:p-12 xl:grid-cols-2 2xl:grid-cols-3">
+            <div className="w-full col-span-1 space-y-8 2xl:col-span-2">
               <CoinIntro />
 
-              <div className="mt-10">
-                <div className="flex justify-end">
-                  <TimePeriodBar
-                    timePeriod={timePeriod}
-                    setTimePeriod={setTimePeriod}
-                  />
-                </div>
-
-                <div className="flex items-center justify-center mt-52 h-96">
-                  {isCoinPriceHistoryFetching ? (
-                    <>
-                      <Spinner />
-                    </>
-                  ) : (
-                    <LineChart
-                      chartLabel={chartLabel}
-                      chartStat={chartStat}
-                      priceChange
-                      coinInfo
-                    />
-                  )}
-                </div>
-
-                <div>
-                  <News />
-                </div>
+              <div className="flex justify-end w-full">
+                <TimePeriodBar
+                  timePeriod={timePeriod}
+                  setTimePeriod={setTimePeriod}
+                />
               </div>
+
+              <div className="flex items-center justify-center w-full h-72 xl:h-116 2xl:h-132">
+                {isCoinPriceHistoryFetching ? (
+                  <>
+                    <Spinner />
+                  </>
+                ) : (
+                  <LineChart
+                    chartLabel={chartLabel}
+                    chartStat={chartStat}
+                    priceChange
+                    coinInfo
+                  />
+                )}
+              </div>
+
+              {/*               <div>
+                  <News />
+                </div> */}
             </div>
 
-            <div className="flex flex-col w-full p-10 space-y-4 bg-green-200">
+            <div className="flex flex-col w-full col-span-1 space-y-4 2xl:space-y-10">
               <CoinPriceStat />
               <CoinDesc />
             </div>

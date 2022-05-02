@@ -34,10 +34,10 @@ const CoinsInfo = () => {
       {!isCoinsFetching && (
         <>
           <div className="flex flex-col h-full">
-            <div className="flex flex-col w-full px-16">
+            <div className="flex flex-col w-full p-4 2xl:p-12">
               <div>
-                <div className="flex items-center justify-between mt-10">
-                  <h1 className="text-2xl text-gray-500 cursor-default dark:text-white font-header">
+                <div className="flex items-center justify-between">
+                  <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
                     Cryptocurrency
                   </h1>
 

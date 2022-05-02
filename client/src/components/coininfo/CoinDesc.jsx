@@ -10,7 +10,7 @@ const CoinDesc = () => {
 
   return (
     <>
-      <div className="px-10 py-6 text-justify bg-white opacity-50 rounded-2xl dark:text-gray-100 dark:bg-secondary">
+      <div className="px-6 py-1 text-justify bg-white 2xl:px-10 2xl:py-6 rounded-2xl dark:text-gray-100 dark:bg-secondary">
         {parse(description)}
       </div>
     </>

@@ -202,63 +202,61 @@ const Account = () => {
 
   return (
     <>
-      <section className="w-full h-full bg-opacity-50">
-        <div className="flex justify-center">
+      <section className="w-full h-full overflow-auto sm:flex sm:items-center sm:justify-center">
+        <div className="container p-4">
           <form
-            className="container relative max-w-2xl mx-auto my-40 rounded-lg shadow-md md:w-3/4"
+            className="max-w-2xl mx-auto rounded-lg shadow-md"
             onSubmit={handleSubmit}
           >
-            <div className="px-10 py-6 bg-gray-500 border-t-2 border-indigo-400 rounded-t-lg dark:bg-tertiary bg-opacity-5">
-              <div className="max-w-sm mx-auto md:w-full md:mx-0">
-                <div className="inline-flex items-center space-x-4">
-                  <label className="relative w-16 h-16 overflow-hidden rounded-full">
-                    <input
-                      type="file"
-                      className="hidden"
-                      onChange={(e) => {
-                        if (e.target.files.length !== 0) {
-                          setProfileImg(e.target.files[0]);
-                        }
-                      }}
+            <div className="px-5 py-6 border-t-2 border-indigo-400 rounded-t-lg 2xl:px-10 dark:bg-tertiary bg-opacity-5">
+              <div className="inline-flex items-center space-x-4">
+                <label className="relative w-16 h-16 overflow-hidden rounded-full">
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={(e) => {
+                      if (e.target.files.length !== 0) {
+                        setProfileImg(e.target.files[0]);
+                      }
+                    }}
+                  />
+
+                  <img
+                    alt="User Icon"
+                    src={user.profileImg ? user.profileImg : defaultImg}
+                    className="object-cover w-16 h-16"
+                  />
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="absolute w-24 h-24 p-8 transform -translate-x-1/2 -translate-y-1/2 opacity-0 cursor-pointer hover:bg-gray-200 hover:opacity-70 top-1/2 left-1/2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
                     />
+                  </svg>
+                </label>
 
-                    <img
-                      alt="User Icon"
-                      src={user.profileImg ? user.profileImg : defaultImg}
-                      className="object-cover w-16 h-16"
-                    />
+                <div>
+                  <div className="text-gray-600 dark:text-gray-300">
+                    {user.name}
+                  </div>
 
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="absolute w-24 h-24 p-8 transform -translate-x-1/2 -translate-y-1/2 opacity-0 cursor-pointer hover:bg-gray-200 hover:opacity-70 top-1/2 left-1/2"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-                      />
-                    </svg>
-                  </label>
-
-                  <div>
-                    <div className="text-gray-600 dark:text-gray-300">
-                      {user.name}
-                    </div>
-
-                    <div className="text-sm font-light text-gray-600 dark:text-gray-300">
-                      {user.email}
-                    </div>
+                  <div className="text-sm font-light text-gray-600 dark:text-gray-300">
+                    {user.email}
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="bg-white rounded-b-lg dark:bg-secondary">
-              <div className="items-center justify-between block w-full px-10 py-6 text-gray-500 border-b lg:p-10 lg:inline-flex dark:text-gray-300 dark:border-gray-700">
+              <div className="items-center justify-between block w-full px-5 py-6 text-gray-500 border-b 2xl:px-10 lg:p-10 lg:inline-flex dark:text-gray-300 dark:border-gray-700">
                 <div>Name</div>
 
                 <div className="w-full mt-2 lg:w-3/5 lg:mt-0">
@@ -274,7 +272,7 @@ const Account = () => {
                 </div>
               </div>
 
-              <div className="items-center justify-between block w-full px-10 py-6 text-gray-500 border-b lg:p-10 lg:inline-flex dark:text-gray-300 dark:border-gray-700">
+              <div className="items-center justify-between block w-full px-5 py-6 text-gray-500 border-b 2xl:px-10 lg:p-10 lg:inline-flex dark:text-gray-300 dark:border-gray-700">
                 <div>Email</div>
 
                 <div className="w-full mt-2 lg:w-3/5 lg:mt-0">
@@ -296,7 +294,7 @@ const Account = () => {
                 </div>
               </div>
 
-              <div className="items-center justify-between block w-full px-10 py-6 text-gray-500 border-b lg:p-10 dark:text-gray-300 dark:border-gray-700 lg:inline-flex">
+              <div className="items-center justify-between block w-full px-5 py-6 text-gray-500 border-b 2xl:px-10 lg:p-10 dark:text-gray-300 dark:border-gray-700 lg:inline-flex">
                 <div>Reset password</div>
 
                 <div className="mt-2 lg:mt-0">
@@ -310,7 +308,7 @@ const Account = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between w-full px-10 py-6 text-gray-500 border-b lg:p-10 dark:text-gray-300 dark:border-gray-700">
+              <div className="flex items-center justify-between w-full px-5 py-6 text-gray-500 border-b 2xl:px-10 lg:p-10 dark:text-gray-300 dark:border-gray-700">
                 <div>Delete account?</div>
 
                 <div>
@@ -324,11 +322,11 @@ const Account = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end w-full px-10 py-6 text-gray-500 lg:p-10">
+              <div className="flex items-center justify-end w-full px-5 py-6 text-gray-500 2xl:px-10 lg:p-10">
                 <button
                   type="submit"
                   disabled={!isAccountFormValid}
-                  className="w-1/3 px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-40 disabled:cursor-auto"
+                  className="w-1/2 px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-blue-600 rounded-lg shadow-md 2xl:1/3 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-40 disabled:cursor-auto"
                 >
                   Save
                 </button>
