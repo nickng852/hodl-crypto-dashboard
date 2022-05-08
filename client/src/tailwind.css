@@ -28,8 +28,10 @@
   }
 }
 
+// Fix webkit 100vh issue
 @supports (-webkit-touch-callout: none) {
   .h-screen {
+    height: 100vh;
     height: -webkit-fill-available;
   }
 }
