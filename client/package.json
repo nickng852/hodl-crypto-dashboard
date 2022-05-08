@@ -17,6 +17,8 @@
     "millify": "^4.0.0",
     "moment": "^2.29.1",
     "node-sass": "^6.0.1",
+    "postcss": "^8.4.12",
+    "postcss-100vh-fix": "^1.0.2",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.3.0",
     "react-click-away-listener": "^2.0.5",
@@ -56,8 +58,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "postcss": "^8.4.13",
-    "postcss-100vh-fix": "^1.0.2"
-  }
+  "devDependencies": {}
 }
