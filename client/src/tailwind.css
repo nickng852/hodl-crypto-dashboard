@@ -29,7 +29,7 @@
 }
 
 @supports (-webkit-touch-callout: none) {
-  body {
+  .wk-height {
     height: -webkit-fill-available;
   }
 }
