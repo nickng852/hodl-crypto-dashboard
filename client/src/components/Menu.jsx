@@ -48,7 +48,7 @@ const MobileSidebar = () => {
         <div className="z-50" onClick={handleClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6 dark:text-gray-100"
+            className="w-6 h-6 cursor-pointer dark:text-gray-100"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -69,9 +69,9 @@ const MobileSidebar = () => {
             }`}
           >
             <div className="flex">
-              <div className="h-screen w-72">
+              <div className="h-screen w-52 lg:w-72">
                 {/* Sidebar List */}
-                <nav className="px-6 mt-32 space-y-8">
+                <nav className="px-4 mt-32 space-y-8 lg:px-6">
                   {/* Dashboard */}
                   <Link
                     to="/dashboard"
