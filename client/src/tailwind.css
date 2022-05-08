@@ -27,3 +27,9 @@
     @apply py-4 text-gray-600 dark:text-gray-300;
   }
 }
+
+@supports (-webkit-touch-callout: none) {
+  .h-screen {
+    height: -webkit-fill-available;
+  }
+}
