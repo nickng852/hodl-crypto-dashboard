@@ -76,93 +76,87 @@ const WatchList = () => {
               };
 
               return (
-                <>
-                  <div className="relative">
-                    <Link
-                      to={`/coin/${id}`}
-                      key={index}
-                      className="cursor-default"
-                    >
-                      <div className="grid h-24 grid-cols-12 md:border-b md:border-gray-200 hover:bg-gray-100 md:dark:border-gray-700 dark:hover:bg-secondary">
-                        <div className="flex items-center col-span-4 space-x-3 2xl:space-x-6">
-                          <img
-                            alt={name}
-                            src={icon}
-                            className="w-5 h-5 rounded-full 2xl:w-6 2xl:h-6"
+                <div className="relative" key={index}>
+                  <Link to={`/coin/${id}`} className="cursor-default">
+                    <div className="grid h-24 grid-cols-12 md:border-b md:border-gray-200 hover:bg-gray-100 md:dark:border-gray-700 dark:hover:bg-secondary">
+                      <div className="flex items-center col-span-4 space-x-3 2xl:space-x-6">
+                        <img
+                          alt={name}
+                          src={icon}
+                          className="w-5 h-5 rounded-full 2xl:w-6 2xl:h-6"
+                        />
+
+                        <span className="text-sm font-medium text-gray-700 2xl:text-base dark:text-gray-100">
+                          {symbol}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-center col-span-3 md:col-span-2">
+                        <div className="flex items-center w-full">
+                          <LineChart
+                            key={index}
+                            chartLabel={chartLabel}
+                            chartStat={chartStat}
+                            priceChange={priceChange}
+                            watchList
                           />
-
-                          <span className="text-sm font-medium text-gray-700 2xl:text-base dark:text-gray-100">
-                            {symbol}
-                          </span>
                         </div>
+                      </div>
 
-                        <div className="flex items-center justify-center col-span-3 md:col-span-2">
-                          <div className="flex items-center w-full">
-                            <LineChart
-                              key={index}
-                              chartLabel={chartLabel}
-                              chartStat={chartStat}
-                              priceChange={priceChange}
-                              watchList
-                            />
+                      <div className="flex flex-col items-center justify-center col-span-4 text-sm 2xl:text-base 2xl:col-span-5">
+                        <div className="w-2/3 text-right">
+                          <div className="text-gray-700 dark:text-gray-100">
+                            $
+                            {`${
+                              price < 1
+                                ? price.toPrecision(4)
+                                : price.toLocaleString(undefined, {
+                                    maximumFractionDigits: 2,
+                                  })
+                            }`}
                           </div>
-                        </div>
 
-                        <div className="flex flex-col items-center justify-center col-span-4 text-sm 2xl:text-base 2xl:col-span-5">
-                          <div className="w-2/3 text-right">
-                            <div className="text-gray-700 dark:text-gray-100">
-                              $
-                              {`${
-                                price < 1
-                                  ? price.toPrecision(4)
-                                  : price.toLocaleString(undefined, {
-                                      maximumFractionDigits: 2,
-                                    })
-                              }`}
-                            </div>
-
-                            <div
-                              className={`${
-                                (priceChange < 0 && "text-red-500") ||
-                                (priceChange === 0 && "text-gray-500") ||
-                                (priceChange > 0 && "text-green-500")
-                              } `}
-                            >
-                              {`${
-                                (priceChange < 0 &&
-                                  "-" + AbsPriceChange.toFixed(2) + "%") ||
-                                (priceChange === 0 &&
-                                  AbsPriceChange.toFixed(2) + "%") ||
-                                (priceChange > 0 &&
-                                  "+" + AbsPriceChange.toFixed(2) + "%")
-                              }`}
-                            </div>
+                          <div
+                            className={`${
+                              (priceChange < 0 && "text-red-500") ||
+                              (priceChange === 0 && "text-gray-500") ||
+                              (priceChange > 0 && "text-green-500")
+                            } `}
+                          >
+                            {`${
+                              (priceChange < 0 &&
+                                "-" + AbsPriceChange.toFixed(2) + "%") ||
+                              (priceChange === 0 &&
+                                AbsPriceChange.toFixed(2) + "%") ||
+                              (priceChange > 0 &&
+                                "+" + AbsPriceChange.toFixed(2) + "%")
+                            }`}
                           </div>
                         </div>
                       </div>
-                    </Link>
+                    </div>
+                  </Link>
 
-                    <button
-                      className="absolute py-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto 2xl:p-3 right-2 top-1/2 hover:bg-gray-200 dark:hover:bg-tertiary dark:text-gray-300"
-                      onClick={removeItem}
+                  <button
+                    className="absolute py-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto 2xl:p-3 right-2 top-1/2 hover:bg-gray-200 dark:hover:bg-tertiary dark:text-gray-300"
+                    onClick={removeItem}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
               );
             })}
           </>

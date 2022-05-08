@@ -352,7 +352,7 @@ const Account = () => {
                         ></path>
                       </svg>
 
-                      <div className="p-2 text-gray-600 dark:text-gray-100 text-md">
+                      <div className="p-2 text-base text-gray-600 dark:text-gray-100">
                         Information has been updated.
                       </div>
 
@@ -390,7 +390,7 @@ const Account = () => {
                         ></path>
                       </svg>
 
-                      <div className="p-2 text-gray-600 dark:text-gray-100 text-md">
+                      <div className="p-2 text-base text-gray-600 dark:text-gray-100">
                         Reset password email has been sent to your email address
                         ({user.email}).
                       </div>

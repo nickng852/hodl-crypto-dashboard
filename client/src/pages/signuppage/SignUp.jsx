@@ -85,7 +85,7 @@ const SignUp = () => {
           <div className="flex flex-col justify-center space-y-4 text-center text-gray-800 item-center dark:text-white">
             <div className="text-3xl font-semibold">HODL</div>
 
-            <span className="text-md">Sign Up</span>
+            <span className="text-base">Sign Up</span>
           </div>
 
           <form className="mt-6" onSubmit={handleSubmit}>

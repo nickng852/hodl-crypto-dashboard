@@ -117,15 +117,15 @@ const Dashboard = () => {
                     <button className="p-2 text-sm font-medium text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 font-header dark:hover:bg-tertiary hover:bg-gray-200 ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
+                        className="w-6 h-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        stroke-width="2"
+                        strokeWidth="2"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M9 5l7 7-7 7"
                         />
                       </svg>
@@ -137,14 +137,14 @@ const Dashboard = () => {
                       <ClickAwayListener onClickAway={menuToggle}>
                         <div className="absolute left-0 z-10 w-56 mt-2 origin-top-left bg-white rounded-lg shadow-lg dark:bg-secondary ring-1 ring-black ring-opacity-5">
                           <span
-                            className="flex px-4 py-3 text-gray-700 rounded-t-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
+                            className="flex px-4 py-3 text-base text-gray-700 rounded-t-lg hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
                             onClick={sortByMarketCap}
                           >
                             MarketCap
                           </span>
 
                           <span
-                            className="flex px-4 py-3 text-gray-700 rounded-t-lg text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
+                            className="flex px-4 py-3 text-base text-gray-700 rounded-t-lg hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
                             onClick={sortByVolume}
                           >
                             Volume

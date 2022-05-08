@@ -73,8 +73,11 @@ const CoinCard = ({ simplified }) => {
             }
 
             return (
-              <SwiperSlide className="relative overflow-hidden bg-white rounded-3xl w-60 md:w-72 dark:bg-secondary">
-                <Link to={`/coin/${id}`} key={index}>
+              <SwiperSlide
+                className="relative overflow-hidden bg-white rounded-3xl w-60 md:w-72 dark:bg-secondary"
+                key={index}
+              >
+                <Link to={`/coin/${id}`}>
                   <img
                     src={icon}
                     alt={name}

@@ -24,28 +24,28 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
               <tr>
                 <th
                   scope="col"
-                  className="px-5 py-4 text-sm font-normal text-left text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white text-md"
+                  className="px-5 py-4 text-sm text-base font-normal text-left text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
                 >
                   Coin Name
                 </th>
 
                 <th
                   scope="col"
-                  className="px-5 py-4 text-sm font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white text-md"
+                  className="px-5 py-4 text-sm text-base font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
                 >
                   Price
                 </th>
 
                 <th
                   scope="col"
-                  className="px-5 py-4 text-sm font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white text-md"
+                  className="px-5 py-4 text-sm text-base font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
                 >
                   Market Cap
                 </th>
 
                 <th
                   scope="col"
-                  className="px-5 py-4 text-sm font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white text-md"
+                  className="px-5 py-4 text-sm text-base font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
                 >
                   Volume(24h)
                 </th>
@@ -64,7 +64,7 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
               return (
                 <tbody key={index}>
                   <tr>
-                    <td className="w-2/5 px-5 bg-white border-b border-gray-100 2xl:px-8 py-7 dark:border-gray-700 dark:bg-secondary text-md last:border-0">
+                    <td className="w-2/5 px-5 text-base bg-white border-b border-gray-100 2xl:px-8 py-7 dark:border-gray-700 dark:bg-secondary last:border-0">
                       <Link to={`/coin/${id}`}>
                         <div className="flex items-center space-x-5 shrink-0">
                           <div className="flex shrink-0">

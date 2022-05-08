@@ -26,7 +26,7 @@ const CoinPriceStat = () => {
           {name} Price Today
         </div>
 
-        <div className="flex justify-between py-4 text-sm border-b border-gray-200 2xl:text-md dark:border-gray-700">
+        <div className="flex justify-between py-4 text-sm border-b border-gray-200 2xl:text-base dark:border-gray-700">
           <div>{name} Price</div>
           <div>
             $
@@ -40,7 +40,7 @@ const CoinPriceStat = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between py-4 text-sm text-right border-b border-gray-200 dark:border-gray-700 2xl:text-md">
+        <div className="flex items-center justify-between py-4 text-sm text-right border-b border-gray-200 dark:border-gray-700 2xl:text-base">
           <div>All Time High</div>
           <div>
             <div>
@@ -60,12 +60,12 @@ const CoinPriceStat = () => {
           </div>
         </div>
 
-        <div className="flex justify-between py-4 text-sm border-b border-gray-200 dark:border-gray-700 2xl:text-md">
+        <div className="flex justify-between py-4 text-sm border-b border-gray-200 dark:border-gray-700 2xl:text-base">
           <div>Volume</div>
           <div>${volume.toLocaleString()}</div>
         </div>
 
-        <div className="flex justify-between py-4 text-sm border-b border-gray-200 dark:border-gray-700 2xl:text-md">
+        <div className="flex justify-between py-4 text-sm border-b border-gray-200 dark:border-gray-700 2xl:text-base">
           <div>Market Cap</div>
           <div> ${marketCap.toLocaleString()}</div>
         </div>
