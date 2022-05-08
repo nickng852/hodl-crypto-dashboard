@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const iOSHeight = require("@rvxlab/tailwind-plugin-ios-full-height");
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
@@ -1043,5 +1044,5 @@ module.exports = {
     wordBreak: ["responsive"],
     zIndex: ["responsive", "focus-within", "focus"],
   },
-  plugins: [],
+  plugins: [iOSHeight],
 };

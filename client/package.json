@@ -6,6 +6,7 @@
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@reduxjs/toolkit": "^1.7.1",
+    "@rvxlab/tailwind-plugin-ios-full-height": "^1.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -18,7 +19,6 @@
     "moment": "^2.29.1",
     "node-sass": "^6.0.1",
     "postcss": "^8.4.12",
-    "postcss-100vh-fix": "^1.0.2",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.3.0",
     "react-click-away-listener": "^2.0.5",
