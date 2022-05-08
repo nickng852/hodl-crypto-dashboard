@@ -1043,5 +1043,5 @@ module.exports = {
     wordBreak: ["responsive"],
     zIndex: ["responsive", "focus-within", "focus"],
   },
-  plugins: ["tailwindcss", "autoprefixer", "postcss-100vh-fix"],
+  plugins: [],
 };
