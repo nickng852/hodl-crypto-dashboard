@@ -64,7 +64,7 @@ const MobileSidebar = () => {
 
         <ClickAwayListener onClickAway={handleClickAway}>
           <div
-            className={`z-10 absolute top-0 h-full duration-500 ease bg-white shadow-xl dark:bg-secondary ${
+            className={`z-20 absolute top-0 h-full duration-500 ease bg-white shadow-xl dark:bg-secondary ${
               isOpen ? "left-0" : "-left-full"
             }`}
           >
@@ -212,6 +212,13 @@ const MobileSidebar = () => {
             </div>
           </div>
         </ClickAwayListener>
+
+        <div
+          id="overlay"
+          className={`${
+            isOpen ? "block" : "hidden "
+          } absolute top-0 left-0 z-10 w-full h-full`}
+        ></div>
       </main>
     </>
   );
