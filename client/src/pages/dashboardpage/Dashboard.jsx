@@ -114,7 +114,7 @@ const Dashboard = () => {
                   </div>
 
                   <Link to="/coins">
-                    <button className="p-2 text-sm font-medium text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 font-header dark:hover:bg-tertiary hover:bg-gray-200 ">
+                    <button className="p-2 text-sm font-medium text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 font-header xl:dark:hover:bg-tertiary xl:hover:bg-gray-200 ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-6 h-6"
@@ -170,7 +170,7 @@ const Dashboard = () => {
                   </h1>
 
                   <button
-                    className="p-2 transition-colors duration-200 rounded dark:hover:bg-tertiary hover:bg-gray-200 dark:text-gray-300"
+                    className="p-2 transition-colors duration-200 rounded dark:hover:bg-tertiary xl:hover:bg-gray-200 xl:dark:text-gray-300"
                     onClick={modalToggle}
                   >
                     <svg

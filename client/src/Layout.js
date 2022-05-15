@@ -10,7 +10,7 @@ const Layout = () => {
         <Sidebar />
         <main className="flex flex-col w-full h-full overflow-hidden bg-gray-50 dark:bg-primary">
           <NavBar />
-          <section className="h-full overflow-auto">
+          <section className="h-full overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
             <Outlet />
           </section>
         </main>

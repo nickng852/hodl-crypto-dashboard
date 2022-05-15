@@ -11,7 +11,7 @@ const SearchBarResult = ({ id, icon, name, symbol, setSearch }) => {
   return (
     <>
       <Link to={`/coin/${id}`} key={id} onClick={handleClickAway}>
-        <div className="flex justify-between px-6 py-3 hover:bg-gray-100 dark:hover:bg-tertiary">
+        <div className="flex justify-between px-6 py-3 xl:hover:bg-gray-100 xl:dark:hover:bg-tertiary">
           <div>
             <div className="font-medium text-gray-700 dark:text-gray-100">
               {name}

@@ -40,7 +40,7 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
               </h1>
 
               <button
-                className="flex items-center justify-center rounded cursor-default 2xl:p-2 dark:hover:bg-tertiary hover:bg-gray-200 dark:text-gray-300"
+                className="flex items-center justify-center rounded cursor-default 2xl:p-2 xl:dark:hover:bg-tertiary xl:hover:bg-gray-200 dark:text-gray-300"
                 onClick={modalToggle}
               >
                 <svg
@@ -68,7 +68,7 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
               />
             </div>
 
-            <div className="overflow-auto">
+            <div className="overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
               {filteredCoins.map((result, index) => {
                 return (
                   <>

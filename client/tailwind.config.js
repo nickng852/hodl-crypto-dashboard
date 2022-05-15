@@ -1043,6 +1043,7 @@ module.exports = {
     width: ["responsive"],
     wordBreak: ["responsive"],
     zIndex: ["responsive", "focus-within", "focus"],
+    scrollbar: ["rounded", "dark"],
   },
-  plugins: [iOSHeight],
+  plugins: [iOSHeight, require("tailwind-scrollbar")],
 };

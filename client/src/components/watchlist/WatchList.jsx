@@ -34,7 +34,7 @@ const WatchList = () => {
 
   return (
     <>
-      <div className="md:overflow-auto md:h-96">
+      <div className="overflow-y-scroll md:overflow-auto md:h-96 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
         {watchlist.length !== 0 ? (
           <>
             {watchlist.map((result, index) => {
@@ -78,7 +78,7 @@ const WatchList = () => {
               return (
                 <div className="relative" key={index}>
                   <Link to={`/coin/${id}`} className="cursor-default">
-                    <div className="grid h-24 grid-cols-12 md:border-b md:border-gray-200 hover:bg-gray-100 md:dark:border-gray-700 dark:hover:bg-secondary">
+                    <div className="grid h-24 grid-cols-12 md:border-b md:border-gray-200 xl:hover:bg-gray-100 md:dark:border-gray-700 xl:dark:hover:bg-secondary">
                       <div className="flex items-center col-span-4 space-x-3 2xl:space-x-6">
                         <img
                           alt={name}
@@ -138,7 +138,7 @@ const WatchList = () => {
                   </Link>
 
                   <button
-                    className="absolute py-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto 2xl:p-3 right-2 top-1/2 hover:bg-gray-200 dark:hover:bg-tertiary dark:text-gray-300"
+                    className="absolute py-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto 2xl:p-3 right-2 top-1/2 xl:hover:bg-gray-200 xl:dark:hover:bg-tertiary dark:text-gray-300"
                     onClick={removeItem}
                   >
                     <svg
