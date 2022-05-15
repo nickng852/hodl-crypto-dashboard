@@ -2,7 +2,7 @@ const colors = require("tailwindcss/colors");
 const iOSHeight = require("@rvxlab/tailwind-plugin-ios-full-height");
 
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   presets: [],
   darkMode: "class", // or 'media' or 'class'
   theme: {
@@ -19,7 +19,7 @@ module.exports = {
       tertiary: "#323546",
       black: colors.black,
       white: colors.white,
-      gray: colors.coolGray,
+      gray: colors.gray,
       red: colors.red,
       yellow: colors.amber,
       green: colors.emerald,
