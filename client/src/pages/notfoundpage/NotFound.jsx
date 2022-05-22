@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen p-6 lg:space-x-6 lg:flex-row dark:bg-secondary">
+      <div className="flex flex-col items-center justify-center h-screen p-6 h-screen-ios lg:space-x-6 lg:flex-row dark:bg-secondary">
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-24 w-24 lg:h-44 lg:w-44 text-gray-800 dark:text-gray-400"
+            className="w-24 h-24 text-gray-800 lg:h-44 lg:w-44 dark:text-gray-400"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            stroke-width="2"
+            strokeWidth="2"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              stroke-Linecap="round"
+              stroke-Linejoin="round"
               d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>

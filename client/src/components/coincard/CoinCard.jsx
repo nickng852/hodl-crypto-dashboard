@@ -34,22 +34,18 @@ const CoinCard = ({ simplified }) => {
     <>
       <Swiper
         spaceBetween={50}
-        freeMode={true}
         autoplay={{ delay: 5000 }}
         loop={true}
         breakpoints={{
           0: {
             slidesPerView: 1.2,
             spaceBetween: 20,
-            autoplay: false,
           },
           640: {
             slidesPerView: 2,
-            autoplay: false,
           },
           1000: {
             slidesPerView: 3,
-            autoplay: false,
           },
           2000: {
             slidesPerView: 4,
@@ -84,7 +80,7 @@ const CoinCard = ({ simplified }) => {
                   <img
                     src={icon}
                     alt={name}
-                    className="absolute rounded-full 2xl:w-24 2xl:h-24 w-14 h-14 md:w-24 md:h-24 opacity-95 -top-2 -right-2 md:-top-4 md:-right-4"
+                    className="absolute 2xl:w-24 2xl:h-24 w-14 h-14 md:w-24 md:h-24 opacity-95 -top-2 -right-2 md:-top-4 md:-right-4"
                   />
 
                   <div className="px-4 py-5 sm:p-5">
