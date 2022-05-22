@@ -72,66 +72,67 @@ const CoinCard = ({ simplified }) => {
             }
 
             return (
-              <SwiperSlide
-                className="relative overflow-hidden bg-white rounded-3xl w-60 md:w-72 dark:bg-secondary"
-                key={index}
-              >
-                <Link to={`/coin/${id}`}>
-                  <img
-                    src={icon}
-                    alt={name}
-                    className="absolute 2xl:w-24 2xl:h-24 w-14 h-14 md:w-24 md:h-24 opacity-95 -top-2 -right-2 md:-top-4 md:-right-4"
-                  />
-
-                  <div className="px-4 py-5 sm:p-5">
-                    <dl>
-                      <span className="px-2 py-1 text-xs font-medium leading-5 text-gray-600 truncate bg-gray-200 rounded-md">
-                        {symbol}
-                      </span>
-
-                      <dd className="mt-4 font-semibold text-gray-500">
-                        <span className="mr-3 dark:text-gray-100">{name}</span>
-                        <span
-                          className={`${
-                            (priceChange < 0 && "text-red-500") ||
-                            (priceChange === 0 && "text-gray-500") ||
-                            (priceChange > 0 && "text-green-500")
-                          }`}
-                        >
-                          {`${
-                            (priceChange < 0 &&
-                              "▼ " + AbsPriceChange.toFixed(2) + "%") ||
-                            (priceChange === 0 &&
-                              AbsPriceChange.toFixed(2) + "%") ||
-                            (priceChange > 0 &&
-                              "▲ " + AbsPriceChange.toFixed(2) + "%")
-                          }`}
-                        </span>
-                      </dd>
-
-                      <dd className="mt-1 text-3xl font-semibold leading-9 text-gray-900 dark:text-gray-100">
-                        $
-                        {`${
-                          price < 1
-                            ? price.toPrecision(4)
-                            : price.toLocaleString(undefined, {
-                                maximumFractionDigits: 2,
-                              })
-                        }`}
-                      </dd>
-                    </dl>
-                  </div>
-
-                  <div className="px-4 pb-5 sm:pb-5">
-                    <LineChart
-                      key={index}
-                      chartLabel={chartLabel}
-                      chartStat={chartStat}
-                      priceChange={priceChange}
-                      coinCard
+              <SwiperSlide key={index}>
+                <div className="relative overflow-hidden bg-white rounded-3xl w-60 md:w-72 dark:bg-secondary">
+                  <Link to={`/coin/${id}`}>
+                    <img
+                      src={icon}
+                      alt={name}
+                      className="absolute 2xl:w-24 2xl:h-24 w-14 h-14 md:w-24 md:h-24 opacity-95 -top-2 -right-2 md:-top-4 md:-right-4"
                     />
-                  </div>
-                </Link>
+
+                    <div className="px-4 py-5 sm:p-5">
+                      <dl>
+                        <span className="px-2 py-1 text-xs font-medium leading-5 text-gray-600 truncate bg-gray-200 rounded-md">
+                          {symbol}
+                        </span>
+
+                        <dd className="mt-4 font-semibold text-gray-500">
+                          <span className="mr-3 dark:text-gray-100">
+                            {name}
+                          </span>
+                          <span
+                            className={`${
+                              (priceChange < 0 && "text-red-500") ||
+                              (priceChange === 0 && "text-gray-500") ||
+                              (priceChange > 0 && "text-green-500")
+                            }`}
+                          >
+                            {`${
+                              (priceChange < 0 &&
+                                "▼ " + AbsPriceChange.toFixed(2) + "%") ||
+                              (priceChange === 0 &&
+                                AbsPriceChange.toFixed(2) + "%") ||
+                              (priceChange > 0 &&
+                                "▲ " + AbsPriceChange.toFixed(2) + "%")
+                            }`}
+                          </span>
+                        </dd>
+
+                        <dd className="mt-1 text-3xl font-semibold leading-9 text-gray-900 dark:text-gray-100">
+                          $
+                          {`${
+                            price < 1
+                              ? price.toPrecision(4)
+                              : price.toLocaleString(undefined, {
+                                  maximumFractionDigits: 2,
+                                })
+                          }`}
+                        </dd>
+                      </dl>
+                    </div>
+
+                    <div className="px-4 pb-5 sm:pb-5">
+                      <LineChart
+                        key={index}
+                        chartLabel={chartLabel}
+                        chartStat={chartStat}
+                        priceChange={priceChange}
+                        coinCard
+                      />
+                    </div>
+                  </Link>
+                </div>
               </SwiperSlide>
             );
           })}
