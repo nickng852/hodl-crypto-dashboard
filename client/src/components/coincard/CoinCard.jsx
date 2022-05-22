@@ -41,12 +41,15 @@ const CoinCard = ({ simplified }) => {
           0: {
             slidesPerView: 1.2,
             spaceBetween: 20,
+            autoplay: false,
           },
           640: {
             slidesPerView: 2,
+            autoplay: false,
           },
           1000: {
             slidesPerView: 3,
+            autoplay: false,
           },
           2000: {
             slidesPerView: 4,
