@@ -41,9 +41,7 @@ const App = () => {
             </Route>
           </Route>
 
-          <Route element={<Layout />}>
-            <Route path="*" element={<NotFound />} />
-          </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </>

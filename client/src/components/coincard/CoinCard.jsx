@@ -69,11 +69,11 @@ const CoinCard = ({ simplified }) => {
               <SwiperSlide key={index} className="rounded-3xl">
                 <div className="relative w-full overflow-hidden bg-white rounded-3xl dark:bg-secondary">
                   <Link to={`/coin/${id}`}>
-                    {/*                     <img
+                    <img
                       src={icon}
                       alt={name}
-                      className="absolute 2xl:w-24 2xl:h-24 w-14 h-14 md:w-24 md:h-24 opacity-95 -top-2 -right-2 md:-top-4 md:-right-4"
-                    /> */}
+                      className="absolute 2xl:w-24 2xl:h-24 w-14 h-14 md:w-24 md:h-24 opacity-95 top-2 right-2 md:top-4 md:right-4"
+                    />
 
                     <div className="px-4 py-5 sm:p-5">
                       <dl>
