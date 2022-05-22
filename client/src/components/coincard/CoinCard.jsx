@@ -10,18 +10,12 @@ import { Swiper, SwiperSlide } from "swiper/react/";
 // import Swiper styles
 import "swiper/swiper.scss";
 import "swiper/swiper-bundle.css";
-import "swiper/components/effect-fade/effect-fade.scss";
 
 // import Swiper core and required modules
-import SwiperCore, {
-  Autoplay,
-  EffectFade,
-  Pagination,
-  Navigation,
-} from "swiper";
+import SwiperCore, { Autoplay } from "swiper";
 
 // install Swiper modules
-SwiperCore.use([Autoplay, EffectFade, Pagination, Navigation]);
+SwiperCore.use([Autoplay]);
 
 const CoinCard = ({ simplified }) => {
   const coins = useSelector(selectCoins);
@@ -72,8 +66,8 @@ const CoinCard = ({ simplified }) => {
             }
 
             return (
-              <SwiperSlide key={index}>
-                <div className="relative overflow-hidden bg-white rounded-3xl w-60 md:w-72 dark:bg-secondary">
+              <SwiperSlide key={index} className="rounded-3xl">
+                <div className="relative w-full overflow-hidden bg-white rounded-3xl dark:bg-secondary">
                   <Link to={`/coin/${id}`}>
                     <img
                       src={icon}
