@@ -48,7 +48,7 @@ const MobileSidebar = () => {
         <div className="z-50" onClick={handleClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6 cursor-pointer dark:text-gray-100"
+            className="w-5 h-5 cursor-pointer lg:w-6 lg:h-6 dark:text-gray-100"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
