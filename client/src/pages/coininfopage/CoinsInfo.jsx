@@ -33,7 +33,7 @@ const CoinsInfo = () => {
 
       {!isCoinsFetching && (
         <>
-          <div className="flex flex-col h-full h-screen-ios min-h-screen-ios">
+          <div className="flex flex-col h-full">
             <div className="flex flex-col w-full p-4 2xl:p-12">
               <div>
                 <div className="flex items-center justify-between">
