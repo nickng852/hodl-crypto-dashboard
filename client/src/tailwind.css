@@ -27,8 +27,3 @@
     @apply py-4 text-gray-600 dark:text-gray-300;
   }
 }
-
-.test {
-  min-height: -webkit-fill-available;
-  height: 100vh;
-}
