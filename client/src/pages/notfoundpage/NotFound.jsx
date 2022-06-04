@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen p-6 h-screen-ios lg:space-x-6 lg:flex-row dark:bg-secondary">
+      <div className="flex flex-col items-center justify-center h-screen p-6 lg:space-x-6 lg:flex-row dark:bg-secondary">
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"

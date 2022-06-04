@@ -216,7 +216,7 @@ const MobileSidebar = () => {
         <div
           id="overlay"
           className={`${
-            isOpen ? "block" : "hidden "
+            isOpen ? "block fixed" : "hidden"
           } absolute top-0 left-0 z-10 w-full h-full`}
         ></div>
       </main>
