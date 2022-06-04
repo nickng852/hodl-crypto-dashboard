@@ -64,7 +64,7 @@ const MobileSidebar = () => {
 
         <ClickAwayListener onClickAway={handleClickAway}>
           <div
-            className={`z-20 absolute top-0 h-full duration-500 ease bg-white shadow-xl dark:bg-secondary ${
+            className={`z-20 absolute top-0 h-screen duration-500 ease bg-white shadow-xl dark:bg-secondary ${
               isOpen ? "left-0" : "-left-full"
             }`}
           >
