@@ -2,7 +2,7 @@ const colors = require("tailwindcss/colors");
 const iOSHeight = require("@rvxlab/tailwind-plugin-ios-full-height");
 
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  content: ["./src/**/*.{html,js,jsx,ts,tsx}", "./public/index.html"],
   presets: [],
   darkMode: "class", // or 'media' or 'class'
   theme: {

@@ -78,7 +78,7 @@ const Dashboard = () => {
     <>
       {(isCoinsFetching || isNewsFetching) && (
         <>
-          <div className="flex items-center justify-center w-full h-full h-screen-ios">
+          <div className="flex flex-col items-center justify-center min-h-full">
             <Spinner />
           </div>
         </>

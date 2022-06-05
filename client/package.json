@@ -31,7 +31,7 @@
     "styled-components": "^5.3.1",
     "swiper": "^6.8.4",
     "tailwind-scrollbar": "github:adoxography/tailwind-scrollbar#pull/36/head",
-    "tailwindcss": "^3.0.23",
+    "tailwindcss": "^3.0.24",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
