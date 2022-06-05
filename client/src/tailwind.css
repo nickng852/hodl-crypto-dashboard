@@ -27,11 +27,3 @@
     @apply py-4 text-gray-600 dark:text-gray-300;
   }
 }
-
-html {
-  height: 100%;
-}
-
-body {
-  height: 100%;
-}
