@@ -6,11 +6,11 @@ import Sidebar from "./components/sidebar/Sidebar";
 const Layout = () => {
   return (
     <>
-      <div className="flex min-h-full">
+      <div className="flex h-screen overflow-hidden">
         <Sidebar />
-        <main className="flex flex-col w-full h-full bg-gray-50 dark:bg-primary">
+        <main className="flex flex-col w-full h-full overflow-hidden bg-gray-50 dark:bg-primary">
           <NavBar />
-          <section className="h-full mt-16 overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
+          <section className="max-h-full overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
             <Outlet />
           </section>
         </main>
