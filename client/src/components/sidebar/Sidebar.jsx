@@ -31,11 +31,11 @@ const Sidebar = () => {
 
   return (
     <>
-      <main className="z-10 h-screen bg-white shadow-xl landscape:hidden landscape:lg:block portrait:hidden portrait:-left-24 sm:block dark:bg-secondary">
+      <main className="fixed z-10 hidden bg-white shadow-xl xl:block dark:bg-secondary">
         <div className="flex">
           <div className="w-24 h-screen">
             {/* Sidebar List */}
-            <nav className="px-6 mt-32 space-y-8">
+            <nav className="px-6 space-y-8 xl:landscape:mt-32">
               {/* Dashboard */}
               <Link
                 to="/dashboard"
