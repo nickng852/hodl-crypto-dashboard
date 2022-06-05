@@ -170,7 +170,7 @@ const Dashboard = () => {
                   </h1>
 
                   <button
-                    className="p-2 transition-colors duration-200 rounded dark:hover:bg-tertiary xl:hover:bg-gray-200 xl:dark:text-gray-300"
+                    className="p-2 transition-colors duration-200 rounded dark:hover:bg-tertiary xl:hover:bg-gray-200 dark:text-gray-300"
                     onClick={modalToggle}
                   >
                     <svg
