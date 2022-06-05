@@ -35,7 +35,7 @@ const Sidebar = () => {
         <div className="flex">
           <div className="w-24 h-screen">
             {/* Sidebar List */}
-            <nav className="px-6 space-y-8 xl:landscape:mt-32">
+            <nav className="px-6 mt-32 space-y-8">
               {/* Dashboard */}
               <Link
                 to="/dashboard"

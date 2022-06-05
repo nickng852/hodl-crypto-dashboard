@@ -10,9 +10,11 @@ const Layout = () => {
         <Sidebar />
         <main className="flex flex-col w-full h-full bg-gray-50 dark:bg-primary">
           <NavBar />
-          <section className="h-full mt-16 overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
-            <Outlet />
-          </section>
+          <div className="absolute inset-0">
+            <section className="h-full pt-16 overflow-auto lg:pt-24 2xl:pt-16 xl:pl-24 bg-gray-50 dark:bg-primary scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
+              <Outlet />
+            </section>
+          </div>
         </main>
       </div>
     </>
