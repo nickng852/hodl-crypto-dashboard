@@ -229,7 +229,7 @@ const Account = () => {
 
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="absolute p-8 transform -translate-x-1/2 -translate-y-1/2 opacity-0 cursor-pointer w-14 h-14 md:w-16 md:h-16 hover:bg-gray-200 hover:opacity-70 top-1/2 left-1/2"
+                    className="absolute p-4 transform -translate-x-1/2 -translate-y-1/2 opacity-0 cursor-pointer w-14 h-14 md:w-16 md:h-16 hover:bg-gray-200 hover:opacity-70 top-1/2 left-1/2"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

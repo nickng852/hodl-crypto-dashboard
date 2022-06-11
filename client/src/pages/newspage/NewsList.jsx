@@ -13,7 +13,7 @@ const NewsList = () => {
 
   return (
     <>
-      {news.map((result, index) => {
+      {news?.map((result, index) => {
         const newsImage = result.urlToImage ? result.urlToImage : defaultImg;
         const newsUrl = result.url;
         const newsSource = result.source.name;

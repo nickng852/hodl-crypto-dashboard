@@ -17,7 +17,8 @@ export const cryptoApi = createApi({
     }),
 
     getNews: builder.query({
-      query: ({ keyword, pageSize }) => `/getNews/${keyword}/${pageSize}`,
+      query: ({ keyword, page, pageSize }) =>
+        `/getNews/${keyword}/${page}/${pageSize}`,
     }),
   }),
 });

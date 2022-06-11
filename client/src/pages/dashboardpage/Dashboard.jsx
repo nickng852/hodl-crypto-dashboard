@@ -69,7 +69,8 @@ const Dashboard = () => {
   // News API - GET news
   const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
     keyword,
-    pageSize: "3",
+    page: "1",
+    pageSize: "20",
   });
 
   dispatch(setNews(newsApi?.articles));
@@ -155,7 +156,7 @@ const Dashboard = () => {
                   )}
                 </header>
 
-                <div className="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 2xl:grid-cols-3">
+                <div className="grid grid-cols-1 gap-x-6 mt-6 md:grid-cols-2 2xl:grid-cols-3">
                   <CoinBar order={order} />
                 </div>
               </section>

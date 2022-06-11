@@ -10,11 +10,20 @@ const NewsCollection = () => {
   const dispatch = useDispatch();
   const keyword = useSelector(selectKeyword);
 
+  /*   window.addEventListener("scroll", function () {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      setPage((prev) => prev + 1);
+    }
+  }); */
+
   // News API - GET news
   const { data: getNewsApi, isFetching: isNewsFetching } = useGetNewsQuery({
     keyword: keyword,
-    pageSize: "25",
+    page: "1",
+    pageSize: "20",
   });
+
+  console.log(getNewsApi);
 
   dispatch(setNews(getNewsApi?.articles));
 

@@ -11,7 +11,7 @@ const News = () => {
   return (
     <>
       <div className="grid gap-y-10">
-        {news.map((result, index) => {
+        {news?.map((result, index) => {
           const newsImage = result.urlToImage ? result.urlToImage : defaultImg;
           const newsTitle = result.title;
           const newsPublishDate = moment(result.publishedAt)
