@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectToken,
   selectUser,
+  setUser,
   setWatchList,
 } from "../../features/auth/authSlice";
 import { selectCoins } from "../../features/coins/coinsSlice";
@@ -30,14 +31,14 @@ const WatchList = () => {
     }
   }
 
-  const watchlist = filteredWatchList.flat(1); // destructure the output
+  const watchlist = filteredWatchList?.flat(1); // destructure the output
 
   return (
     <>
       <div className="overflow-y-scroll md:overflow-auto md:h-96 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
-        {watchlist.length !== 0 ? (
+        {watchlist?.length !== 0 ? (
           <>
-            {watchlist.map((result, index) => {
+            {watchlist?.map((result, index) => {
               const id = result.uuid;
               const icon = result.iconUrl;
               const name = result.name;
@@ -63,9 +64,7 @@ const WatchList = () => {
                   (result, index) => index !== currentItemIndex
                 );
 
-                dispatch(
-                  setWatchList((prev) => ({ ...prev, watchlist: filteredList }))
-                );
+                dispatch(setWatchList((prev) => ({ ...prev, filteredList })));
 
                 // Add watchlist data to Firestore
                 const docData = {
@@ -77,8 +76,8 @@ const WatchList = () => {
 
               return (
                 <div className="relative" key={index}>
-                  <Link to={`/coin/${id}`} className="cursor-default">
-                    <div className="grid h-24 grid-cols-12 md:border-b md:border-gray-200 xl:hover:bg-gray-100 md:dark:border-gray-700 xl:dark:hover:bg-secondary">
+                  <Link to={`/coin/${id}`}>
+                    <div className="grid h-24 grid-cols-12 cursor-default lg:px-6 md:border-b md:border-gray-200 xl:hover:bg-gray-100 md:dark:border-gray-700 xl:dark:hover:bg-secondary">
                       <div className="flex items-center col-span-4 space-x-3 2xl:space-x-6">
                         <img
                           alt={name}
@@ -92,7 +91,7 @@ const WatchList = () => {
                       </div>
 
                       <div className="flex items-center justify-center col-span-3 md:col-span-2">
-                        <div className="flex items-center w-full">
+                        <div className="flex items-center w-full md:w-5/6 2xl:w-full">
                           <LineChart
                             key={index}
                             chartLabel={chartLabel}
@@ -162,7 +161,7 @@ const WatchList = () => {
           </>
         ) : (
           <>
-            <div className="flex items-center justify-center h-24 md:overflow-auto md:h-116">
+            <div className="flex items-center justify-center h-24 md:overflow-auto md:h-full">
               <div className="text-gray-600 cursor-default 2xl:text-xl dark:text-gray-500">
                 Your watchlist will be displayed here.
               </div>

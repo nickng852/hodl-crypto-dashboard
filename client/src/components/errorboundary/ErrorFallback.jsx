@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 
-const NotFound = () => {
+const ErrorFallback = ({ error, resetErrorBoundary }) => {
+  console.log(error);
+
+  const handleClick = () => {
+    resetErrorBoundary();
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="flex flex-col items-center justify-center h-screen h-screen-ios min-h-screen-ios dark:bg-secondary">
@@ -25,18 +32,21 @@ const NotFound = () => {
           <div className="space-y-4">
             <div className="flex flex-col space-y-1">
               <span className="text-xl text-center text-gray-800 lg:text-left lg:text-3xl dark:text-gray-400">
-                404 Not Found
+                Oops!
               </span>
 
               <span className="text-base font-thin text-center text-gray-800 lg:text-left lg:text-xl dark:text-gray-400">
-                Oops! We can't seem to find the page you're looking for.
+                Something went wrong. Please refresh the page.
               </span>
             </div>
 
             <div className="text-center lg:text-left">
               <Link to="/dashboard">
-                <button className="px-4 py-2 text-sm transition ease-in border-2 border-gray-800 rounded-lg hover:text-gray-200 hover:bg-gray-800 dark:border-gray-400 lg:text-base dark:hover:text-gray-800 dark:hover:bg-gray-400 dark:text-gray-400">
-                  Back to home page
+                <button
+                  className="px-4 py-2 text-sm transition ease-in border-2 border-gray-800 rounded-lg hover:text-gray-200 hover:bg-gray-800 dark:border-gray-400 lg:text-base dark:hover:text-gray-800 dark:hover:bg-gray-400 dark:text-gray-400"
+                  onClick={handleClick}
+                >
+                  Refresh
                 </button>
               </Link>
             </div>
@@ -47,4 +57,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default ErrorFallback;

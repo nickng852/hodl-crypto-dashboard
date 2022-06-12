@@ -23,7 +23,7 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
   };
 
   // Find matched results between input value and API data
-  const filteredCoins = coins.filter(
+  const filteredCoins = coins?.filter(
     (coin) =>
       coin.name.toLowerCase().includes(watchListSearch.toLowerCase()) ||
       coin.symbol.toLowerCase().includes(watchListSearch.toLowerCase())
@@ -32,7 +32,7 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
   return (
     <>
       <ClickAwayListener onClickAway={modalToggle}>
-        <div className="fixed z-10 flex w-5/6 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg 2xl:w-1/4 top-1/2 left-1/2 dark:bg-secondary h-3/5 2xl:h-1/2">
+        <div className="fixed z-10 flex w-11/12 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg 2xl:w-1/4 top-1/2 left-1/2 dark:bg-secondary h-3/5 2xl:h-1/2">
           <div className="flex flex-col w-full gap-6 p-5 2xl:p-6">
             <div className="flex justify-between">
               <h1 className="flex items-center text-base font-bold cursor-default md:text-xl dark:text-gray-100">
@@ -69,11 +69,11 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
             </div>
 
             <div className="overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
-              {filteredCoins.map((result, index) => {
+              {filteredCoins?.map((result, index) => {
                 return (
                   <>
                     <WatchListModalResult
-                      key={result.id}
+                      key={index}
                       id={result.uuid}
                       icon={result.iconUrl}
                       name={result.name}

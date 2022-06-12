@@ -22,7 +22,7 @@ const CoinCard = ({ simplified }) => {
 
   const coinCardDisplayCount = simplified ? 10 : 50;
 
-  const slicedCoins = coins.slice(0, coinCardDisplayCount); // decide how many CoinCard will be displayed
+  const slicedCoins = coins?.slice(0, coinCardDisplayCount); // decide how many CoinCard will be displayed
 
   return (
     <>
@@ -47,7 +47,7 @@ const CoinCard = ({ simplified }) => {
         }}
       >
         <div className="flex">
-          {slicedCoins.map((result, index) => {
+          {slicedCoins?.map((result, index) => {
             const id = result.uuid;
             const icon = result.iconUrl;
             const name = result.name;

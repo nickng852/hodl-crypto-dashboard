@@ -13,7 +13,7 @@ const NewsCard = () => {
 
   return (
     <>
-      {news.map((result) => {
+      {news?.map((result) => {
         const newsImage = result.urlToImage ? result.urlToImage : defaultImg;
         const newsUrl = result.url;
         const newsTitle = result.title;

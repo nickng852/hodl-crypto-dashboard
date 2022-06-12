@@ -31,7 +31,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <main className="fixed z-10 hidden bg-white shadow-xl xl:block dark:bg-secondary">
+      <main className="z-10 hidden bg-white shadow-xl xl:block dark:bg-secondary">
         <div className="flex">
           <div className="w-24 h-screen">
             {/* Sidebar List */}

@@ -24,35 +24,35 @@ const CoinList = ({ currentPage, itemsPerPage }) => {
               <tr>
                 <th
                   scope="col"
-                  className="px-5 py-4 text-sm text-base font-normal text-left text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
+                  className="px-5 py-4 text-sm font-normal text-left text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
                 >
                   Coin Name
                 </th>
 
                 <th
                   scope="col"
-                  className="px-5 py-4 text-sm text-base font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
+                  className="px-5 py-4 text-sm font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
                 >
                   Price
                 </th>
 
                 <th
                   scope="col"
-                  className="px-5 py-4 text-sm text-base font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
+                  className="px-5 py-4 text-sm font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
                 >
                   Market Cap
                 </th>
 
                 <th
                   scope="col"
-                  className="px-5 py-4 text-sm text-base font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
+                  className="px-5 py-4 text-sm font-normal text-right text-gray-900 bg-white border-b border-gray-100 2xl:px-8 2xl:py-4 2xl:text-base dark:border-gray-700 dark:bg-secondary dark:text-white"
                 >
                   Volume(24h)
                 </th>
               </tr>
             </thead>
 
-            {currentItems.map((result, index) => {
+            {currentItems?.map((result, index) => {
               const id = result.uuid;
               const icon = result.iconUrl;
               const name = result.name;

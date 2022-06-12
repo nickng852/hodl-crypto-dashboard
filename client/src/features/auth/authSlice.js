@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   token: null, // firebase/auth
   user: null, // firestore
+  watchlist: null,
 };
 
 export const authSlice = createSlice({
@@ -18,7 +19,7 @@ export const authSlice = createSlice({
     },
 
     setWatchList: (state, action) => {
-      state.user.watchlist = action.payload.watchlist;
+      state.watchlist = action.payload.watchlist;
     },
 
     resetUser: (state) => {

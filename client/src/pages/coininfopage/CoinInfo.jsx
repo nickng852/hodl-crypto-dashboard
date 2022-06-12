@@ -31,7 +31,7 @@ const CoinInfo = () => {
   const { data: getCoinApi, isFetching: isCoinFetching } =
     useGetCoinQuery(uuid);
 
-  dispatch(setCoin(getCoinApi?.data?.coin));
+  dispatch(setCoin({ coin: getCoinApi?.data?.coin }));
 
   // Coinranking API - GET coin price history
   const {
@@ -51,15 +51,15 @@ const CoinInfo = () => {
 
   const coinPriceHistory = unflattedCoinPriceHistory.flat(1);
 
-  dispatch(setCoinPriceHistory(coinPriceHistory));
+  dispatch(setCoinPriceHistory({ coinPriceHistory: coinPriceHistory }));
 
-  // News API - GET news
+  /*   // News API - GET news
   const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
     keyword,
     pageSize: "5",
   });
 
-  dispatch(setNews(newsApi?.articles));
+  dispatch(setNews(newsApi?.articles)); */
 
   // Chart.js
   const chartLabel = [];
@@ -67,7 +67,7 @@ const CoinInfo = () => {
 
   return (
     <>
-      {(isCoinFetching || isNewsFetching) && (
+      {isCoinFetching && (
         <>
           <div className="flex items-center justify-center h-full h-screen-ios">
             <Spinner />
@@ -75,7 +75,7 @@ const CoinInfo = () => {
         </>
       )}
 
-      {!isCoinFetching && !isNewsFetching && (
+      {!isCoinFetching && (
         <>
           <div className="grid h-full p-4 overflow-auto xl:gap-4 2xl:gap-20 xl:p-12 xl:grid-cols-2 2xl:grid-cols-3">
             <div className="w-full col-span-1 space-y-8 2xl:col-span-2">

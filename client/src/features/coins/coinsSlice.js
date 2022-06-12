@@ -11,15 +11,15 @@ export const coinsSlice = createSlice({
   initialState,
   reducers: {
     setCoins: (state, action) => {
-      state.coins = action.payload;
+      state.coins = action.payload.coins;
     },
 
     setCoin: (state, action) => {
-      state.coin = action.payload;
+      state.coin = action.payload.coin;
     },
 
     setCoinPriceHistory: (state, action) => {
-      state.coinPriceHistory = action.payload;
+      state.coinPriceHistory = action.payload.coinPriceHistory;
     },
   },
 });

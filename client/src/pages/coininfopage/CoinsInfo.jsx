@@ -19,7 +19,7 @@ const CoinsInfo = () => {
   // Coinranking API call - GET coins
   const { data: getCoinsApi, isFetching: isCoinsFetching } = useGetCoinsQuery();
 
-  dispatch(setCoins(getCoinsApi?.data?.coins));
+  dispatch(setCoins({ coins: getCoinsApi?.data?.coins }));
 
   return (
     <>

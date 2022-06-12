@@ -25,6 +25,7 @@ const Dashboard = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [order, setOrder] = useState("sortByMarketCap");
+  const [rank, setRank] = useState("Market Cap");
 
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
@@ -54,30 +55,32 @@ const Dashboard = () => {
   const sortByMarketCap = () => {
     setOrder("sortByMarketCap");
     setMenuOpen(!menuOpen);
+    setRank("Market Cap");
   };
 
   const sortByVolume = () => {
     setOrder("sortByVolume");
     setMenuOpen(!menuOpen);
+    setRank("Volume");
   };
 
   // Coinranking API call - GET coins
   const { data: getCoinsApi, isFetching: isCoinsFetching } = useGetCoinsQuery();
 
-  dispatch(setCoins(getCoinsApi?.data?.coins));
+  dispatch(setCoins({ coins: getCoinsApi?.data?.coins }));
 
-  // News API - GET news
+  /*   // News API - GET news
   const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
     keyword,
     page: "1",
     pageSize: "20",
   });
 
-  dispatch(setNews(newsApi?.articles));
+  dispatch(setNews(newsApi?.articles)); */
 
   return (
     <>
-      {(isCoinsFetching || isNewsFetching) && (
+      {isCoinsFetching && (
         <>
           <div className="flex items-center justify-center w-full h-full h-screen-ios">
             <Spinner />
@@ -85,7 +88,7 @@ const Dashboard = () => {
         </>
       )}
 
-      {!isCoinsFetching && !isNewsFetching && (
+      {!isCoinsFetching && (
         <>
           <main className="w-full h-full 2xl:flex">
             <div className="flex flex-col justify-between p-4 space-y-6 2xl:pl-12 2xl:pr-6 2xl:py-12 2xl:w-2/3">
@@ -105,17 +108,60 @@ const Dashboard = () => {
               {/* Coin Bar */}
               <section className="p-6 space-y-4 bg-white 2xl:p-8 rounded-3xl dark:bg-secondary ">
                 <header className="flex items-center justify-between">
-                  <div className="relative">
-                    <h1
-                      className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header"
-                      onClick={menuToggle}
-                    >
-                      Top 15 Cryptocurrency by
+                  <div className="flex items-center">
+                    <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
+                      Top 15 Cryptocurrency by&nbsp;
+                      <div className="relative inline-block">
+                        <button
+                          className="relative flex items-center text-sm text-gray-600 dark:text-white"
+                          onClick={menuToggle}
+                        >
+                          <span className="text-xl text-gray-500 dark:text-gray-100 font-header">
+                            {rank}
+                          </span>
+
+                          <svg
+                            className="w-6 h-6 mx-1"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z"
+                              fill="currentColor"
+                            ></path>
+                          </svg>
+                        </button>
+
+                        {menuOpen && (
+                          <>
+                            <ClickAwayListener onClickAway={menuToggle}>
+                              <div className="relative">
+                                <div className="absolute left-0 z-10 w-56 mt-2 origin-top-left bg-white rounded-lg shadow-lg dark:bg-secondary ring-1 ring-black ring-opacity-5">
+                                  <span
+                                    className="flex px-4 py-3 text-base text-gray-500 transition rounded-t-lg hover:bg-gray-100 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
+                                    onClick={sortByMarketCap}
+                                  >
+                                    MarketCap
+                                  </span>
+
+                                  <span
+                                    className="flex px-4 py-3 text-base text-gray-500 transition rounded-b-lg hover:bg-gray-100 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
+                                    onClick={sortByVolume}
+                                  >
+                                    Volume
+                                  </span>
+                                </div>
+                              </div>
+                            </ClickAwayListener>
+                          </>
+                        )}
+                      </div>
                     </h1>
                   </div>
 
                   <Link to="/coins">
-                    <button className="p-2 text-sm font-medium text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 font-header xl:dark:hover:bg-tertiary xl:hover:bg-gray-200 ">
+                    <button className="p-2 text-sm font-medium text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 font-header xl:dark:hover:bg-tertiary xl:hover:bg-gray-200">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-6 h-6"
@@ -132,31 +178,9 @@ const Dashboard = () => {
                       </svg>
                     </button>
                   </Link>
-
-                  {menuOpen && (
-                    <>
-                      <ClickAwayListener onClickAway={menuToggle}>
-                        <div className="absolute left-0 z-10 w-56 mt-2 origin-top-left bg-white rounded-lg shadow-lg dark:bg-secondary ring-1 ring-black ring-opacity-5">
-                          <span
-                            className="flex px-4 py-3 text-base text-gray-700 rounded-t-lg hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
-                            onClick={sortByMarketCap}
-                          >
-                            MarketCap
-                          </span>
-
-                          <span
-                            className="flex px-4 py-3 text-base text-gray-700 rounded-t-lg hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
-                            onClick={sortByVolume}
-                          >
-                            Volume
-                          </span>
-                        </div>
-                      </ClickAwayListener>
-                    </>
-                  )}
                 </header>
 
-                <div className="grid grid-cols-1 gap-x-6 mt-6 md:grid-cols-2 2xl:grid-cols-3">
+                <div className="grid grid-cols-1 mt-6 gap-x-6 md:grid-cols-2 2xl:grid-cols-3">
                   <CoinBar order={order} />
                 </div>
               </section>
