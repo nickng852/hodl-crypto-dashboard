@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { selectKeyword, setNews } from "../../features/news/newsSlice";
 
@@ -7,23 +9,20 @@ import NewsList from "./NewsList.jsx";
 import { useGetNewsQuery } from "../../services/cryptoApi";
 
 const NewsCollection = () => {
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const keyword = useSelector(selectKeyword);
-
-  /*   window.addEventListener("scroll", function () {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      setPage((prev) => prev + 1);
-    }
-  }); */
 
   // News API - GET news
   const { data: getNewsApi, isFetching: isNewsFetching } = useGetNewsQuery({
     keyword: keyword,
-    page: "1",
-    pageSize: "20",
+    page: page,
+    pageSize: 20,
   });
 
-  console.log(getNewsApi);
+  /*   const handleClick = () => {
+    setPage((prev) => prev + 1);
+  }; */
 
   dispatch(setNews(getNewsApi?.articles));
 
@@ -46,6 +45,8 @@ const NewsCollection = () => {
               </h1>
             </header>
 
+            {/* <button onClick={handleClick}>Fetch more</button>
+             */}
             <div className="grid grid-cols-1 gap-6 xl:gap-12 xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 2xl:gap-8 xl: gap-y-10">
               <NewsList />
             </div>

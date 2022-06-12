@@ -69,18 +69,18 @@ const Dashboard = () => {
 
   dispatch(setCoins({ coins: getCoinsApi?.data?.coins }));
 
-  /*   // News API - GET news
+  // News API - GET news
   const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
     keyword,
-    page: "1",
-    pageSize: "20",
+    page: 1,
+    pageSize: 3,
   });
 
-  dispatch(setNews(newsApi?.articles)); */
+  dispatch(setNews(newsApi?.articles));
 
   return (
     <>
-      {isCoinsFetching && (
+      {(isCoinsFetching || isNewsFetching) && (
         <>
           <div className="flex items-center justify-center w-full h-full">
             <Spinner />
@@ -88,7 +88,7 @@ const Dashboard = () => {
         </>
       )}
 
-      {!isCoinsFetching && (
+      {!isCoinsFetching && !isNewsFetching && (
         <>
           <main className="w-full h-full space-y-8 2xl:space-y-0 2xl:space-x-10 2xl:flex">
             <div className="flex flex-col justify-between space-y-6 2xl:w-2/3">
