@@ -82,7 +82,7 @@ const Dashboard = () => {
     <>
       {isCoinsFetching && (
         <>
-          <div className="flex items-center justify-center w-full h-full h-screen-ios">
+          <div className="flex items-center justify-center w-full h-full">
             <Spinner />
           </div>
         </>
@@ -90,8 +90,8 @@ const Dashboard = () => {
 
       {!isCoinsFetching && (
         <>
-          <main className="w-full h-full 2xl:flex">
-            <div className="flex flex-col justify-between p-4 space-y-6 2xl:pl-12 2xl:pr-6 2xl:py-12 2xl:w-2/3">
+          <main className="w-full h-full space-y-8 2xl:space-y-0 2xl:space-x-10 2xl:flex">
+            <div className="flex flex-col justify-between space-y-6 2xl:w-2/3">
               {/* Coin Card */}
               <section className="space-y-4">
                 <header className="flex items-center">
@@ -161,7 +161,7 @@ const Dashboard = () => {
                   </div>
 
                   <Link to="/coins">
-                    <button className="p-2 text-sm font-medium text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 font-header xl:dark:hover:bg-tertiary xl:hover:bg-gray-200">
+                    <button className="p-2 text-sm font-medium text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 font-header 2xl:dark:hover:bg-tertiary 2xl:hover:bg-gray-200">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-6 h-6"
@@ -186,7 +186,7 @@ const Dashboard = () => {
               </section>
             </div>
 
-            <div className="p-6 space-y-4 2xl:pl-6 2xl:pr-12 2xl:w-1/3 2xl:justify-between 2xl:flex 2xl:flex-col 2xl:py-12">
+            <div className="space-y-4 2xl:justify-between 2xl:flex 2xl:flex-col">
               {/* Watchlist */}
               <section className="space-y-4">
                 <header className="flex items-center justify-between">
@@ -195,7 +195,7 @@ const Dashboard = () => {
                   </h1>
 
                   <button
-                    className="p-2 transition-colors duration-200 rounded dark:hover:bg-tertiary xl:hover:bg-gray-200 dark:text-gray-300"
+                    className="p-2 transition-colors duration-200 rounded 2xl:dark:hover:bg-tertiary 2xl:hover:bg-gray-200 dark:text-gray-300"
                     onClick={modalToggle}
                   >
                     <svg

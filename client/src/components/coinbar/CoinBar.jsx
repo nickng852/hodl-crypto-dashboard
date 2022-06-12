@@ -54,7 +54,7 @@ const CoinBar = ({ order }) => {
           <Link
             to={`/coin/${id}`}
             key={index}
-            className="flex py-6 border-b border-gray-200 cursor-default md:px-4 2xl:p-6 dark:bg-secondary dark:border-gray-700 xl:hover:bg-gray-100 xl:dark:hover:bg-tertiary last:border-0 2xl:border-none"
+            className="flex py-6 border-b border-gray-200 cursor-default md:px-4 2xl:p-6 dark:bg-secondary dark:border-gray-700 2xl:hover:bg-gray-100 2xl:dark:hover:bg-tertiary last:border-0 2xl:border-none"
           >
             <div className="flex items-center w-1/4 text-sm 2xl:text-base dark:text-gray-100">
               {index + 1}

@@ -25,7 +25,7 @@ const CoinsInfo = () => {
     <>
       {isCoinsFetching && (
         <>
-          <div className="flex items-center justify-center h-full h-screen-ios">
+          <div className="flex items-center justify-center h-full">
             <Spinner />
           </div>
         </>
@@ -33,30 +33,23 @@ const CoinsInfo = () => {
 
       {!isCoinsFetching && (
         <>
-          <div className="flex flex-col h-full">
-            <div className="flex flex-col w-full p-4 2xl:p-12">
+          <div className="flex flex-col w-full h-full">
+            <div className="flex items-center justify-between">
+              <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
+                Cryptocurrency
+              </h1>
+
               <div>
-                <div className="flex items-center justify-between">
-                  <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
-                    Cryptocurrency
-                  </h1>
-
-                  <div>
-                    <CoinListPagination
-                      currentPage={currentPage}
-                      setCurrentPage={setCurrentPage}
-                      itemsPerPage={itemsPerPage}
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <CoinList
-                    currentPage={currentPage}
-                    itemsPerPage={itemsPerPage}
-                  />
-                </div>
+                <CoinListPagination
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  itemsPerPage={itemsPerPage}
+                />
               </div>
+            </div>
+
+            <div className="mt-6">
+              <CoinList currentPage={currentPage} itemsPerPage={itemsPerPage} />
             </div>
           </div>
         </>

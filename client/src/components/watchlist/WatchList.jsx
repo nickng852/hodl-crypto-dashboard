@@ -137,7 +137,7 @@ const WatchList = () => {
                   </Link>
 
                   <button
-                    className="absolute py-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto 2xl:p-3 right-2 top-1/2 xl:hover:bg-gray-200 xl:dark:hover:bg-tertiary dark:text-gray-300"
+                    className="absolute py-3 transition-colors duration-200 transform -translate-y-1/2 rounded cursor-auto 2xl:p-3 right-2 top-1/2 2xl:hover:bg-gray-200 2xl:dark:hover:bg-tertiary dark:text-gray-300"
                     onClick={removeItem}
                   >
                     <svg

@@ -53,14 +53,6 @@ const CoinInfo = () => {
 
   dispatch(setCoinPriceHistory({ coinPriceHistory: coinPriceHistory }));
 
-  /*   // News API - GET news
-  const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
-    keyword,
-    pageSize: "5",
-  });
-
-  dispatch(setNews(newsApi?.articles)); */
-
   // Chart.js
   const chartLabel = [];
   const chartStat = [];
@@ -69,7 +61,7 @@ const CoinInfo = () => {
     <>
       {isCoinFetching && (
         <>
-          <div className="flex items-center justify-center h-full h-screen-ios">
+          <div className="flex items-center justify-center h-full">
             <Spinner />
           </div>
         </>
@@ -77,7 +69,7 @@ const CoinInfo = () => {
 
       {!isCoinFetching && (
         <>
-          <div className="grid h-full p-4 overflow-auto xl:gap-4 2xl:gap-20 xl:p-12 xl:grid-cols-2 2xl:grid-cols-3">
+          <div className="grid h-full gap-4 sm:gap-10 2xl:gap-20 xl:grid-cols-2 2xl:grid-cols-3">
             <div className="w-full col-span-1 space-y-8 2xl:col-span-2">
               <CoinIntro />
 
@@ -102,13 +94,9 @@ const CoinInfo = () => {
                   />
                 )}
               </div>
-
-              {/*               <div>
-                  <News />
-                </div> */}
             </div>
 
-            <div className="flex flex-col w-full col-span-1 space-y-4 2xl:space-y-10">
+            <div className="flex flex-col w-full col-span-1 p-1 space-y-4 2xl:space-y-10">
               <CoinPriceStat />
               <CoinDesc />
             </div>

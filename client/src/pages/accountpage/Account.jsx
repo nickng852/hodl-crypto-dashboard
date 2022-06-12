@@ -203,7 +203,7 @@ const Account = () => {
   return (
     <>
       <section className="w-full h-full overflow-auto sm:flex sm:items-center sm:justify-center">
-        <div className="container p-4">
+        <div className="container">
           <form
             className="max-w-2xl mx-auto rounded-lg shadow-md"
             onSubmit={handleSubmit}

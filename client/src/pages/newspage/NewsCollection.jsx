@@ -31,7 +31,7 @@ const NewsCollection = () => {
     <>
       {isNewsFetching && (
         <>
-          <div className="flex items-center justify-center h-full h-screen-ios">
+          <div className="flex items-center justify-center h-full">
             <Spinner />
           </div>
         </>
@@ -39,19 +39,17 @@ const NewsCollection = () => {
 
       {!isNewsFetching && (
         <>
-          <div className="p-4 2xl:p-12">
-            <section className="space-y-4">
-              <header className="flex items-center">
-                <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
-                  News
-                </h1>
-              </header>
+          <section className="space-y-4">
+            <header className="flex items-center">
+              <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
+                News
+              </h1>
+            </header>
 
-              <div className="grid grid-cols-1 gap-6 xl:gap-12 xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 2xl:gap-8 xl: gap-y-10">
-                <NewsList />
-              </div>
-            </section>
-          </div>
+            <div className="grid grid-cols-1 gap-6 xl:gap-12 xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 2xl:gap-8 xl: gap-y-10">
+              <NewsList />
+            </div>
+          </section>
         </>
       )}
     </>
