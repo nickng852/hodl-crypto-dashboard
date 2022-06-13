@@ -64,12 +64,12 @@ const MobileSidebar = () => {
 
         <ClickAwayListener onClickAway={handleClickAway}>
           <div
-            className={`z-20 absolute top-0 absolute inset-0 duration-500 ease bg-white shadow-xl dark:bg-secondary ${
+            className={`z-20 absolute top-0 duration-500 ease bg-white shadow-xl dark:bg-secondary ${
               isOpen ? "left-0" : "-left-full"
             }`}
           >
             <div className="flex">
-              <div className="absolute inset-0 w-52 lg:w-72">
+              <div className="h-screen w-52 lg:w-72">
                 {/* Sidebar List */}
                 <nav className="px-4 mt-32 space-y-8 lg:px-6">
                   {/* Dashboard */}
