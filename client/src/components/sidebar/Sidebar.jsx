@@ -33,7 +33,7 @@ const Sidebar = () => {
     <>
       <main className="z-10 hidden bg-white shadow-xl xl:block dark:bg-secondary">
         <div className="flex">
-          <div className="w-24 absolute inset-0">
+          <div className="w-24 h-full">
             {/* Sidebar List */}
             <nav className="px-6 mt-32 space-y-8">
               {/* Dashboard */}
