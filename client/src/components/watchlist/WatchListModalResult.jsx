@@ -51,7 +51,7 @@ const WatchListModalResult = ({
   return (
     <>
       <Link to="#" key={id} className="cursor-default" onClick={addItem}>
-        <div className="flex justify-between p-3 xl:hover:bg-gray-50 xl:dark:hover:bg-tertiary 2xl:px-6">
+        <div className="flex justify-between px-5 py-4 xl:hover:bg-gray-50 xl:dark:hover:bg-tertiary 2xl:px-6">
           <div className="w-full">
             <div className="text-sm font-medium text-gray-800 2xl:font-medium dark:text-gray-100">
               {name}

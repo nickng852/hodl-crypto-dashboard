@@ -32,7 +32,7 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
   return (
     <>
       <ClickAwayListener onClickAway={modalToggle}>
-        <div className="fixed z-10 flex w-11/12 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg 2xl:w-1/4 top-1/2 left-1/2 dark:bg-secondary h-3/5 2xl:h-1/2">
+        <div className="fixed z-10 flex w-11/12 md:w-3/5 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg 2xl:w-1/4 top-1/2 left-1/2 dark:bg-secondary h-3/5 2xl:h-1/2">
           <div className="flex flex-col w-full gap-6 p-5 2xl:p-6">
             <div className="flex justify-between">
               <h1 className="flex items-center text-base font-bold cursor-default md:text-xl dark:text-gray-100">
@@ -40,7 +40,7 @@ const WatchListModal = ({ modalOpen, setModalOpen }) => {
               </h1>
 
               <button
-                className="flex items-center justify-center rounded cursor-default 2xl:p-2 xl:dark:hover:bg-tertiary xl:hover:bg-gray-200 dark:text-gray-300"
+                className="flex items-center justify-center rounded cursor-default 2xl:p-2 2xl:dark:hover:bg-tertiary 2xl:hover:bg-gray-200 dark:text-gray-300"
                 onClick={modalToggle}
               >
                 <svg

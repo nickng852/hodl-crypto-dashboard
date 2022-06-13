@@ -90,7 +90,7 @@ const Dashboard = () => {
 
       {!isCoinsFetching && !isNewsFetching && (
         <>
-          <main className="w-full h-full space-y-8 2xl:space-y-0 2xl:space-x-10 2xl:flex">
+          <main className="space-y-8 2xl:space-y-0 2xl:space-x-10 2xl:flex">
             <div className="flex flex-col justify-between space-y-6 2xl:w-2/3">
               {/* Coin Card */}
               <section className="space-y-4">

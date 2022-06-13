@@ -69,7 +69,7 @@ const CoinInfo = () => {
 
       {!isCoinFetching && (
         <>
-          <div className="grid h-full gap-4 sm:gap-10 2xl:gap-20 xl:grid-cols-2 2xl:grid-cols-3">
+          <div className="grid gap-4 sm:gap-10 2xl:gap-20 xl:grid-cols-2 2xl:grid-cols-3">
             <div className="w-full col-span-1 space-y-8 2xl:col-span-2">
               <CoinIntro />
 
