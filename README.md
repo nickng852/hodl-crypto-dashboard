@@ -3,45 +3,27 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="%PUBLIC_URL%/favicon.ico">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
 
   <h3 align="center">HODL</h3>
 
   <p align="center">
     A minimal cryptocurrency dashboard
     <br />
-    <a href="https://github.com/nickng852/crypto-dashboard"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://crypto-dashboard-heroku.herokuapp.com">Live Demo</a>
+    <a href="https://github.com/nickng852/crypto-dashboard"><strong>Live demo »</strong></a>
   </p>
 </div>
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#getting-started">Getting Started<</a>
-    </li>
-    <li>
-      <a href="#built-with">Build With</a>
-    </li>
-        <li>
-      <a href="#application-structure">Application Structure</a>
-    </li>
-  </ol>
-</details>
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
+HODL is a cryptocurrency dashboard website built with React. It is fully responsive on desktop, mobile and tablet. With HODL, users can view up-to-date cryptocurrency data at a glance and add specific coins to their own watchlist. Things that happened in crypto world could be learned with the latest news available in HODL.
+
 <!-- BUILD WITH -->
 
-### Built With
+# Built With
 
 ### Tech Stack
 
