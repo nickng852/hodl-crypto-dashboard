@@ -11,7 +11,7 @@
     A minimal cryptocurrency dashboard
     <br />
     <br />
-    <a href="https://github.com/nickng852/crypto-dashboard"><strong>Live demo »</strong></a>
+    <a href="https://crypto-dashboard-heroku.herokuapp.com"><strong>Live demo »</strong></a>
   </p>
 </div>
 
@@ -23,35 +23,35 @@ HODL is a cryptocurrency dashboard website built with React. It is fully respons
 
 <!-- BUILD WITH -->
 
-# Built With
+## Built With
 
 ### Tech Stack
 
-### Frontend
+#### Frontend
 
 - [React.js](https://reactjs.org/)
 
-### Backend
+#### Backend
 
 - [Node.js](https://nodejs.org/)
 
-### CSS
+#### CSS
 
 - [Tailwind CSS](https://tailwindcss.com/)
 
-### State management
+#### State management
 
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 
-### Authentication
+#### Authentication
 
 - [Firebase](https://firebase.google.com/products/auth?gclid=EAIaIQobChMIyMbE65yt-AIVjjUrCh3Xvg7pEAAYASAAEgJEBvD_BwE&gclsrc=aw.ds)
 
-### Database
+#### Database
 
 - [Firestore](https://firebase.google.com/products/firestore?gclid=EAIaIQobChMItNLmgZ2t-AIVCJ1LBR13wAZxEAAYASAAEgKOCvD_BwE&gclsrc=aw.ds)
 
-### API
+#### API
 
 - [Coinranking API](https://developers.coinranking.com/api/documentation)
 - [News API](https://newsapi.org/)
