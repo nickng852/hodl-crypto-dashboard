@@ -1,10 +1,4 @@
-<div id="top"></div>
-
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-
   <h3 align="center">HODL</h3>
 
   <p align="center">
@@ -19,7 +13,7 @@
 
 ## Getting Started
 
-HODL is a cryptocurrency dashboard website built with React. It is fully responsive on desktop, mobile and tablet. With HODL, users can view up-to-date cryptocurrency data at a glance and add specific coins to their own watchlist. Things that happened in crypto world could be learned with the latest news available in HODL.
+HODL is a cryptocurrency dashboard built with React. It is fully responsive on desktop, mobile and tablet. With HODL, users can view up-to-date cryptocurrency data at a glance and add specific coins to their own watchlist. Things that happened in crypto world could be learned with the latest news available in HODL.
 
 <!-- BUILD WITH -->
 
@@ -39,7 +33,7 @@ HODL is a cryptocurrency dashboard website built with React. It is fully respons
 
 - [Tailwind CSS](https://tailwindcss.com/)
 
-#### State management
+#### State Management
 
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 
