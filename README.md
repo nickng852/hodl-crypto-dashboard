@@ -6,6 +6,8 @@
     <br />
     <br />
     <a href="https://crypto-dashboard-heroku.herokuapp.com"><strong>Live demo »</strong></a>
+    <br />
+    <br />
   </p>
 </div>
 
@@ -51,5 +53,9 @@ HODL is a cryptocurrency dashboard built with React. It is fully responsive on d
 
 - [Coinranking API](https://developers.coinranking.com/api/documentation)
 - [News API](https://newsapi.org/)
+
+## Screenshot
+
+<img src="/client/src/assets/images/ui-layout-1.png"></img>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
