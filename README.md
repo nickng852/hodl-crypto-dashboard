@@ -9,7 +9,7 @@
   </p>
 </div>
 
-<img src="/client/src/assets/images/Layout.png"></img>
+<img src="/client/src/assets/images/ui-layout.png"></img>
 
 <!-- GETTING STARTED -->
 
