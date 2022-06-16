@@ -9,8 +9,7 @@
   </p>
 </div>
 
-<img src="/client/src/assets/images/lightmode.png"></img>
-<img src="/client/src/assets/images/darkmode.png"></img>
+<img src="/client/src/assets/images/Layout.png"></img>
 
 <!-- GETTING STARTED -->
 
@@ -52,9 +51,5 @@ HODL is a cryptocurrency dashboard built with React. It is fully responsive on d
 
 - [Coinranking API](https://developers.coinranking.com/api/documentation)
 - [News API](https://newsapi.org/)
-
-## Screenshot
-
-<img src="/client/src/assets/images/Layout.png"></img>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
