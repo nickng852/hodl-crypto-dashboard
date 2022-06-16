@@ -9,8 +9,9 @@
   </p>
 </div>
 
-<img src="/client/src/assets/images/lightmode.png"></img>
-<img src="/client/src/assets/images/darkmode.png"></img>
+<img src="/client/src/assets/images/Desktop-1.png"></img>
+<img src="/client/src/assets/images/Tablet.png"></img>
+<img src="/client/src/assets/images/Mobile.png"></img>
 
 <!-- GETTING STARTED -->
 
