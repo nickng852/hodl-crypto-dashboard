@@ -34,6 +34,8 @@ import {
 
 const Account = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [isDefaultProfileImg, setIsDefaultProfileImg] = useState(true);
   const [profileImg, setProfileImg] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false); // whether "Name" or "Email" has been updated
   const [isEmailSent, setIsEmailSent] = useState(false); // whether Password Reset Email has been sent
@@ -60,6 +62,10 @@ const Account = () => {
     setModalOpen(!modalOpen);
   };
 
+  const dialogToggle = () => {
+    setDialogOpen(!dialogOpen);
+  };
+
   const updateToggle = () => {
     setIsUpdated(!isUpdated);
   };
@@ -83,7 +89,7 @@ const Account = () => {
 
   // Update User Profile Image (Instantly)
   useEffect(() => {
-    if (profileImg !== null) {
+    if (profileImg != null) {
       uploadBytes(storageRef, profileImg).then(() => {
         getDownloadURL(storageRef)
           .then((url) => {
@@ -99,8 +105,25 @@ const Account = () => {
             console.log(error);
           });
       });
+      console.log("upload new img");
     }
-  }, [profileImg, storageRef, docRef]);
+  }, [isDefaultProfileImg, profileImg, storageRef, docRef]);
+
+  const resetProfileImg = () => {
+    setIsDefaultProfileImg(true);
+    setProfileImg(null);
+    setModalOpen(false);
+
+    const docData = {
+      profileImg: null,
+    };
+
+    updateDoc(docRef, docData);
+
+    setProfileImg(null);
+
+    console.log("reset img");
+  };
 
   // Send Password Reset Email
   const changePw = () => {
@@ -210,38 +233,60 @@ const Account = () => {
           >
             <div className="p-5 border-t-2 border-indigo-400 rounded-t-lg 2xl:px-10 dark:bg-tertiary bg-opacity-5">
               <div className="inline-flex items-center space-x-4">
-                <label className="relative overflow-hidden rounded-full md:w-16 md:h-16 w-14 h-14">
-                  <input
-                    type="file"
-                    className="hidden"
-                    onChange={(e) => {
-                      if (e.target.files.length !== 0) {
-                        setProfileImg(e.target.files[0]);
-                      }
-                    }}
-                  />
-
+                <div className="relative md:w-16 md:h-16 w-14 h-14 rounded-full">
                   <img
                     alt="User Icon"
-                    src={user.profileImg ? user.profileImg : defaultImg}
-                    className="object-cover md:w-16 md:h-16 w-14 h-14"
+                    src={isDefaultProfileImg ? defaultImg : user.profileImg}
+                    className="object-cover md:w-16 md:h-16 w-14 h-14 rounded-full"
                   />
 
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="absolute p-4 transform -translate-x-1/2 -translate-y-1/2 opacity-0 cursor-pointer w-14 h-14 md:w-16 md:h-16 hover:bg-gray-200 hover:opacity-50 top-1/2 left-1/2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-                    />
-                  </svg>
-                </label>
+                  {modalOpen && (
+                    <ClickAwayListener onClickAway={modalToggle}>
+                      <div className="relative">
+                        <div className="absolute left-0 z-10 w-56 mt-2 origin-top-left bg-white rounded-lg shadow-lg dark:bg-secondary ring-1 ring-black ring-opacity-5">
+                          <label className="cursor-pointer flex px-4 py-3 text-base text-gray-500 transition rounded-t-lg hover:bg-gray-100 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary">
+                            Change profile pic
+                            <input
+                              type="file"
+                              className="hidden"
+                              onChange={(e) => {
+                                if (e.target.files.length !== 0) {
+                                  setIsDefaultProfileImg(false);
+                                  setProfileImg(e.target.files[0]);
+                                  setModalOpen(false);
+                                }
+                              }}
+                            />
+                          </label>
+
+                          <span
+                            className="cursor-pointer flex px-4 py-3 text-base text-gray-500 transition rounded-b-lg hover:bg-gray-100 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
+                            onClick={resetProfileImg}
+                          >
+                            Remove profile pic
+                          </span>
+                        </div>
+                      </div>
+                    </ClickAwayListener>
+                  )}
+
+                  <label>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="absolute -right-0 -bottom-1 dark:text-white dark:bg-secondary dark:hover:bg-tertiary bg-gray-200 p-1 h-6 w-6 cursor-pointer rounded-full transition hover:bg-gray-300"
+                      onClick={modalToggle}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                      />
+                    </svg>
+                  </label>
+                </div>
 
                 <div>
                   <div className="text-sm text-gray-600 md:text-base dark:text-gray-300">
@@ -315,7 +360,7 @@ const Account = () => {
                   <button
                     type="button"
                     className="w-full px-6 py-2 text-sm font-semibold text-center text-white transition duration-200 ease-in bg-pink-600 rounded-lg shadow-md md:text-base hover:bg-pink-700 focus:ring-pink-500 focus:ring-offset-pink-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                    onClick={modalToggle}
+                    onClick={dialogToggle}
                   >
                     Delete
                   </button>
@@ -410,8 +455,8 @@ const Account = () => {
               </ClickAwayListener>
             )}
 
-            {modalOpen && (
-              <ClickAwayListener onClickAway={modalToggle}>
+            {dialogOpen && (
+              <ClickAwayListener onClickAway={dialogToggle}>
                 <div className="absolute w-64 p-4 m-auto transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg top-1/2 left-1/2 rounded-2xl dark:bg-tertiary">
                   <div className="w-full h-full text-center">
                     <div className="flex flex-col justify-between h-full">
@@ -446,7 +491,7 @@ const Account = () => {
                         <button
                           type="button"
                           className="w-full px-4 py-2 text-sm font-semibold text-center text-indigo-500 transition duration-200 ease-in bg-white rounded-lg shadow-md md:text-base hover:bg-gray-100 dark:hover:bg-gray-300 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                          onClick={modalToggle}
+                          onClick={dialogToggle}
                         >
                           Cancel
                         </button>

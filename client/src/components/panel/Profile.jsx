@@ -44,7 +44,7 @@ const Profile = () => {
         id="options-menu"
         onClick={menuToggle}
       >
-        {user != null && user.profileImg != null ? (
+        {user?.profileImg ? (
           <>
             <img
               alt="User Icon"
