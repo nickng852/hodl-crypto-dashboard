@@ -35,7 +35,7 @@ import {
 const Account = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [isDefaultProfileImg, setIsDefaultProfileImg] = useState(true);
+  const [isDefaultProfileImg, setIsDefaultProfileImg] = useState(false);
   const [profileImg, setProfileImg] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false); // whether "Name" or "Email" has been updated
   const [isEmailSent, setIsEmailSent] = useState(false); // whether Password Reset Email has been sent
@@ -110,7 +110,7 @@ const Account = () => {
   }, [isDefaultProfileImg, profileImg, storageRef, docRef]);
 
   const resetProfileImg = () => {
-    setIsDefaultProfileImg(true);
+    setIsDefaultProfileImg(false);
     setProfileImg(null);
     setModalOpen(false);
 
@@ -236,7 +236,7 @@ const Account = () => {
                 <div className="relative md:w-16 md:h-16 w-14 h-14 rounded-full">
                   <img
                     alt="User Icon"
-                    src={isDefaultProfileImg ? defaultImg : user.profileImg}
+                    src={user.profileImg ? user.profileImg : defaultImg}
                     className="object-cover md:w-16 md:h-16 w-14 h-14 rounded-full"
                   />
 
@@ -251,7 +251,7 @@ const Account = () => {
                               className="hidden"
                               onChange={(e) => {
                                 if (e.target.files.length !== 0) {
-                                  setIsDefaultProfileImg(false);
+                                  setIsDefaultProfileImg(true);
                                   setProfileImg(e.target.files[0]);
                                   setModalOpen(false);
                                 }
