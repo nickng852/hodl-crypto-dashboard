@@ -6,7 +6,6 @@
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@reduxjs/toolkit": "^1.7.1",
-    "@rvxlab/tailwind-plugin-ios-full-height": "^1.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",

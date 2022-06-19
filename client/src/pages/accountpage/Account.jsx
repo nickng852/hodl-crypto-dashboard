@@ -225,7 +225,7 @@ const Account = () => {
 
   return (
     <>
-      <section className="flex items-center justify-center">
+      <section className="flex items-center justify-center sm:absolute sm:inset-0">
         <div className="container">
           <form
             className="max-w-2xl mx-auto rounded-lg shadow-md"
@@ -233,18 +233,18 @@ const Account = () => {
           >
             <div className="p-5 border-t-2 border-indigo-400 rounded-t-lg 2xl:px-10 dark:bg-tertiary bg-opacity-5">
               <div className="inline-flex items-center space-x-4">
-                <div className="relative md:w-16 md:h-16 w-14 h-14 rounded-full">
+                <div className="relative rounded-full md:w-16 md:h-16 w-14 h-14">
                   <img
                     alt="User Icon"
                     src={user.profileImg ? user.profileImg : defaultImg}
-                    className="object-cover md:w-16 md:h-16 w-14 h-14 rounded-full"
+                    className="object-cover rounded-full md:w-16 md:h-16 w-14 h-14"
                   />
 
                   {modalOpen && (
                     <ClickAwayListener onClickAway={modalToggle}>
                       <div className="relative">
                         <div className="absolute left-0 z-10 w-56 mt-2 origin-top-left bg-white rounded-lg shadow-lg dark:bg-secondary ring-1 ring-black ring-opacity-5">
-                          <label className="cursor-pointer flex px-4 py-3 text-base text-gray-500 transition rounded-t-lg hover:bg-gray-100 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary">
+                          <label className="flex px-4 py-3 text-base text-gray-500 transition rounded-t-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary">
                             Change profile pic
                             <input
                               type="file"
@@ -260,7 +260,7 @@ const Account = () => {
                           </label>
 
                           <span
-                            className="cursor-pointer flex px-4 py-3 text-base text-gray-500 transition rounded-b-lg hover:bg-gray-100 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
+                            className="flex px-4 py-3 text-base text-gray-500 transition rounded-b-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white dark:hover:bg-tertiary"
                             onClick={resetProfileImg}
                           >
                             Remove profile pic
@@ -273,7 +273,7 @@ const Account = () => {
                   <label>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="absolute -right-0 -bottom-1 dark:text-white dark:bg-secondary dark:hover:bg-tertiary bg-gray-200 p-1 h-6 w-6 cursor-pointer rounded-full transition hover:bg-gray-300"
+                      className="absolute w-6 h-6 p-1 transition bg-gray-200 rounded-full cursor-pointer -right-0 -bottom-1 dark:text-white dark:bg-secondary dark:hover:bg-tertiary hover:bg-gray-300"
                       onClick={modalToggle}
                       fill="none"
                       viewBox="0 0 24 24"
