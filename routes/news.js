@@ -1,20 +1,21 @@
 const express = require("express");
-const axios = require("axios");
 
 const router = express.Router();
 
+const NewsAPI = require("newsapi");
+const newsapi = new NewsAPI(process.env.REACT_APP_NEWS_API_KEY);
+
 // News API - GET news
 router.get("/:keyword/:page/:pageSize", (req, res) => {
-  const NewsAPI = require("newsapi");
-  const newsapi = new NewsAPI(process.env.REACT_APP_NEWS_API_KEY);
-
   const keyword = req.params.keyword;
   const page = req.params.page;
   const pageSize = req.params.pageSize;
 
-  console.log(keyword);
-  console.log(page);
-  console.log(pageSize);
+  /*   console.log(
+    `News API: querying ${pageSize} "${
+      keyword.charAt(0).toUpperCase() + keyword.slice(1)
+    }" news in ${page} page`
+  ); */
 
   newsapi.v2
     .everything({
@@ -27,9 +28,10 @@ router.get("/:keyword/:page/:pageSize", (req, res) => {
       pageSize: pageSize,
     })
     .then((response) => {
-      res.json(response);
+      res.status(200).json(response);
     })
     .catch((error) => {
+      res.status(500).json({ error });
       console.log(error);
     });
 });
