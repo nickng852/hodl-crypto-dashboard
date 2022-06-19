@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { setCoins } from "../../features/coins/coinsSlice";
+import { setCoins } from "../features/coins/coinsSlice";
 
-import Spinner from "../../components/loader/Spinner.jsx";
-import CoinList from "../../components/coinlist/CoinList.jsx";
-import CoinListPagination from "../../components/coinlist/CoinListPagination.jsx";
+import Spinner from "../components/loader/Spinner.jsx";
+import CoinList from "../components/coinlist/CoinList.jsx";
+import CoinListPagination from "../components/coinlist/CoinListPagination.jsx";
 
-import { useGetCoinsQuery } from "../../services/cryptoApi";
+import { useGetCoinsQuery } from "../services/cryptoApi";
 
-const CoinsInfo = () => {
+const CoinsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = 10;
@@ -58,4 +58,4 @@ const CoinsInfo = () => {
   );
 };
 
-export default CoinsInfo;
+export default CoinsPage;

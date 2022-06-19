@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectNews } from "../../features/news/newsSlice";
 
-// Default image
-import defaultImg from "../../assets/images/404-01-scaled.jpg";
+import defaultImg from "../../assets/images/404-error.jpg";
 
 const NewsList = () => {
   const news = useSelector(selectNews);
@@ -21,9 +20,9 @@ const NewsList = () => {
         const newsDesc = result.description;
 
         return (
-          <div
-            className="relative p-4 bg-white rounded-xl w-116 dark:bg-secondary"
+          <main
             key={index}
+            className="relative p-4 bg-white rounded-xl w-116 dark:bg-secondary"
           >
             <a href={newsUrl} target="_blank" rel="noreferrer">
               <img
@@ -53,7 +52,7 @@ const NewsList = () => {
                 </div>
               </div>
             </a>
-          </div>
+          </main>
         );
       })}
     </>

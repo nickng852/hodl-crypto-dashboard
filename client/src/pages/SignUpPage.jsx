@@ -1,21 +1,16 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
-import { setToken } from "../../features/auth/authSlice";
-
 // Custom Hook
-import useForm from "../../hooks/form";
+import useForm from "../hooks/form";
 
 // Firebase
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { db } from "../firebase/firebase.config";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 
-const SignIn = () => {
+const SignUpPage = () => {
   const [isLoading, setIsLoading] = useState(false);
-
-  const dispatch = useDispatch();
-
-  let navigate = useNavigate();
 
   // Custom Hook
   const {
@@ -23,8 +18,10 @@ const SignIn = () => {
     errorMessage,
     setErrorMessage,
     handleChange,
-    isSignInFormValid,
+    isSignUpFormValid,
   } = useForm();
+
+  let navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,16 +30,25 @@ const SignIn = () => {
 
     const auth = getAuth();
 
-    signInWithEmailAndPassword(auth, form.email, form.password)
+    createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         // Signed in
 
-        // Add Firebase user info to Redux store
+        // Add user data to Firestore
         const user = userCredential.user;
 
-        dispatch(setToken({ token: user }));
+        const docData = {
+          uid: user.uid,
+          createDate: Timestamp.fromDate(new Date()),
+          name: form.name,
+          email: form.email,
+          profileImg: null,
+          watchlist: [],
+        };
 
-        navigate("/dashboard");
+        setDoc(doc(db, "users", user.uid), docData);
+
+        navigate("/");
       })
       .catch((error) => {
         // Sign in fail
@@ -54,16 +60,12 @@ const SignIn = () => {
             setErrorMessage("Invalid email address.");
             break;
 
-          case "auth/wrong-password":
-            setErrorMessage("Incorrect password.");
+          case "auth/weak-password":
+            setErrorMessage("Password should be at least 6 characters.");
             break;
 
-          case "auth/user-not-found":
-            setErrorMessage("User not found.");
-            break;
-
-          case "auth/too-many-requests":
-            setErrorMessage("Too many attempts. Please try again later.");
+          case "auth/email-already-in-use":
+            setErrorMessage("Email is already in use.");
             break;
 
           case "auth/internal-error":
@@ -78,16 +80,33 @@ const SignIn = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center absolute inset-0 bg-gray-100 dark:bg-secondary">
+      <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-secondary">
         <div className="w-full max-w-sm p-6 m-4 bg-white rounded-md shadow-md dark:bg-tertiary">
           <div className="flex flex-col justify-center space-y-4 text-center text-gray-800 item-center dark:text-white">
             <div className="text-3xl font-semibold">HODL</div>
 
-            <span className="text-base">Sign In</span>
+            <span className="text-base">Sign Up</span>
           </div>
 
           <form className="mt-6" onSubmit={handleSubmit}>
             <div>
+              <label
+                htmlFor="name"
+                className="text-sm text-gray-700 dark:text-gray-200"
+              >
+                Name
+              </label>
+
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                className="w-full px-4 py-2 mt-2 text-gray-700 border rounded-md dark:bg-tertiary dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 focus:outline-none focus:ring"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="mt-4">
               <label
                 htmlFor="email"
                 className="text-sm text-gray-700 dark:text-gray-200"
@@ -128,10 +147,10 @@ const SignIn = () => {
             <div className="mt-4">
               <button
                 type="submit"
-                disabled={!isSignInFormValid}
+                disabled={!isSignUpFormValid}
                 className="flex items-center justify-center w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded-md dark:bg-gray-500 hover:bg-gray-600 disabled:bg-gray-300 disabled:cursor-auto disabled:hover:bg-gray-300 dark:disabled:bg-tertiary dark:disabled:border-gray-700 dark:disabled:border dark:disabled:hover:bg-tertiary dark:disabled:text-gray-600"
               >
-                <span>Login</span>
+                <span>Sign Up</span>
 
                 {isLoading && (
                   <svg
@@ -161,14 +180,14 @@ const SignIn = () => {
 
           <div className="items-center justify-center mt-6 space-x-1 text-xs text-center sm:flex">
             <div className="font-light text-gray-500 dark:text-gray-400">
-              Don't have an account?
+              Already have an account?
             </div>
 
             <Link
-              to="/signup"
+              to="/"
               className="font-medium text-gray-700 dark:text-gray-200 hover:underline"
             >
-              Sign Up
+              Log In
             </Link>
           </div>
         </div>
@@ -177,4 +196,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUpPage;

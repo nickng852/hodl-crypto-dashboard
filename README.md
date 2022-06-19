@@ -54,6 +54,6 @@ HODL is a cryptocurrency dashboard built with React. It is fully responsive on d
 
 ## Screenshot
 
-<img src="/client/src/assets/images/ui-layout-1.png"></img>
+<img src="/client/src/assets/images/ui-layout.png"></img>
 
 <p align="right">(<a href="#top">back to top</a>)</p>

@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectToken,
   selectUser,
-  setUser,
   setWatchList,
 } from "../../features/auth/authSlice";
 import { selectCoins } from "../../features/coins/coinsSlice";
@@ -35,7 +34,7 @@ const WatchList = () => {
 
   return (
     <>
-      <div className="overflow-y-scroll md:overflow-auto md:h-96 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
+      <main className="overflow-y-scroll md:overflow-auto md:h-96 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
         {watchlist?.length !== 0 ? (
           <>
             {watchlist?.map((result, index) => {
@@ -168,7 +167,7 @@ const WatchList = () => {
             </div>
           </>
         )}
-      </div>
+      </main>
     </>
   );
 };

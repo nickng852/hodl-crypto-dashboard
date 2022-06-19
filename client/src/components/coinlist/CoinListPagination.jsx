@@ -24,13 +24,12 @@ const CoinListPagination = ({ currentPage, setCurrentPage, itemsPerPage }) => {
 
   return (
     <>
-      <div className="flex">
-        <Link
-          to="#"
+      <main className="flex">
+        <div
           className={`flex items-center p-2 mr-2 transition-colors duration-200 transform bg-white rounded-lg shadow dark:bg-secondary ${
             currentPage === 1
               ? "text-gray-300 cursor-auto dark:text-gray-600"
-              : "text-gray-600 dark:text-gray-300 hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white"
+              : "text-gray-600 dark:text-gray-300 hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white cursor-pointer"
           }`}
           onClick={previousPage}
         >
@@ -46,15 +45,14 @@ const CoinListPagination = ({ currentPage, setCurrentPage, itemsPerPage }) => {
               clipRule="evenodd"
             />
           </svg>
-        </Link>
+        </div>
 
-        <Link
-          to="#"
+        <div
           className={`
           flex items-center p-2 transition-colors duration-200 transform bg-white rounded-lg shadow dark:bg-secondary ${
             currentPage === lastPage
               ? "text-gray-300 cursor-auto dark:text-gray-600"
-              : "text-gray-600 dark:text-gray-300 hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white"
+              : "text-gray-600 dark:text-gray-300 hover:bg-indigo-500 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white cursor-pointer"
           }`}
           onClick={nextPage}
         >
@@ -70,8 +68,8 @@ const CoinListPagination = ({ currentPage, setCurrentPage, itemsPerPage }) => {
               clipRule="evenodd"
             />
           </svg>
-        </Link>
-      </div>
+        </div>
+      </main>
     </>
   );
 };

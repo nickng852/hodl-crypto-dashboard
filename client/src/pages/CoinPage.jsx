@@ -1,31 +1,27 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
-import { setCoin, setCoinPriceHistory } from "../../features/coins/coinsSlice";
-import { selectKeyword, setNews } from "../../features/news/newsSlice";
+import { useDispatch } from "react-redux";
+import { setCoin, setCoinPriceHistory } from "../features/coins/coinsSlice";
 
-import Spinner from "../../components/loader/Spinner.jsx";
-import CoinIntro from "../../components/coininfo/CoinIntro.jsx";
-import TimePeriodBar from "../../components/coininfo/TimePeriodBar.jsx";
-import LineChart from "../../components/linechart/LineChart";
-import CoinPriceStat from "../../components/coininfo/CoinPriceStat.jsx";
-import CoinDesc from "../../components/coininfo/CoinDesc.jsx";
-import News from "../../components/news/News.jsx";
+import Spinner from "../components/loader/Spinner.jsx";
+import CoinIntro from "../components/coininfo/CoinIntro.jsx";
+import TimePeriodBar from "../components/coininfo/TimePeriodBar.jsx";
+import LineChart from "../components/linechart/LineChart";
+import CoinPriceStat from "../components/coininfo/CoinPriceStat.jsx";
+import CoinDesc from "../components/coininfo/CoinDesc.jsx";
 
 import {
   useGetCoinQuery,
   useGetCoinPriceHistoryQuery,
-  useGetNewsQuery,
-} from "../../services/cryptoApi";
+} from "../services/cryptoApi";
 
-const CoinInfo = () => {
+const CoinPage = () => {
   const [timePeriod, setTimePeriod] = useState("24h");
 
   const { uuid } = useParams();
 
   const dispatch = useDispatch();
-  const keyword = useSelector(selectKeyword);
 
   // Coinranking API call - GET coin
   const { data: getCoinApi, isFetching: isCoinFetching } =
@@ -107,4 +103,4 @@ const CoinInfo = () => {
   );
 };
 
-export default CoinInfo;
+export default CoinPage;

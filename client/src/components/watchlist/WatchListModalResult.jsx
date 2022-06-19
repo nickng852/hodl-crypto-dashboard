@@ -1,10 +1,7 @@
-import { Link } from "react-router-dom";
-
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectToken,
   selectUser,
-  setUser,
   setWatchList,
 } from "../../features/auth/authSlice";
 
@@ -50,27 +47,29 @@ const WatchListModalResult = ({
 
   return (
     <>
-      <Link to="#" key={id} className="cursor-default" onClick={addItem}>
-        <div className="flex justify-between px-5 py-4 xl:hover:bg-gray-50 xl:dark:hover:bg-tertiary 2xl:px-6">
-          <div className="w-full">
-            <div className="text-sm font-medium text-gray-800 2xl:font-medium dark:text-gray-100">
-              {name}
-            </div>
-
-            <div className="text-xs text-gray-500 2xl:text-sm dark:text-gray-400">
-              {symbol}
-            </div>
+      <main
+        key={id}
+        className="flex justify-between px-5 py-4 cursor-default xl:hover:bg-gray-50 xl:dark:hover:bg-tertiary 2xl:px-6"
+        onClick={addItem}
+      >
+        <div className="w-full">
+          <div className="text-sm font-medium text-gray-800 2xl:font-medium dark:text-gray-100">
+            {name}
           </div>
 
-          <div className="flex items-center justify-center">
-            <img
-              src={icon}
-              alt={name}
-              className="w-5 h-5 rounded-full 2xl:w-7 2xl:h-7"
-            />
+          <div className="text-xs text-gray-500 2xl:text-sm dark:text-gray-400">
+            {symbol}
           </div>
         </div>
-      </Link>
+
+        <div className="flex items-center justify-center">
+          <img
+            src={icon}
+            alt={name}
+            className="w-5 h-5 rounded-full 2xl:w-7 2xl:h-7"
+          />
+        </div>
+      </main>
     </>
   );
 };

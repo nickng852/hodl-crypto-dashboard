@@ -1,15 +1,16 @@
 import { useState } from "react";
 
-import { useSelector, useDispatch } from "react-redux";
-import { selectKeyword, setNews } from "../../features/news/newsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectKeyword, setNews } from "../features/news/newsSlice";
 
-import Spinner from "../../components/loader/Spinner.jsx";
-import NewsList from "./NewsList.jsx";
+import Spinner from "../components/loader/Spinner.jsx";
+import NewsList from "../components/news/NewsList.jsx";
 
-import { useGetNewsQuery } from "../../services/cryptoApi";
+import { useGetNewsQuery } from "../services/cryptoApi";
 
-const NewsCollection = () => {
+const NewsPage = () => {
   const [page, setPage] = useState(1);
+
   const dispatch = useDispatch();
   const keyword = useSelector(selectKeyword);
 
@@ -19,10 +20,6 @@ const NewsCollection = () => {
     page: page,
     pageSize: 20,
   });
-
-  /*   const handleClick = () => {
-    setPage((prev) => prev + 1);
-  }; */
 
   dispatch(setNews(getNewsApi?.articles));
 
@@ -45,8 +42,6 @@ const NewsCollection = () => {
               </h1>
             </header>
 
-            {/* <button onClick={handleClick}>Fetch more</button>
-             */}
             <div className="grid grid-cols-1 gap-6 xl:gap-12 xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 2xl:gap-8 xl: gap-y-10">
               <NewsList />
             </div>
@@ -57,4 +52,4 @@ const NewsCollection = () => {
   );
 };
 
-export default NewsCollection;
+export default NewsPage;

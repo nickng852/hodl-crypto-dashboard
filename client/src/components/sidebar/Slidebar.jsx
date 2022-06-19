@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 import ClickAwayListener from "react-click-away-listener";
 
-const MobileSidebar = () => {
+const Slidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [IsActive, setIsActive] = useState("Dashboard");
 
@@ -68,9 +68,9 @@ const MobileSidebar = () => {
               isOpen ? "left-0" : "-left-full"
             }`}
           >
-            <div className="flex">
+            <div className="flex justify-center">
               {/* Sidebar List */}
-              <nav className="px-4 mt-32 space-y-8 lg:px-6">
+              <nav className="w-full px-4 mt-32 space-y-8 lg:px-6">
                 {/* Dashboard */}
                 <Link
                   to="/dashboard"
@@ -202,8 +202,6 @@ const MobileSidebar = () => {
                     Setting
                   </span>
                 </Link>
-
-                <div className="flex items-center justify-end mb-10"></div>
               </nav>
             </div>
           </div>
@@ -213,11 +211,11 @@ const MobileSidebar = () => {
           id="overlay"
           className={`${
             isOpen ? "block overflow-hidden" : "hidden"
-          } absolute top-0 left-0 z-10 w-full absolute inset-0`}
+          } absolute top-0 left-0 z-10 w-full inset-0`}
         ></div>
       </main>
     </>
   );
 };
 
-export default MobileSidebar;
+export default Slidebar;

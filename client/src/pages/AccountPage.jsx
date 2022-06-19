@@ -1,22 +1,18 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectToken,
-  selectUser,
-  resetUser,
-} from "../../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectToken, selectUser, resetUser } from "../features/auth/authSlice";
 
 // Custom Hook
-import useForm from "../../hooks/form";
+import useForm from "../hooks/form";
 
 import ClickAwayListener from "react-click-away-listener";
 
-import defaultImg from "../../assets/images/empty-user.png";
+import defaultImg from "../assets/images/empty-user.png";
 
 // Firebase
-import { db } from "../../firebase/firebase.config";
+import { db } from "../firebase/firebase.config";
 import {
   getAuth,
   updateEmail,
@@ -32,10 +28,9 @@ import {
   deleteObject,
 } from "firebase/storage";
 
-const Account = () => {
+const AccountPage = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [isDefaultProfileImg, setIsDefaultProfileImg] = useState(false);
   const [profileImg, setProfileImg] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false); // whether "Name" or "Email" has been updated
   const [isEmailSent, setIsEmailSent] = useState(false); // whether Password Reset Email has been sent
@@ -58,12 +53,12 @@ const Account = () => {
 
   let navigate = useNavigate();
 
-  const modalToggle = () => {
-    setModalOpen(!modalOpen);
+  const menuToggle = () => {
+    setMenuOpen(!menuOpen);
   };
 
-  const dialogToggle = () => {
-    setDialogOpen(!dialogOpen);
+  const modalToggle = () => {
+    setModalOpen(!modalOpen);
   };
 
   const updateToggle = () => {
@@ -105,13 +100,10 @@ const Account = () => {
             console.log(error);
           });
       });
-      console.log("upload new img");
     }
-  }, [isDefaultProfileImg, profileImg, storageRef, docRef]);
+  }, [profileImg, storageRef, docRef]);
 
   const resetProfileImg = () => {
-    setIsDefaultProfileImg(false);
-    setProfileImg(null);
     setModalOpen(false);
 
     const docData = {
@@ -121,8 +113,6 @@ const Account = () => {
     updateDoc(docRef, docData);
 
     setProfileImg(null);
-
-    console.log("reset img");
   };
 
   // Send Password Reset Email
@@ -240,6 +230,23 @@ const Account = () => {
                     className="object-cover rounded-full md:w-16 md:h-16 w-14 h-14"
                   />
 
+                  <label>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="absolute w-6 h-6 p-1 transition bg-gray-200 rounded-full cursor-pointer -right-0 -bottom-1 dark:text-white dark:bg-secondary dark:hover:bg-tertiary hover:bg-gray-300"
+                      onClick={modalToggle}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                      />
+                    </svg>
+                  </label>
+
                   {modalOpen && (
                     <ClickAwayListener onClickAway={modalToggle}>
                       <div className="relative">
@@ -251,7 +258,6 @@ const Account = () => {
                               className="hidden"
                               onChange={(e) => {
                                 if (e.target.files.length !== 0) {
-                                  setIsDefaultProfileImg(true);
                                   setProfileImg(e.target.files[0]);
                                   setModalOpen(false);
                                 }
@@ -269,23 +275,6 @@ const Account = () => {
                       </div>
                     </ClickAwayListener>
                   )}
-
-                  <label>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="absolute w-6 h-6 p-1 transition bg-gray-200 rounded-full cursor-pointer -right-0 -bottom-1 dark:text-white dark:bg-secondary dark:hover:bg-tertiary hover:bg-gray-300"
-                      onClick={modalToggle}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                      />
-                    </svg>
-                  </label>
                 </div>
 
                 <div>
@@ -360,7 +349,7 @@ const Account = () => {
                   <button
                     type="button"
                     className="w-full px-6 py-2 text-sm font-semibold text-center text-white transition duration-200 ease-in bg-pink-600 rounded-lg shadow-md md:text-base hover:bg-pink-700 focus:ring-pink-500 focus:ring-offset-pink-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                    onClick={dialogToggle}
+                    onClick={menuToggle}
                   >
                     Delete
                   </button>
@@ -455,8 +444,8 @@ const Account = () => {
               </ClickAwayListener>
             )}
 
-            {dialogOpen && (
-              <ClickAwayListener onClickAway={dialogToggle}>
+            {menuOpen && (
+              <ClickAwayListener onClickAway={menuToggle}>
                 <div className="absolute w-64 p-4 m-auto transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg top-1/2 left-1/2 rounded-2xl dark:bg-tertiary">
                   <div className="w-full h-full text-center">
                     <div className="flex flex-col justify-between h-full">
@@ -491,7 +480,7 @@ const Account = () => {
                         <button
                           type="button"
                           className="w-full px-4 py-2 text-sm font-semibold text-center text-indigo-500 transition duration-200 ease-in bg-white rounded-lg shadow-md md:text-base hover:bg-gray-100 dark:hover:bg-gray-300 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                          onClick={dialogToggle}
+                          onClick={menuToggle}
                         >
                           Cancel
                         </button>
@@ -508,4 +497,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default AccountPage;

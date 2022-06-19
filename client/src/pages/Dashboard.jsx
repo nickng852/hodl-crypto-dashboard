@@ -2,30 +2,30 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectToken, setUser } from "../../features/auth/authSlice";
-import { setCoins } from "../../features/coins/coinsSlice";
-import { selectKeyword, setNews } from "../../features/news/newsSlice";
+import { selectToken, setUser } from "../features/auth/authSlice";
+import { setCoins } from "../features/coins/coinsSlice";
+import { selectKeyword, setNews } from "../features/news/newsSlice";
 
-import Spinner from "../../components/loader/Spinner.jsx";
-import CoinCard from "../../components/coincard/CoinCard.jsx";
-import CoinBar from "../../components/coinbar/CoinBar.jsx";
-import WatchList from "../../components/watchlist/WatchList.jsx";
-import WatchListModal from "../../components/watchlist/WatchListModal.jsx";
-import News from "../../components/news/News.jsx";
+import Spinner from "../components/loader/Spinner.jsx";
+import CoinCard from "../components/coincard/CoinCard.jsx";
+import CoinBar from "../components/coinbar/CoinBar.jsx";
+import WatchList from "../components/watchlist/WatchList.jsx";
+import WatchListModal from "../components/watchlist/WatchListModal.jsx";
+import News from "../components/news/NewsCard.jsx";
 
 import ClickAwayListener from "react-click-away-listener";
 
 // Firebase
-import { db } from "../../firebase/firebase.config";
+import { db } from "../firebase/firebase.config";
 import { doc, onSnapshot } from "firebase/firestore";
 
-import { useGetCoinsQuery, useGetNewsQuery } from "../../services/cryptoApi";
+import { useGetCoinsQuery, useGetNewsQuery } from "../services/cryptoApi";
 
 const Dashboard = () => {
-  const [modalOpen, setModalOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [order, setOrder] = useState("sortByMarketCap");
+  const [modalOpen, setModalOpen] = useState(false);
   const [rank, setRank] = useState("Market Cap");
+  const [order, setOrder] = useState("sortByMarketCap");
 
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
@@ -44,12 +44,12 @@ const Dashboard = () => {
     }
   }, [dispatch, token]);
 
-  const modalToggle = () => {
-    setModalOpen(!modalOpen);
-  };
-
   const menuToggle = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const modalToggle = () => {
+    setModalOpen(!modalOpen);
   };
 
   const sortByMarketCap = () => {

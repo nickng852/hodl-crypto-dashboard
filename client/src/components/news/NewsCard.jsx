@@ -3,14 +3,14 @@ import { selectNews } from "../../features/news/newsSlice";
 
 import moment from "moment";
 
-import defaultImg from "../../assets/images/404-01-scaled.jpg";
+import defaultImg from "../../assets/images/404-error.jpg";
 
-const News = () => {
+const NewsCard = () => {
   const news = useSelector(selectNews);
 
   return (
     <>
-      <div className="grid gap-y-10">
+      <main className="grid gap-y-10">
         {news?.map((result, index) => {
           const newsImage = result.urlToImage ? result.urlToImage : defaultImg;
           const newsTitle = result.title;
@@ -48,9 +48,9 @@ const News = () => {
             </a>
           );
         })}
-      </div>
+      </main>
     </>
   );
 };
 
-export default News;
+export default NewsCard;

@@ -28,7 +28,6 @@
     "react-scripts": "^5.0.0",
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
-    "styled-components": "^5.3.1",
     "swiper": "^6.8.4",
     "tailwind-scrollbar": "github:adoxography/tailwind-scrollbar#pull/36/head",
     "tailwindcss": "^3.0.24",
@@ -58,6 +57,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {}
+  }
 }
