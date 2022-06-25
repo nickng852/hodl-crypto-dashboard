@@ -46,7 +46,7 @@ const LineChart = ({
     if (priceChange < 0) {
       gradient.addColorStop(0, "rgba(214, 69, 65, 0.5)");
       gradient.addColorStop(1, "rgba(214, 69, 65,0.01)");
-    } else if (priceChange === 0 || priceChange == null) {
+    } else if (Math.abs(priceChange) === 0 || priceChange == null) {
       gradient.addColorStop(0, "rgba(150, 150, 150, 0.5)");
       gradient.addColorStop(1, "rgba(150, 150, 150,0.01)");
     } else if (priceChange > 0) {
@@ -63,7 +63,7 @@ const LineChart = ({
           backgroundColor: gradient,
           borderColor:
             (priceChange < 0 && "#e74c3c") ||
-            (priceChange === 0 && "#b0b0b0") ||
+            (Math.abs(priceChange) === 0 && "#b0b0b0") ||
             (priceChange == null && "#b0b0b0") ||
             (priceChange > 0 && "#218c74"),
           borderWidth: (coinCard && "2") || (watchList && "1"),
