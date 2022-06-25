@@ -76,7 +76,7 @@ const CoinPage = () => {
                 />
               </div>
 
-              <div className="flex items-center justify-center w-full h-72 xl:h-116 2xl:h-132">
+              <div className="flex items-center justify-center w-full h-72 xl:h-[35rem] 2xl:h-[55rem]">
                 {isCoinPriceHistoryFetching ? (
                   <>
                     <Spinner />

@@ -215,13 +215,13 @@ const AccountPage = () => {
 
   return (
     <>
-      <section className="flex items-center justify-center sm:absolute sm:inset-0">
+      <section className="flex items-center justify-center sm:h-full">
         <div className="container">
           <form
             className="max-w-2xl mx-auto rounded-lg shadow-md"
             onSubmit={handleSubmit}
           >
-            <div className="p-5 border-t-2 border-indigo-400 rounded-t-lg 2xl:px-10 dark:bg-tertiary bg-opacity-5">
+            <div className="p-5 border-t-2 border-indigo-400 rounded-t-lg lg:px-10 dark:bg-tertiary bg-opacity-5">
               <div className="inline-flex items-center space-x-4">
                 <div className="relative rounded-full md:w-16 md:h-16 w-14 h-14">
                   <img

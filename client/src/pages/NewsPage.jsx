@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectKeyword, selectNews, setNews } from "../features/news/newsSlice";
 
 import Spinner from "../components/loader/Spinner.jsx";
-import NewsList from "../components/news/NewsList.jsx";
+import NewsCard from "../components/news/NewsCard.jsx";
 
 import { useGetNewsQuery } from "../services/cryptoApi";
 
@@ -47,12 +47,12 @@ const NewsPage = () => {
               </h1>
             </header>
 
-            <button type="button" onClick={fetchMore}>
+            {/*             <button type="button" onClick={fetchMore}>
               Fetch More
-            </button>
+            </button> */}
 
             <div className="grid grid-cols-1 gap-6 xl:gap-12 xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 2xl:gap-8 xl: gap-y-10">
-              <NewsList />
+              <NewsCard />
             </div>
           </section>
         </>

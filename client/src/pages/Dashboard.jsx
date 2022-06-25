@@ -11,7 +11,7 @@ import CoinCard from "../components/coincard/CoinCard.jsx";
 import CoinBar from "../components/coinbar/CoinBar.jsx";
 import WatchList from "../components/watchlist/WatchList.jsx";
 import WatchListModal from "../components/watchlist/WatchListModal.jsx";
-import News from "../components/news/NewsCard.jsx";
+import NewsList from "../components/news/NewsList.jsx";
 
 import ClickAwayListener from "react-click-away-listener";
 
@@ -244,7 +244,7 @@ const Dashboard = () => {
                 </header>
 
                 <div className="mt-6">
-                  <News />
+                  <NewsList />
                 </div>
               </section>
             </div>
