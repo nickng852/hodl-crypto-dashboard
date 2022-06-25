@@ -85,7 +85,6 @@ const CoinPage = () => {
                   <LineChart
                     chartLabel={chartLabel}
                     chartStat={chartStat}
-                    priceChange
                     coinInfo
                   />
                 )}

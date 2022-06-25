@@ -64,13 +64,13 @@ const Slidebar = () => {
 
         <ClickAwayListener onClickAway={handleClickAway}>
           <div
-            className={`z-20 w-52 lg:w-72 absolute inset-0 duration-500 h-full ease bg-white shadow-xl dark:bg-secondary ${
+            className={`z-20 w-64 md:w-72 absolute inset-0 duration-500 h-full ease bg-white shadow-xl dark:bg-secondary ${
               isOpen ? "left-0" : "-left-full"
             }`}
           >
             <div className="flex justify-center">
               {/* Sidebar List */}
-              <nav className="w-full px-4 mt-32 space-y-8 lg:px-6">
+              <nav className="w-full px-6 mt-32 space-y-8">
                 {/* Dashboard */}
                 <Link
                   to="/dashboard"

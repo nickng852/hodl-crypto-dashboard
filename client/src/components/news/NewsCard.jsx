@@ -20,15 +20,15 @@ const NewsCard = () => {
 
           return (
             <a href={result.url} target="_blank" rel="noreferrer" key={index}>
-              <div className="grid grid-cols-12 transition-shadow duration-200 bg-white shadow dark:bg-secondary rounded-xl hover:shadow-lg">
+              <div className="grid grid-cols-12 transition-shadow duration-200 bg-white shadow dark:bg-secondary rounded-xl hover:shadow-lg h-60">
                 <img
                   src={newsImage}
                   alt={newsTitle}
-                  className="object-cover w-full h-full col-span-3 bg-center 2xl:h-40 md:rounded-xl rounded-t-xl"
+                  className="object-cover w-full h-full col-span-4 lg:col-span-3 bg-center md:rounded-xl rounded-t-xl"
                 />
 
-                <div className="flex flex-col justify-between col-span-9">
-                  <div className="p-5 md:p-6 xl:p-10 2xl:p-4">
+                <div className="flex flex-col justify-between col-span-8 lg:col-span-9">
+                  <div className="p-5 md:p-6 lg:p-8 2xl:p-4">
                     <div className="font-semibold text-gray-900 dark:text-gray-100 md:text-base xl:text-lg 2xl:text-base">
                       {newsTitle}
                     </div>
