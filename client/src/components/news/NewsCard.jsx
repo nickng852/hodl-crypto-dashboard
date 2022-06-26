@@ -22,7 +22,7 @@ const NewsCard = () => {
         return (
           <main
             key={index}
-            className="relative p-4 bg-white w-[35rem] xl:p-6 rounded-xl dark:bg-secondary"
+            className="relative p-4 bg-white w-116 xl:p-6 rounded-xl dark:bg-secondary"
           >
             <a href={newsUrl} target="_blank" rel="noreferrer">
               <img
