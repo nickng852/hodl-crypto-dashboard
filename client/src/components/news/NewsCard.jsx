@@ -29,7 +29,7 @@ const NewsCard = () => {
                 src={newsImage}
                 alt={newsTitle}
                 onError={showDefaultImg}
-                className="object-cover w-full bg-center h-60 rounded-xl md:h-96 sm:h-80 lg:h-80"
+                className="object-cover w-full bg-center h-60 rounded-xl md:h-96 sm:h-80 lg:h-56"
               />
 
               <div className="px-2 py-5 space-y-3">
@@ -43,11 +43,11 @@ const NewsCard = () => {
                   </>
                 )}
 
-                <div className="text-sm text-gray-600 md:text-base dark:text-gray-100">
+                <div className="line-clamp-2 text-sm text-gray-600 md:text-base dark:text-gray-100">
                   {newsTitle}
                 </div>
 
-                <div className="text-xs font-light text-gray-600 md:text-sm dark:text-gray-100">
+                <div className="line-clamp-5 text-xs font-light text-gray-600 md:text-sm dark:text-gray-100">
                   {newsDesc}
                 </div>
               </div>

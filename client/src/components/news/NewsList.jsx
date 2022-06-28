@@ -20,7 +20,7 @@ const NewsList = () => {
 
           return (
             <a href={result.url} target="_blank" rel="noreferrer" key={index}>
-              <div className="grid min-h-[10rem] grid-cols-12 transition-shadow duration-200 bg-white shadow dark:bg-secondary rounded-xl hover:shadow-lg">
+              <div className="grid min-h-[10rem] max-h-[18rem] grid-cols-12 transition-shadow duration-200 bg-white shadow dark:bg-secondary rounded-xl hover:shadow-lg">
                 <img
                   src={newsImage}
                   alt={newsTitle}
