@@ -217,7 +217,7 @@ const AccountPage = () => {
     <>
       <section className="flex items-center justify-center">
         <form
-          className="max-w-2xl mx-auto rounded-lg shadow-md"
+          className="w-full max-w-2xl mx-auto rounded-lg shadow-md"
           onSubmit={handleSubmit}
         >
           <div className="p-5 border-t-2 border-indigo-400 rounded-t-lg lg:px-10 dark:bg-tertiary bg-opacity-5">
