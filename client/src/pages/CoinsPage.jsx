@@ -23,37 +23,38 @@ const CoinsPage = () => {
 
   return (
     <>
-      {isCoinsFetching && (
-        <>
-          <div className="flex items-center justify-center h-full">
-            <Spinner />
-          </div>
-        </>
-      )}
+      <section className="flex flex-col min-h-full space-y-4 2xl:space-y-6">
+        <header className="flex items-center justify-between">
+          <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
+            Cryptocurrency
+          </h1>
 
-      {!isCoinsFetching && (
-        <>
-          <div className="flex flex-col">
-            <div className="flex items-center justify-between">
-              <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
-                Cryptocurrency
-              </h1>
+          <CoinListPagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            itemsPerPage={itemsPerPage}
+          />
+        </header>
 
-              <div>
-                <CoinListPagination
+        <div className="flex flex-grow">
+          {isCoinsFetching && (
+            <div className="flex items-center justify-center flex-1">
+              <Spinner />
+            </div>
+          )}
+
+          {!isCoinsFetching && (
+            <>
+              <div className="w-full">
+                <CoinList
                   currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
                   itemsPerPage={itemsPerPage}
                 />
               </div>
-            </div>
-
-            <div className="mt-6">
-              <CoinList currentPage={currentPage} itemsPerPage={itemsPerPage} />
-            </div>
-          </div>
-        </>
-      )}
+            </>
+          )}
+        </div>
+      </section>
     </>
   );
 };

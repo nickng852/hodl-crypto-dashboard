@@ -1,9 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectToken,
-  selectUser,
-  setWatchList,
-} from "../../features/auth/authSlice";
+import { useSelector } from "react-redux";
+import { selectToken, selectUser } from "../../features/auth/authSlice";
 
 // Firebase
 import { db } from "../../firebase/firebase.config";
@@ -16,7 +12,6 @@ const WatchListModalResult = ({
   symbol,
   setWatchListSearch,
 }) => {
-  const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
 
@@ -27,13 +22,6 @@ const WatchListModalResult = ({
     const isDuplicated = user.watchlist.includes(id);
 
     if (!isDuplicated) {
-      dispatch(
-        setWatchList((prev) => ({
-          ...prev,
-          id,
-        }))
-      );
-
       // Add watchlist data to Firestore
       const docData = {
         watchlist: [...user.watchlist, id],

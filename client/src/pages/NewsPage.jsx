@@ -1,19 +1,19 @@
 import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectKeyword, selectNews, setNews } from "../features/news/newsSlice";
+import { selectKeyword, setNews } from "../features/news/newsSlice";
 
 import Spinner from "../components/loader/Spinner.jsx";
 import NewsCard from "../components/news/NewsCard.jsx";
 
 import { useGetNewsQuery } from "../services/cryptoApi";
+import NewsCardPagination from "../components/news/NewsCardPagination";
 
 const NewsPage = () => {
   const [page, setPage] = useState(1);
 
   const dispatch = useDispatch();
   const keyword = useSelector(selectKeyword);
-  const news = useSelector(selectNews);
 
   // News API - GET news
   const { data: getNewsApi, isFetching: isNewsFetching } = useGetNewsQuery({
@@ -24,39 +24,31 @@ const NewsPage = () => {
 
   dispatch(setNews(getNewsApi?.articles));
 
-  /*   const fetchMore = () => {
-    setPage((prev) => prev + 1);
-  }; */
-
   return (
     <>
-      {isNewsFetching && (
-        <>
-          <div className="flex items-center justify-center h-full">
-            <Spinner />
-          </div>
-        </>
-      )}
+      <section className="flex flex-col min-h-full 2xl:space-y-6">
+        <header className="flex items-center justify-between">
+          <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
+            News
+          </h1>
 
-      {!isNewsFetching && (
-        <>
-          <section className="space-y-4">
-            <header className="flex items-center">
-              <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
-                News
-              </h1>
-            </header>
+          <NewsCardPagination page={page} setPage={setPage} />
+        </header>
 
-            {/*             <button type="button" onClick={fetchMore}>
-              Fetch More
-            </button> */}
+        <div className="flex flex-grow">
+          {isNewsFetching && (
+            <div className="flex items-center justify-center flex-1">
+              <Spinner />
+            </div>
+          )}
 
-            <div className="grid grid-cols-1 gap-6 xl:gap-12 xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 2xl:gap-8 xl: gap-y-10">
+          {!isNewsFetching && (
+            <div className="grid grid-cols-1 gap-6 xl:gap-12 xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 2xl:gap-16 xl:gap-y-10">
               <NewsCard />
             </div>
-          </section>
-        </>
-      )}
+          )}
+        </div>
+      </section>
     </>
   );
 };
