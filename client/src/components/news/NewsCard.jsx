@@ -29,7 +29,7 @@ const NewsCard = () => {
                 src={newsImage}
                 alt={newsTitle}
                 onError={showDefaultImg}
-                className="object-cover w-full bg-center h-60 rounded-xl md:h-96 sm:h-80 lg:h-56 xl:h-72"
+                className="object-cover w-full bg-center h-60 rounded-xl md:h-96 sm:h-80 lg:h-64"
               />
 
               <div className="px-2 py-5 space-y-3">
