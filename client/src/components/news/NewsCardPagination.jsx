@@ -7,8 +7,6 @@ const NewsCardPagination = ({ page, setPage }) => {
   };
 
   const nextPage = () => {
-    // block if currentPage = lastPage
-
     setPage((prev) => prev + 1);
   };
 

@@ -26,7 +26,7 @@ const NewsPage = () => {
 
   return (
     <>
-      <section className="flex flex-col min-h-full 2xl:space-y-6">
+      <section className="flex flex-col min-h-full space-y-4 2xl:space-y-6">
         <header className="flex items-center justify-between">
           <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
             News
