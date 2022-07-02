@@ -81,7 +81,7 @@ const SignInPage = () => {
       <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-secondary">
         <div className="w-full max-w-sm p-6 m-4 bg-white rounded-md shadow-md dark:bg-tertiary">
           <div className="flex flex-col justify-center space-y-4 text-center text-gray-800 item-center dark:text-white">
-            <div className="text-3xl font-semibold">HODL</div>
+            <div className="text-3xl font-semibold">HODL (Dev)</div>
 
             <span className="text-base">Sign In</span>
           </div>
