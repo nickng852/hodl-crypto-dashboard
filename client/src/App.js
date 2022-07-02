@@ -1,18 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 
-import SignIn from "./pages/signinpage/SignIn.jsx";
-import SignUp from "./pages/signuppage/SignUp.jsx";
+import SignInPage from "./pages/SignInPage.jsx";
+import SignUpPage from "./pages/SignUpPage.jsx";
 
 import PrivateRoute from "./routes/PrivateRoute.js";
 import Layout from "./Layout.js";
-import Dashboard from "./pages/dashboardpage/Dashboard.jsx";
-import CoinsInfo from "./pages/coininfopage/CoinsInfo.jsx";
-import CoinInfo from "./pages/coininfopage/CoinInfo.jsx";
-import NewsCollection from "./pages/newspage/NewsCollection.jsx";
-import Account from "./pages/accountpage/Account.jsx";
-import NotFound from "./pages/notfoundpage/NotFound.jsx";
-import ErrorFallback from "./components/errorboundary/ErrorFallback.jsx";
+
+import Dashboard from "./pages/Dashboard.jsx";
+import CoinsPage from "./pages/CoinsPage.jsx";
+import CoinPage from "./pages/CoinPage.jsx";
+import NewsPage from "./pages/NewsPage.jsx";
+import AccountPage from "./pages/AccountPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
+import ErrorFallback from "./pages/ErrorFallback.jsx";
 
 // Retrieve appearance preference (if any)
 if (localStorage) {
@@ -31,20 +32,20 @@ const App = () => {
       <Router basename={process.env.PUBLIC_URL}>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Routes>
-            <Route path="/" exact element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/" exact element={<SignInPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
 
             <Route element={<PrivateRoute />}>
               <Route element={<Layout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/coins" element={<CoinsInfo />} />
-                <Route path="/coin/:uuid" element={<CoinInfo />} />
-                <Route path="/news" element={<NewsCollection />} />
-                <Route path="/setting" element={<Account />} />
+                <Route path="/coins" element={<CoinsPage />} />
+                <Route path="/coin/:uuid" element={<CoinPage />} />
+                <Route path="/news" element={<NewsPage />} />
+                <Route path="/setting" element={<AccountPage />} />
               </Route>
             </Route>
 
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </ErrorBoundary>
       </Router>

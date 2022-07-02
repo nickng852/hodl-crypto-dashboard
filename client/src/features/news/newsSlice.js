@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   keyword: "cryptocurrency",
-  news: null,
+  news: null, // GET news
 };
 
 export const newsSlice = createSlice({

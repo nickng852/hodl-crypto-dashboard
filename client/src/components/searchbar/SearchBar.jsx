@@ -32,7 +32,7 @@ const SearchBar = () => {
 
   return (
     <>
-      <section className="relative hidden w-full max-w-lg mx-auto lg:block">
+      <main className="relative hidden w-full max-w-lg mx-auto lg:block">
         <span className="absolute inset-y-0 left-0 flex items-center pl-5">
           <svg
             className="w-5 h-5 text-gray-400 dark:text-gray-400"
@@ -58,7 +58,7 @@ const SearchBar = () => {
           onChange={handleChange}
         />
 
-        {coins && search && search?.length !== 0 ? (
+        {coins && search && search?.length !== 0 && (
           <span
             className="absolute inset-y-0 right-0 flex items-center pr-5"
             onClick={handleClickAway}
@@ -78,29 +78,31 @@ const SearchBar = () => {
               />
             </svg>
           </span>
-        ) : null}
+        )}
 
-        {coins && search && filteredCoins.length !== 0 ? ( // Search result will show only when input field is not empty and match result is returned.
-          <ClickAwayListener onClickAway={handleClickAway}>
-            <div className="absolute inset-x-0 z-10 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-xl dark:border-tertiary max-h-72 dark:bg-secondary dark:border-transparent scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
-              {filteredCoins?.map((result, index) => {
-                return (
-                  <>
-                    <SearchBarResult
-                      key={index}
-                      id={result.uuid}
-                      icon={result.iconUrl}
-                      name={result.name}
-                      symbol={result.symbol}
-                      setSearch={setSearch}
-                    />
-                  </>
-                );
-              })}
-            </div>
-          </ClickAwayListener>
-        ) : null}
-      </section>
+        {coins &&
+          search &&
+          filteredCoins.length !== 0 && ( // Search result will show only when input field is not empty and match result is returned.
+            <ClickAwayListener onClickAway={handleClickAway}>
+              <div className="absolute inset-x-0 z-10 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-xl dark:border-tertiary max-h-72 dark:bg-secondary dark:border-transparent scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:scrollbar-thumb-tertiary dark:scrollbar-track-secondary">
+                {filteredCoins?.map((result, index) => {
+                  return (
+                    <>
+                      <SearchBarResult
+                        key={index}
+                        id={result.uuid}
+                        icon={result.iconUrl}
+                        name={result.name}
+                        symbol={result.symbol}
+                        setSearch={setSearch}
+                      />
+                    </>
+                  );
+                })}
+              </div>
+            </ClickAwayListener>
+          )}
+      </main>
     </>
   );
 };

@@ -19,9 +19,10 @@ router.get("/:id", (req, res) => {
   axios
     .request(options)
     .then((response) => {
-      res.json(response.data);
+      res.status(200).json(response.data);
     })
     .catch((error) => {
+      res.status(500).json({ error });
       console.log(error);
     });
 });
@@ -44,9 +45,10 @@ router.get("/:id/history/:timePeriod", (req, res) => {
   axios
     .request(options)
     .then((response) => {
-      res.json(response.data);
+      res.status(200).json(response.data);
     })
     .catch((error) => {
+      res.status(500).json({ error });
       console.log(error);
     });
 });

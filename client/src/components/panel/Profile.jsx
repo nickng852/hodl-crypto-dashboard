@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUser, resetUser } from "../../features/auth/authSlice";
 
 import ClickAwayListener from "react-click-away-listener";

@@ -51,51 +51,50 @@ const CoinBar = ({ order }) => {
         const AbsPriceChange = Math.abs(priceChange); // trim "-" for display
 
         return (
-          <Link
-            to={`/coin/${id}`}
-            key={index}
-            className="flex py-6 border-b border-gray-200 cursor-default md:px-4 2xl:p-6 dark:bg-secondary dark:border-gray-700 2xl:hover:bg-gray-100 2xl:dark:hover:bg-tertiary last:border-0 2xl:border-none"
-          >
-            <div className="flex items-center w-1/4 text-sm 2xl:text-base dark:text-gray-100">
-              {index + 1}
-            </div>
-
-            <div className="flex items-center w-1/2">
-              <img
-                src={icon}
-                alt={name}
-                className="w-10 h-10 p-2 bg-white border-2 border-gray-200 rounded-full 2xl:w-12 2xl:h-12 dark:bg-gray-700 dark:border-gray-500"
-              />
-            </div>
-
-            <div className="flex flex-col justify-start w-full">
-              <div className="text-sm 2xl:text-base dark:text-gray-100">
-                {name}
+          <Link to={`/coin/${id}`} key={index}>
+            <div className="flex py-6 border-b border-gray-200 cursor-default md:px-4 2xl:p-6 dark:bg-secondary dark:border-gray-700 2xl:hover:bg-gray-100 2xl:dark:hover:bg-tertiary last:border-0 2xl:border-none">
+              <div className="flex items-center w-1/4 text-sm 2xl:text-base dark:text-gray-100">
+                {index + 1}
               </div>
-              <div className="text-sm text-gray-400 2xl:text-base">
-                $
+
+              <div className="flex items-center w-1/2">
+                <img
+                  src={icon}
+                  alt={name}
+                  className="w-10 h-10 p-2 bg-white border-2 border-gray-200 rounded-full 2xl:w-12 2xl:h-12 dark:bg-gray-700 dark:border-gray-500"
+                />
+              </div>
+
+              <div className="flex flex-col justify-start w-full">
+                <div className="text-sm 2xl:text-base dark:text-gray-100">
+                  {name}
+                </div>
+
+                <div className="text-sm text-gray-400 2xl:text-base">
+                  $
+                  {`${
+                    price < 1
+                      ? price.toPrecision(4)
+                      : price.toLocaleString(undefined, {
+                          maximumFractionDigits: 2,
+                        })
+                  }`}
+                </div>
+              </div>
+
+              <div
+                className={`flex items-center justify-end w-3/4 text-sm 2xl:w-1/2 2xl:text-base ${
+                  (priceChange < 0 && "text-red-500") ||
+                  (priceChange === 0 && "text-gray-500") ||
+                  (priceChange > 0 && "text-green-500")
+                }`}
+              >
                 {`${
-                  price < 1
-                    ? price.toPrecision(4)
-                    : price.toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                      })
+                  (priceChange < 0 && "-" + AbsPriceChange.toFixed(2) + "%") ||
+                  (priceChange === 0 && AbsPriceChange.toFixed(2) + "%") ||
+                  (priceChange > 0 && "+" + AbsPriceChange.toFixed(2) + "%")
                 }`}
               </div>
-            </div>
-
-            <div
-              className={`flex items-center justify-end w-3/4 text-sm 2xl:w-1/2 2xl:text-base ${
-                (priceChange < 0 && "text-red-500") ||
-                (priceChange === 0 && "text-gray-500") ||
-                (priceChange > 0 && "text-green-500")
-              }`}
-            >
-              {`${
-                (priceChange < 0 && "-" + AbsPriceChange.toFixed(2) + "%") ||
-                (priceChange === 0 && AbsPriceChange.toFixed(2) + "%") ||
-                (priceChange > 0 && "+" + AbsPriceChange.toFixed(2) + "%")
-              }`}
             </div>
           </Link>
         );

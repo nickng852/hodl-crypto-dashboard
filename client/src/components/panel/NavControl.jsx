@@ -4,7 +4,7 @@ import ThemeSwitcher from "./ThemeSwitcher.jsx";
 const NavControl = () => {
   return (
     <>
-      <section className="relative max-w-lg">
+      <main className="relative max-w-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <div>
@@ -16,7 +16,7 @@ const NavControl = () => {
             </div>
           </div>
         </div>
-      </section>
+      </main>
     </>
   );
 };
