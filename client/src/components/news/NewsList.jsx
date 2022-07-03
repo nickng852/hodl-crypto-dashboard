@@ -20,7 +20,7 @@ const NewsList = () => {
 
           return (
             <a href={result.url} target="_blank" rel="noreferrer" key={index}>
-              <div className="grid min-h-[10rem] max-h-[18rem] grid-cols-12 transition-shadow duration-200 bg-white shadow dark:bg-secondary rounded-xl hover:shadow-lg">
+              <div className="grid 2xl:h-[10rem] h-[15rem] grid-cols-12 transition-shadow duration-200 bg-white shadow dark:bg-secondary rounded-xl hover:shadow-lg">
                 <img
                   src={newsImage}
                   alt={newsTitle}
@@ -29,7 +29,7 @@ const NewsList = () => {
 
                 <div className="flex flex-col justify-between col-span-8 lg:col-span-9 xl:col-span-8 2xl:col-span-9">
                   <div className="p-5 md:p-6 lg:p-8 2xl:p-4">
-                    <div className="font-semibold text-gray-900 dark:text-gray-100 md:text-base xl:text-lg 2xl:text-base">
+                    <div className="font-semibold text-gray-900 line-clamp-2 dark:text-gray-100 md:text-base xl:text-lg 2xl:text-base">
                       {newsTitle}
                     </div>
 
