@@ -13,7 +13,7 @@ module.exports = {
       "2xl": "1600px",
       tablet: "640px",
       laptop: "1024px",
-      desktop: "1300px",
+      desktop: "1450px",
     },
     colors: {
       primary: "#17171A",
