@@ -11,6 +11,9 @@ module.exports = {
       lg: "1024px",
       xl: "1280px",
       "2xl": "1600px",
+      tablet: "640px",
+      laptop: "1024px",
+      desktop: "1300px",
     },
     colors: {
       primary: "#17171A",
