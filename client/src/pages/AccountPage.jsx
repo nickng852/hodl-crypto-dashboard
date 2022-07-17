@@ -215,7 +215,7 @@ const AccountPage = () => {
 
   return (
     <>
-      <section className="bg-red-500 landscape:desktop:h-full portrait:sm:h-full sm:flex sm:items-center sm:justify-center">
+      <section className="landscape:desktop:h-full portrait:sm:h-full sm:flex sm:items-center sm:justify-center">
         <form
           className="w-full max-w-2xl mx-auto rounded-lg shadow-md"
           onSubmit={handleSubmit}
