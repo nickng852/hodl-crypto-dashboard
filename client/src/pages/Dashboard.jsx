@@ -1,24 +1,20 @@
 import { useState, useEffect } from "react";
+import { doc, onSnapshot } from "firebase/firestore";
+import ClickAwayListener from "react-click-away-listener";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
-import { selectToken, setUser } from "../features/auth/authSlice";
-import { setCoins } from "../features/coins/coinsSlice";
-import { selectKeyword, setNews } from "../features/news/newsSlice";
-
-import Spinner from "../components/loader/Spinner.jsx";
-import CoinCard from "../components/coincard/CoinCard.jsx";
 import CoinBar from "../components/coinbar/CoinBar.jsx";
+import CoinCard from "../components/coincard/CoinCard.jsx";
+import Spinner from "../components/loader/Spinner.jsx";
+import NewsList from "../components/news/NewsList.jsx";
 import WatchList from "../components/watchlist/WatchList.jsx";
 import WatchListModal from "../components/watchlist/WatchListModal.jsx";
-import NewsList from "../components/news/NewsList.jsx";
-
-import ClickAwayListener from "react-click-away-listener";
-
+import { selectToken, setUser } from "../features/auth/authSlice";
+import { setCoins } from "../features/coins/coinsSlice";
 // Firebase
+import { selectKeyword, setNews } from "../features/news/newsSlice";
 import { db } from "../firebase/firebase.config";
-import { doc, onSnapshot } from "firebase/firestore";
-
 import { useGetCoinsQuery, useGetNewsQuery } from "../services/cryptoApi";
 
 const Dashboard = () => {
@@ -65,12 +61,12 @@ const Dashboard = () => {
   };
 
   // Coinranking API call - GET coins
-  const { data: getCoinsApi, isFetching: isCoinsFetching } = useGetCoinsQuery();
+  const { data: getCoinsApi, isLoading: isCoinsLoading } = useGetCoinsQuery();
 
   dispatch(setCoins({ coins: getCoinsApi?.data?.coins }));
 
   // News API - GET news
-  const { data: newsApi, isFetching: isNewsFetching } = useGetNewsQuery({
+  const { data: newsApi, isLoading: isNewsLoading } = useGetNewsQuery({
     keyword,
     page: 1,
     pageSize: 3,
@@ -80,7 +76,7 @@ const Dashboard = () => {
 
   return (
     <>
-      {(isCoinsFetching || isNewsFetching) && (
+      {(isCoinsLoading || isNewsLoading) && (
         <>
           <div className="flex items-center justify-center w-full h-full">
             <Spinner />
@@ -88,7 +84,7 @@ const Dashboard = () => {
         </>
       )}
 
-      {!isCoinsFetching && !isNewsFetching && (
+      {!isCoinsLoading && !isNewsLoading && (
         <>
           <main className="space-y-8 2xl:space-y-0 2xl:space-x-10 2xl:flex">
             <div className="flex flex-col justify-between space-y-6 2xl:w-2/3">

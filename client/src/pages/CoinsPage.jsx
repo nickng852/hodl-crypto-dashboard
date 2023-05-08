@@ -1,12 +1,10 @@
 import { useState } from "react";
-
 import { useDispatch } from "react-redux";
-import { setCoins } from "../features/coins/coinsSlice";
 
-import Spinner from "../components/loader/Spinner.jsx";
 import CoinList from "../components/coinlist/CoinList.jsx";
 import CoinListPagination from "../components/coinlist/CoinListPagination.jsx";
-
+import Spinner from "../components/loader/Spinner.jsx";
+import { setCoins } from "../features/coins/coinsSlice";
 import { useGetCoinsQuery } from "../services/cryptoApi";
 
 const CoinsPage = () => {
@@ -17,7 +15,7 @@ const CoinsPage = () => {
   const dispatch = useDispatch();
 
   // Coinranking API call - GET coins
-  const { data: getCoinsApi, isFetching: isCoinsFetching } = useGetCoinsQuery();
+  const { data: getCoinsApi, isLoading: isCoinsLoading } = useGetCoinsQuery();
 
   dispatch(setCoins({ coins: getCoinsApi?.data?.coins }));
 
@@ -37,13 +35,13 @@ const CoinsPage = () => {
         </header>
 
         <div className="flex flex-grow">
-          {isCoinsFetching && (
+          {isCoinsLoading && (
             <div className="flex items-center justify-center flex-1">
               <Spinner />
             </div>
           )}
 
-          {!isCoinsFetching && (
+          {!isCoinsLoading && (
             <>
               <div className="w-full">
                 <CoinList

@@ -1,16 +1,14 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
-import { setCoin, setCoinPriceHistory } from "../features/coins/coinsSlice";
-
-import Spinner from "../components/loader/Spinner.jsx";
+import CoinDesc from "../components/coininfo/CoinDesc.jsx";
 import CoinIntro from "../components/coininfo/CoinIntro.jsx";
+import CoinPriceStat from "../components/coininfo/CoinPriceStat.jsx";
 import TimePeriodBar from "../components/coininfo/TimePeriodBar.jsx";
 import LineChart from "../components/linechart/LineChart";
-import CoinPriceStat from "../components/coininfo/CoinPriceStat.jsx";
-import CoinDesc from "../components/coininfo/CoinDesc.jsx";
-
+import Spinner from "../components/loader/Spinner.jsx";
+import { setCoin, setCoinPriceHistory } from "../features/coins/coinsSlice";
 import {
   useGetCoinQuery,
   useGetCoinPriceHistoryQuery,
@@ -24,7 +22,7 @@ const CoinPage = () => {
   const dispatch = useDispatch();
 
   // Coinranking API call - GET coin
-  const { data: getCoinApi, isFetching: isCoinFetching } =
+  const { data: getCoinApi, isLoading: isCoinLoading } =
     useGetCoinQuery(uuid);
 
   dispatch(setCoin({ coin: getCoinApi?.data?.coin }));
@@ -32,7 +30,7 @@ const CoinPage = () => {
   // Coinranking API - GET coin price history
   const {
     data: getCoinPriceHistoryApi,
-    isFetching: isCoinPriceHistoryFetching,
+    isLoading: isCoinPriceHistoryLoading,
   } = useGetCoinPriceHistoryQuery({ uuid, timePeriod });
 
   const response = getCoinPriceHistoryApi?.data?.history;
@@ -55,7 +53,7 @@ const CoinPage = () => {
 
   return (
     <>
-      {isCoinFetching && (
+      {isCoinLoading && (
         <>
           <div className="flex items-center justify-center h-full">
             <Spinner />
@@ -63,7 +61,7 @@ const CoinPage = () => {
         </>
       )}
 
-      {!isCoinFetching && (
+      {!isCoinLoading && (
         <>
           <div className="grid gap-4 sm:gap-10 2xl:gap-20 xl:grid-cols-2 2xl:grid-cols-3">
             <div className="w-full col-span-1 space-y-8 2xl:col-span-2">
@@ -77,7 +75,7 @@ const CoinPage = () => {
               </div>
 
               <div className="flex items-center justify-center w-full h-72 xl:h-116 2xl:h-132">
-                {isCoinPriceHistoryFetching ? (
+                {isCoinPriceHistoryLoading ? (
                   <>
                     <Spinner />
                   </>

@@ -1,13 +1,11 @@
 import { useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-import { selectKeyword, setNews } from "../features/news/newsSlice";
 
 import Spinner from "../components/loader/Spinner.jsx";
 import NewsCard from "../components/news/NewsCard.jsx";
-
-import { useGetNewsQuery } from "../services/cryptoApi";
 import NewsCardPagination from "../components/news/NewsCardPagination";
+import { selectKeyword, setNews } from "../features/news/newsSlice";
+import { useGetNewsQuery } from "../services/cryptoApi";
 
 const NewsPage = () => {
   const [page, setPage] = useState(1);
@@ -16,7 +14,7 @@ const NewsPage = () => {
   const keyword = useSelector(selectKeyword);
 
   // News API - GET news
-  const { data: getNewsApi, isFetching: isNewsFetching } = useGetNewsQuery({
+  const { data: getNewsApi, isLoading: isNewsLoading } = useGetNewsQuery({
     keyword: keyword,
     page: page,
     pageSize: 20,
@@ -36,13 +34,13 @@ const NewsPage = () => {
         </header>
 
         <div className="flex flex-grow">
-          {isNewsFetching && (
+          {isNewsLoading && (
             <div className="flex items-center justify-center flex-1">
               <Spinner />
             </div>
           )}
 
-          {!isNewsFetching && (
+          {!isNewsLoading && (
             <div className="grid grid-cols-1 gap-6 xl:gap-12 xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 2xl:gap-16 xl:gap-y-10">
               <NewsCard />
             </div>
