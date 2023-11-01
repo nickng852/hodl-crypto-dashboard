@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "concurrently \"nodemon server.js\" \"cd client && npm start\"",
-    "build": "npm i && cd client && npm i && npm run build"
+    "build": "npm i && cd client && npm i --legacy-peer-deps && npm run build"
   },
   "author": "",
   "license": "ISC",
