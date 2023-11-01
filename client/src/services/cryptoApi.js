@@ -1,34 +1,25 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://hodl-crypto-dashboard.herokuapp.com/"
-    : "http://localhost:3001/";
+const baseUrl = process.env.NODE_ENV === 'production' ? window.location.href : 'http://localhost:3001/'
 
 export const cryptoApi = createApi({
-  reducerPath: "cryptoApi",
-  baseQuery: fetchBaseQuery({ baseUrl }),
-  refetchOnMountOrArgChange: true,
-  refetchOnReconnect: true,
-  endpoints: (builder) => ({
-    getCoins: builder.query({ query: () => "/getCoins" }),
+    reducerPath: 'cryptoApi',
+    baseQuery: fetchBaseQuery({ baseUrl }),
+    refetchOnMountOrArgChange: true,
+    refetchOnReconnect: true,
+    endpoints: (builder) => ({
+        getCoins: builder.query({ query: () => '/getCoins' }),
 
-    getCoin: builder.query({ query: (uuid) => `/getCoin/${uuid}` }),
+        getCoin: builder.query({ query: (uuid) => `/getCoin/${uuid}` }),
 
-    getCoinPriceHistory: builder.query({
-      query: ({ uuid, timePeriod }) => `/getCoin/${uuid}/history/${timePeriod}`,
+        getCoinPriceHistory: builder.query({
+            query: ({ uuid, timePeriod }) => `/getCoin/${uuid}/history/${timePeriod}`,
+        }),
+
+        getNews: builder.query({
+            query: ({ keyword, page, pageSize }) => `/getNews/${keyword}/${page}/${pageSize}`,
+        }),
     }),
+})
 
-    getNews: builder.query({
-      query: ({ keyword, page, pageSize }) =>
-        `/getNews/${keyword}/${page}/${pageSize}`,
-    }),
-  }),
-});
-
-export const {
-  useGetCoinsQuery,
-  useGetCoinQuery,
-  useGetCoinPriceHistoryQuery,
-  useGetNewsQuery,
-} = cryptoApi;
+export const { useGetCoinsQuery, useGetCoinQuery, useGetCoinPriceHistoryQuery, useGetNewsQuery } = cryptoApi
