@@ -39,7 +39,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "prepare": "cd ../ && husky install ./client/.husky"
   },
   "eslintConfig": {
     "extends": [
@@ -58,5 +59,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0"
   }
 }
