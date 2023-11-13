@@ -10,7 +10,6 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "autoprefixer": "^10.4.4",
     "axios": "^0.22.0",
     "chart.js": "^3.6.0",
     "firebase": "^9.1.2",
@@ -18,7 +17,6 @@
     "millify": "^4.0.0",
     "moment": "^2.29.1",
     "node-sass": "^9.0.0",
-    "postcss": "^8.4.12",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.3.0",
     "react-click-away-listener": "^2.0.5",
@@ -31,7 +29,6 @@
     "redux-persist": "^6.0.0",
     "swiper": "^6.8.4",
     "tailwind-scrollbar": "github:adoxography/tailwind-scrollbar#pull/36/head",
-    "tailwindcss": "^3.0.24",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -61,7 +58,12 @@
     ]
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.16",
     "husky": "^8.0.3",
-    "lint-staged": "^15.1.0"
+    "lint-staged": "^15.1.0",
+    "postcss": "^8.4.31",
+    "prettier": "^3.1.0",
+    "prettier-plugin-tailwindcss": "^0.5.7",
+    "tailwindcss": "^3.3.5"
   }
 }
