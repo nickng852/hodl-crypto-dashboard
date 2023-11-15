@@ -1,15 +1,11 @@
 import { useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import { useDispatch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 
-import { setToken } from '../features/auth/authSlice'
 import useForm from '../hooks/form'
 
 const SignInPage = () => {
     const navigate = useNavigate()
-
-    const dispatch = useDispatch()
 
     // Custom Hook
     const {
@@ -32,12 +28,6 @@ const SignInPage = () => {
         signInWithEmailAndPassword(auth, form.email, form.password)
             .then((userCredential) => {
                 // Signed in
-
-                // Add Firebase user info to Redux store
-                const user = userCredential.user
-
-                dispatch(setToken({ token: user }))
-
                 navigate('/dashboard')
             })
             .catch((error) => {
