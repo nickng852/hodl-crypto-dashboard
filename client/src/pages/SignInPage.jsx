@@ -149,7 +149,7 @@ const SignInPage = () => {
                         </div>
                     </form>
 
-                    <div className="mt-6 items-center justify-center space-x-1 text-center text-xs sm:flex">
+                    <div className="mt-6 items-center justify-center space-x-1 text-center text-sm sm:flex">
                         <div className="font-light text-gray-500 dark:text-gray-400">
                             Don't have an account?
                         </div>

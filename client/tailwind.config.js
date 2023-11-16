@@ -1066,4 +1066,5 @@ module.exports = {
         zIndex: ['responsive', 'focus-within', 'focus'],
         scrollbar: ['rounded', 'dark'],
     },
+    plugins: [require('@tailwindcss/line-clamp')],
 }

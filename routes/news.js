@@ -20,8 +20,6 @@ router.get("/:keyword/:page/:pageSize", (req, res) => {
   newsapi.v2
     .everything({
       q: keyword,
-      /*       sources:
-        "BBC News,CNN,Reuters,New York Times,Bloomberg,Fox News,Google News,The Wall Street Journal,Time, HYPEBEAST, Forbes, Motley Fool", */
       language: "en",
       sortBy: "publishedAt",
       page: page,

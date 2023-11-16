@@ -236,7 +236,7 @@ const Dashboard = () => {
                             </section>
 
                             {/* News */}
-                            <section className="hidden md:block">
+                            <section>
                                 <header className="mt-10 flex items-center justify-between">
                                     <h1 className="cursor-default font-header text-xl text-gray-500 dark:text-gray-100">
                                         News Feed
