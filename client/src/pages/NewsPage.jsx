@@ -23,31 +23,29 @@ const NewsPage = () => {
     dispatch(setNews(getNewsApi?.articles))
 
     return (
-        <>
-            <section className="flex min-h-full flex-col space-y-4 2xl:space-y-6">
-                <header className="flex items-center justify-between">
-                    <h1 className="cursor-default font-header text-xl text-gray-500 dark:text-gray-100">
-                        News
-                    </h1>
+        <section className="flex min-h-full flex-col">
+            <header className="flex items-center justify-between">
+                <h1 className="cursor-default font-header text-xl text-gray-500 dark:text-gray-100">
+                    News
+                </h1>
 
-                    <NewsCardPagination page={page} setPage={setPage} />
-                </header>
+                <NewsCardPagination page={page} setPage={setPage} />
+            </header>
 
-                <div className="flex flex-grow">
-                    {isNewsLoading && (
-                        <div className="flex flex-1 items-center justify-center">
-                            <Spinner />
-                        </div>
-                    )}
+            <div className="flex flex-grow">
+                {isNewsLoading && (
+                    <div className="flex flex-1 items-center justify-center">
+                        <Spinner />
+                    </div>
+                )}
 
-                    {!isNewsLoading && (
-                        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3 xl:gap-12 xl:gap-y-10 2xl:grid-cols-4 2xl:gap-12">
-                            <NewsCard />
-                        </div>
-                    )}
-                </div>
-            </section>
-        </>
+                {!isNewsLoading && (
+                    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3 xl:gap-12 xl:gap-y-10 2xl:grid-cols-4 2xl:gap-12">
+                        <NewsCard />
+                    </div>
+                )}
+            </div>
+        </section>
     )
 }
 
