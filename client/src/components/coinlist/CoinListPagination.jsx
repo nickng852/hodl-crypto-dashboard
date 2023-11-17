@@ -5,7 +5,7 @@ import { selectCoins } from '../../features/coins/coinsSlice'
 const CoinListPagination = ({ currentPage, setCurrentPage, itemsPerPage }) => {
     const coins = useSelector(selectCoins)
 
-    const lastPage = Math.ceil(coins.length / itemsPerPage)
+    const lastPage = Math.ceil(coins?.length / itemsPerPage)
 
     const previousPage = () => {
         // block if currentPage = firstPage

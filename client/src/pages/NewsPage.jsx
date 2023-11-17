@@ -1,54 +1,54 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import Spinner from "../components/loader/Spinner.jsx";
-import NewsCard from "../components/news/NewsCard.jsx";
-import NewsCardPagination from "../components/news/NewsCardPagination";
-import { selectKeyword, setNews } from "../features/news/newsSlice";
-import { useGetNewsQuery } from "../services/cryptoApi";
+import Spinner from '../components/loader/Spinner.jsx'
+import NewsCard from '../components/news/NewsCard.jsx'
+import NewsCardPagination from '../components/news/NewsCardPagination'
+import { selectKeyword, setNews } from '../features/news/newsSlice'
+import { useGetNewsQuery } from '../services/cryptoApi'
 
 const NewsPage = () => {
-  const [page, setPage] = useState(1);
+    const [page, setPage] = useState(1)
 
-  const dispatch = useDispatch();
-  const keyword = useSelector(selectKeyword);
+    const dispatch = useDispatch()
+    const keyword = useSelector(selectKeyword)
 
-  // News API - GET news
-  const { data: getNewsApi, isLoading: isNewsLoading } = useGetNewsQuery({
-    keyword: keyword,
-    page: page,
-    pageSize: 20,
-  });
+    // News API - GET news
+    const { data: getNewsApi, isLoading: isNewsLoading } = useGetNewsQuery({
+        keyword: keyword,
+        page: page,
+        pageSize: 20,
+    })
 
-  dispatch(setNews(getNewsApi?.articles));
+    dispatch(setNews(getNewsApi?.articles))
 
-  return (
-    <>
-      <section className="flex flex-col min-h-full space-y-4 2xl:space-y-6">
-        <header className="flex items-center justify-between">
-          <h1 className="text-xl text-gray-500 cursor-default dark:text-gray-100 font-header">
-            News
-          </h1>
+    return (
+        <>
+            <section className="flex min-h-full flex-col space-y-4 2xl:space-y-6">
+                <header className="flex items-center justify-between">
+                    <h1 className="cursor-default font-header text-xl text-gray-500 dark:text-gray-100">
+                        News
+                    </h1>
 
-          <NewsCardPagination page={page} setPage={setPage} />
-        </header>
+                    <NewsCardPagination page={page} setPage={setPage} />
+                </header>
 
-        <div className="flex flex-grow">
-          {isNewsLoading && (
-            <div className="flex items-center justify-center flex-1">
-              <Spinner />
-            </div>
-          )}
+                <div className="flex flex-grow">
+                    {isNewsLoading && (
+                        <div className="flex flex-1 items-center justify-center">
+                            <Spinner />
+                        </div>
+                    )}
 
-          {!isNewsLoading && (
-            <div className="grid grid-cols-1 gap-6 xl:gap-12 xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 2xl:gap-16 xl:gap-y-10">
-              <NewsCard />
-            </div>
-          )}
-        </div>
-      </section>
-    </>
-  );
-};
+                    {!isNewsLoading && (
+                        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3 xl:gap-12 xl:gap-y-10 2xl:grid-cols-4 2xl:gap-12">
+                            <NewsCard />
+                        </div>
+                    )}
+                </div>
+            </section>
+        </>
+    )
+}
 
-export default NewsPage;
+export default NewsPage
