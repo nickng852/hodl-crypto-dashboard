@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import ClickAwayListener from 'react-click-away-listener'
-import PerfectScrollbar from 'react-perfect-scrollbar'
-import 'react-perfect-scrollbar/dist/css/styles.css'
 import { useSelector } from 'react-redux'
 
 import { selectCoins } from '../../features/coins/coinsSlice'
@@ -83,7 +81,7 @@ const SearchBar = () => {
                 {coins &&
                     search &&
                     filteredCoins.length !== 0 && ( // Search result will show only when input field is not empty and match result is returned.
-                        <PerfectScrollbar className="dark:border-transparent absolute inset-x-0 z-10 mt-4 h-64 overflow-y-auto rounded-xl border border-gray-300 bg-white dark:border-tertiary dark:bg-secondary">
+                        <div className="dark:border-transparent absolute inset-x-0 z-10 mt-4 h-64 overflow-y-auto rounded-xl border border-gray-300 bg-white dark:border-tertiary dark:bg-secondary dark:[color-scheme:dark]">
                             {filteredCoins?.map((result) => (
                                 <SearchBarResult
                                     key={result.uuid}
@@ -94,7 +92,7 @@ const SearchBar = () => {
                                     setSearch={setSearch}
                                 />
                             ))}
-                        </PerfectScrollbar>
+                        </div>
                     )}
             </main>
         </ClickAwayListener>
