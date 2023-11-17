@@ -28,7 +28,7 @@ const NewsList = () => {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        <div className="flex h-full flex-col gap-2 rounded-2xl bg-white p-2 dark:bg-secondary md:flex-row">
+                        <div className="flex h-full flex-col gap-2 rounded-2xl bg-white p-4 dark:bg-secondary md:flex-row md:p-2">
                             <img
                                 alt={newsTitle}
                                 src={newsImage}
