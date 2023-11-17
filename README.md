@@ -5,7 +5,7 @@
     A minimal cryptocurrency dashboard
     <br />
     <br />
-    <a href="https://hodl-crypto-dashboard.onrender.com/"><strong>Live demo »</strong></a>
+    <a href="https://hodl-crypto-dashboard.up.railway.app/"><strong>Live demo »</strong></a>
     <br />
     <br />
   </p>
