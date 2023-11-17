@@ -19,7 +19,7 @@ const CoinPriceStat = () => {
     return (
         <>
             <main className="flex flex-col rounded-2xl bg-white p-6 dark:bg-secondary dark:text-gray-100">
-                <div className="text-base font-bold 2xl:text-xl">
+                <div className="text-base font-semibold 2xl:text-xl">
                     {symbol} Price Statistics
                 </div>
 

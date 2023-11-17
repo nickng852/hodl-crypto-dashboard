@@ -10,7 +10,7 @@ const CoinDesc = () => {
 
     return (
         <>
-            <div className="rounded-2xl bg-white p-6 dark:bg-secondary dark:text-gray-100">
+            <div className="rounded-2xl bg-white p-6 text-sm dark:bg-secondary dark:text-gray-100 2xl:text-base">
                 {parse(description)}
             </div>
         </>
