@@ -79,11 +79,9 @@ const Dashboard = () => {
     return (
         <>
             {(isCoinsLoading || isNewsLoading) && (
-                <>
-                    <div className="flex h-full w-full items-center justify-center">
-                        <Spinner />
-                    </div>
-                </>
+                <div className="flex h-full w-full items-center justify-center">
+                    <Spinner />
+                </div>
             )}
 
             {!isCoinsLoading && !isNewsLoading && (
@@ -233,8 +231,8 @@ const Dashboard = () => {
                         </section>
 
                         {/* News */}
-                        <section>
-                            <header className="mt-10 flex items-center justify-between">
+                        <section className="flex flex-col gap-6">
+                            <header className="mt-6 flex items-center justify-between">
                                 <h1 className="cursor-default font-header text-xl text-gray-500 dark:text-gray-100">
                                     News Feed
                                 </h1>
@@ -246,9 +244,7 @@ const Dashboard = () => {
                                 </Link>
                             </header>
 
-                            <div className="mt-6">
-                                <NewsList />
-                            </div>
+                            <NewsList />
                         </section>
                     </div>
                 </main>

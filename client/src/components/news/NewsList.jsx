@@ -8,7 +8,7 @@ const NewsList = () => {
     const news = useSelector(selectNews)
 
     return (
-        <main className="flex flex-col justify-between gap-y-10 2xl:h-[35rem]">
+        <main className="flex flex-col justify-between gap-y-6 md:gap-y-4 2xl:h-[35rem]">
             {news?.map((result, index) => {
                 const newsImage = result.urlToImage
                     ? result.urlToImage
