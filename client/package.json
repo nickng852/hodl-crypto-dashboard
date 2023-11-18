@@ -17,7 +17,6 @@
     "lodash": "^4.17.21",
     "millify": "^4.0.0",
     "moment": "^2.29.1",
-    "node-sass": "^9.0.0",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.3.0",
     "react-click-away-listener": "^2.0.5",
@@ -64,6 +63,7 @@
     "postcss": "^8.4.31",
     "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
+    "sass": "^1.69.5",
     "tailwindcss": "^3.3.5"
   }
 }
