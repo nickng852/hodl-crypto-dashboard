@@ -24,7 +24,7 @@ const NewsCard = () => {
                 return (
                     <main
                         key={index}
-                        className="relative rounded-xl bg-white p-4 dark:bg-secondary"
+                        className="rounded-xl bg-white p-4 dark:bg-secondary"
                     >
                         <a href={newsUrl} target="_blank" rel="noreferrer">
                             <div className="flex flex-col gap-6">

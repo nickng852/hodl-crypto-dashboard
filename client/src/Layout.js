@@ -5,7 +5,7 @@ import Sidebar from './components/sidebar/Sidebar'
 
 const Layout = () => {
     return (
-        <main className="flex h-screen min-h-screen w-full overflow-y-auto bg-gray-50 dark:bg-primary dark:[color-scheme:dark]">
+        <main className="flex min-h-screen w-full bg-gray-50 dark:bg-primary">
             <Sidebar />
 
             <div className="flex w-full flex-col">

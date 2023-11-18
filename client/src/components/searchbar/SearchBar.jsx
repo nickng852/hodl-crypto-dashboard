@@ -81,7 +81,7 @@ const SearchBar = () => {
                 {coins &&
                     search &&
                     filteredCoins.length !== 0 && ( // Search result will show only when input field is not empty and match result is returned.
-                        <div className="dark:border-transparent absolute inset-x-0 z-10 mt-4 h-64 overflow-y-auto rounded-xl border border-gray-300 bg-white dark:border-tertiary dark:bg-secondary dark:[color-scheme:dark]">
+                        <div className="dark:border-transparent absolute inset-x-0 z-10 mt-4 h-64 overflow-y-auto rounded-xl border border-gray-300 bg-white dark:border-tertiary dark:bg-secondary">
                             {filteredCoins?.map((result) => (
                                 <SearchBarResult
                                     key={result.uuid}
