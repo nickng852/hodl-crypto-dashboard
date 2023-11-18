@@ -23,7 +23,7 @@ const NewsPage = () => {
     dispatch(setNews(getNewsApi?.articles))
 
     return (
-        <section className="flex min-h-full flex-col">
+        <section className="flex min-h-full flex-col gap-4 2xl:gap-6">
             <header className="flex items-center justify-between">
                 <h1 className="cursor-default font-header text-xl text-gray-500 dark:text-gray-100">
                     News
